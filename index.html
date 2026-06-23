@@ -1594,26 +1594,50 @@
     /* ===== WHY SP: イラストカード ===== */
     .why-sp-cards { display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px; }
     .why-sp-card {
-      background: rgba(255,255,255,0.04);
-      border-radius: 14px;
-      overflow: hidden;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 28px 24px;
     }
-    .why-sp-illust {
-      width: 100%;
-      height: 200px;
-      background: #F4F6F8;
-      position: relative;
+    .why-num-row {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: visible;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 12px;
     }
-    .why-sp-illust img {
-      height: 155px;
-      width: auto;
-      object-fit: contain;
+    .why-num {
+      font-size: 72px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    .why-num-unit {
+      font-size: 18px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.65);
+    }
+    .why-num-icon {
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--red);
+      line-height: 1;
+      margin-bottom: 12px;
       display: block;
     }
+    .why-num-head {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .why-num-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.58);
+      line-height: 1.85;
+    }
+    /* 旧スタイル（PC側で使用）*/
     .why-sp-badge {
       position: absolute;
       bottom: 14px;
@@ -1985,36 +2009,31 @@
 
       <div class="why-sp-cards">
 
-        <!-- カード①：技能士 ✕ 37店舗 -->
+        <!-- カード①：37店舗 -->
         <div class="why-sp-card">
-          <div class="why-sp-illust">
-            <img src="undraw_professor-avatar_y9ai.svg" alt="眼鏡作製技能士">
-            <div class="why-sp-badge">
-              <span class="why-sp-badge-num">37</span>
-              <span class="why-sp-badge-lbl">店舗<br>全店在籍</span>
-            </div>
+          <div class="why-num-row">
+            <span class="why-num">37</span>
+            <span class="why-num-unit">店舗</span>
           </div>
-          <p class="why-sp-text">眼鏡作製技能士による正確な度数測定</p>
+          <p class="why-num-head">全店に眼鏡作製技能士在籍</p>
+          <p class="why-num-desc">正確な度数測定で、あなたに合ったレンズをご提案。視力が弱い方でも安心して使えます。</p>
         </div>
 
-        <!-- カード②：インサートレンズ加工 -->
+        <!-- カード②：5ブランド -->
         <div class="why-sp-card">
-          <div class="why-sp-illust">
-            <img src="undraw_random-thoughts_spw5.svg" alt="インサートレンズ">
+          <div class="why-num-row">
+            <span class="why-num">5</span>
+            <span class="why-num-unit">ブランド</span>
           </div>
-          <p class="why-sp-text">機種ごとに最適なインサートレンズを選定・手配</p>
+          <p class="why-num-head">全機種の度付き加工に対応</p>
+          <p class="why-num-desc">MIRZA・Rokid・Even Realities・Ray-Ban Meta・Oakley Meta。購入から加工まで一店で完結。</p>
         </div>
 
-        <!-- カード③：5ブランド -->
+        <!-- カード③：インサートレンズ -->
         <div class="why-sp-card">
-          <div class="why-sp-illust">
-            <img src="undraw_shopping-favorites_spd0.svg" alt="5ブランド">
-            <div class="why-sp-badge">
-              <span class="why-sp-badge-num">5</span>
-              <span class="why-sp-badge-lbl">ブランド</span>
-            </div>
-          </div>
-          <p class="why-sp-text">5ブランドを取り扱う体験・購入・度付き加工をまとめて相談できます。</p>
+          <span class="why-num-icon">✓</span>
+          <p class="why-num-head">機種ごとのインサートレンズを最適選定</p>
+          <p class="why-num-desc">機種によって対応レンズが異なります。専門スタッフが最適な一枚を選定・手配します。</p>
         </div>
 
       </div>
