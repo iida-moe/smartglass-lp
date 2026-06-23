@@ -272,123 +272,103 @@
 
     /* ===== SECTION 02: スマートグラスとは？ ===== */
     #features { background: var(--bg-white); }
+    .features-lead {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.9;
+      margin-bottom: 40px;
+      max-width: 640px;
+    }
     .features-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-    @media (min-width: 768px) {
-      .features-grid { grid-template-columns: repeat(4, 1fr); }
-    }
-    .feature-card {
-      background: var(--bg-gray);
-      border-radius: 12px;
-      padding: 32px 24px;
-      text-align: center;
-    }
-    .feature-icon { margin-bottom: 18px; }
-    .feature-icon img { width: 64px; height: 64px; object-fit: contain; }
-    .feature-banner-icon img { width: 88px; height: 88px; object-fit: contain; }
-    .feature-title {
-      font-size: 17px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      color: var(--text-primary);
-      text-align: center;
-    }
-    .feature-desc {
-      font-size: 15px;
-      color: var(--text-secondary);
-      line-height: 1.8;
-      text-align: center;
-    }
-    .features-heading {
-      display: inline-block;
-      font-size: clamp(20px, 2.8vw, 28px);
-      font-weight: 700;
-      color: var(--text-primary);
-      border-bottom: 2px solid var(--blue);
-      padding-bottom: 6px;
+      gap: 16px;
       margin-bottom: 32px;
     }
-    .feature-banner {
-      background: var(--bg-gray);
-      border-radius: 12px;
-      padding: 28px 36px;
-      margin-top: 24px;
-      display: flex;
-      align-items: center;
-      gap: 28px;
+    @media (min-width: 768px) {
+      .features-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
     }
-    .feature-banner-icon {
-      flex-shrink: 0;
+    .feature-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 32px 20px 28px;
+      text-align: center;
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--navy);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .feature-banner-icon img {
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+    }
+    .feature-icon {
       width: 72px;
-      height: auto;
-      display: block;
-      opacity: 0.75;
-    }
-    .feature-banner-body {}
-    .feature-banner-title {
-      font-size: clamp(16px, 1.8vw, 19px);
-      font-weight: 700;
-      color: var(--text-primary);
-      line-height: 1.5;
-      margin-bottom: 6px;
-    }
-    .feature-banner-desc {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-    .banner-steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 16px;
-    }
-    .banner-step {
-      background: var(--bg-gray);
-      border-radius: 12px;
-      padding: 24px 24px 26px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(13,27,42,0.06);
       display: flex;
-      gap: 16px;
-      align-items: flex-start;
-    }
-    .banner-step-num {
-      display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
-      background: var(--red);
-      color: #fff;
-      font-size: 14px;
-      font-weight: 700;
-      flex-shrink: 0;
+      margin: 0 auto 18px;
     }
-    .banner-step-body {}
-    .banner-step-title {
+    .feature-icon img { width: 40px; height: 40px; object-fit: contain; }
+    .feature-title {
       font-size: 15px;
       font-weight: 700;
-      color: var(--text-primary);
       margin-bottom: 8px;
+      color: var(--text-primary);
     }
-    .banner-step-desc {
+    .feature-desc {
       font-size: 13px;
       color: var(--text-secondary);
-      line-height: 1.75;
+      line-height: 1.85;
     }
-    .feature-wrap {
-      border: 1.5px solid var(--border);
+    /* 度付きバナー */
+    .features-prescription-banner {
+      background: var(--navy);
       border-radius: 16px;
-      padding: 32px 36px;
-      margin-top: 24px;
-      background: #fff;
+      padding: 36px 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
     }
-    .features-cta { display: none; }
+    .features-banner-label {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.45);
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .features-banner-title {
+      font-size: clamp(18px, 2vw, 22px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .features-banner-title strong { color: #FFD600; }
+    .features-banner-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.58);
+      line-height: 1.85;
+    }
+    .features-banner-right { flex-shrink: 0; }
+    .btn-features-banner {
+      display: inline-block;
+      padding: 15px 30px;
+      background: #fff;
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 8px;
+      text-decoration: none;
+      white-space: nowrap;
+      font-family: inherit;
+      transition: opacity 0.2s;
+    }
+    .btn-features-banner:hover { opacity: 0.88; }
 
     /* ===== SECTION 03: スマートグラスのある暮らし ===== */
     #lifestyle { padding: 72px 0 80px; }
@@ -1496,11 +1476,20 @@
 
     /* ===== SP: FEATURES (スマートグラスとは) ===== */
     @media (max-width: 767px) {
-      .features-heading { font-size: 20px; margin-bottom: 20px; }
-      .feature-card { padding: 22px 14px; }
-      .feature-icon img { width: 48px; height: 48px; }
-      .feature-title { font-size: 14px; margin-bottom: 6px; }
-      .feature-desc { font-size: 12px; }
+      .features-lead { font-size: 14px; margin-bottom: 28px; }
+      .features-grid { gap: 10px; margin-bottom: 20px; }
+      .feature-card { padding: 20px 12px 18px; border-top-width: 2px; }
+      .feature-icon { width: 56px; height: 56px; margin-bottom: 14px; }
+      .feature-icon img { width: 30px; height: 30px; }
+      .feature-title { font-size: 13px; margin-bottom: 6px; }
+      .feature-desc { font-size: 11px; }
+      .features-prescription-banner {
+        flex-direction: column;
+        padding: 24px 20px;
+        gap: 20px;
+        align-items: flex-start;
+      }
+      .btn-features-banner { display: block; width: 100%; text-align: center; padding: 15px 16px; }
     }
 
     /* ===== SP: LIFESTYLE ===== */
@@ -1755,27 +1744,41 @@
 <!-- 02 スマートグラスとは？ -->
 <section id="features" class="section">
   <div class="container">
-    <h2 class="features-heading">スマートグラスとは？</h2>
+    <p class="section-label">WHAT IS SMART GLASSES</p>
+    <h2 class="section-title">スマートグラスとは？</h2>
+    <p class="features-lead">メガネのような見た目なのに、音楽・通話・カメラ・AIアシスタントが使える——それがスマートグラスです。</p>
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon"><img src="音楽アイコン.svg" alt="音楽"></div>
-        <div class="feature-title">音楽をどこでも</div>
-        <div class="feature-desc">耳をふさがずに、<br>音楽やラジオを楽しめる。<br>周囲の音も聞こえるから<br>安全で快適。</div>
+        <p class="feature-title">音楽をどこでも</p>
+        <p class="feature-desc">耳をふさがずに音楽やポッドキャストを楽しめる。周囲の音も聞こえて安全に使える。</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon"><img src="カメラのアイコン素材 7.svg" alt="カメラ"></div>
-        <div class="feature-title">写真・動画を撮影</div>
-        <div class="feature-desc">見たままの世界を<br>記録できる。<br>ハンズフリーで<br>簡単に撮影。</div>
+        <p class="feature-title">ハンズフリーで撮影</p>
+        <p class="feature-desc">見えている景色をそのまま記録。両手が空いたまま、いつでもシャッターを切れる。</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon"><img src="吹き出しのアイコン6.svg" alt="通話"></div>
-        <div class="feature-title">通話もメッセージも</div>
-        <div class="feature-desc">両手が自由なまま<br>通話ができる。<br>自動翻訳でコミュニケーションも<br>スムーズに。</div>
+        <p class="feature-title">通話・自動翻訳</p>
+        <p class="feature-desc">両手が自由なまま通話・メッセージ。リアルタイム翻訳で、海外でも安心して使える。</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon"><img src="テレオペアイコン (1).svg" alt="AIアシスタント"></div>
-        <div class="feature-title">AIアシスタント</div>
-        <div class="feature-desc">声で操作、情報を<br>すぐに確認。<br>日常のあらゆる場面を<br>サポート。</div>
+        <p class="feature-title">AIアシスタント</p>
+        <p class="feature-desc">声で質問すればすぐ回答。スケジュール管理から情報検索まで、日常をサポートする。</p>
+      </div>
+    </div>
+
+    <!-- 度付き訴求バナー -->
+    <div class="features-prescription-banner">
+      <div>
+        <p class="features-banner-label">AIMESGANE ONLY</p>
+        <p class="features-banner-title">これらの機能を、<strong>度付きのまま</strong>使えます。</p>
+        <p class="features-banner-desc">視力が弱くてもあきらめなくていい。アイメガネは、スマートグラスを度付きレンズに対応させる数少ない眼鏡店です。</p>
+      </div>
+      <div class="features-banner-right">
+        <a href="#prescription" class="btn-features-banner">度付き加工について →</a>
       </div>
     </div>
   </div>
