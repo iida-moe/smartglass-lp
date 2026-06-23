@@ -433,7 +433,7 @@
     .product-card {
       border-radius: 0;
       overflow: hidden;
-      margin-bottom: 28px;
+      margin-bottom: 56px;
       display: flex;
       flex-direction: column;
       background: #fff;
@@ -630,7 +630,7 @@
       display: flex;
       flex-direction: column;
       gap: 0;
-      border-radius: 10px;
+      border-radius: 0;
       overflow: hidden;
       border: 1px solid var(--border);
       margin-bottom: 20px;
@@ -757,23 +757,24 @@
     }
     .product-actions {
       display: flex;
-      gap: 0;
+      gap: 12px;
       background: var(--navy);
+      padding: 16px 20px;
     }
     .product-actions .btn {
       flex: 1;
       text-align: center;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
-      padding: 18px 12px;
-      border-radius: 0;
+      padding: 14px 12px;
+      border-radius: 4px;
     }
     .product-actions .btn-blue {
-      background: rgba(255,255,255,0.10);
-      color: rgba(255,255,255,0.90);
-      border-left: 1px solid rgba(255,255,255,0.2);
+      background: transparent;
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.45);
     }
-    .product-actions .btn-blue:hover { background: rgba(255,255,255,0.18); opacity: 1; }
+    .product-actions .btn-blue:hover { background: rgba(255,255,255,0.12); opacity: 1; }
 
     /* ===== SECTION 07: 店舗検索 ===== */
     #search { background: var(--navy); }
@@ -1785,9 +1786,9 @@
       .product-image-gallery img { height: 250px; }
       .product-body { padding: 20px 18px; }
       .product-name { font-size: 24px; }
-      .product-actions { flex-direction: column; gap: 0; }
+      .product-actions { flex-direction: column; gap: 10px; padding: 14px 16px; }
       .product-actions .btn { font-size: 14px; width: 100%; }
-      .product-actions .btn-blue { border-left: none; border-top: 1px solid rgba(255,255,255,0.2); }
+      .product-actions .btn-blue { border: 1.5px solid rgba(255,255,255,0.45); }
       .product-price-table { flex-direction: column; }
       .product-price-row + .product-price-row {
         border-left: none;
