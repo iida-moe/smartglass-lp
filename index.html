@@ -1524,6 +1524,59 @@
       .header-menu-btn { display: flex; }
     }
 
+    /* ===== TABLET: 768px〜1023px ===== */
+    @media (min-width: 768px) and (max-width: 1023px) {
+
+      /* コンテナ */
+      .container { padding: 0 24px; }
+
+      /* FV */
+      .fv-content { max-width: 420px; padding: 40px 0; }
+      .fv-main { font-size: clamp(32px, 4.2vw, 52px); }
+      #fv .container { padding: 0 32px 0 4%; }
+
+      /* フィーチャーグリッド：4列→2列 */
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .features-prescription-banner { padding: 28px 32px; gap: 24px; }
+
+      /* 商品カード画像：280px→200px */
+      .product-image { width: 200px; min-height: 240px; font-size: 28px; }
+      .product-image-gallery { width: 200px; }
+      .product-image-gallery img { height: 220px; }
+
+      /* 度付きセクション：2カラムgap縮小 */
+      .prescription-inner { gap: 36px; }
+      .prescription-title { font-size: clamp(20px, 2.8vw, 30px); }
+
+      /* ライフスタイル画像高さ */
+      .lifestyle-slide-img { height: 260px; }
+
+      /* 購入フロー：4列→2列 */
+      .flow-steps { grid-template-columns: repeat(2, 1fr); }
+      .flow-arrow { display: none; }
+
+      /* 店舗検索 */
+      .search-form-card { max-width: 100%; }
+
+      /* FAQリスト */
+      .qa-list { max-width: 100%; }
+
+      /* 最終CTA */
+      .final-btn { max-width: 300px; }
+
+      /* ティッカーブランド（PC表示） */
+      .fv-brand-ticker { display: none; }
+    }
+
+    /* ===== WIDE: 1400px以上 ===== */
+    @media (min-width: 1400px) {
+      .container { padding: 0 40px; }
+      .fv-content { max-width: 620px; }
+    }
+
+    /* 横スクロール防止 */
+    html, body { overflow-x: hidden; }
+
     /* ===== SP: GLOBAL ===== */
     @media (max-width: 767px) {
       .section { padding: 52px 0; }
