@@ -1511,7 +1511,18 @@
         gap: 10px;
         display: flex;
       }
-      .fv-brands-wrap { display: none; }
+      .fv-brands-wrap {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        margin-top: 0;
+      }
+      .fv-brands-wrap::-webkit-scrollbar { display: none; }
+      .fv-brands-title { display: none; }
+      .fv-brands { gap: 0; }
+      .brand-tag { font-size: 10px; padding: 0 7px; }
+      .brand-tag--img img { height: 18px; width: auto; display: block; opacity: 0.85; }
       .btn-fv-primary {
         flex: 1;
         padding: 15px 10px;
@@ -1782,15 +1793,6 @@
       <p class="fv-sub">メーカー公認 · 全 37店舗 · 5ブランド取扱い</p>
       <h1 class="fv-main"><span class="fv-main-line1">スマートグラスは、</span><span class="fv-main-accent">度付きで完成する。</span></h1>
       <p class="fv-brand-label">ー取り扱いブランドー</p>
-      <p class="fv-body">
-        話題の5ブランドの<br>「体験・購入・度付きレンズ交換」を、1つの店で。<br>
-        度付き加工に対応できる眼鏡店は限られています。<br>
-        アイメガネは、<strong>その数少ない一店</strong>です。
-      </p>
-      <div class="fv-btns">
-        <a href="#search" class="btn-fv-primary" onclick="setSearch('','trial')">本体購入・体験</a>
-        <a href="#search" class="btn-fv-secondary" onclick="setSearch('','lens')">度付きレンズ交換</a>
-      </div>
       <div class="fv-brands-wrap">
         <div class="fv-brands-title"><span class="fv-brands-label">取扱ブランド</span></div>
         <div class="fv-brands">
@@ -1800,10 +1802,19 @@
           <span class="brand-sep"></span>
           <span class="brand-tag">Even Realities</span>
           <span class="brand-sep"></span>
-          <span class="brand-tag">Ray-Ban<small>×Meta</small></span>
+          <span class="brand-tag brand-tag--img"><img src="images/rayban/logo_white.png" alt="Ray-Ban Meta"></span>
           <span class="brand-sep"></span>
           <span class="brand-tag">Oakley<small>×Meta</small></span>
         </div>
+      </div>
+      <p class="fv-body">
+        話題の5ブランドの<br>「体験・購入・度付きレンズ交換」を、1つの店で。<br>
+        度付き加工に対応できる眼鏡店は限られています。<br>
+        アイメガネは、<strong>その数少ない一店</strong>です。
+      </p>
+      <div class="fv-btns">
+        <a href="#search" class="btn-fv-primary" onclick="setSearch('','trial')">本体購入・体験</a>
+        <a href="#search" class="btn-fv-secondary" onclick="setSearch('','lens')">度付きレンズ交換</a>
       </div>
     </div>
   </div>
