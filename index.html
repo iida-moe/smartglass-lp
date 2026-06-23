@@ -1765,14 +1765,18 @@
       .lifestyle-slide-img { height: 260px; object-position: top center; }
     }
 
-    /* ===== WHY SECTION: PC / SP 切り替え ===== */
-    .prescription-pc { display: block; }
-    .prescription-sp { display: none; }
-    @media (max-width: 767px) {
-      #prescription { background: var(--navy); }
-      #prescription .prescription-label { color: rgba(255,255,255,0.45); }
-      .prescription-pc { display: none; }
-      .prescription-sp { display: block; }
+    /* ===== WHY SECTION: SP版を全幅で使用 ===== */
+    .prescription-pc { display: none; }
+    .prescription-sp { display: block; }
+    #prescription { background: var(--navy); }
+    #prescription .prescription-label { color: rgba(255,255,255,0.45); }
+
+    /* PC: カードを横並びに */
+    @media (min-width: 768px) {
+      .prescription-sp-title { font-size: clamp(28px, 3vw, 40px); margin-bottom: 20px; }
+      .prescription-sp-intro { font-size: 16px; max-width: 680px; margin-bottom: 40px; }
+      .why-sp-cards { flex-direction: row; gap: 20px; }
+      .why-sp-card { flex: 1; }
     }
 
     /* ===== WHY SP: タイトル ===== */
