@@ -1,0 +1,2608 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>スマートグラス | アイメガネ（仮）</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #FAFAF8;
+      color: #1A1A1A;
+      font-size: 16px;
+      line-height: 1.7;
+      padding-bottom: 64px;
+    }
+
+    :root {
+      --red: #CC0000;
+      --navy: #0D1B2A;
+      --bg-white: #FAFAF8;
+      --bg-gray: #F2F2F0;
+      --text-primary: #1A1A1A;
+      --text-secondary: #6B6B6B;
+      --border: #E0E0E0;
+      --blue: #2C5F8A;
+      --success: #2E7D32;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-red { background: var(--red); color: #fff; }
+    .btn-blue { background: var(--blue); color: #fff; }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      height: 60px;
+      display: flex;
+      align-items: center;
+    }
+    header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 16px;
+    }
+    .header-logo img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
+    .header-nav {
+      display: none;
+      gap: 28px;
+    }
+    .header-nav a {
+      font-size: 14px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .header-nav a:hover { color: var(--red); }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .header-cta { display: none; }
+    @media (min-width: 768px) {
+      .header-nav { display: flex; }
+      .header-cta { display: block; }
+      .header-cta .btn { padding: 10px 22px; font-size: 14px; }
+    }
+
+    /* ===== FV ===== */
+    #fv {
+      margin-top: 60px;
+      background-color: var(--navy);
+      background-image: url('都会的洗練された男性広告.png');
+      background-size: 140% auto;
+      background-position: right center;
+      min-height: calc(100vh - 60px);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    /* FV内はフルワイド */
+    #fv .container {
+      max-width: 100%;
+      margin: 0;
+      padding: 0 40px 0 5%;
+    }
+    .fv-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right,
+        rgba(13,27,42,1.0) 0%,
+        rgba(13,27,42,1.0) 38%,
+        rgba(13,27,42,0.65) 52%,
+        rgba(13,27,42,0.15) 65%,
+        rgba(13,27,42,0.0)  75%
+      );
+    }
+    .fv-content {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      padding: 52px 0;
+      max-width: 560px;
+    }
+    .fv-sub {
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 12px;
+    }
+    .fv-main {
+      font-size: clamp(40px, 4.8vw, 72px);
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 28px;
+      color: #fff;
+    }
+    .fv-main-accent {
+      background: linear-gradient(90deg, #DFFFFF 0%, #00DDFF 35%, #00AAEE 70%, #0077CC 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      white-space: nowrap;
+    }
+    .fv-body {
+      font-size: 16px;
+      color: rgba(255,255,255,0.75);
+      line-height: 2.0;
+      margin-bottom: 36px;
+    }
+    .fv-body strong { color: #fff; font-weight: 700; }
+    .fv-btns {
+      display: flex;
+      gap: 16px;
+    }
+    .btn-fv-primary {
+      display: inline-block;
+      padding: 16px 32px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: inherit;
+      text-decoration: none;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 4px 20px rgba(204,0,0,0.45);
+      transition: opacity 0.2s, box-shadow 0.2s;
+    }
+    .btn-fv-primary:hover { opacity: 0.88; box-shadow: 0 4px 28px rgba(204,0,0,0.6); }
+    .btn-fv-secondary {
+      display: inline-block;
+      padding: 16px 32px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: inherit;
+      text-decoration: none;
+      background: transparent;
+      color: rgba(255,255,255,0.88);
+      border: 1.5px solid rgba(255,255,255,0.4);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-fv-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }
+    .fv-brands-wrap {
+      margin-top: 24px;
+    }
+    .fv-brands-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .fv-brands-title::before,
+    .fv-brands-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.15);
+    }
+    .fv-brands {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 0;
+      align-items: center;
+    }
+    .fv-brands-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      white-space: nowrap;
+      letter-spacing: 0.08em;
+    }
+    .brand-tag {
+      font-size: 16px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.82);
+      letter-spacing: 0.05em;
+      padding: 0 12px;
+      white-space: nowrap;
+    }
+    .brand-tag small {
+      display: inline;
+      font-size: 10px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.04em;
+      margin-left: 2px;
+    }
+    .brand-sep {
+      width: 1px;
+      height: 16px;
+      background: rgba(255,255,255,0.18);
+      flex-shrink: 0;
+    }
+
+    /* ===== SECTION COMMON ===== */
+    .section { padding: 72px 0; }
+    .section-dark { background: var(--navy); color: #fff; }
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--red);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .section-dark .section-label { color: rgba(255,255,255,0.45); }
+    .section-title {
+      font-size: clamp(20px, 2.8vw, 28px);
+      font-weight: 700;
+      margin-bottom: 40px;
+      color: var(--text-primary);
+    }
+    .section-title.center { text-align: center; }
+    .section-dark .section-title { color: #fff; }
+
+    /* ===== SECTION 02: スマートグラスとは？ ===== */
+    #features { background: var(--bg-white); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    @media (min-width: 768px) {
+      .features-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .feature-card {
+      background: var(--bg-gray);
+      border-radius: 12px;
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .feature-icon { margin-bottom: 18px; }
+    .feature-icon img { width: 64px; height: 64px; object-fit: contain; }
+    .feature-banner-icon img { width: 88px; height: 88px; object-fit: contain; }
+    .feature-title {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+      text-align: center;
+    }
+    .feature-desc {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      text-align: center;
+    }
+    .features-heading {
+      display: inline-block;
+      font-size: clamp(20px, 2.8vw, 28px);
+      font-weight: 700;
+      color: var(--text-primary);
+      border-bottom: 2px solid var(--blue);
+      padding-bottom: 6px;
+      margin-bottom: 32px;
+    }
+    .feature-banner {
+      background: var(--bg-gray);
+      border-radius: 12px;
+      padding: 28px 36px;
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .feature-banner-icon {
+      flex-shrink: 0;
+    }
+    .feature-banner-icon img {
+      width: 72px;
+      height: auto;
+      display: block;
+      opacity: 0.75;
+    }
+    .feature-banner-body {}
+    .feature-banner-title {
+      font-size: clamp(16px, 1.8vw, 19px);
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+    .feature-banner-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .banner-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .banner-step {
+      background: var(--bg-gray);
+      border-radius: 12px;
+      padding: 24px 24px 26px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .banner-step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: var(--red);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .banner-step-body {}
+    .banner-step-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .banner-step-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+    .feature-wrap {
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 36px;
+      margin-top: 24px;
+      background: #fff;
+    }
+    .features-cta { display: none; }
+
+    /* ===== SECTION 03: スマートグラスのある暮らし ===== */
+    #lifestyle { padding: 72px 0 80px; }
+    .lifestyle-heading {
+      font-size: clamp(20px, 2.8vw, 28px);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 48px;
+    }
+    .lifestyle-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .lifestyle-slide {
+      text-align: center;
+    }
+    .lifestyle-slide-img {
+      width: 100%;
+      height: 320px;
+      border-radius: 16px;
+      background: var(--bg-gray);
+      object-fit: cover;
+      display: block;
+    }
+    .lifestyle-slide-caption {
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-top: 14px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ===== SECTION 04: 商品ラインナップ ===== */
+    #products { background: #fff; }
+    .products-note {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: -24px;
+      margin-bottom: 40px;
+    }
+    .product-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+    }
+    @media (min-width: 768px) {
+      .product-card { flex-direction: row; }
+    }
+    .product-image {
+      background: var(--bg-gray);
+      width: 100%;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    @media (min-width: 768px) {
+      .product-image { width: 280px; height: auto; min-height: 260px; }
+    }
+    .product-image-gallery {
+      background: #F5F5F3;
+      width: 100%;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-image-gallery img {
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+      display: block;
+    }
+    @media (min-width: 768px) {
+      .product-image-gallery { width: 280px; }
+      .product-image-gallery img { height: 260px; }
+    }
+    .product-color-swatches {
+      display: flex;
+      gap: 8px;
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+    }
+    .color-swatch {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+      transition: outline-color 0.15s, transform 0.15s;
+      flex-shrink: 0;
+    }
+    .color-swatch:hover { transform: scale(1.15); }
+    .color-swatch.active { outline-color: var(--text-primary); }
+    .product-frame-tabs { display: flex; gap: 6px; padding: 10px 16px 0; }
+    .frame-tab {
+      flex: 1; padding: 7px 4px; font-size: 11px; font-weight: 600;
+      color: var(--text-secondary); background: var(--bg-gray);
+      border: 1px solid var(--border); border-radius: 6px; cursor: pointer;
+      line-height: 1.4; transition: all 0.15s;
+    }
+    .frame-tab.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .frame-tab:hover:not(.active) { border-color: var(--navy); color: var(--navy); }
+    .product-body { padding: 24px 28px; flex: 1; }
+    .product-brand { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
+    .product-name { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+    .product-price { font-size: 14px; color: var(--text-secondary); margin-bottom: 12px; }
+    .product-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .tag {
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .tag-gray { background: var(--bg-gray); color: var(--text-secondary); }
+    .tag-scene { background: #EAF2FB; color: #1A5276; }
+    .product-tag-row {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .product-tag-col { display: flex; flex-direction: column; gap: 6px; }
+    .product-scene-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+    }
+    .product-category {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+    }
+    .product-avail-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .tag-avail {
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1.5px solid var(--success);
+      color: var(--success);
+      background: transparent;
+    }
+    .tag-avail-limited {
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1.5px solid var(--text-secondary);
+      color: var(--text-secondary);
+      background: transparent;
+    }
+    .product-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+    .product-target {
+      background: var(--bg-gray);
+      border-left: 3px solid var(--red);
+      border-radius: 0 6px 6px 0;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text-primary);
+      font-weight: 600;
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+    .product-price-table {
+      display: flex;
+      align-items: stretch;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+    .product-price-row {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 0;
+      font-size: 13px;
+    }
+    .product-price-row + .product-price-row {
+      border-left: 1px solid var(--border);
+      margin-left: 12px;
+      padding-left: 12px;
+    }
+    .product-price-label { color: var(--text-secondary); }
+    .product-price-val { font-weight: 700; color: var(--text-primary); }
+    .product-lens-type {
+      font-size: 12px;
+      color: var(--blue);
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+    .product-accessory-note {
+      font-size: 12px;
+      color: var(--text-secondary);
+      background: var(--bg-gray);
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+    .product-accessory-note strong {
+      color: var(--text-primary);
+    }
+    /* 相談カード */
+    .product-card-consult {
+      background: linear-gradient(135deg, #0D1B2A, #1a2e45);
+      border: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .product-consult-inner {
+      padding: 40px 36px;
+      color: #fff;
+      text-align: center;
+    }
+    .product-consult-label {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+    .product-consult-title {
+      font-size: clamp(20px, 2.4vw, 26px);
+      font-weight: 800;
+      line-height: 1.45;
+      margin-bottom: 14px;
+      color: #fff;
+    }
+    .product-consult-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+    }
+    /* 料金タイプ */
+    .price-type-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 767px) {
+      .price-type-grid { grid-template-columns: 1fr; }
+    }
+    .price-type-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+    }
+    .price-type-num {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+    .price-type-title {
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .price-type-brands {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+    .price-type-amount {
+      font-size: 22px;
+      font-weight: 900;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .price-type-amount span {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+    .price-type-list {
+      list-style: none;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .price-type-list li {
+      padding: 4px 0 4px 16px;
+      position: relative;
+    }
+    .price-type-list li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--red);
+    }
+    .product-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .product-actions .btn { font-size: 14px; padding: 12px 20px; }
+
+    /* ===== SECTION 07: 店舗検索 ===== */
+    #search { background: var(--navy); }
+    .search-form-wrap {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .search-form-desc {
+      font-size: 15px;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 20px;
+    }
+    .zip-form {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .zip-mark {
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
+      font-weight: 700;
+    }
+    .zip-form input[type="text"] {
+      padding: 13px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-family: inherit;
+      text-align: center;
+      letter-spacing: 0.1em;
+      color: var(--text-primary);
+      background: #fff;
+    }
+    .zip-form input:focus { outline: 2px solid var(--red); }
+    .zip-sep { font-size: 20px; color: rgba(255,255,255,0.6); font-weight: 300; }
+    .search-form-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px 40px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .search-form-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+    .search-form-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      min-width: 110px;
+      flex-shrink: 0;
+    }
+    .search-select {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--text-primary);
+      background: #fff;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236B6B6B' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+    .search-select:focus { outline: none; border-color: var(--red); }
+    .radio-group { display: flex; gap: 24px; flex-wrap: wrap; }
+    .radio-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      cursor: pointer;
+      color: var(--text-primary);
+    }
+    .radio-label input[type="radio"] {
+      width: 18px; height: 18px;
+      accent-color: var(--red);
+    }
+    .zip-form {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .zip-mark-dark { font-size: 16px; color: var(--text-primary); font-weight: 700; }
+    .zip-sep-dark { font-size: 18px; color: var(--text-secondary); }
+    .zip-form input[type="text"] {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 15px;
+      font-family: inherit;
+      text-align: center;
+      letter-spacing: 0.08em;
+      color: var(--text-primary);
+    }
+    .zip-form input:focus { outline: none; border-color: var(--red); }
+    .btn-geolocate {
+      display: block;
+      width: 100%;
+      padding: 18px 16px;
+      background: #7B0020;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: opacity 0.2s;
+    }
+    .btn-geolocate:hover { opacity: 0.88; }
+    .btn-geolocate:disabled { opacity: 0.5; cursor: not-allowed; }
+    .search-or-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+      color: #aaa;
+      font-size: 13px;
+    }
+    .search-or-divider::before,
+    .search-or-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .zip-search-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .zip-search-row input[type="text"] {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: inherit;
+      text-align: center;
+      letter-spacing: 0.08em;
+      color: var(--text-primary);
+    }
+    .zip-search-row input:focus { outline: none; border-color: var(--red); }
+    .btn-search {
+      padding: 12px 22px;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .btn-search:hover:not(:disabled) { opacity: 0.85; }
+    .btn-search:disabled { opacity: 0.4; cursor: not-allowed; }
+    .search-result-label {
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .search-result-note {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .search-results {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    /* 最寄り店舗（大カード） */
+    .store-card-nearest {
+      background: #fff;
+      border: 2px solid var(--red);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      margin-bottom: 32px;
+    }
+    .store-photo-nearest {
+      width: 50%;
+      min-height: 280px;
+      background: var(--bg-gray);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    .store-photo-nearest img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .store-info-nearest {
+      flex: 1;
+      padding: 32px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .store-nearest-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--red);
+      margin-bottom: 10px;
+      letter-spacing: 0.05em;
+    }
+    .store-name {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+    .store-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .store-tag-product {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 4px;
+      background: #EAF2FB;
+      color: #1A5276;
+    }
+    .store-tag-lens {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 4px;
+      background: #EAFAF1;
+      color: var(--success);
+    }
+    .store-address {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+    .store-dist {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--red);
+      margin-bottom: 22px;
+    }
+    .store-actions {
+      display: flex;
+      gap: 12px;
+    }
+    .btn-store-web {
+      flex: 1;
+      text-align: center;
+      padding: 14px 8px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: inherit;
+      background: var(--red);
+      color: #fff;
+      border: 2px solid var(--red);
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      transition: opacity 0.2s;
+    }
+    .btn-store-tel {
+      flex: 1;
+      text-align: center;
+      padding: 14px 8px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: inherit;
+      background: transparent;
+      color: var(--red);
+      border: 2px solid var(--red);
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      transition: opacity 0.2s;
+    }
+    .btn-store-web:hover, .btn-store-tel:hover { opacity: 0.8; }
+    /* その他の店舗（小カード2列） */
+    .store-other-heading {
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 14px;
+      letter-spacing: 0.05em;
+    }
+    .store-other-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .store-other-item {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .store-other-left {}
+    .store-other-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .store-other-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .store-other-dist {
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.5);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .more-wrap { text-align: center; margin-top: 24px; }
+    .btn-more {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.8);
+      padding: 12px 36px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn-more:hover { opacity: 0.7; }
+
+    /* ===== SECTION 04: 視力矯正が必要な人には ===== */
+    #prescription { background: var(--bg-white); }
+    .prescription-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--red);
+      margin-bottom: 20px;
+    }
+    .prescription-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .prescription-badge {
+      display: inline-block;
+      background: var(--navy);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 6px 14px;
+      border-radius: 4px;
+    }
+    .prescription-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .prescription-title {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 24px;
+      color: var(--text-primary);
+    }
+    .prescription-desc {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 2.0;
+      margin-bottom: 28px;
+    }
+    .prescription-desc strong {
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+    .prescription-list {
+      list-style: none;
+      margin-bottom: 36px;
+    }
+    .prescription-list li {
+      font-size: 15px;
+      color: var(--text-primary);
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .prescription-list li::before {
+      content: '✓';
+      color: var(--red);
+      font-weight: 700;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .prescription-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .prescription-online-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: var(--bg-gray);
+      border-radius: 8px;
+      padding: 16px 20px;
+      flex-wrap: wrap;
+    }
+    .prescription-online-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .prescription-online-text strong {
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+    .btn-online {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: inherit;
+      text-decoration: none;
+      color: var(--navy);
+      border: 2px solid var(--navy);
+      white-space: nowrap;
+      transition: opacity 0.2s;
+      flex-shrink: 0;
+    }
+    .btn-online:hover { opacity: 0.7; }
+    .btn-outline-navy {
+      background: transparent;
+      color: var(--navy);
+      border: 2px solid var(--navy);
+      border-radius: 6px;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: inherit;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+    .btn-outline-navy:hover { opacity: 0.7; }
+    .prescription-photo {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: var(--bg-gray);
+      border-radius: 16px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ===== WHY STATS BAR ===== */
+    .why-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 56px;
+      background: var(--border);
+      gap: 1px;
+    }
+    .why-stat {
+      background: #fff;
+      padding: 28px 20px;
+      text-align: center;
+    }
+    .why-stat-num {
+      font-size: clamp(30px, 3.8vw, 46px);
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .why-stat-num small {
+      font-size: 0.48em;
+      font-weight: 700;
+      color: var(--text-secondary);
+      letter-spacing: 0;
+    }
+    .why-stat-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ===== WHY CARDS ===== */
+    .why-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-content: start;
+    }
+    .why-card {
+      background: var(--bg-gray);
+      border-radius: 12px;
+      padding: 22px 20px;
+      border: 1px solid var(--border);
+    }
+    .why-card-icon {
+      font-size: 22px;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .why-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    .why-card-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+    @media (max-width: 767px) {
+      .why-stats { grid-template-columns: repeat(3, 1fr); gap: 1px; }
+      .why-stat { padding: 20px 12px; }
+      .why-stat-num { font-size: clamp(22px, 6vw, 32px); }
+      .prescription-inner { grid-template-columns: 1fr; gap: 40px; }
+      .why-cards { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ===== SECTION 06: 購入までの流れ ===== */
+    #flow { background: var(--bg-gray); }
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      align-items: start;
+      position: relative;
+    }
+    .flow-step {
+      text-align: center;
+      padding: 0 24px;
+      position: relative;
+    }
+    .flow-step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -8px;
+      top: 16px;
+      font-size: 22px;
+      color: var(--red);
+      font-weight: 700;
+    }
+    .flow-num {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .flow-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+    }
+    .flow-title {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+    .flow-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    /* ===== SECTION 08: Q&A ===== */
+    #qa { background: #fff; }
+    .qa-list { max-width: 800px; margin: 0 auto; }
+    .qa-item { border-bottom: 1px solid var(--border); }
+    .qa-item:first-child { border-top: 1px solid var(--border); }
+    .qa-q {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 22px 0;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: inherit;
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .qa-prefix {
+      color: var(--red);
+      font-size: 17px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .qa-q-text { flex: 1; }
+    .qa-icon {
+      font-size: 22px;
+      color: var(--text-secondary);
+      transition: transform 0.28s;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .qa-item.open .qa-icon { transform: rotate(45deg); }
+    .qa-a {
+      display: none;
+      padding: 0 0 22px 34px;
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.85;
+    }
+    .qa-item.open .qa-a { display: block; }
+
+    /* ===== SECTION 06: 最終CTA ===== */
+    #final-cta {
+      background: var(--navy);
+      text-align: center;
+      padding: 88px 0;
+    }
+    .final-main {
+      font-size: clamp(22px, 3.5vw, 32px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+    .final-sub {
+      font-size: 15px;
+      color: rgba(255,255,255,0.68);
+      line-height: 1.9;
+      margin-bottom: 40px;
+    }
+    .final-btn {
+      width: 100%;
+      max-width: 360px;
+      display: block;
+      margin: 0 auto;
+      padding: 18px;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    /* ===== FIXED FOOTER CTA ===== */
+    .fixed-footer {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 99;
+      background: #fff;
+      border-top: 1px solid var(--border);
+      height: 64px;
+      display: flex;
+      align-items: center;
+    }
+    .fixed-footer .container {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+    }
+    .fixed-footer .btn {
+      flex: 1;
+      text-align: center;
+      padding: 14px 8px;
+      font-size: 13px;
+    }
+    @media (min-width: 768px) {
+      .fixed-footer .btn { font-size: 15px; max-width: 280px; }
+      .fixed-footer .container { justify-content: center; }
+    }
+
+    /* ===== HAMBURGER ===== */
+    .header-menu-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+    }
+    .header-menu-btn span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+      transition: opacity 0.2s;
+    }
+    @media (max-width: 767px) {
+      .header-menu-btn { display: flex; }
+    }
+
+    /* ===== SP: GLOBAL ===== */
+    @media (max-width: 767px) {
+      .section { padding: 52px 0; }
+      #final-cta { padding: 60px 0; }
+    }
+
+    /* ===== SP: FV ===== */
+    @media (max-width: 767px) {
+      #fv {
+        background-size: cover;
+        background-position: right center;
+        min-height: 100svh;
+      }
+      #fv .container { padding: 0 20px; }
+      .fv-bg {
+        background: linear-gradient(to bottom,
+          rgba(13,27,42,0.65) 0%,
+          rgba(13,27,42,0.5) 45%,
+          rgba(13,27,42,0.88) 100%
+        );
+      }
+      .fv-content { max-width: 100%; padding: 44px 0 72px; }
+      .fv-main { font-size: clamp(26px, 7.5vw, 36px); margin-bottom: 16px; }
+      .fv-body { font-size: 14px; line-height: 1.9; margin-bottom: 26px; }
+      .fv-main-accent { white-space: normal; }
+      .fv-btns { flex-direction: column; gap: 10px; }
+      .btn-fv-primary, .btn-fv-secondary {
+        padding: 15px 20px;
+        font-size: 14px;
+        text-align: center;
+        width: 100%;
+        border-radius: 10px;
+      }
+      .fv-brands { flex-wrap: wrap; gap: 0; }
+      .brand-tag { font-size: 11px; padding: 0 7px; }
+      .fv-brands-wrap { margin-top: 20px; }
+      .fv-brands-title { margin-bottom: 8px; }
+    }
+
+    /* ===== SP: FEATURES (スマートグラスとは) ===== */
+    @media (max-width: 767px) {
+      .features-heading { font-size: 20px; margin-bottom: 20px; }
+      .feature-card { padding: 22px 14px; }
+      .feature-icon img { width: 48px; height: 48px; }
+      .feature-title { font-size: 14px; margin-bottom: 6px; }
+      .feature-desc { font-size: 12px; }
+    }
+
+    /* ===== SP: LIFESTYLE ===== */
+    @media (max-width: 767px) {
+      .lifestyle-heading { font-size: 20px; margin-bottom: 24px; }
+      .lifestyle-grid { grid-template-columns: 1fr; gap: 20px; }
+      .lifestyle-slide-img { height: 260px; object-position: top center; }
+    }
+
+    /* ===== WHY SECTION: PC / SP 切り替え ===== */
+    .prescription-pc { display: block; }
+    .prescription-sp { display: none; }
+    @media (max-width: 767px) {
+      #prescription { background: var(--navy); }
+      #prescription .prescription-label { color: rgba(255,255,255,0.45); }
+      .prescription-pc { display: none; }
+      .prescription-sp { display: block; }
+    }
+
+    /* ===== WHY SP: タイトル ===== */
+    .prescription-sp-title {
+      font-size: clamp(20px, 5.8vw, 26px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.45;
+      margin-bottom: 28px;
+    }
+
+    /* ===== WHY SP: イラストカード ===== */
+    .why-sp-cards { display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px; }
+    .why-sp-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .why-sp-illust {
+      width: 100%;
+      height: 200px;
+      background: #F4F6F8;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+    }
+    .why-sp-illust img {
+      height: 155px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+    .why-sp-badge {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      background: var(--red);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 1px;
+    }
+    .why-sp-badge-num {
+      font-size: 32px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+      display: block;
+      letter-spacing: -0.02em;
+    }
+    .why-sp-badge-lbl {
+      font-size: 9px;
+      color: rgba(255,255,255,0.88);
+      display: block;
+      line-height: 1.35;
+    }
+    .why-sp-text {
+      padding: 18px 18px 10px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.55;
+    }
+    .why-sp-note {
+      padding: 0 18px 16px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.42);
+      line-height: 1.6;
+    }
+
+    /* ===== WHY SP: オンラインCTA ===== */
+    .why-sp-online {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      padding: 28px 20px;
+      text-align: center;
+    }
+    .why-sp-online-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .why-sp-online-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.58);
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+    .btn-why-online {
+      display: block;
+      width: 100%;
+      padding: 17px 16px;
+      background: #fff;
+      color: var(--navy);
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 10px;
+      text-decoration: none;
+      text-align: center;
+      font-family: inherit;
+      letter-spacing: 0.02em;
+      transition: opacity 0.2s;
+    }
+    .btn-why-online:hover { opacity: 0.88; }
+
+    /* ===== SP: PRODUCTS ===== */
+    @media (max-width: 767px) {
+      .product-image { height: 250px; font-size: 14px; }
+      .product-image-gallery img { height: 250px; }
+      .product-body { padding: 20px 18px; }
+      .product-name { font-size: 18px; }
+      .product-actions { flex-direction: column; gap: 8px; }
+      .product-actions .btn { text-align: center; font-size: 14px; width: 100%; }
+      .product-price-table { flex-direction: column; }
+      .product-price-row + .product-price-row {
+        border-left: none;
+        border-top: 1px solid var(--border);
+        margin-left: 0;
+        padding-left: 0;
+        margin-top: 6px;
+        padding-top: 6px;
+      }
+    }
+
+    /* ===== SP: FLOW ===== */
+    @media (max-width: 767px) {
+      .flow-grid { grid-template-columns: 1fr; gap: 0; }
+      .flow-step { padding: 28px 8px 0; }
+      .flow-step:not(:last-child)::after {
+        content: '↓';
+        position: relative;
+        display: block;
+        right: auto;
+        top: auto;
+        font-size: 24px;
+        color: var(--red);
+        margin-top: 24px;
+        font-weight: 700;
+      }
+    }
+
+    /* ===== SP: STORE SEARCH ===== */
+    @media (max-width: 767px) {
+      .search-form-card { padding: 24px 18px; }
+      .search-form-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .search-form-label { min-width: unset; }
+      .search-select { width: 100%; }
+      .zip-search-row { gap: 6px; }
+      .zip-search-row input[type="text"] { min-width: 0; font-size: 16px; }
+      .store-card-nearest { flex-direction: column; }
+      .store-photo-nearest { width: 100%; min-height: 200px; }
+      .store-other-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== SP: FAQ ===== */
+    @media (max-width: 767px) {
+      .qa-q { font-size: 14px; }
+      .qa-a { font-size: 14px; padding-left: 26px; }
+    }
+
+    /* ===== SP: FINAL CTA ===== */
+    @media (max-width: 767px) {
+      .final-main { font-size: clamp(20px, 5.5vw, 26px); }
+      .final-sub { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <a class="header-logo" href="#">
+      <img src="aimegane_yoko_3.jpg" alt="アイメガネ">
+    </a>
+    <div class="header-right">
+      <nav class="header-nav">
+        <a href="#products">商品一覧</a>
+        <a href="#search">店舗検索</a>
+      </nav>
+      <div class="header-cta">
+        <a href="#search" class="btn btn-red">店舗予約する</a>
+      </div>
+      <button class="header-menu-btn" aria-label="メニュー" onclick="this.classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- 01 FV -->
+<section id="fv">
+  <div class="fv-bg"></div>
+  <div class="container">
+    <div class="fv-content">
+      <p class="fv-sub">メーカー公認 · 全 37店舗 · 5ブランド取扱い</p>
+      <h1 class="fv-main">スマートグラスを、<span class="fv-main-accent">度付きのまま使う。</span></h1>
+      <p class="fv-body">
+        度付き加工に対応できる眼鏡店は、全国でも限られています。<br>
+        アイメガネは<strong>メーカー公認の技術</strong>を持つ、その数少ない一店です。
+      </p>
+      <div class="fv-btns">
+        <a href="#search" class="btn-fv-primary">実機を体験する →</a>
+        <a href="#search" class="btn-fv-secondary">度付きで相談する →</a>
+      </div>
+      <div class="fv-brands-wrap">
+        <div class="fv-brands-title"><span class="fv-brands-label">取扱ブランド</span></div>
+        <div class="fv-brands">
+          <span class="brand-tag">MIRZA</span>
+          <span class="brand-sep"></span>
+          <span class="brand-tag">Rokid</span>
+          <span class="brand-sep"></span>
+          <span class="brand-tag">Even Realities</span>
+          <span class="brand-sep"></span>
+          <span class="brand-tag">Ray-Ban<small>×Meta</small></span>
+          <span class="brand-sep"></span>
+          <span class="brand-tag">Oakley<small>×Meta</small></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 スマートグラスとは？ -->
+<section id="features" class="section">
+  <div class="container">
+    <h2 class="features-heading">スマートグラスとは？</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><img src="音楽アイコン.svg" alt="音楽"></div>
+        <div class="feature-title">音楽をどこでも</div>
+        <div class="feature-desc">耳をふさがずに、<br>音楽やラジオを楽しめる。<br>周囲の音も聞こえるから<br>安全で快適。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><img src="カメラのアイコン素材 7.svg" alt="カメラ"></div>
+        <div class="feature-title">写真・動画を撮影</div>
+        <div class="feature-desc">見たままの世界を<br>記録できる。<br>ハンズフリーで<br>簡単に撮影。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><img src="吹き出しのアイコン6.svg" alt="通話"></div>
+        <div class="feature-title">通話もメッセージも</div>
+        <div class="feature-desc">両手が自由なまま<br>通話ができる。<br>自動翻訳でコミュニケーションも<br>スムーズに。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><img src="テレオペアイコン (1).svg" alt="AIアシスタント"></div>
+        <div class="feature-title">AIアシスタント</div>
+        <div class="feature-desc">声で操作、情報を<br>すぐに確認。<br>日常のあらゆる場面を<br>サポート。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 スマートグラスのある暮らし -->
+<section id="lifestyle" class="section">
+  <div class="container">
+    <h2 class="lifestyle-heading">スマートグラスのある暮らし</h2>
+    <div class="lifestyle-grid">
+      <div class="lifestyle-slide">
+        <img class="lifestyle-slide-img" src="都会の朝、スマートグラスをかけたランニング男子.png" alt="ランニング">
+        <p class="lifestyle-slide-caption">ランニングのお供に。</p>
+      </div>
+      <div class="lifestyle-slide">
+        <img class="lifestyle-slide-img" src="images/lifestyle/meeting.png" alt="会議・議事録">
+        <p class="lifestyle-slide-caption">会議も、プレゼンも。仕事がスマートになる。</p>
+      </div>
+      <div class="lifestyle-slide">
+        <img class="lifestyle-slide-img" src="images/lifestyle/translation.png" alt="リアルタイム翻訳">
+        <p class="lifestyle-slide-caption">旅先でも、AIが頼れる相棒に。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 アイメガネでしか、できない -->
+<section id="prescription" class="section">
+  <div class="container">
+    <p class="prescription-label">WHY AIMESGANE</p>
+
+    <!-- ▼ PC LAYOUT ▼ -->
+    <div class="prescription-pc">
+
+    <!-- 数字バー -->
+    <div class="why-stats">
+      <div class="why-stat">
+        <p class="why-stat-num">37<small>店舗</small></p>
+        <p class="why-stat-label">すべてに眼鏡作製技能士が在籍</p>
+      </div>
+      <div class="why-stat">
+        <p class="why-stat-num">5<small>ブランド</small></p>
+        <p class="why-stat-label">スマートグラスを取り扱い</p>
+      </div>
+      <div class="why-stat">
+        <p class="why-stat-num" style="font-size: clamp(18px, 2.2vw, 26px); padding-top: 8px;">メーカー<br>公認</p>
+        <p class="why-stat-label">各ブランドから正式認定を受けた加工店</p>
+      </div>
+    </div>
+
+    <div class="prescription-inner">
+      <!-- 左：テキスト -->
+      <div>
+        <div class="prescription-badges">
+          <span class="prescription-badge">眼鏡作製技能士 在籍</span>
+          <span class="prescription-badge">メーカー公認加工店</span>
+        </div>
+        <h2 class="prescription-title">度付きスマートグラスは、<br>アイメガネでしか、できない。</h2>
+        <p class="prescription-desc">
+          スマートグラスの「本体を買える店」と「度付きにできる店」は、別です。<br>
+          度付きレンズの組み込みには、光学の専門知識と精密な加工設備が必要。<br>
+          アイメガネは、メーカーから直接加工を依頼されるほどの技術を持つ、<br>
+          <strong>全国でも数少ない対応眼鏡店です。</strong>
+        </p>
+        <ul class="prescription-list">
+          <li>眼鏡作製技能士による正確な度数測定</li>
+          <li>機種ごとに最適なインサートレンズを選定・手配</li>
+          <li>取付・フィッティングまで専門スタッフが一貫対応</li>
+        </ul>
+        <div class="prescription-actions">
+          <a href="#search" class="btn btn-red">対応店舗を探す →</a>
+        </div>
+        <div class="prescription-online-row">
+          <div class="prescription-online-text">
+            <strong>来店が難しい方はオンラインでも対応できます。</strong><br>
+            処方箋をご入力いただき、スマートグラス本体を郵送するだけ。<br>
+            度付きレンズに加工してお手元にお届けします。（MIRZA・Rokid対応）
+          </div>
+          <a href="https://www.aijapan-online.com/" target="_blank" class="btn-online">オンラインで注文する →</a>
+        </div>
+      </div>
+      <!-- 右：理由カード -->
+      <div class="why-cards">
+        <div class="why-card">
+          <span class="why-card-icon">🏭</span>
+          <p class="why-card-title">メーカー公認の加工技術</p>
+          <p class="why-card-desc">各ブランドのメーカーから直接加工を依頼されるほどの精密技術。一般の眼鏡店では対応できない機種も扱えます。</p>
+        </div>
+        <div class="why-card">
+          <span class="why-card-icon">👓</span>
+          <p class="why-card-title">全店に技能士が在籍</p>
+          <p class="why-card-desc">37店舗すべてに眼鏡作製技能士が在籍。正確な検眼から最適なレンズ選定、フィッティングまで一貫対応します。</p>
+        </div>
+        <div class="why-card">
+          <span class="why-card-icon">📍</span>
+          <p class="why-card-title">37店舗でアクセスしやすい</p>
+          <p class="why-card-desc">埼玉・東京・茨城・栃木・群馬・千葉・静岡に展開。お近くの店舗でスマートグラスの相談・加工に対応します。</p>
+        </div>
+        <div class="why-card">
+          <span class="why-card-icon">📦</span>
+          <p class="why-card-title">5ブランドを一店で</p>
+          <p class="why-card-desc">MIRZA・Rokid・Even Realities・Ray-Ban Meta・Oakley Meta。体験・購入・度付き加工をまとめて相談できます。</p>
+        </div>
+      </div>
+    </div>
+
+    </div><!-- /prescription-pc -->
+
+    <!-- ▼ SP LAYOUT ▼ -->
+    <div class="prescription-sp">
+      <h2 class="prescription-sp-title">度付きスマートグラスは、<br>アイメガネでしかできない。</h2>
+
+      <div class="why-sp-cards">
+
+        <!-- カード①：技能士 ✕ 37店舗 -->
+        <div class="why-sp-card">
+          <div class="why-sp-illust">
+            <img src="undraw_professor-avatar_y9ai.svg" alt="眼鏡作製技能士">
+            <div class="why-sp-badge">
+              <span class="why-sp-badge-num">37</span>
+              <span class="why-sp-badge-lbl">店舗<br>全店在籍</span>
+            </div>
+          </div>
+          <p class="why-sp-text">眼鏡作製技能士による正確な度数測定</p>
+        </div>
+
+        <!-- カード②：インサートレンズ加工 -->
+        <div class="why-sp-card">
+          <div class="why-sp-illust">
+            <img src="undraw_random-thoughts_spw5.svg" alt="インサートレンズ">
+          </div>
+          <p class="why-sp-text">機種ごとに最適なインサートレンズを選定・手配</p>
+        </div>
+
+        <!-- カード③：5ブランド -->
+        <div class="why-sp-card">
+          <div class="why-sp-illust">
+            <img src="undraw_shopping-favorites_spd0.svg" alt="5ブランド">
+            <div class="why-sp-badge">
+              <span class="why-sp-badge-num">5</span>
+              <span class="why-sp-badge-lbl">ブランド</span>
+            </div>
+          </div>
+          <p class="why-sp-text">5ブランドを取り扱う体験・購入・度付き加工をまとめて相談できます。</p>
+          <p class="why-sp-note">*各店舗によって取り扱いブランドが異なります。詳しくはこちら</p>
+        </div>
+
+      </div>
+
+      <!-- オンラインCTA -->
+      <div class="why-sp-online">
+        <p class="why-sp-online-title">来店が難しい方は<br>オンラインでも対応できます。</p>
+        <p class="why-sp-online-desc">処方箋をご入力いただき、スマートグラス本体を郵送するだけ。度付きレンズに加工してお手元にお届けします。（MIRZA・Rokid対応）</p>
+        <a href="https://www.aijapan-online.com/" target="_blank" class="btn-why-online">アイメガネオンライン</a>
+      </div>
+    </div><!-- /prescription-sp -->
+
+  </div>
+</section>
+
+<!-- 05 商品ラインナップ -->
+<section id="products" class="section">
+  <div class="container">
+    <h2 class="section-title center">商品ラインナップ</h2>
+    <p class="products-note">※商品によって取り扱い店舗が異なります</p>
+
+    <!-- MIRZA -->
+    <div class="product-card">
+      <div class="product-image">商品写真（準備中）</div>
+      <div class="product-body">
+        <p class="product-brand">MIRZA</p>
+        <h3 class="product-name">MIRZA</h3>
+        <p class="product-category">本格XRグラス／日本製・NTT系</p>
+        <div class="product-avail-row">
+          <span class="tag-avail">度付き対応</span>
+          <span class="tag-avail-limited">本体取扱（一部店舗）</span>
+        </div>
+        <p class="product-desc">Snapdragon AR2搭載、ワイヤレスで6DoF対応の本格XRグラス。FHD・高輝度ディスプレイに140言語超のリアルタイム字幕・通訳機能を搭載。</p>
+        <div class="product-target">こんな人に：XR・空間コンピューティングを本気で活用したいプロ・法人の方</div>
+        <div class="product-price-table">
+          <div class="product-price-row">
+            <span class="product-price-label">本体価格目安</span>
+            <span class="product-price-val">約248,000円</span>
+          </div>
+          <div class="product-price-row">
+            <span class="product-price-label">度付きインサート</span>
+            <span class="product-price-val">16,080円〜</span>
+          </div>
+        </div>
+        <p class="product-lens-type">▸ 専用インサートレンズ方式</p>
+        <div class="product-actions">
+          <a href="#search" class="btn btn-red" onclick="setSearch('MIRZA','trial')">体験を予約</a>
+          <a href="#search" class="btn btn-blue" onclick="setSearch('MIRZA','lens')">度付きを相談</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rokid -->
+    <div class="product-card">
+      <div class="product-image">商品写真（準備中）</div>
+      <div class="product-body">
+        <p class="product-brand">Rokid</p>
+        <h3 class="product-name">Rokid Max 2</h3>
+        <p class="product-category">ARグラス／中国製・ビジネス向け</p>
+        <div class="product-avail-row">
+          <span class="tag-avail">度付き対応</span>
+          <span class="tag-avail-limited">本体取扱（一部店舗）</span>
+        </div>
+        <p class="product-desc">視野内にARナビ・翻訳・通知をリアルタイム表示。ハンズフリーで情報確認できる次世代ビジネスツール。アイメガネで実機体験できます。</p>
+        <div class="product-target">こんな人に：ビジネスシーンでARを活用したい・常に情報にアクセスしたい方</div>
+        <div class="product-price-table">
+          <div class="product-price-row">
+            <span class="product-price-label">本体価格目安</span>
+            <span class="product-price-val">約99,800円</span>
+          </div>
+          <div class="product-price-row">
+            <span class="product-price-label">度付きインサート</span>
+            <span class="product-price-val">16,080円〜</span>
+          </div>
+        </div>
+        <p class="product-lens-type">▸ 専用インサートレンズ方式</p>
+        <div class="product-actions">
+          <a href="#search" class="btn btn-red" onclick="setSearch('Rokid','trial')">体験を予約</a>
+          <a href="#search" class="btn btn-blue" onclick="setSearch('Rokid','lens')">度付きを相談</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Even Realities G2 -->
+    <div class="product-card">
+      <div class="product-image-gallery">
+        <img id="even-main-img" src="images/even-g2/grey.png" alt="Even Realities G2">
+        <div class="product-frame-tabs">
+          <button class="frame-tab active" onclick="switchEvenFrame('A',this)">A フレーム<br><small style="font-weight:400;font-size:10px;">スリムライン</small></button>
+          <button class="frame-tab" onclick="switchEvenFrame('B',this)">B フレーム<br><small style="font-weight:400;font-size:10px;">ウェリントン</small></button>
+        </div>
+        <div class="product-color-swatches" id="even-swatches-A">
+          <span class="color-swatch active" style="background:#4E4E4E;" onclick="switchEvenColor('grey',this)" title="グレイ"></span>
+          <span class="color-swatch" style="background:#516050;" onclick="switchEvenColor('green',this)" title="グリーン"></span>
+          <span class="color-swatch" style="background:#6B5040;" onclick="switchEvenColor('brown',this)" title="ブラウン"></span>
+        </div>
+        <div class="product-color-swatches" id="even-swatches-B" style="display:none;">
+          <span class="color-swatch active" style="background:#4E4E4E;" onclick="switchEvenColor('grey-b',this)" title="グレイ"></span>
+          <span class="color-swatch" style="background:#516050;" onclick="switchEvenColor('green-b',this)" title="グリーン"></span>
+          <span class="color-swatch" style="background:#6B5040;" onclick="switchEvenColor('brown-b',this)" title="ブラウン"></span>
+        </div>
+      </div>
+      <div class="product-body">
+        <p class="product-brand">Even Realities</p>
+        <h3 class="product-name">Even Realities G2</h3>
+        <p class="product-category">スマートグラス／超軽量ARタイプ</p>
+        <div class="product-avail-row">
+          <span class="tag-avail">度付き対応</span>
+          <span class="tag-avail">本体取扱（全店舗）</span>
+        </div>
+        <p class="product-desc">わずか38gの超軽量ボディに高精細マイクロLEDディスプレイを搭載。普段使いのメガネ感覚で一日中かけられる、最もとっつきやすいARグラス。</p>
+        <div class="product-target">こんな人に：スマートグラス初心者・普段使いできる軽いものを探している方</div>
+        <div class="product-price-table">
+          <div class="product-price-row">
+            <span class="product-price-label">本体価格目安</span>
+            <span class="product-price-val">約79,800円</span>
+          </div>
+          <div class="product-price-row">
+            <span class="product-price-label">度付きレンズ交換</span>
+            <span class="product-price-val">16,080円〜</span>
+          </div>
+        </div>
+        <p class="product-lens-type">▸ 度付きレンズ直接加工方式</p>
+        <p class="product-accessory-note">＋ 対応アクセサリー：<strong>Even R1 スマートリング</strong>（歩数・心拍・睡眠計測、G2専用コントローラー）</p>
+        <div class="product-actions">
+          <a href="#search" class="btn btn-red" onclick="setSearch('Even Realities','trial')">体験を予約</a>
+          <a href="#search" class="btn btn-blue" onclick="setSearch('Even Realities','lens')">度付きを相談</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ray-Ban Meta -->
+    <div class="product-card">
+      <div class="product-image">商品写真（準備中）</div>
+      <div class="product-body">
+        <p class="product-brand">Ray-Ban × Meta</p>
+        <h3 class="product-name">Ray-Ban Meta</h3>
+        <p class="product-category">スマートグラス／Meta AI搭載・人気No.1</p>
+        <div class="product-avail-row">
+          <span class="tag-avail">度付き対応</span>
+          <span class="tag-avail">本体取扱（全店舗）</span>
+        </div>
+        <p class="product-desc">Ray-Banの洗練されたデザインにMeta AIを搭載。カメラで写真・動画撮影も可能。AIが声で質問に答え、リアルタイムでサポート。見た目はふつうのサングラス。</p>
+        <div class="product-target">こんな人に：見た目にこだわりつつ、AIとカメラを日常で使いたい方</div>
+        <div class="product-price-table">
+          <div class="product-price-row">
+            <span class="product-price-label">本体価格目安</span>
+            <span class="product-price-val">約49,500円</span>
+          </div>
+          <div class="product-price-row">
+            <span class="product-price-label">度付きレンズ交換</span>
+            <span class="product-price-val">16,080円〜</span>
+          </div>
+        </div>
+        <p class="product-lens-type">▸ 度付きレンズ直接加工方式</p>
+        <div class="product-actions">
+          <a href="#search" class="btn btn-red" onclick="setSearch('Ray-Ban Meta','trial')">体験を予約</a>
+          <a href="#search" class="btn btn-blue" onclick="setSearch('Ray-Ban Meta','lens')">度付きを相談</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Oakley Meta -->
+    <div class="product-card">
+      <div class="product-image">商品写真（準備中）</div>
+      <div class="product-body">
+        <p class="product-brand">Oakley × Meta</p>
+        <h3 class="product-name">Oakley Meta</h3>
+        <p class="product-category">スポーツスマートグラス／Meta AI搭載</p>
+        <div class="product-avail-row">
+          <span class="tag-avail">度付き対応</span>
+          <span class="tag-avail-limited">本体取扱（一部店舗）</span>
+        </div>
+        <p class="product-desc">アクティブシーンに特化したOakleyフレームにMeta AIとカメラを搭載。スポーツ中の撮影や音楽再生、AIアシストが使えるアウトドア向けモデル。</p>
+        <div class="product-target">こんな人に：スポーツ・アウトドアで使える、動いても外れない1本を探している方</div>
+        <div class="product-price-table">
+          <div class="product-price-row">
+            <span class="product-price-label">本体価格目安</span>
+            <span class="product-price-val">約54,800円</span>
+          </div>
+          <div class="product-price-row">
+            <span class="product-price-label">度付きレンズ交換</span>
+            <span class="product-price-val">16,080円〜</span>
+          </div>
+        </div>
+        <p class="product-lens-type">▸ 度付きレンズ直接加工方式</p>
+        <div class="product-actions">
+          <a href="#search" class="btn btn-red" onclick="setSearch('Oakley Meta','trial')">体験を予約</a>
+          <a href="#search" class="btn btn-blue" onclick="setSearch('Oakley Meta','lens')">度付きを相談</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- どれを選べばいい？ -->
+    <div class="product-card product-card-consult">
+      <div class="product-consult-inner">
+        <p class="product-consult-label">5ブランドを取り揃えています</p>
+        <h3 class="product-consult-title">どれが自分に合うか、<br>一緒に選びます。</h3>
+        <p class="product-consult-desc">XR・映像・撮影・スポーツ・翻訳——目的で最適な一本は変わります。お持ちの機種の度付き相談だけでも歓迎です。</p>
+        <a href="#search" class="btn btn-red" style="margin-top:20px;">店舗で相談する →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 06 料金・納期 -->
+<section id="price" class="section" style="background:var(--bg-gray);">
+  <div class="container">
+    <h2 class="section-title center">料金と納期の目安</h2>
+    <p style="text-align:center;font-size:15px;color:var(--text-secondary);margin-top:-24px;margin-bottom:48px;">度付きの仕組みは、機種によって3タイプに分かれます。検討の前に、まず全体像を。</p>
+    <div class="price-type-grid">
+
+      <div class="price-type-card">
+        <p class="price-type-num">①</p>
+        <p class="price-type-title">インサートレンズ式</p>
+        <p class="price-type-brands">MIRZA / Rokid など</p>
+        <p class="price-type-amount">16,080円<span>〜（税込）</span></p>
+        <ul class="price-type-list">
+          <li>本体内に度付きレンズを装着</li>
+          <li>強度近視・乱視もご相談可</li>
+          <li>納期目安：レンズ発注後 約1〜2週間</li>
+        </ul>
+      </div>
+
+      <div class="price-type-card">
+        <p class="price-type-num">②</p>
+        <p class="price-type-title">レンズ交換式</p>
+        <p class="price-type-brands">Ray-Ban Meta / Oakley Meta など</p>
+        <p class="price-type-amount">要お見積り<span>（店頭にてご案内）</span></p>
+        <ul class="price-type-list">
+          <li>フレームに度付きレンズを直接加工</li>
+          <li>−6.00〜プラス度数まで対応</li>
+          <li>納期目安：レンズ発注後 約1〜2週間</li>
+        </ul>
+      </div>
+
+      <div class="price-type-card">
+        <p class="price-type-num">③</p>
+        <p class="price-type-title">一体型</p>
+        <p class="price-type-brands">Even Realities など</p>
+        <p class="price-type-amount">店頭でご案内<span></span></p>
+        <ul class="price-type-list">
+          <li>処方箋ベースの専用レンズ</li>
+          <li>対応方式は機種により異なります</li>
+          <li>まずはお気軽にご相談ください</li>
+        </ul>
+      </div>
+
+    </div>
+    <p style="margin-top:24px;font-size:12px;color:var(--text-secondary);text-align:center;">※価格・納期は機種・度数・レンズの種類（薄型・調光・コーティング等）により変動します。正確な金額は検眼・お見積り時にご案内します。</p>
+  </div>
+</section>
+
+<!-- 07 購入までの流れ -->
+<section id="flow" class="section">
+  <div class="container">
+    <h2 class="section-title center">度付きレンズ交換の流れ</h2>
+    <p style="text-align:center;font-size:15px;color:var(--text-secondary);margin-top:-24px;margin-bottom:48px;">お持ちの本体でも、これから購入でもOK。来店からお渡しまで、シンプルな4ステップ。</p>
+    <div class="flow-grid">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <p class="flow-title">来店・ご相談</p>
+        <p class="flow-desc">機種と希望の見え方をお聞かせください。実機体験も可能です。</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <p class="flow-title">検眼・度数確認</p>
+        <p class="flow-desc">プロの検眼で度数を測定。最適なレンズをご提案します。</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <p class="flow-title">レンズ加工</p>
+        <p class="flow-desc">機種に合わせてインサート／交換レンズを加工します。</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <p class="flow-title">装着・お渡し</p>
+        <p class="flow-desc">かけ心地と見え方を確認してお渡し。すぐにクリアな視界へ。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 店舗検索 -->
+<section id="search" class="section section-dark">
+  <div class="container">
+    <h2 class="section-title center">近くの対応店舗を探す</h2>
+
+    <div class="search-form-wrap">
+      <div class="search-form-card">
+        <div class="search-form-row">
+          <label class="search-form-label">商品を選ぶ</label>
+          <select id="product-select" class="search-select">
+            <option value="">選択してください</option>
+            <option value="MIRZA">MIRZA</option>
+            <option value="Rokid">Rokid</option>
+            <option value="Even Realities">Even Realities</option>
+            <option value="Ray-Ban Meta">Ray-Ban × Meta</option>
+            <option value="Oakley Meta">Oakley × Meta</option>
+          </select>
+        </div>
+        <div class="search-form-row">
+          <label class="search-form-label">ご希望の内容</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="purpose" id="r-trial" value="trial">
+              本体購入・試着
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="purpose" id="r-lens" value="lens">
+              レンズ交換
+            </label>
+          </div>
+        </div>
+        <button class="btn-geolocate" id="btn-geolocate" onclick="searchByLocation()" disabled>⊙ 現在地から探す</button>
+        <div class="search-or-divider"><span>または</span></div>
+        <div class="zip-search-row">
+          <span class="zip-mark-dark" style="font-size:16px;color:var(--text-primary);font-weight:700;flex-shrink:0;">〒</span>
+          <input type="text" id="zip1" maxlength="3" placeholder="330" style="width:80px">
+          <span style="color:var(--text-secondary);font-size:18px;font-weight:300;">-</span>
+          <input type="text" id="zip2" maxlength="4" placeholder="0846" style="width:100px">
+          <button class="btn-search" id="search-btn" onclick="doSearch()" disabled>検索</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 検索結果（初期非表示） -->
+    <div class="search-results" id="search-results" style="display:none">
+      <p class="search-result-label" id="result-label">〒338-0013（埼玉県さいたま市中央区鈴谷）から近い順</p>
+      <p class="search-result-note">※表示される距離は直線距離です。実際の道のりとは異なる場合があります。</p>
+
+      <div id="store-results-inner"></div>
+      <div class="more-wrap">
+        <button class="btn-more">もっと見る ∨</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 08 Q&A -->
+<section id="qa" class="section">
+  <div class="container">
+    <h2 class="section-title center">よくある質問</h2>
+    <div class="qa-list">
+
+      <div class="qa-item">
+        <button class="qa-q" onclick="toggleQA(this)">
+          <span class="qa-prefix">Q</span>
+          <span class="qa-q-text">他店・ECで買った本体でも、度付きレンズ交換できますか？</span>
+          <span class="qa-icon">+</span>
+        </button>
+        <div class="qa-a">はい、お持ちのスマートグラスをお持ち込みいただければ対応可能です。機種により対応方式が異なるため、事前にお電話でお問い合わせいただくとよりスムーズです。</div>
+      </div>
+
+      <div class="qa-item">
+        <button class="qa-q" onclick="toggleQA(this)">
+          <span class="qa-prefix">Q</span>
+          <span class="qa-q-text">強い近視や乱視でも対応できますか？</span>
+          <span class="qa-icon">+</span>
+        </button>
+        <div class="qa-a">機種ごとに対応度数の範囲が異なります。強度近視・乱視の方も、専門スタッフが検眼のうえ最適な方法をご提案しますので、まずはご相談ください。</div>
+      </div>
+
+      <div class="qa-item">
+        <button class="qa-q" onclick="toggleQA(this)">
+          <span class="qa-prefix">Q</span>
+          <span class="qa-q-text">費用と納期の目安は？</span>
+          <span class="qa-icon">+</span>
+        </button>
+        <div class="qa-a">「料金と納期の目安」セクションに3タイプ別の目安を掲載しています。正確な金額・納期は機種・度数・レンズの種類により異なり、検眼・お見積り時に専門スタッフがご案内します。</div>
+      </div>
+
+      <div class="qa-item">
+        <button class="qa-q" onclick="toggleQA(this)">
+          <span class="qa-prefix">Q</span>
+          <span class="qa-q-text">持ち込みの際に必要なものは？</span>
+          <span class="qa-icon">+</span>
+        </button>
+        <div class="qa-a">本体（と付属のインサートフレーム等）をお持ちください。お手元に度数のわかるもの（処方箋・現在のメガネ等）があるとより正確にご案内できます。</div>
+      </div>
+
+      <div class="qa-item">
+        <button class="qa-q" onclick="toggleQA(this)">
+          <span class="qa-prefix">Q</span>
+          <span class="qa-q-text">本体を持っていません。買う前に試せますか？</span>
+          <span class="qa-icon">+</span>
+        </button>
+        <div class="qa-a">本体展示のある店舗では実機を装着してお試しいただけます。展示状況はお電話かWEB予約時にご確認のうえご来店ください。</div>
+      </div>
+
+      <div class="qa-item">
+        <button class="qa-q" onclick="toggleQA(this)">
+          <span class="qa-prefix">Q</span>
+          <span class="qa-q-text">VRやARとなにが違いますか？</span>
+          <span class="qa-icon">+</span>
+        </button>
+        <div class="qa-a">VR（仮想現実）は視界を完全に仮想空間に置き換える大型ゴーグル型、AR（拡張現実）は現実にデジタル情報を重ねる屋内向け機器が多いです。スマートグラスは普通のメガネと同じ形状で外出先でも普通にかけられ、音楽・通話・AI・カメラなどを「日常使い」できることが最大の違いです。</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 09 最終CTA -->
+<section id="final-cta">
+  <div class="container">
+    <p class="final-main">
+      まずは店舗で<br>スマートグラスを体験してみませんか？
+    </p>
+    <p class="final-sub">
+      専門スタッフが度付きレンズの<br>ご相談も承ります。
+    </p>
+    <a href="#search" class="btn btn-red final-btn">店舗を探す →</a>
+  </div>
+</section>
+
+<!-- FIXED FOOTER CTA -->
+<div class="fixed-footer" id="fixed-footer" style="display:none">
+  <div class="container">
+    <a href="#search" class="btn btn-red" onclick="setSearch('','trial')">本体を購入・体験 店舗を探す</a>
+    <a href="#search" class="btn btn-blue" onclick="setSearch('','lens')">レンズ交換 店舗を探す</a>
+  </div>
+</div>
+
+<script>
+  function toggleQA(btn) {
+    btn.parentElement.classList.toggle('open');
+  }
+
+  let evenFrame = 'A';
+
+  function switchEvenFrame(frame, el) {
+    evenFrame = frame;
+    document.querySelectorAll('.frame-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    const isA = frame === 'A';
+    document.getElementById('even-swatches-A').style.display = isA ? 'flex' : 'none';
+    document.getElementById('even-swatches-B').style.display = isA ? 'none' : 'flex';
+    document.getElementById('even-main-img').src = 'images/even-g2/' + (isA ? 'grey' : 'grey-b') + '.png';
+    const containerId = isA ? 'even-swatches-A' : 'even-swatches-B';
+    document.querySelectorAll('#' + containerId + ' .color-swatch').forEach((s, i) => s.classList.toggle('active', i === 0));
+  }
+
+  function switchEvenColor(color, el) {
+    document.getElementById('even-main-img').src = 'images/even-g2/' + color + '.png';
+    const containerId = evenFrame === 'A' ? 'even-swatches-A' : 'even-swatches-B';
+    document.querySelectorAll('#' + containerId + ' .color-swatch').forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  function setSearch(product, purpose) {
+    if (product) document.getElementById('product-select').value = product;
+    if (purpose === 'trial') document.getElementById('r-trial').checked = true;
+    else if (purpose === 'lens') document.getElementById('r-lens').checked = true;
+    updateSearchBtns();
+  }
+
+  // 全店舗データ（住所は実データに差し替えてください）
+  const STORES = [
+    { name: 'アイメガネ本店',               img: 'https://www.aimegane.com/wp-content/uploads/2024/03/01_honten.webp',                   url: 'https://www.aimegane.com/shop/saitama/539/',  reserve: 'https://www.aimegane.com/qualification/6395/', tel: '048-668-0001', address: '〒331-8760 埼玉県さいたま市北区宮原町1丁目505-1',       pref: '埼玉県', lat: 35.902, lon: 139.623 },
+    { name: 'アイメガネ与野イオン店',         img: 'https://www.aimegane.com/wp-content/uploads/2024/03/02_yono_aeon.webp',                url: 'https://www.aimegane.com/shop/saitama/622/',  reserve: 'https://www.aimegane.com/qualification/6938/', tel: '048-851-0001', address: '〒338-0004 埼玉県さいたま市中央区本町西5丁目2-9',       pref: '埼玉県', lat: 35.896, lon: 139.625 },
+    { name: 'アイメガネ与野本町店',           img: 'https://www.aimegane.com/wp-content/uploads/2024/03/04_yonohonmachi.webp',             url: 'https://www.aimegane.com/shop/saitama/662/',  reserve: 'https://www.aimegane.com/qualification/7355/', tel: '048-852-0001', address: '〒338-0003 埼玉県さいたま市中央区本町東1丁目6-3',       pref: '埼玉県', lat: 35.894, lon: 139.622 },
+    { name: 'アイメガネ南浦和店',             img: 'https://www.aimegane.com/wp-content/uploads/2024/03/1-南浦和外観修正.jpg',               url: 'https://www.aimegane.com/shop/saitama/695/',  reserve: 'https://www.aimegane.com/qualification/6340/', tel: '048-885-0001', address: '〒336-0017 埼玉県さいたま市南区南浦和3丁目2-5',         pref: '埼玉県', lat: 35.847, lon: 139.656 },
+    { name: 'アイメガネ岩槻駅前通り店',       img: 'https://www.aimegane.com/wp-content/uploads/2024/03/岩槻店舗外観写真.jpg',               url: 'https://www.aimegane.com/shop/saitama/661/',  reserve: 'https://www.aimegane.com/qualification/7356/', tel: '048-757-0001', address: '〒339-0055 埼玉県さいたま市岩槻区東町1-12',             pref: '埼玉県', lat: 35.951, lon: 139.706 },
+    { name: 'アイメガネ上尾東口駅前店',       img: 'https://www.aimegane.com/wp-content/uploads/2024/03/06_ageo.webp',                     url: 'https://www.aimegane.com/shop/saitama/666/',  reserve: 'https://www.aimegane.com/qualification/7153/', tel: '048-773-0001', address: '〒362-0036 埼玉県上尾市宮本町4-18',                     pref: '埼玉県', lat: 35.977, lon: 139.593 },
+    { name: 'アイメガネ鴻巣東駅通り店',       img: 'https://www.aimegane.com/wp-content/uploads/2024/03/IMG_0363.jpg',                     url: 'https://www.aimegane.com/shop/saitama/669/',  reserve: 'https://www.aimegane.com/qualification/6939/', tel: '048-542-0001', address: '〒365-0039 埼玉県鴻巣市東2丁目6-2',                     pref: '埼玉県', lat: 36.067, lon: 139.489 },
+    { name: 'アイメガネ鴻巣ウニクス店',       img: 'https://www.aimegane.com/wp-content/uploads/2024/03/25_kounosu_uniqus.webp',            url: 'https://www.aimegane.com/shop/saitama/690/',  reserve: 'https://www.aimegane.com/qualification/7358/', tel: '048-547-0001', address: '〒369-0116 埼玉県鴻巣市北新宿225-1',                   pref: '埼玉県', lat: 36.058, lon: 139.503 },
+    { name: 'アイメガネ熊谷ティアラ店',       img: 'https://www.aimegane.com/wp-content/uploads/2024/03/08_kumgaya.webp',                  url: 'https://www.aimegane.com/shop/saitama/670/',  reserve: 'https://www.aimegane.com/qualification/7359/', tel: '048-525-0001', address: '〒360-0037 埼玉県熊谷市筑波3-202',                       pref: '埼玉県', lat: 36.147, lon: 139.389 },
+    { name: 'アイメガネ深谷上柴西店',         img: 'https://www.aimegane.com/wp-content/uploads/2024/03/202506改装深谷上芝.jpg',             url: 'https://www.aimegane.com/shop/saitama/671/',  reserve: 'https://www.aimegane.com/qualification/6681/', tel: '048-572-0001', address: '〒366-0052 埼玉県深谷市上柴町西3丁目7-9',               pref: '埼玉県', lat: 36.196, lon: 139.281 },
+    { name: 'アイメガネ富士見鶴馬店',         img: 'https://www.aimegane.com/wp-content/uploads/2024/03/14_fujimi.webp',                   url: 'https://www.aimegane.com/shop/saitama/678/',  reserve: 'https://www.aimegane.com/qualification/7158/', tel: '049-251-0001', address: '〒354-0021 埼玉県富士見市鶴馬1丁目25-1',                 pref: '埼玉県', lat: 35.858, lon: 139.550 },
+    { name: 'アイメガネ川越的場店',           img: 'https://www.aimegane.com/wp-content/uploads/2024/03/kawagoematoba-1.jpg',              url: 'https://www.aimegane.com/shop/saitama/680/',  reserve: 'https://www.aimegane.com/qualification/7159/', tel: '049-233-0001', address: '〒350-1101 埼玉県川越市大字的場字六畑823-1',             pref: '埼玉県', lat: 35.925, lon: 139.486 },
+    { name: 'アイメガネ坂戸にっさい店',       img: 'https://www.aimegane.com/wp-content/uploads/2024/03/IMG_7521.jpg',                     url: 'https://www.aimegane.com/shop/saitama/682/',  reserve: 'https://www.aimegane.com/qualification/6940/', tel: '049-280-0001', address: '〒350-0269 埼玉県坂戸市にっさい花みず木3丁目11-2',       pref: '埼玉県', lat: 35.957, lon: 139.401 },
+    { name: 'アイメガネ東松山松本町店',       img: 'https://www.aimegane.com/wp-content/uploads/2024/03/東松山2026.jpg',                    url: 'https://www.aimegane.com/shop/saitama/683/',  reserve: 'https://www.aimegane.com/qualification/7361/', tel: '0493-27-0001', address: '〒355-0014 埼玉県東松山市松本町2丁目7-1',               pref: '埼玉県', lat: 36.043, lon: 139.399 },
+    { name: 'アイメガネ嵐山バイパス店',       img: 'https://www.aimegane.com/wp-content/uploads/2024/03/19_ranzan.webp',                   url: 'https://www.aimegane.com/shop/saitama/684/',  reserve: 'https://www.aimegane.com/qualification/7362/', tel: '0493-61-0001', address: '〒355-0215 埼玉県比企郡嵐山町平澤2610',                 pref: '埼玉県', lat: 36.059, lon: 139.325 },
+    { name: 'アイメガネ小川大塚店',           img: 'https://www.aimegane.com/wp-content/uploads/2024/03/21_ogawa.webp',                    url: 'https://www.aimegane.com/shop/saitama/686/',  reserve: 'https://www.aimegane.com/qualification/7363/', tel: '0493-73-0001', address: '〒355-0328 埼玉県比企郡小川町大塚541-1',               pref: '埼玉県', lat: 36.055, lon: 139.263 },
+    { name: 'アイメガネ寄居店',               img: 'https://www.aimegane.com/wp-content/uploads/2024/03/22_yorii.webp',                    url: 'https://www.aimegane.com/shop/saitama/687/',  reserve: 'https://www.aimegane.com/qualification/7364/', tel: '048-580-0001', address: '〒369-1203 埼玉県大里郡寄居町寄居1615-1',               pref: '埼玉県', lat: 36.115, lon: 139.183 },
+    { name: 'アイメガネ日高店',               img: 'https://www.aimegane.com/wp-content/uploads/2024/03/16_hidaka.webp',                   url: 'https://www.aimegane.com/shop/saitama/681/',  reserve: 'https://www.aimegane.com/qualification/5078/', tel: '042-986-0001', address: '〒350-1231 埼玉県日高市鹿山301-6',                       pref: '埼玉県', lat: 35.905, lon: 139.340 },
+    { name: 'アイメガネイオンタウン毛呂山店', img: 'https://www.aimegane.com/wp-content/uploads/2024/03/26_aeontown_moroyama.webp',          url: 'https://www.aimegane.com/shop/saitama/691/',  reserve: 'https://www.aimegane.com/qualification/6941/', tel: '049-293-0001', address: '〒350-0436 埼玉県入間郡毛呂山町川角58-3',               pref: '埼玉県', lat: 35.928, lon: 139.319 },
+    { name: 'アイメガネ秩父中宮地店',         img: 'https://www.aimegane.com/wp-content/uploads/2024/03/23_chichibu.webp',                  url: 'https://www.aimegane.com/shop/saitama/688/',  reserve: 'https://www.aimegane.com/qualification/6682/', tel: '0494-21-0001', address: '〒368-0022 埼玉県秩父市中宮地町5-7',                     pref: '埼玉県', lat: 35.993, lon: 139.086 },
+    { name: 'アイメガネ川口赤井店',           img: 'https://www.aimegane.com/wp-content/uploads/2024/03/名称未設定-3.jpg',                   url: 'https://www.aimegane.com/shop/saitama/689/',  reserve: 'https://www.aimegane.com/qualification/7154/', tel: '048-280-0001', address: '〒334-0073 埼玉県川口市赤井4丁目16-19',                 pref: '埼玉県', lat: 35.807, lon: 139.724 },
+    { name: 'アイメガネエキア谷塚店',         img: 'https://www.aimegane.com/wp-content/uploads/2024/03/28_ekiayatuka.webp',                url: 'https://www.aimegane.com/shop/saitama/693/',  reserve: 'https://www.aimegane.com/qualification/7156/', tel: '048-924-0001', address: '〒340-0028 埼玉県草加市谷塚1丁目1-23',                   pref: '埼玉県', lat: 35.822, lon: 139.801 },
+    { name: 'アイメガネ三郷南口駅前通り店',   img: 'https://www.aimegane.com/wp-content/uploads/2024/03/11_misato_minamiguchi.webp',        url: 'https://www.aimegane.com/shop/saitama/674/',  reserve: 'https://www.aimegane.com/qualification/7360/', tel: '048-949-0002', address: '〒341-0024 埼玉県三郷市三郷1丁目27-7',                   pref: '埼玉県', lat: 35.832, lon: 139.871 },
+    { name: 'アイメガネ新越谷店',             img: 'https://www.aimegane.com/wp-content/uploads/2024/03/27_shinkosigaya.webp',              url: 'https://www.aimegane.com/shop/saitama/692/',  reserve: 'https://www.aimegane.com/qualification/6133/', tel: '048-990-0001', address: '〒343-0857 埼玉県越谷市新越谷1丁目70-1',                 pref: '埼玉県', lat: 35.888, lon: 139.791 },
+    { name: 'アイメガネ蓮田関山店',           img: 'https://www.aimegane.com/wp-content/uploads/2024/03/05_hasuda.webp',                    url: 'https://www.aimegane.com/shop/saitama/663/',  reserve: 'https://www.aimegane.com/qualification/7152/', tel: '048-764-0001', address: '〒349-0121 埼玉県蓮田市関山2丁目6-13',                   pref: '埼玉県', lat: 35.985, lon: 139.663 },
+    { name: 'アイメガネ幸手エムズタウン店',   img: 'https://www.aimegane.com/wp-content/uploads/2024/03/12_satte.webp',                     url: 'https://www.aimegane.com/shop/saitama/675/',  reserve: 'https://www.aimegane.com/qualification/7157/', tel: '0480-44-0001', address: '〒340-0155 埼玉県幸手市上高野824',                       pref: '埼玉県', lat: 36.082, lon: 139.725 },
+    { name: 'アイメガネ羽生店',               img: 'https://www.aimegane.com/wp-content/uploads/2024/03/13_hanyu.webp',                    url: 'https://www.aimegane.com/shop/saitama/677/',  reserve: 'https://www.aimegane.com/qualification/6937/', tel: '048-563-0001', address: '〒348-0053 埼玉県羽生市南7丁目1-1',                     pref: '埼玉県', lat: 36.174, lon: 139.548 },
+    { name: 'アイメガネ古河イオン店',         img: 'https://www.aimegane.com/wp-content/uploads/2024/03/36_kogaaeon.webp',                  url: 'https://www.aimegane.com/shop/ibaraki/706/', reserve: 'https://www.aimegane.com/qualification/7366/', tel: '0280-33-0001', address: '〒306-0012 茨城県古河市旭町1丁目2-17',                   pref: '茨城県', lat: 36.193, lon: 139.706 },
+    { name: 'アイメガネおもちゃのまち西口店', img: 'https://www.aimegane.com/wp-content/uploads/2025/10/omocha-2-1.jpg',                    url: 'https://www.aimegane.com/shop/tochigi/696/', reserve: 'https://www.aimegane.com/qualification/7678/', tel: '0282-85-0001', address: '〒321-0206 栃木県下都賀郡壬生町あけぼの町5-5',           pref: '栃木県', lat: 36.376, lon: 139.810 },
+    { name: 'アイメガネ宇都宮錦店',           img: 'https://www.aimegane.com/wp-content/uploads/2024/03/31_utunomiyanisiki.webp',           url: 'https://www.aimegane.com/shop/tochigi/697/', reserve: 'https://www.aimegane.com/qualification/7433/', tel: '028-627-0001', address: '〒321-0967 栃木県宇都宮市錦3丁目9-11',                 pref: '栃木県', lat: 36.558, lon: 139.883 },
+    { name: 'アイメガネ今市センショープラザ店',img: 'https://www.aimegane.com/wp-content/uploads/2024/03/32_imaichi.webp',                  url: 'https://www.aimegane.com/shop/tochigi/698/', reserve: 'https://www.aimegane.com/qualification/6680/', tel: '0288-23-0001', address: '〒321-2405 栃木県日光市芹沼1448-1',                     pref: '栃木県', lat: 36.720, lon: 139.699 },
+    { name: 'アイメガネ藤岡店',               img: 'https://www.aimegane.com/wp-content/uploads/2024/03/fujioka-2.jpg',                    url: 'https://www.aimegane.com/shop/gunma/707/',   reserve: 'https://www.aimegane.com/qualification/7367/', tel: '0274-22-0001', address: '〒375-0024 群馬県藤岡市藤岡937-1',                       pref: '群馬県', lat: 36.255, lon: 139.074 },
+    { name: 'アイメガネ小平小川町店',         img: 'https://www.aimegane.com/wp-content/uploads/2024/03/kodaira.png',                       url: 'https://www.aimegane.com/shop/tokyo/699/',   reserve: 'https://www.aimegane.com/qualification/6683/', tel: '042-347-6877', address: '〒187-0032 東京都小平市小川町2-1328',                   pref: '東京都', lat: 35.728, lon: 139.477 },
+    { name: 'アイメガネザ・マーケットプレイス東大和店', img: 'https://www.aimegane.com/wp-content/uploads/2024/10/IMG_7097-修正.jpg',       url: 'https://www.aimegane.com/shop/tokyo/3879/',  reserve: 'https://www.aimegane.com/qualification/6684/', tel: '042-843-7011', address: '〒207-0021 東京都東大和市立野3丁目1344-1',               pref: '東京都', lat: 35.740, lon: 139.428 },
+    { name: 'アイメガネ町田木曽店',           img: 'https://www.aimegane.com/wp-content/uploads/2025/12/町田木曽外観.jpg',                  url: 'https://www.aimegane.com/shop/tokyo/700/',   reserve: 'https://www.aimegane.com/qualification/7679/', tel: '042-724-0201', address: '〒194-0036 東京都町田市木曽東3丁目8-1',                 pref: '東京都', lat: 35.540, lon: 139.441 },
+    { name: 'アイメガネ八千代台ユアエルム店', img: 'https://www.aimegane.com/wp-content/uploads/2024/03/35_yachiyodai.webp',                url: 'https://www.aimegane.com/shop/chiba/705/',   reserve: 'https://www.aimegane.com/qualification/7365/', tel: '047-485-0001', address: '〒276-0032 千葉県八千代市八千代台東1丁目1-10',           pref: '千葉県', lat: 35.723, lon: 140.102 },
+    { name: 'アイメガネ焼津石津店',           img: 'https://www.aimegane.com/wp-content/uploads/2024/03/38_yaizu.webp',                     url: 'https://www.aimegane.com/shop/shizuoka/708/',reserve: 'https://www.aimegane.com/qualification/7369/', tel: '054-656-0001', address: '〒425-0041 静岡県焼津市石津3丁目19-16',                 pref: '静岡県', lat: 34.865, lon: 138.323 },
+  ];
+
+  function haversine(lat1, lon1, lat2, lon2) {
+    const R = 6371;
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+              Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+              Math.sin(dLon/2) * Math.sin(dLon/2);
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  }
+
+  function renderResults(nearest, others) {
+    const tags = `<span class="store-tag-product">取り扱い：未確定（仮）</span><span class="store-tag-lens">レンズ交換対応</span>`;
+    const distLabel = nearest.dist != null ? `<p class="store-dist">お住まいから約 ${nearest.dist.toFixed(1)} km</p>` : '';
+    const nearestHTML = `
+      <div class="store-card-nearest">
+        <div class="store-photo-nearest">
+          <img src="${nearest.img}" alt="${nearest.name}" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="store-info-nearest">
+          <p class="store-nearest-label">お客様に最も近い店舗</p>
+          <p class="store-name">${nearest.name}</p>
+          <div class="store-tags">${tags}</div>
+
+          ${distLabel}
+          <div class="store-actions">
+            <a href="${nearest.reserve || nearest.url}" target="_blank" class="btn-store-web">WEB予約</a>
+            <a href="tel:${nearest.tel}" class="btn-store-tel">${nearest.tel}</a>
+          </div>
+        </div>
+      </div>`;
+    const othersHTML = others.map(s => `
+      <div class="store-other-item">
+        <div class="store-other-left" style="flex:1;">
+          <p class="store-other-name">${s.name}</p>
+        </div>
+        ${s.dist != null ? `<span class="store-other-dist">約 ${s.dist.toFixed(1)} km</span>` : ''}
+      </div>`).join('');
+    return nearestHTML +
+      '<p class="store-other-heading" style="margin-top:24px;">その他の対応店舗</p>' +
+      '<div class="store-other-grid">' + othersHTML + '</div>';
+  }
+
+  function showResultsByCoords(lat, lon, label) {
+    const sorted = STORES
+      .map(s => Object.assign({}, s, { dist: haversine(lat, lon, s.lat, s.lon) }))
+      .sort((a, b) => a.dist - b.dist);
+    document.getElementById('result-label').textContent = label + ' から近い順';
+    document.getElementById('store-results-inner').innerHTML = renderResults(sorted[0], sorted.slice(1, 5));
+    const results = document.getElementById('search-results');
+    results.style.display = 'block';
+    setTimeout(() => results.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  }
+
+  async function doSearch() {
+    const z1 = document.getElementById('zip1').value;
+    const z2 = document.getElementById('zip2').value;
+    if (z1.length !== 3 || z2.length !== 4) return;
+    const btn = document.getElementById('search-btn');
+    btn.textContent = '検索中...';
+    btn.disabled = true;
+    try {
+      // Step1: 郵便番号 → 住所テキスト（zipcloud）
+      const zipRes = await fetch('https://zipcloud.ibsnet.co.jp/api/search?zipcode=' + z1 + z2);
+      const zipData = await zipRes.json();
+      if (!zipData.results || zipData.results.length === 0) {
+        alert('郵便番号が見つかりませんでした。正しい番号を入力してください。');
+        return;
+      }
+      const r = zipData.results[0];
+      const address = r.address1 + r.address2 + r.address3;
+
+      // Step2: 住所テキスト → 座標（国土地理院）
+      const geoRes = await fetch('https://msearch.gsi.go.jp/address-search/AddressSearch?q=' + encodeURIComponent(address) + '&limit=1');
+      const geoData = await geoRes.json();
+      if (geoData && geoData.length > 0) {
+        const [lon, lat] = geoData[0].geometry.coordinates;
+        showResultsByCoords(lat, lon, '〒' + z1 + '-' + z2);
+      } else {
+        alert('座標の取得に失敗しました。');
+      }
+    } catch(e) {
+      alert('通信エラーが発生しました。');
+    } finally {
+      btn.textContent = '検索';
+      btn.disabled = false;
+      updateSearchBtns();
+    }
+  }
+
+  function searchByLocation() {
+    if (location.protocol === 'file:') {
+      alert('現在地から探す機能はHTTPS環境（本番サーバー）でのみ動作します。\n郵便番号での検索をご利用ください。');
+      return;
+    }
+    if (!navigator.geolocation) {
+      alert('お使いのブラウザは位置情報に対応していません。');
+      return;
+    }
+    const btn = document.querySelector('.btn-geolocate');
+    btn.textContent = '取得中...';
+    btn.disabled = true;
+    navigator.geolocation.getCurrentPosition(
+      function(pos) {
+        btn.textContent = '📍 現在地から探す';
+        btn.disabled = false;
+        showResultsByCoords(pos.coords.latitude, pos.coords.longitude, '現在地');
+      },
+      function(err) {
+        btn.textContent = '📍 現在地から探す';
+        btn.disabled = false;
+        if (err.code === 1) {
+          alert('位置情報の利用が許可されていません。\nブラウザのアドレスバーから許可してください。');
+        } else {
+          alert('位置情報の取得に失敗しました。');
+        }
+      },
+      { timeout: 10000 }
+    );
+  }
+
+  document.getElementById('zip1').addEventListener('input', function () {
+    if (this.value.length === 3) document.getElementById('zip2').focus();
+  });
+
+  function updateSearchBtns() {
+    const productOk = document.getElementById('product-select').value !== '';
+    const purposeOk = document.querySelector('input[name="purpose"]:checked') !== null;
+    const ready = productOk && purposeOk;
+    document.getElementById('search-btn').disabled = !ready;
+    document.getElementById('btn-geolocate').disabled = !ready;
+  }
+  document.getElementById('product-select').addEventListener('change', updateSearchBtns);
+  document.querySelectorAll('input[name="purpose"]').forEach(r => r.addEventListener('change', updateSearchBtns));
+
+  // FVが見えている間はフッターCTAを非表示
+  const fixedFooter = document.getElementById('fixed-footer');
+  const fvSection = document.getElementById('fv');
+  const observer = new IntersectionObserver(function(entries) {
+    fixedFooter.style.display = entries[0].isIntersecting ? 'none' : 'flex';
+  }, { threshold: 0 });
+  observer.observe(fvSection);
+
+  // パスワード保護
+  (function () {
+    const PW = 'META2026';
+    if (sessionStorage.getItem('auth') === PW) return;
+
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;background:#0D1B2A;z-index:9999;display:flex;align-items:center;justify-content:center;';
+    overlay.innerHTML = `
+      <div style="text-align:center;color:#fff;">
+        <p style="font-size:13px;letter-spacing:0.15em;color:rgba(255,255,255,0.45);margin-bottom:12px;">アイメガネ × スマートグラス LP</p>
+        <h2 style="font-size:20px;font-weight:700;margin-bottom:32px;">閲覧パスワードを入力してください</h2>
+        <input id="pw-input" type="password" placeholder="Password"
+          style="width:260px;padding:14px 20px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-size:16px;text-align:center;outline:none;display:block;margin:0 auto 12px;">
+        <p id="pw-error" style="color:#ff6b6b;font-size:13px;height:20px;margin-bottom:12px;"></p>
+        <button id="pw-btn"
+          style="background:#CC0000;color:#fff;border:none;padding:14px 48px;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer;">
+          確認する
+        </button>
+      </div>`;
+    document.body.appendChild(overlay);
+    document.body.style.overflow = 'hidden';
+
+    function check() {
+      const val = document.getElementById('pw-input').value;
+      if (val === PW) {
+        sessionStorage.setItem('auth', PW);
+        document.body.style.overflow = '';
+        overlay.remove();
+      } else {
+        document.getElementById('pw-error').textContent = 'パスワードが違います';
+        document.getElementById('pw-input').value = '';
+      }
+    }
+
+    document.getElementById('pw-btn').addEventListener('click', check);
+    document.getElementById('pw-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') check();
+    });
+  })();
+</script>
+
+</body>
+</html>
