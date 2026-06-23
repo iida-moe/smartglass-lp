@@ -516,7 +516,14 @@
     .frame-tab:hover:not(.active) { border-color: var(--navy); color: var(--navy); }
     .product-body { padding: 28px 24px; flex: 1; }
     .product-brand { font-size: 11px; font-weight: 700; color: var(--text-secondary); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
-    .product-name { font-size: 22px; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
+    .product-name { font-size: 22px; font-weight: 700; margin-bottom: 6px; line-height: 1.3; }
+    .product-catch {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
     .product-price { font-size: 14px; color: var(--text-secondary); margin-bottom: 12px; }
     .product-tags {
       display: flex;
@@ -2068,14 +2075,9 @@
     <div class="product-card">
       <div class="product-image product-image--mirza">MIRZA</div>
       <div class="product-body">
-        <p class="product-brand">MIRZA</p>
         <h3 class="product-name">MIRZA</h3>
-        <p class="product-category">本格XRグラス／日本製・NTT系</p>
-        <div class="product-avail-row">
-          <span class="tag-avail">度付き対応</span>
-          <span class="tag-avail-limited">本体取扱（一部店舗）</span>
-        </div>
-        <p class="product-desc">Snapdragon AR2搭載、ワイヤレスで6DoF対応の本格XRグラス。FHD・高輝度ディスプレイに140言語超のリアルタイム字幕・通訳機能を搭載。</p>
+        <p class="product-catch">本格XRグラス・日本製 / NTT系</p>
+        <p class="product-desc">Snapdragon AR2搭載の本格XRグラス。高輝度ディスプレイに140言語超のリアルタイム翻訳・字幕機能を搭載。</p>
         <div class="product-target">こんな人に：XR・空間コンピューティングを本気で活用したいプロ・法人の方</div>
         <div class="product-price-table">
           <div class="product-price-row">
@@ -2087,7 +2089,6 @@
             <span class="product-price-val">16,080円〜</span>
           </div>
         </div>
-        <p class="product-lens-type">▸ 専用インサートレンズ方式</p>
         <div class="product-actions">
           <a href="#search" class="btn btn-red" onclick="setSearch('MIRZA','trial')">体験を予約</a>
           <a href="#search" class="btn btn-blue" onclick="setSearch('MIRZA','lens')">度付きを相談</a>
@@ -2099,14 +2100,9 @@
     <div class="product-card">
       <div class="product-image product-image--rokid">Rokid Max 2</div>
       <div class="product-body">
-        <p class="product-brand">Rokid</p>
         <h3 class="product-name">Rokid Max 2</h3>
-        <p class="product-category">ARグラス／中国製・ビジネス向け</p>
-        <div class="product-avail-row">
-          <span class="tag-avail">度付き対応</span>
-          <span class="tag-avail-limited">本体取扱（一部店舗）</span>
-        </div>
-        <p class="product-desc">視野内にARナビ・翻訳・通知をリアルタイム表示。ハンズフリーで情報確認できる次世代ビジネスツール。アイメガネで実機体験できます。</p>
+        <p class="product-catch">ARグラス・ビジネス向け</p>
+        <p class="product-desc">ARナビ・翻訳・通知をリアルタイムで視野内に表示。ハンズフリーで情報確認できる次世代ビジネスツール。</p>
         <div class="product-target">こんな人に：ビジネスシーンでARを活用したい・常に情報にアクセスしたい方</div>
         <div class="product-price-table">
           <div class="product-price-row">
@@ -2118,7 +2114,6 @@
             <span class="product-price-val">16,080円〜</span>
           </div>
         </div>
-        <p class="product-lens-type">▸ 専用インサートレンズ方式</p>
         <div class="product-actions">
           <a href="#search" class="btn btn-red" onclick="setSearch('Rokid','trial')">体験を予約</a>
           <a href="#search" class="btn btn-blue" onclick="setSearch('Rokid','lens')">度付きを相談</a>
@@ -2146,14 +2141,9 @@
         </div>
       </div>
       <div class="product-body">
-        <p class="product-brand">Even Realities</p>
         <h3 class="product-name">Even Realities G2</h3>
-        <p class="product-category">スマートグラス／超軽量ARタイプ</p>
-        <div class="product-avail-row">
-          <span class="tag-avail">度付き対応</span>
-          <span class="tag-avail">本体取扱（全店舗）</span>
-        </div>
-        <p class="product-desc">わずか38gの超軽量ボディに高精細マイクロLEDディスプレイを搭載。普段使いのメガネ感覚で一日中かけられる、最もとっつきやすいARグラス。</p>
+        <p class="product-catch">超軽量ARグラス・普段使い向け</p>
+        <p class="product-desc">わずか38gの超軽量ボディに高精細マイクロLEDディスプレイ搭載。普段のメガネ感覚で一日中かけられる入門に最適な一本。</p>
         <div class="product-target">こんな人に：スマートグラス初心者・普段使いできる軽いものを探している方</div>
         <div class="product-price-table">
           <div class="product-price-row">
@@ -2165,8 +2155,6 @@
             <span class="product-price-val">16,080円〜</span>
           </div>
         </div>
-        <p class="product-lens-type">▸ 度付きレンズ直接加工方式</p>
-        <p class="product-accessory-note">＋ 対応アクセサリー：<strong>Even R1 スマートリング</strong>（歩数・心拍・睡眠計測、G2専用コントローラー）</p>
         <div class="product-actions">
           <a href="#search" class="btn btn-red" onclick="setSearch('Even Realities','trial')">体験を予約</a>
           <a href="#search" class="btn btn-blue" onclick="setSearch('Even Realities','lens')">度付きを相談</a>
@@ -2184,14 +2172,9 @@
         </div>
       </div>
       <div class="product-body">
-        <p class="product-brand">Ray-Ban × Meta</p>
         <h3 class="product-name" id="rb-name">Ray-Ban Meta Blayzer</h3>
-        <p class="product-category" id="rb-category">スマートグラス／Meta AI搭載・度付き対応メガネ</p>
-        <div class="product-avail-row">
-          <span class="tag-avail">度付き対応</span>
-          <span class="tag-avail">本体取扱（全店舗）</span>
-        </div>
-        <p class="product-desc" id="rb-desc">Ray-Banの洗練されたデザインにMeta AIを搭載。通常のメガネと同じ見た目で、広範囲の度数に対応。ハンズフリー通話・音楽・AI質問をメガネ1本で実現。</p>
+        <p class="product-catch" id="rb-catch">スマートグラス・Meta AI搭載 / 度付き対応メガネ</p>
+        <p class="product-desc" id="rb-desc">Ray-Banの洗練されたデザインにMeta AIを搭載。通常のメガネと同じ見た目で、ハンズフリー通話・音楽・AI質問を実現。</p>
         <div class="product-target" id="rb-target">こんな人に：普段メガネを使用していて、AIとカメラを日常で活用したい方</div>
         <div class="product-price-table">
           <div class="product-price-row">
@@ -2203,7 +2186,6 @@
             <span class="product-price-val">16,080円〜</span>
           </div>
         </div>
-        <p class="product-lens-type">▸ 度付きレンズ直接加工方式</p>
         <div class="product-actions">
           <a href="#search" class="btn btn-red" onclick="setSearch('Ray-Ban Meta','trial')">体験を予約</a>
           <a href="#search" class="btn btn-blue" onclick="setSearch('Ray-Ban Meta','lens')">度付きを相談</a>
@@ -2215,14 +2197,9 @@
     <div class="product-card">
       <div class="product-image product-image--oakley">OAKLEY × META</div>
       <div class="product-body">
-        <p class="product-brand">Oakley × Meta</p>
         <h3 class="product-name">Oakley Meta</h3>
-        <p class="product-category">スポーツスマートグラス／Meta AI搭載</p>
-        <div class="product-avail-row">
-          <span class="tag-avail">度付き対応</span>
-          <span class="tag-avail-limited">本体取扱（一部店舗）</span>
-        </div>
-        <p class="product-desc">アクティブシーンに特化したOakleyフレームにMeta AIとカメラを搭載。スポーツ中の撮影や音楽再生、AIアシストが使えるアウトドア向けモデル。</p>
+        <p class="product-catch">スポーツスマートグラス・Meta AI搭載</p>
+        <p class="product-desc">OakleyフレームにMeta AIとカメラを搭載。動いても外れないフィット感で、スポーツ中の撮影・音楽・AIアシストが使えるアウトドア向けモデル。</p>
         <div class="product-target">こんな人に：スポーツ・アウトドアで使える、動いても外れない1本を探している方</div>
         <div class="product-price-table">
           <div class="product-price-row">
@@ -2234,7 +2211,6 @@
             <span class="product-price-val">16,080円〜</span>
           </div>
         </div>
-        <p class="product-lens-type">▸ 度付きレンズ直接加工方式</p>
         <div class="product-actions">
           <a href="#search" class="btn btn-red" onclick="setSearch('Oakley Meta','trial')">体験を予約</a>
           <a href="#search" class="btn btn-blue" onclick="setSearch('Oakley Meta','lens')">度付きを相談</a>
@@ -2505,15 +2481,15 @@
     blayzer: {
       img: 'images/rayban/blayzer.jpg',
       name: 'Ray-Ban Meta Blayzer',
-      category: 'スマートグラス／Meta AI搭載・度付き対応メガネ',
-      desc: 'Ray-Banの洗練されたデザインにMeta AIを搭載。通常のメガネと同じ見た目で、広範囲の度数に対応。ハンズフリー通話・音楽・AI質問をメガネ1本で実現。',
+      catch: 'スマートグラス・Meta AI搭載 / 度付き対応メガネ',
+      desc: 'Ray-Banの洗練されたデザインにMeta AIを搭載。通常のメガネと同じ見た目で、ハンズフリー通話・音楽・AI質問を実現。',
       target: 'こんな人に：普段メガネを使用していて、AIとカメラを日常で活用したい方'
     },
     wayfarer: {
       img: 'images/rayban/wayfarer.jpg',
       name: 'Ray-Ban Meta Wayfarer',
-      category: 'スマートグラス／Meta AI搭載・サングラス',
-      desc: 'アイコニックなWayfarerフレームにMeta AIを搭載。音楽・通話・AI・カメラをサングラス1本に凝縮。Transitions®レンズとの組み合わせも対応。',
+      catch: 'スマートグラス・Meta AI搭載 / サングラスタイプ',
+      desc: 'アイコニックなWayfarerフレームにMeta AIを搭載。音楽・通話・AI・カメラをサングラス1本に凝縮。',
       target: 'こんな人に：スタイリッシュに屋外でAIとカメラを使いたい方'
     }
   };
@@ -2522,7 +2498,7 @@
     const d = rbData[style];
     document.getElementById('rb-main-img').src = d.img;
     document.getElementById('rb-name').textContent = d.name;
-    document.getElementById('rb-category').textContent = d.category;
+    document.getElementById('rb-catch').textContent = d.catch;
     document.getElementById('rb-desc').textContent = d.desc;
     document.getElementById('rb-target').textContent = d.target;
     el.closest('.product-image-gallery').querySelectorAll('.frame-tab').forEach(t => t.classList.remove('active'));
