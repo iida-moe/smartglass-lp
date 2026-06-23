@@ -352,11 +352,23 @@
       text-transform: uppercase;
     }
     .features-banner-title {
-      font-size: clamp(18px, 2vw, 22px);
       font-weight: 700;
       color: #fff;
-      line-height: 1.5;
+      line-height: 1.4;
       margin-bottom: 10px;
+    }
+    .banner-title-sub {
+      display: block;
+      font-size: clamp(13px, 1.4vw, 15px);
+      font-weight: 600;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 4px;
+    }
+    .banner-title-main {
+      display: block;
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 700;
+      line-height: 1.3;
     }
     .features-banner-title strong { color: #FFD600; }
     .features-banner-desc {
@@ -1832,7 +1844,10 @@
     <div class="features-prescription-banner">
       <div>
         <p class="features-banner-label">AIMEGANE ONLY</p>
-        <p class="features-banner-title">これらの機能を、<strong>度付きのまま</strong>使えます。</p>
+        <p class="features-banner-title">
+          <span class="banner-title-sub">これらの機能を、</span>
+          <span class="banner-title-main"><strong>度付きのまま</strong>使えます。</span>
+        </p>
         <p class="features-banner-desc">視力が弱くてもあきらめなくていい。アイメガネは、スマートグラスを度付きレンズに対応させる数少ない眼鏡店です。</p>
       </div>
       <div class="features-banner-right">
