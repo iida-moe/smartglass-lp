@@ -1663,10 +1663,36 @@
       .features-prescription-banner {
         flex-direction: column;
         padding: 24px 20px;
-        gap: 20px;
+        gap: 16px;
         align-items: flex-start;
+        background: #EBEBEB;
+        border: 2px solid #111;
+        border-radius: 12px;
       }
-      .btn-features-banner { display: block; width: 100%; text-align: center; padding: 15px 16px; }
+      .features-banner-label {
+        font-size: 20px;
+        letter-spacing: 0.06em;
+        color: #111;
+        font-weight: 800;
+        margin-bottom: 10px;
+      }
+      .features-banner-title { color: #111; }
+      .banner-title-sub { color: #333; }
+      .features-banner-title strong { color: #FFD600; }
+      .features-banner-desc { color: #444; }
+      .btn-features-banner {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        background: transparent;
+        color: #111;
+        padding: 0;
+        border-radius: 0;
+        font-size: 16px;
+        font-weight: 700;
+        width: auto;
+      }
+      .btn-glasses-icon { width: 56px; height: auto; }
     }
 
     /* ===== SP: LIFESTYLE ===== */
@@ -2000,12 +2026,15 @@
         <p class="features-banner-label">AIMEGANE ONLY</p>
         <p class="features-banner-title">
           <span class="banner-title-sub">これらの機能を、</span>
-          <span class="banner-title-main"><strong>度付きのまま</strong>使えます。</span>
+          <span class="banner-title-main"><strong>度付きのまま</strong>使用できます。</span>
         </p>
         <p class="features-banner-desc">視力が弱くてもあきらめなくていい。アイメガネは、スマートグラスを度付きレンズに対応させる数少ない眼鏡店です。</p>
       </div>
       <div class="features-banner-right">
-        <a href="#prescription" class="btn-features-banner">度付き加工について →</a>
+        <a href="#prescription" class="btn-features-banner">
+          <img src="黒縁メガネフリー素材2 (1).svg" class="btn-glasses-icon" alt="">
+          度付きレンズについて▶
+        </a>
       </div>
     </div>
   </div>
