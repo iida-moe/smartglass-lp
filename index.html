@@ -578,60 +578,51 @@
     .product-desc {
       font-size: 14px;
       color: var(--text-secondary);
-      line-height: 1.75;
-      margin-bottom: 14px;
+      line-height: 1.8;
+      margin-bottom: 18px;
     }
     .product-target {
-      background: var(--bg-gray);
-      border-left: 3px solid var(--red);
-      border-radius: 0 6px 6px 0;
-      padding: 10px 14px;
-      font-size: 13px;
-      color: var(--text-primary);
-      font-weight: 600;
-      margin-bottom: 18px;
-      line-height: 1.6;
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      line-height: 1.65;
+      padding-left: 10px;
+      border-left: 2px solid var(--border);
     }
     .product-price-table {
       display: flex;
-      align-items: stretch;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      flex-direction: column;
+      gap: 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
       margin-bottom: 20px;
     }
     .product-price-row {
-      flex: 1;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 9px 0;
+      padding: 11px 14px;
       font-size: 13px;
+      background: var(--bg-gray);
     }
     .product-price-row + .product-price-row {
-      border-left: 1px solid var(--border);
-      margin-left: 12px;
-      padding-left: 12px;
+      border-top: 1px solid var(--border);
     }
     .product-price-label { color: var(--text-secondary); }
     .product-price-val { font-weight: 700; color: var(--text-primary); }
     .product-lens-type {
-      font-size: 12px;
-      color: var(--blue);
-      margin-bottom: 18px;
-      font-weight: 600;
-    }
-    .product-accessory-note {
-      font-size: 12px;
+      display: inline-block;
+      font-size: 11px;
       color: var(--text-secondary);
       background: var(--bg-gray);
-      border-radius: 6px;
-      padding: 8px 12px;
-      margin-bottom: 18px;
-      line-height: 1.6;
+      border-radius: 4px;
+      padding: 3px 9px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
     }
-    .product-accessory-note strong {
-      color: var(--text-primary);
-    }
+    .product-accessory-note { display: none; }
     /* 相談カード */
     .product-card-consult {
       background: linear-gradient(135deg, #0D1B2A, #1a2e45);
@@ -723,10 +714,15 @@
     }
     .product-actions {
       display: flex;
-      flex-wrap: wrap;
       gap: 10px;
     }
-    .product-actions .btn { font-size: 14px; padding: 12px 20px; }
+    .product-actions .btn {
+      flex: 1;
+      text-align: center;
+      font-size: 14px;
+      padding: 14px 10px;
+      border-radius: 10px;
+    }
 
     /* ===== SECTION 07: 店舗検索 ===== */
     #search { background: var(--navy); }
