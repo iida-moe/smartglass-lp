@@ -148,18 +148,13 @@
       color: #fff;
     }
     .fv-main-line1 {
-      background: linear-gradient(90deg, #DFFFFF 0%, #00DDFF 35%, #00AAEE 70%, #0077CC 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #fff;
     }
     .fv-main-accent {
-      background: linear-gradient(90deg, #DFFFFF 0%, #00DDFF 35%, #00AAEE 70%, #0077CC 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #fff;
       white-space: nowrap;
     }
+    .fv-brand-ticker { display: none; }
     .fv-body {
       font-size: 16px;
       color: rgba(255,255,255,0.75);
@@ -257,6 +252,9 @@
       background: rgba(255,255,255,0.18);
       flex-shrink: 0;
     }
+
+    /* ===== FV ACTION BAR ===== */
+    #fv-action-bar { display: none; }
 
     /* ===== SECTION COMMON ===== */
     .section { padding: 72px 0; }
@@ -1547,63 +1545,62 @@
         );
       }
       .fv-sub { display: none; }
-      .fv-content { flex: 1; max-width: 100%; padding: 52px 0 0; }
-      .fv-main { font-size: 22px; font-weight: 700; line-height: 1.35; margin-bottom: 4px; }
+      .fv-content { flex: 1; max-width: 100%; padding: 52px 0 32px; display: flex; flex-direction: column; }
+      .fv-main { font-size: 22px; font-weight: 700; line-height: 1.35; margin-bottom: 0; }
       .fv-main-line1 {
         display: block;
       }
       .fv-main-accent {
         display: block;
-        font-size: clamp(32px, 9vw, 46px);
-        white-space: nowrap;
-        line-height: 1.2;
+        font-size: clamp(28px, 8vw, 40px);
+        white-space: normal;
+        line-height: 1.25;
       }
-      .fv-brand-label { display: block; font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: 0.08em; margin-top: 14px; margin-bottom: 16px; text-align: center; }
       .fv-body { display: none; }
-      .fv-btns {
-        position: absolute;
-        bottom: 32px;
-        left: 20px;
-        right: 20px;
-        flex-direction: row;
-        gap: 10px;
-        display: flex;
-      }
+      .fv-btns { display: none; }
       .fv-brands-wrap { display: none; }
-      .fv-brands-sp {
+      .fv-brands-sp { display: none; }
+      .fv-brand-label { display: none; }
+      /* ブランドティッカー */
+      .fv-brand-ticker {
         display: block;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
+        margin-top: auto;
+        padding-top: 20px;
       }
-      .fv-brands-sp::-webkit-scrollbar { display: none; }
-      .fv-brands { gap: 0; }
-      .brand-tag { font-size: 10px; padding: 0 7px; }
-      .brand-tag--img img { height: 18px; width: auto; display: block; opacity: 0.85; }
-      .btn-fv-primary {
-        flex: 1;
-        padding: 15px 10px;
-        font-size: 13px;
+      .fv-brand-ticker-label {
+        font-size: 11px;
+        color: rgba(255,255,255,0.45);
+        letter-spacing: 0.12em;
+        margin-bottom: 4px;
+      }
+      .fv-brand-ticker-name {
+        font-size: 20px;
         font-weight: 700;
-        text-align: center;
-        border-radius: 10px;
-        background: var(--navy);
         color: #fff;
-        border: 1.5px solid rgba(255,255,255,0.25);
-        box-shadow: none;
+        line-height: 1.2;
+        transition: opacity 0.4s;
+      }
+      /* FVアクションバー */
+      #fv-action-bar {
+        display: flex;
+        border-bottom: 1px solid var(--border);
+      }
+      .fv-action-btn {
+        flex: 1;
+        text-align: center;
+        padding: 18px 12px;
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+        color: var(--navy);
         white-space: nowrap;
       }
-      .btn-fv-secondary {
-        flex: 1;
-        padding: 15px 10px;
-        font-size: 13px;
-        font-weight: 700;
-        text-align: center;
-        border-radius: 10px;
-        background: rgba(255,255,255,0.92);
-        color: var(--navy);
-        border: none;
-        white-space: nowrap;
+      .fv-action-btn--primary {
+        background: #E6E6E4;
+      }
+      .fv-action-btn--secondary {
+        background: #fff;
+        border-left: 1px solid var(--border);
       }
     }
 
@@ -1872,21 +1869,7 @@
   <div class="container">
     <div class="fv-content">
       <p class="fv-sub">メーカー公認 · 全 37店舗 · 5ブランド取扱い</p>
-      <h1 class="fv-main"><span class="fv-main-line1">スマートグラスは、</span><span class="fv-main-accent">度付きで完成する。</span></h1>
-      <p class="fv-brand-label">ー取り扱いブランドー</p>
-      <div class="fv-brands-sp">
-        <div class="fv-brands">
-          <span class="brand-tag">MIRZA</span>
-          <span class="brand-sep"></span>
-          <span class="brand-tag">Rokid</span>
-          <span class="brand-sep"></span>
-          <span class="brand-tag">Even Realities</span>
-          <span class="brand-sep"></span>
-          <span class="brand-tag brand-tag--img"><img src="images/rayban/logo_white.png" alt="Ray-Ban Meta"></span>
-          <span class="brand-sep"></span>
-          <span class="brand-tag">Oakley<small>×Meta</small></span>
-        </div>
-      </div>
+      <h1 class="fv-main"><span class="fv-main-line1">スマートグラスは、</span><span class="fv-main-accent">視力を最適化して、完成する。</span></h1>
       <p class="fv-body">
         話題の5ブランドの<br>「体験・購入・度付きレンズ交換」を、1つの店で。<br>
         度付き加工に対応できる眼鏡店は限られています。<br>
@@ -1910,9 +1893,20 @@
           <span class="brand-tag">Oakley<small>×Meta</small></span>
         </div>
       </div>
+      <!-- SP専用ブランドティッカー -->
+      <div class="fv-brand-ticker">
+        <p class="fv-brand-ticker-label">— 取り扱いブランド —</p>
+        <p class="fv-brand-ticker-name" id="fv-ticker-name">Ray-Ban × Meta</p>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- SP専用FVアクションバー -->
+<div id="fv-action-bar">
+  <a href="#search" class="fv-action-btn fv-action-btn--primary" onclick="setSearch('','trial')">本体購入・体験</a>
+  <a href="#search" class="fv-action-btn fv-action-btn--secondary" onclick="setSearch('','lens')">度付きレンズにする</a>
+</div>
 
 <!-- 02 スマートグラスとは？ -->
 <section id="features" class="section">
@@ -2764,6 +2758,22 @@
   }
   document.getElementById('product-select').addEventListener('change', updateSearchBtns);
   document.querySelectorAll('input[name="purpose"]').forEach(r => r.addEventListener('change', updateSearchBtns));
+
+  // SPブランドティッカー自動切り替え
+  (function() {
+    const ticker = document.getElementById('fv-ticker-name');
+    if (!ticker) return;
+    const brands = ['MIRZA', 'Rokid Max 2', 'Even Realities', 'Ray-Ban × Meta', 'Oakley × Meta'];
+    let idx = 0;
+    setInterval(function() {
+      ticker.style.opacity = '0';
+      setTimeout(function() {
+        idx = (idx + 1) % brands.length;
+        ticker.textContent = brands[idx];
+        ticker.style.opacity = '1';
+      }, 400);
+    }, 2800);
+  })();
 
   // FVまたは商品セクションが見えている間はフッターCTAを非表示
   const fixedFooter = document.getElementById('fixed-footer');
