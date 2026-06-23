@@ -749,17 +749,31 @@
       left: 0;
       color: var(--red);
     }
+    .product-right {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 0;
+    }
     .product-actions {
       display: flex;
-      gap: 10px;
+      gap: 0;
+      background: var(--navy);
     }
     .product-actions .btn {
       flex: 1;
       text-align: center;
-      font-size: 14px;
-      padding: 14px 10px;
-      border-radius: 4px;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 18px 12px;
+      border-radius: 0;
     }
+    .product-actions .btn-blue {
+      background: rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.90);
+      border-left: 1px solid rgba(255,255,255,0.2);
+    }
+    .product-actions .btn-blue:hover { background: rgba(255,255,255,0.18); opacity: 1; }
 
     /* ===== SECTION 07: 店舗検索 ===== */
     #search { background: var(--navy); }
@@ -1771,8 +1785,9 @@
       .product-image-gallery img { height: 250px; }
       .product-body { padding: 20px 18px; }
       .product-name { font-size: 24px; }
-      .product-actions { flex-direction: column; gap: 8px; }
-      .product-actions .btn { text-align: center; font-size: 14px; width: 100%; }
+      .product-actions { flex-direction: column; gap: 0; }
+      .product-actions .btn { font-size: 14px; width: 100%; }
+      .product-actions .btn-blue { border-left: none; border-top: 1px solid rgba(255,255,255,0.2); }
       .product-price-table { flex-direction: column; }
       .product-price-row + .product-price-row {
         border-left: none;
@@ -2104,24 +2119,26 @@
     <!-- MIRZA -->
     <div class="product-card">
       <div class="product-image product-image--mirza">MIRZA</div>
-      <div class="product-body">
-        <h3 class="product-name">MIRZA</h3>
-        <p class="product-catch">本格XRグラス・日本製 / NTT系</p>
-        <p class="product-desc">Snapdragon AR2搭載の本格XRグラス。高輝度ディスプレイに140言語超のリアルタイム翻訳・字幕機能を搭載。</p>
-        <div class="product-tags-row">
-          <span class="product-tags-label">こんな人に：</span>
-          <span class="product-tag-chip">プロ・法人向け</span>
-          <span class="product-tag-chip">XR・空間活用</span>
-        </div>
-        <p class="product-store-row">本体取扱店舗：<strong>〇〇店</strong></p>
-        <div class="product-price-table">
-          <div class="product-price-row">
-            <span class="product-price-label">本体価格目安</span>
-            <span class="product-price-val">約248,000円</span>
+      <div class="product-right">
+        <div class="product-body">
+          <h3 class="product-name">MIRZA</h3>
+          <p class="product-catch">本格XRグラス・日本製 / NTT系</p>
+          <p class="product-desc">Snapdragon AR2搭載の本格XRグラス。高輝度ディスプレイに140言語超のリアルタイム翻訳・字幕機能を搭載。</p>
+          <div class="product-tags-row">
+            <span class="product-tags-label">こんな人に：</span>
+            <span class="product-tag-chip">プロ・法人向け</span>
+            <span class="product-tag-chip">XR・空間活用</span>
           </div>
-          <div class="product-price-row">
-            <span class="product-price-label">度付きインサート</span>
-            <span class="product-price-val">16,080円〜</span>
+          <p class="product-store-row">本体取扱店舗：<strong>〇〇店</strong></p>
+          <div class="product-price-table">
+            <div class="product-price-row">
+              <span class="product-price-label">本体価格目安</span>
+              <span class="product-price-val">約248,000円</span>
+            </div>
+            <div class="product-price-row">
+              <span class="product-price-label">度付きインサート</span>
+              <span class="product-price-val">16,080円〜</span>
+            </div>
           </div>
         </div>
         <div class="product-actions">
@@ -2134,24 +2151,26 @@
     <!-- Rokid -->
     <div class="product-card">
       <div class="product-image product-image--rokid">Rokid Max 2</div>
-      <div class="product-body">
-        <h3 class="product-name">Rokid Max 2</h3>
-        <p class="product-catch">ARグラス・ビジネス向け</p>
-        <p class="product-desc">ARナビ・翻訳・通知をリアルタイムで視野内に表示。ハンズフリーで情報確認できる次世代ビジネスツール。</p>
-        <div class="product-tags-row">
-          <span class="product-tags-label">こんな人に：</span>
-          <span class="product-tag-chip">ビジネス向け</span>
-          <span class="product-tag-chip">AR情報活用</span>
-        </div>
-        <p class="product-store-row">本体取扱店舗：<strong>〇〇店</strong></p>
-        <div class="product-price-table">
-          <div class="product-price-row">
-            <span class="product-price-label">本体価格目安</span>
-            <span class="product-price-val">約99,800円</span>
+      <div class="product-right">
+        <div class="product-body">
+          <h3 class="product-name">Rokid Max 2</h3>
+          <p class="product-catch">ARグラス・ビジネス向け</p>
+          <p class="product-desc">ARナビ・翻訳・通知をリアルタイムで視野内に表示。ハンズフリーで情報確認できる次世代ビジネスツール。</p>
+          <div class="product-tags-row">
+            <span class="product-tags-label">こんな人に：</span>
+            <span class="product-tag-chip">ビジネス向け</span>
+            <span class="product-tag-chip">AR情報活用</span>
           </div>
-          <div class="product-price-row">
-            <span class="product-price-label">度付きインサート</span>
-            <span class="product-price-val">16,080円〜</span>
+          <p class="product-store-row">本体取扱店舗：<strong>〇〇店</strong></p>
+          <div class="product-price-table">
+            <div class="product-price-row">
+              <span class="product-price-label">本体価格目安</span>
+              <span class="product-price-val">約99,800円</span>
+            </div>
+            <div class="product-price-row">
+              <span class="product-price-label">度付きインサート</span>
+              <span class="product-price-val">16,080円〜</span>
+            </div>
           </div>
         </div>
         <div class="product-actions">
@@ -2180,24 +2199,26 @@
           <span class="color-swatch" style="background:#6B5040;" onclick="switchEvenColor('brown-b',this)" title="ブラウン"></span>
         </div>
       </div>
-      <div class="product-body">
-        <h3 class="product-name">Even Realities G2</h3>
-        <p class="product-catch">超軽量ARグラス・普段使い向け</p>
-        <p class="product-desc">わずか38gの超軽量ボディに高精細マイクロLEDディスプレイ搭載。普段のメガネ感覚で一日中かけられる入門に最適な一本。</p>
-        <div class="product-tags-row">
-          <span class="product-tags-label">こんな人に：</span>
-          <span class="product-tag-chip">初心者向け</span>
-          <span class="product-tag-chip">普段使い</span>
-        </div>
-        <p class="product-store-row">本体取扱店舗：<strong>全37店舗</strong></p>
-        <div class="product-price-table">
-          <div class="product-price-row">
-            <span class="product-price-label">本体価格目安</span>
-            <span class="product-price-val">約79,800円</span>
+      <div class="product-right">
+        <div class="product-body">
+          <h3 class="product-name">Even Realities G2</h3>
+          <p class="product-catch">超軽量ARグラス・普段使い向け</p>
+          <p class="product-desc">わずか38gの超軽量ボディに高精細マイクロLEDディスプレイ搭載。普段のメガネ感覚で一日中かけられる入門に最適な一本。</p>
+          <div class="product-tags-row">
+            <span class="product-tags-label">こんな人に：</span>
+            <span class="product-tag-chip">初心者向け</span>
+            <span class="product-tag-chip">普段使い</span>
           </div>
-          <div class="product-price-row">
-            <span class="product-price-label">度付きレンズ交換</span>
-            <span class="product-price-val">16,080円〜</span>
+          <p class="product-store-row">本体取扱店舗：<strong>全37店舗</strong></p>
+          <div class="product-price-table">
+            <div class="product-price-row">
+              <span class="product-price-label">本体価格目安</span>
+              <span class="product-price-val">約79,800円</span>
+            </div>
+            <div class="product-price-row">
+              <span class="product-price-label">度付きレンズ交換</span>
+              <span class="product-price-val">16,080円〜</span>
+            </div>
           </div>
         </div>
         <div class="product-actions">
@@ -2216,24 +2237,26 @@
           <button class="frame-tab" onclick="switchRBStyle('wayfarer',this)">Wayfarer<br><small style="font-weight:400;font-size:10px;">サングラス（SUN）</small></button>
         </div>
       </div>
-      <div class="product-body">
-        <h3 class="product-name" id="rb-name">Ray-Ban Meta Blayzer</h3>
-        <p class="product-catch" id="rb-catch">スマートグラス・Meta AI搭載 / 度付き対応メガネ</p>
-        <p class="product-desc" id="rb-desc">Ray-Banの洗練されたデザインにMeta AIを搭載。通常のメガネと同じ見た目で、ハンズフリー通話・音楽・AI質問を実現。</p>
-        <div class="product-tags-row">
-          <span class="product-tags-label">こんな人に：</span>
-          <span class="product-tag-chip">メガネユーザー</span>
-          <span class="product-tag-chip">日常使い</span>
-        </div>
-        <p class="product-store-row">本体取扱店舗：<strong>全37店舗</strong></p>
-        <div class="product-price-table">
-          <div class="product-price-row">
-            <span class="product-price-label">本体価格目安</span>
-            <span class="product-price-val">約49,500円</span>
+      <div class="product-right">
+        <div class="product-body">
+          <h3 class="product-name" id="rb-name">Ray-Ban Meta Blayzer</h3>
+          <p class="product-catch" id="rb-catch">スマートグラス・Meta AI搭載 / 度付き対応メガネ</p>
+          <p class="product-desc" id="rb-desc">Ray-Banの洗練されたデザインにMeta AIを搭載。通常のメガネと同じ見た目で、ハンズフリー通話・音楽・AI質問を実現。</p>
+          <div class="product-tags-row">
+            <span class="product-tags-label">こんな人に：</span>
+            <span class="product-tag-chip">メガネユーザー</span>
+            <span class="product-tag-chip">日常使い</span>
           </div>
-          <div class="product-price-row">
-            <span class="product-price-label">度付きレンズ交換</span>
-            <span class="product-price-val">16,080円〜</span>
+          <p class="product-store-row">本体取扱店舗：<strong>全37店舗</strong></p>
+          <div class="product-price-table">
+            <div class="product-price-row">
+              <span class="product-price-label">本体価格目安</span>
+              <span class="product-price-val">約49,500円</span>
+            </div>
+            <div class="product-price-row">
+              <span class="product-price-label">度付きレンズ交換</span>
+              <span class="product-price-val">16,080円〜</span>
+            </div>
           </div>
         </div>
         <div class="product-actions">
@@ -2246,24 +2269,26 @@
     <!-- Oakley Meta -->
     <div class="product-card">
       <div class="product-image product-image--oakley">OAKLEY × META</div>
-      <div class="product-body">
-        <h3 class="product-name">Oakley Meta</h3>
-        <p class="product-catch">スポーツスマートグラス・Meta AI搭載</p>
-        <p class="product-desc">OakleyフレームにMeta AIとカメラを搭載。動いても外れないフィット感で、スポーツ中の撮影・音楽・AIアシストが使えるアウトドア向けモデル。</p>
-        <div class="product-tags-row">
-          <span class="product-tags-label">こんな人に：</span>
-          <span class="product-tag-chip">スポーツ好き</span>
-          <span class="product-tag-chip">アウトドア</span>
-        </div>
-        <p class="product-store-row">本体取扱店舗：<strong>〇〇店</strong></p>
-        <div class="product-price-table">
-          <div class="product-price-row">
-            <span class="product-price-label">本体価格目安</span>
-            <span class="product-price-val">約54,800円</span>
+      <div class="product-right">
+        <div class="product-body">
+          <h3 class="product-name">Oakley Meta</h3>
+          <p class="product-catch">スポーツスマートグラス・Meta AI搭載</p>
+          <p class="product-desc">OakleyフレームにMeta AIとカメラを搭載。動いても外れないフィット感で、スポーツ中の撮影・音楽・AIアシストが使えるアウトドア向けモデル。</p>
+          <div class="product-tags-row">
+            <span class="product-tags-label">こんな人に：</span>
+            <span class="product-tag-chip">スポーツ好き</span>
+            <span class="product-tag-chip">アウトドア</span>
           </div>
-          <div class="product-price-row">
-            <span class="product-price-label">度付きレンズ交換</span>
-            <span class="product-price-val">16,080円〜</span>
+          <p class="product-store-row">本体取扱店舗：<strong>〇〇店</strong></p>
+          <div class="product-price-table">
+            <div class="product-price-row">
+              <span class="product-price-label">本体価格目安</span>
+              <span class="product-price-val">約54,800円</span>
+            </div>
+            <div class="product-price-row">
+              <span class="product-price-label">度付きレンズ交換</span>
+              <span class="product-price-val">16,080円〜</span>
+            </div>
           </div>
         </div>
         <div class="product-actions">
