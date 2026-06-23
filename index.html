@@ -148,7 +148,10 @@
       color: #fff;
     }
     .fv-main-line1 {
-      color: #fff;
+      background: linear-gradient(90deg, #DFFFFF 0%, #00DDFF 35%, #00AAEE 70%, #0077CC 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .fv-main-accent {
       color: #fff;
@@ -1596,7 +1599,8 @@
         white-space: nowrap;
       }
       .fv-action-btn--primary {
-        background: #E6E6E4;
+        background: var(--blue);
+        color: #fff;
       }
       .fv-action-btn--secondary {
         background: #fff;
@@ -1896,7 +1900,7 @@
       <!-- SP専用ブランドティッカー -->
       <div class="fv-brand-ticker">
         <p class="fv-brand-ticker-label">— 取り扱いブランド —</p>
-        <p class="fv-brand-ticker-name" id="fv-ticker-name">Ray-Ban × Meta</p>
+        <p class="fv-brand-ticker-name" id="fv-ticker-name">レイバン</p>
       </div>
     </div>
   </div>
@@ -2763,7 +2767,7 @@
   (function() {
     const ticker = document.getElementById('fv-ticker-name');
     if (!ticker) return;
-    const brands = ['MIRZA', 'Rokid Max 2', 'Even Realities', 'Ray-Ban × Meta', 'Oakley × Meta'];
+    const brands = ['レイバン', 'MIRZA', 'Rokid Max 2', 'Even Realities', 'Oakley × Meta'];
     let idx = 0;
     setInterval(function() {
       ticker.style.opacity = '0';
