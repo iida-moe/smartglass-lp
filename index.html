@@ -1610,22 +1610,31 @@
       .fv-sp-cta {
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         gap: 10px;
         margin-top: auto;
+        padding-bottom: 24px;
       }
       .fv-sp-btn {
-        display: block;
-        padding: 17px 20px;
+        display: inline-block;
+        padding: 15px 28px;
         font-size: 18px;
         font-weight: 700;
         text-align: center;
         text-decoration: none;
         border-radius: 6px;
+        white-space: nowrap;
+      }
+      .fv-sp-btn--red {
+        background: var(--red);
         color: #fff;
         border: none;
       }
-      .fv-sp-btn--red  { background: var(--red); }
-      .fv-sp-btn--blue { background: var(--blue); }
+      .fv-sp-btn--blue {
+        background: #fff;
+        color: var(--red);
+        border: 2px solid var(--red);
+      }
       /* アクションバーはSPでは非表示 */
       #fv-action-bar { display: none; }
     }
