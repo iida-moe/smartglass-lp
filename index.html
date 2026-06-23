@@ -596,6 +596,36 @@
       padding-left: 10px;
       border-left: 2px solid var(--border);
     }
+    .product-tags-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .product-tags-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+    .product-tag-chip {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-primary);
+      background: var(--bg-gray);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 3px 10px;
+    }
+    .product-store-row {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+    .product-store-row strong {
+      color: var(--text-primary);
+      font-weight: 700;
+    }
     .product-price-table {
       display: flex;
       flex-direction: column;
@@ -2078,7 +2108,12 @@
         <h3 class="product-name">MIRZA</h3>
         <p class="product-catch">本格XRグラス・日本製 / NTT系</p>
         <p class="product-desc">Snapdragon AR2搭載の本格XRグラス。高輝度ディスプレイに140言語超のリアルタイム翻訳・字幕機能を搭載。</p>
-        <div class="product-target">こんな人に：XR・空間コンピューティングを本気で活用したいプロ・法人の方</div>
+        <div class="product-tags-row">
+          <span class="product-tags-label">こんな人に：</span>
+          <span class="product-tag-chip">プロ・法人向け</span>
+          <span class="product-tag-chip">XR・空間活用</span>
+        </div>
+        <p class="product-store-row">本体取扱店舗：<strong>〇〇店</strong></p>
         <div class="product-price-table">
           <div class="product-price-row">
             <span class="product-price-label">本体価格目安</span>
@@ -2090,8 +2125,8 @@
           </div>
         </div>
         <div class="product-actions">
-          <a href="#search" class="btn btn-red" onclick="setSearch('MIRZA','trial')">体験を予約</a>
-          <a href="#search" class="btn btn-blue" onclick="setSearch('MIRZA','lens')">度付きを相談</a>
+          <a href="#search" class="btn btn-red" onclick="setSearch('MIRZA','trial')">本体購入・体験へ</a>
+          <a href="#search" class="btn btn-blue" onclick="setSearch('MIRZA','lens')">レンズ交換へ</a>
         </div>
       </div>
     </div>
@@ -2103,7 +2138,12 @@
         <h3 class="product-name">Rokid Max 2</h3>
         <p class="product-catch">ARグラス・ビジネス向け</p>
         <p class="product-desc">ARナビ・翻訳・通知をリアルタイムで視野内に表示。ハンズフリーで情報確認できる次世代ビジネスツール。</p>
-        <div class="product-target">こんな人に：ビジネスシーンでARを活用したい・常に情報にアクセスしたい方</div>
+        <div class="product-tags-row">
+          <span class="product-tags-label">こんな人に：</span>
+          <span class="product-tag-chip">ビジネス向け</span>
+          <span class="product-tag-chip">AR情報活用</span>
+        </div>
+        <p class="product-store-row">本体取扱店舗：<strong>〇〇店</strong></p>
         <div class="product-price-table">
           <div class="product-price-row">
             <span class="product-price-label">本体価格目安</span>
@@ -2115,8 +2155,8 @@
           </div>
         </div>
         <div class="product-actions">
-          <a href="#search" class="btn btn-red" onclick="setSearch('Rokid','trial')">体験を予約</a>
-          <a href="#search" class="btn btn-blue" onclick="setSearch('Rokid','lens')">度付きを相談</a>
+          <a href="#search" class="btn btn-red" onclick="setSearch('Rokid','trial')">本体購入・体験へ</a>
+          <a href="#search" class="btn btn-blue" onclick="setSearch('Rokid','lens')">レンズ交換へ</a>
         </div>
       </div>
     </div>
@@ -2144,7 +2184,12 @@
         <h3 class="product-name">Even Realities G2</h3>
         <p class="product-catch">超軽量ARグラス・普段使い向け</p>
         <p class="product-desc">わずか38gの超軽量ボディに高精細マイクロLEDディスプレイ搭載。普段のメガネ感覚で一日中かけられる入門に最適な一本。</p>
-        <div class="product-target">こんな人に：スマートグラス初心者・普段使いできる軽いものを探している方</div>
+        <div class="product-tags-row">
+          <span class="product-tags-label">こんな人に：</span>
+          <span class="product-tag-chip">初心者向け</span>
+          <span class="product-tag-chip">普段使い</span>
+        </div>
+        <p class="product-store-row">本体取扱店舗：<strong>全37店舗</strong></p>
         <div class="product-price-table">
           <div class="product-price-row">
             <span class="product-price-label">本体価格目安</span>
@@ -2156,8 +2201,8 @@
           </div>
         </div>
         <div class="product-actions">
-          <a href="#search" class="btn btn-red" onclick="setSearch('Even Realities','trial')">体験を予約</a>
-          <a href="#search" class="btn btn-blue" onclick="setSearch('Even Realities','lens')">度付きを相談</a>
+          <a href="#search" class="btn btn-red" onclick="setSearch('Even Realities','trial')">本体購入・体験へ</a>
+          <a href="#search" class="btn btn-blue" onclick="setSearch('Even Realities','lens')">レンズ交換へ</a>
         </div>
       </div>
     </div>
@@ -2175,7 +2220,12 @@
         <h3 class="product-name" id="rb-name">Ray-Ban Meta Blayzer</h3>
         <p class="product-catch" id="rb-catch">スマートグラス・Meta AI搭載 / 度付き対応メガネ</p>
         <p class="product-desc" id="rb-desc">Ray-Banの洗練されたデザインにMeta AIを搭載。通常のメガネと同じ見た目で、ハンズフリー通話・音楽・AI質問を実現。</p>
-        <div class="product-target" id="rb-target">こんな人に：普段メガネを使用していて、AIとカメラを日常で活用したい方</div>
+        <div class="product-tags-row">
+          <span class="product-tags-label">こんな人に：</span>
+          <span class="product-tag-chip">メガネユーザー</span>
+          <span class="product-tag-chip">日常使い</span>
+        </div>
+        <p class="product-store-row">本体取扱店舗：<strong>全37店舗</strong></p>
         <div class="product-price-table">
           <div class="product-price-row">
             <span class="product-price-label">本体価格目安</span>
@@ -2187,8 +2237,8 @@
           </div>
         </div>
         <div class="product-actions">
-          <a href="#search" class="btn btn-red" onclick="setSearch('Ray-Ban Meta','trial')">体験を予約</a>
-          <a href="#search" class="btn btn-blue" onclick="setSearch('Ray-Ban Meta','lens')">度付きを相談</a>
+          <a href="#search" class="btn btn-red" onclick="setSearch('Ray-Ban Meta','trial')">本体購入・体験へ</a>
+          <a href="#search" class="btn btn-blue" onclick="setSearch('Ray-Ban Meta','lens')">レンズ交換へ</a>
         </div>
       </div>
     </div>
@@ -2200,7 +2250,12 @@
         <h3 class="product-name">Oakley Meta</h3>
         <p class="product-catch">スポーツスマートグラス・Meta AI搭載</p>
         <p class="product-desc">OakleyフレームにMeta AIとカメラを搭載。動いても外れないフィット感で、スポーツ中の撮影・音楽・AIアシストが使えるアウトドア向けモデル。</p>
-        <div class="product-target">こんな人に：スポーツ・アウトドアで使える、動いても外れない1本を探している方</div>
+        <div class="product-tags-row">
+          <span class="product-tags-label">こんな人に：</span>
+          <span class="product-tag-chip">スポーツ好き</span>
+          <span class="product-tag-chip">アウトドア</span>
+        </div>
+        <p class="product-store-row">本体取扱店舗：<strong>〇〇店</strong></p>
         <div class="product-price-table">
           <div class="product-price-row">
             <span class="product-price-label">本体価格目安</span>
@@ -2212,8 +2267,8 @@
           </div>
         </div>
         <div class="product-actions">
-          <a href="#search" class="btn btn-red" onclick="setSearch('Oakley Meta','trial')">体験を予約</a>
-          <a href="#search" class="btn btn-blue" onclick="setSearch('Oakley Meta','lens')">度付きを相談</a>
+          <a href="#search" class="btn btn-red" onclick="setSearch('Oakley Meta','trial')">本体購入・体験へ</a>
+          <a href="#search" class="btn btn-blue" onclick="setSearch('Oakley Meta','lens')">レンズ交換へ</a>
         </div>
       </div>
     </div>
@@ -2482,15 +2537,13 @@
       img: 'images/rayban/blayzer.jpg',
       name: 'Ray-Ban Meta Blayzer',
       catch: 'スマートグラス・Meta AI搭載 / 度付き対応メガネ',
-      desc: 'Ray-Banの洗練されたデザインにMeta AIを搭載。通常のメガネと同じ見た目で、ハンズフリー通話・音楽・AI質問を実現。',
-      target: 'こんな人に：普段メガネを使用していて、AIとカメラを日常で活用したい方'
+      desc: 'Ray-Banの洗練されたデザインにMeta AIを搭載。通常のメガネと同じ見た目で、ハンズフリー通話・音楽・AI質問を実現。'
     },
     wayfarer: {
       img: 'images/rayban/wayfarer.jpg',
       name: 'Ray-Ban Meta Wayfarer',
       catch: 'スマートグラス・Meta AI搭載 / サングラスタイプ',
-      desc: 'アイコニックなWayfarerフレームにMeta AIを搭載。音楽・通話・AI・カメラをサングラス1本に凝縮。',
-      target: 'こんな人に：スタイリッシュに屋外でAIとカメラを使いたい方'
+      desc: 'アイコニックなWayfarerフレームにMeta AIを搭載。音楽・通話・AI・カメラをサングラス1本に凝縮。'
     }
   };
 
@@ -2500,7 +2553,6 @@
     document.getElementById('rb-name').textContent = d.name;
     document.getElementById('rb-catch').textContent = d.catch;
     document.getElementById('rb-desc').textContent = d.desc;
-    document.getElementById('rb-target').textContent = d.target;
     el.closest('.product-image-gallery').querySelectorAll('.frame-tab').forEach(t => t.classList.remove('active'));
     el.classList.add('active');
   }
