@@ -431,27 +431,40 @@
       margin-bottom: 40px;
     }
     .product-card {
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 20px;
       overflow: hidden;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
       display: flex;
       flex-direction: column;
       background: #fff;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
     }
     @media (min-width: 768px) {
       .product-card { flex-direction: row; }
     }
     .product-image {
-      background: var(--bg-gray);
       width: 100%;
-      height: 200px;
+      height: 220px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--text-secondary);
-      font-size: 13px;
       flex-shrink: 0;
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.88);
+    }
+    .product-image--mirza {
+      background: linear-gradient(135deg, #0A1A3A 0%, #1a3060 100%);
+    }
+    .product-image--rokid {
+      background: linear-gradient(135deg, #111116 0%, #1e1e2d 100%);
+      font-size: 32px;
+    }
+    .product-image--oakley {
+      background: linear-gradient(135deg, #1c1c1e 0%, #3a3a3c 100%);
+      font-size: 18px;
+      letter-spacing: 0.08em;
     }
     @media (min-width: 768px) {
       .product-image { width: 280px; height: auto; min-height: 260px; }
@@ -501,9 +514,9 @@
     }
     .frame-tab.active { background: var(--navy); color: #fff; border-color: var(--navy); }
     .frame-tab:hover:not(.active) { border-color: var(--navy); color: var(--navy); }
-    .product-body { padding: 24px 28px; flex: 1; }
-    .product-brand { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
-    .product-name { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+    .product-body { padding: 28px 24px; flex: 1; }
+    .product-brand { font-size: 11px; font-weight: 700; color: var(--text-secondary); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+    .product-name { font-size: 22px; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
     .product-price { font-size: 14px; color: var(--text-secondary); margin-bottom: 12px; }
     .product-tags {
       display: flex;
@@ -2057,7 +2070,7 @@
 
     <!-- MIRZA -->
     <div class="product-card">
-      <div class="product-image">商品写真（準備中）</div>
+      <div class="product-image product-image--mirza">MIRZA</div>
       <div class="product-body">
         <p class="product-brand">MIRZA</p>
         <h3 class="product-name">MIRZA</h3>
@@ -2088,7 +2101,7 @@
 
     <!-- Rokid -->
     <div class="product-card">
-      <div class="product-image">商品写真（準備中）</div>
+      <div class="product-image product-image--rokid">Rokid Max 2</div>
       <div class="product-body">
         <p class="product-brand">Rokid</p>
         <h3 class="product-name">Rokid Max 2</h3>
@@ -2204,7 +2217,7 @@
 
     <!-- Oakley Meta -->
     <div class="product-card">
-      <div class="product-image">商品写真（準備中）</div>
+      <div class="product-image product-image--oakley">OAKLEY × META</div>
       <div class="product-body">
         <p class="product-brand">Oakley × Meta</p>
         <h3 class="product-name">Oakley Meta</h3>
