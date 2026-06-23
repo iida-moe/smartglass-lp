@@ -2085,17 +2085,23 @@
 
     <!-- Ray-Ban Meta -->
     <div class="product-card">
-      <div class="product-image">商品写真（準備中）</div>
+      <div class="product-image-gallery">
+        <img id="rb-main-img" src="images/rayban/blayzer.jpg" alt="Ray-Ban Meta Blayzer">
+        <div class="product-frame-tabs">
+          <button class="frame-tab active" onclick="switchRBStyle('blayzer',this)">Blayzer<br><small style="font-weight:400;font-size:10px;">メガネ（OPT）</small></button>
+          <button class="frame-tab" onclick="switchRBStyle('wayfarer',this)">Wayfarer<br><small style="font-weight:400;font-size:10px;">サングラス（SUN）</small></button>
+        </div>
+      </div>
       <div class="product-body">
         <p class="product-brand">Ray-Ban × Meta</p>
-        <h3 class="product-name">Ray-Ban Meta</h3>
-        <p class="product-category">スマートグラス／Meta AI搭載・人気No.1</p>
+        <h3 class="product-name" id="rb-name">Ray-Ban Meta Blayzer</h3>
+        <p class="product-category" id="rb-category">スマートグラス／Meta AI搭載・度付き対応メガネ</p>
         <div class="product-avail-row">
           <span class="tag-avail">度付き対応</span>
           <span class="tag-avail">本体取扱（全店舗）</span>
         </div>
-        <p class="product-desc">Ray-Banの洗練されたデザインにMeta AIを搭載。カメラで写真・動画撮影も可能。AIが声で質問に答え、リアルタイムでサポート。見た目はふつうのサングラス。</p>
-        <div class="product-target">こんな人に：見た目にこだわりつつ、AIとカメラを日常で使いたい方</div>
+        <p class="product-desc" id="rb-desc">Ray-Banの洗練されたデザインにMeta AIを搭載。通常のメガネと同じ見た目で、広範囲の度数に対応。ハンズフリー通話・音楽・AI質問をメガネ1本で実現。</p>
+        <div class="product-target" id="rb-target">こんな人に：普段メガネを使用していて、AIとカメラを日常で活用したい方</div>
         <div class="product-price-table">
           <div class="product-price-row">
             <span class="product-price-label">本体価格目安</span>
@@ -2401,6 +2407,34 @@
     document.getElementById('even-main-img').src = 'images/even-g2/' + color + '.png';
     const containerId = evenFrame === 'A' ? 'even-swatches-A' : 'even-swatches-B';
     document.querySelectorAll('#' + containerId + ' .color-swatch').forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  const rbData = {
+    blayzer: {
+      img: 'images/rayban/blayzer.jpg',
+      name: 'Ray-Ban Meta Blayzer',
+      category: 'スマートグラス／Meta AI搭載・度付き対応メガネ',
+      desc: 'Ray-Banの洗練されたデザインにMeta AIを搭載。通常のメガネと同じ見た目で、広範囲の度数に対応。ハンズフリー通話・音楽・AI質問をメガネ1本で実現。',
+      target: 'こんな人に：普段メガネを使用していて、AIとカメラを日常で活用したい方'
+    },
+    wayfarer: {
+      img: 'images/rayban/wayfarer.jpg',
+      name: 'Ray-Ban Meta Wayfarer',
+      category: 'スマートグラス／Meta AI搭載・サングラス',
+      desc: 'アイコニックなWayfarerフレームにMeta AIを搭載。音楽・通話・AI・カメラをサングラス1本に凝縮。Transitions®レンズとの組み合わせも対応。',
+      target: 'こんな人に：スタイリッシュに屋外でAIとカメラを使いたい方'
+    }
+  };
+
+  function switchRBStyle(style, el) {
+    const d = rbData[style];
+    document.getElementById('rb-main-img').src = d.img;
+    document.getElementById('rb-name').textContent = d.name;
+    document.getElementById('rb-category').textContent = d.category;
+    document.getElementById('rb-desc').textContent = d.desc;
+    document.getElementById('rb-target').textContent = d.target;
+    el.closest('.product-image-gallery').querySelectorAll('.frame-tab').forEach(t => t.classList.remove('active'));
     el.classList.add('active');
   }
 
