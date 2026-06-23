@@ -1678,21 +1678,28 @@
       }
       .features-banner-title { color: #111; }
       .banner-title-sub { color: #333; }
-      .features-banner-title strong { color: #FFD600; }
+      .features-banner-title strong {
+        color: #111;
+        background: #FFD600;
+        padding: 0 4px;
+        border-radius: 2px;
+      }
       .features-banner-desc { color: #444; }
       .btn-features-banner {
         display: flex;
         align-items: center;
-        gap: 14px;
-        background: transparent;
-        color: #111;
-        padding: 0;
-        border-radius: 0;
+        gap: 12px;
+        background: #111;
+        color: #fff;
+        padding: 14px 20px;
+        border-radius: 8px;
         font-size: 16px;
         font-weight: 700;
-        width: auto;
+        width: 100%;
+        box-sizing: border-box;
+        justify-content: center;
       }
-      .btn-glasses-icon { width: 56px; height: auto; }
+      .btn-glasses-icon { width: 36px; height: auto; filter: invert(1); }
     }
 
     /* ===== SP: LIFESTYLE ===== */
