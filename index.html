@@ -1536,7 +1536,12 @@
         width: 100%;
       }
       .fv-bg {
-        background: rgba(13,27,42,0.70);
+        background: linear-gradient(to bottom,
+          rgba(13,27,42,0.90) 0%,
+          rgba(13,27,42,0.80) 35%,
+          rgba(13,27,42,0.40) 65%,
+          rgba(13,27,42,0.05) 100%
+        );
       }
       .fv-sub { display: none; }
       .fv-content {
@@ -1554,18 +1559,18 @@
       }
       .fv-main-line1 {
         display: block;
-        font-size: 32px;
+        font-size: 29px;
         font-weight: 400;
         color: #fff;
         background: none;
         -webkit-text-fill-color: #fff;
         -webkit-background-clip: unset;
         background-clip: unset;
-        margin-bottom: 6px;
+        margin-bottom: 4px;
       }
       .fv-main-accent {
         display: block;
-        font-size: 64px;
+        font-size: 56px;
         font-weight: 800;
         line-height: 1.2;
         white-space: normal;
@@ -1579,24 +1584,24 @@
       .fv-brands-wrap { display: none; }
       .fv-brands-sp { display: none; }
       .fv-brand-label { display: none; }
-      .fv-brand-ticker { display: none; }
-      /* SP専用ブランドリスト */
-      .fv-sp-brands {
+      /* ブランドティッカー */
+      .fv-brand-ticker {
         display: block;
-        margin-bottom: 28px;
+        margin-bottom: 24px;
       }
-      .fv-sp-brands-label {
+      .fv-brand-ticker-label {
         font-size: 11px;
         color: rgba(255,255,255,0.50);
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
       }
-      .fv-sp-brand-name {
-        font-size: 17px;
-        font-weight: 600;
-        color: rgba(255,255,255,0.88);
-        line-height: 1.8;
+      .fv-brand-ticker-name {
+        font-size: 18px;
+        font-weight: 700;
+        color: rgba(255,255,255,0.90);
+        line-height: 1.4;
+        transition: opacity 0.4s;
       }
       /* SP専用CTAボタン */
       .fv-sp-cta {
@@ -1608,15 +1613,16 @@
       .fv-sp-btn {
         display: block;
         padding: 16px 20px;
-        font-size: 15px;
+        font-size: 14px;
         font-weight: 700;
         text-align: center;
         text-decoration: none;
         border-radius: 6px;
-        background: var(--blue);
         color: #fff;
         border: none;
       }
+      .fv-sp-btn--red  { background: var(--red); }
+      .fv-sp-btn--blue { background: var(--blue); }
       /* アクションバーはSPでは非表示 */
       #fv-action-bar { display: none; }
     }
@@ -1886,7 +1892,11 @@
   <div class="container">
     <div class="fv-content">
       <p class="fv-sub">メーカー公認 · 全 37店舗 · 5ブランド取扱い</p>
-      <h1 class="fv-main"><span class="fv-main-line1">スマートグラスは、</span><span class="fv-main-accent">視力を最適化して、完成する。</span></h1>
+      <h1 class="fv-main">
+        <span class="fv-main-line1">スマートグラスは、</span>
+        <span class="fv-main-accent">視力を最適化し、</span>
+        <span class="fv-main-accent fv-main-accent3">完成する。</span>
+      </h1>
       <p class="fv-body">
         話題の5ブランドの<br>「体験・購入・度付きレンズ交換」を、1つの店で。<br>
         度付き加工に対応できる眼鏡店は限られています。<br>
@@ -1910,17 +1920,15 @@
           <span class="brand-tag">Oakley<small>×Meta</small></span>
         </div>
       </div>
-      <!-- SP専用ブランドリスト -->
-      <div class="fv-sp-brands">
-        <p class="fv-sp-brands-label">取り扱いブランド</p>
-        <p class="fv-sp-brand-name">Ray-Ban Meta</p>
-        <p class="fv-sp-brand-name">Rokid</p>
-        <p class="fv-sp-brand-name">Even Realities</p>
+      <!-- SP専用ブランドティッカー -->
+      <div class="fv-brand-ticker">
+        <p class="fv-brand-ticker-label">取り扱いブランド</p>
+        <p class="fv-brand-ticker-name" id="fv-ticker-name">Ray-Ban Meta</p>
       </div>
       <!-- SP専用CTAボタン -->
       <div class="fv-sp-cta">
-        <a href="#search" class="fv-sp-btn" onclick="setSearch('','')">店舗を探す</a>
-        <a href="#search" class="fv-sp-btn" onclick="setSearch('','trial')">来店予約する</a>
+        <a href="#search" class="fv-sp-btn fv-sp-btn--red" onclick="setSearch('','trial')">本体を購入・体験する</a>
+        <a href="#search" class="fv-sp-btn fv-sp-btn--blue" onclick="setSearch('','lens')">度付きレンズ交換する</a>
       </div>
     </div>
   </div>
@@ -2783,12 +2791,13 @@
   document.getElementById('product-select').addEventListener('change', updateSearchBtns);
   document.querySelectorAll('input[name="purpose"]').forEach(r => r.addEventListener('change', updateSearchBtns));
 
-  // SPブランドティッカー自動切り替え
+  // SPブランドティッカー（ランダムスタート・自動切り替え）
   (function() {
     const ticker = document.getElementById('fv-ticker-name');
     if (!ticker) return;
-    const brands = ['レイバン', 'MIRZA', 'Rokid Max 2', 'Even Realities', 'Oakley × Meta'];
-    let idx = 0;
+    const brands = ['Ray-Ban Meta', 'Rokid', 'Even Realities', 'MIRZA', 'Oakley × Meta'];
+    let idx = Math.floor(Math.random() * brands.length);
+    ticker.textContent = brands[idx];
     setInterval(function() {
       ticker.style.opacity = '0';
       setTimeout(function() {
