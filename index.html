@@ -58,7 +58,7 @@
       z-index: 100;
       background: #fff;
       border-bottom: 1px solid var(--border);
-      height: 60px;
+      height: 80px;
       display: flex;
       align-items: center;
     }
@@ -99,12 +99,12 @@
 
     /* ===== FV ===== */
     #fv {
-      margin-top: 60px;
+      margin-top: 80px;
       background-color: var(--navy);
       background-image: url('都会的洗練された男性広告.png');
       background-size: cover;
       background-position: right center;
-      min-height: calc(100vh - 60px);
+      min-height: calc(100vh - 80px);
       display: flex;
       align-items: center;
       position: relative;
@@ -148,10 +148,7 @@
       color: #fff;
     }
     .fv-main-line1 {
-      background: linear-gradient(90deg, #DFFFFF 0%, #00DDFF 35%, #00AAEE 70%, #0077CC 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #fff;
     }
     .fv-main-accent {
       color: #fff;
@@ -1528,84 +1525,100 @@
         background-image: url('fv_man.png');
         background-size: 150% auto;
         background-position: center 80%;
-        min-height: 85svh;
-        align-items: stretch;
+        margin-top: 0;
+        min-height: 100vh;
+        align-items: flex-start;
       }
       #fv .container {
         position: relative;
-        display: flex;
-        flex-direction: column;
-        padding: 0 20px;
+        display: block;
+        padding: 0;
+        width: 100%;
       }
       .fv-bg {
-        background: linear-gradient(to bottom,
-          rgba(13,27,42,0.90) 0%,
-          rgba(13,27,42,0.70) 20%,
-          rgba(13,27,42,0.16) 42%,
-          rgba(13,27,42,0.10) 60%,
-          rgba(13,27,42,0.65) 82%,
-          rgba(13,27,42,0.92) 100%
-        );
+        background: rgba(13,27,42,0.70);
       }
       .fv-sub { display: none; }
-      .fv-content { flex: 1; max-width: 100%; padding: 52px 0 32px; display: flex; flex-direction: column; }
-      .fv-main { font-size: 22px; font-weight: 700; line-height: 1.35; margin-bottom: 0; }
+      .fv-content {
+        display: block;
+        max-width: none;
+        width: 80%;
+        padding: 200px 0 0 5%;
+      }
+      .fv-main {
+        font-size: 32px;
+        font-weight: 400;
+        line-height: 1.4;
+        margin-bottom: 40px;
+        color: #fff;
+      }
       .fv-main-line1 {
         display: block;
+        font-size: 32px;
+        font-weight: 400;
+        color: #fff;
+        background: none;
+        -webkit-text-fill-color: #fff;
+        -webkit-background-clip: unset;
+        background-clip: unset;
+        margin-bottom: 6px;
       }
       .fv-main-accent {
         display: block;
-        font-size: clamp(28px, 8vw, 40px);
+        font-size: 64px;
+        font-weight: 800;
+        line-height: 1.2;
         white-space: normal;
-        line-height: 1.25;
+        background: linear-gradient(90deg, #FFFFFF 0%, #66CCFF 50%, #0077CC 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
       .fv-body { display: none; }
       .fv-btns { display: none; }
       .fv-brands-wrap { display: none; }
       .fv-brands-sp { display: none; }
       .fv-brand-label { display: none; }
-      /* ブランドティッカー */
-      .fv-brand-ticker {
+      .fv-brand-ticker { display: none; }
+      /* SP専用ブランドリスト */
+      .fv-sp-brands {
         display: block;
-        margin-top: auto;
-        padding-top: 20px;
+        margin-bottom: 28px;
       }
-      .fv-brand-ticker-label {
+      .fv-sp-brands-label {
         font-size: 11px;
-        color: rgba(255,255,255,0.45);
+        color: rgba(255,255,255,0.50);
         letter-spacing: 0.12em;
-        margin-bottom: 4px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
       }
-      .fv-brand-ticker-name {
-        font-size: 20px;
-        font-weight: 700;
-        color: #fff;
-        line-height: 1.2;
-        transition: opacity 0.4s;
+      .fv-sp-brand-name {
+        font-size: 17px;
+        font-weight: 600;
+        color: rgba(255,255,255,0.88);
+        line-height: 1.8;
       }
-      /* FVアクションバー */
-      #fv-action-bar {
+      /* SP専用CTAボタン */
+      .fv-sp-cta {
         display: flex;
-        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        gap: 10px;
+        width: 90%;
       }
-      .fv-action-btn {
-        flex: 1;
-        text-align: center;
-        padding: 18px 12px;
-        font-size: 14px;
+      .fv-sp-btn {
+        display: block;
+        padding: 16px 20px;
+        font-size: 15px;
         font-weight: 700;
+        text-align: center;
         text-decoration: none;
-        color: var(--navy);
-        white-space: nowrap;
-      }
-      .fv-action-btn--primary {
+        border-radius: 6px;
         background: var(--blue);
         color: #fff;
+        border: none;
       }
-      .fv-action-btn--secondary {
-        background: #fff;
-        border-left: 1px solid var(--border);
-      }
+      /* アクションバーはSPでは非表示 */
+      #fv-action-bar { display: none; }
     }
 
     /* ===== SP: FEATURES (スマートグラスとは) ===== */
@@ -1897,10 +1910,17 @@
           <span class="brand-tag">Oakley<small>×Meta</small></span>
         </div>
       </div>
-      <!-- SP専用ブランドティッカー -->
-      <div class="fv-brand-ticker">
-        <p class="fv-brand-ticker-label">— 取り扱いブランド —</p>
-        <p class="fv-brand-ticker-name" id="fv-ticker-name">レイバン</p>
+      <!-- SP専用ブランドリスト -->
+      <div class="fv-sp-brands">
+        <p class="fv-sp-brands-label">取り扱いブランド</p>
+        <p class="fv-sp-brand-name">Ray-Ban Meta</p>
+        <p class="fv-sp-brand-name">Rokid</p>
+        <p class="fv-sp-brand-name">Even Realities</p>
+      </div>
+      <!-- SP専用CTAボタン -->
+      <div class="fv-sp-cta">
+        <a href="#search" class="fv-sp-btn" onclick="setSearch('','')">店舗を探す</a>
+        <a href="#search" class="fv-sp-btn" onclick="setSearch('','trial')">来店予約する</a>
       </div>
     </div>
   </div>
