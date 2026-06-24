@@ -2686,6 +2686,76 @@
     { name: 'アイメガネ焼津石津店',           img: 'https://www.aimegane.com/wp-content/uploads/2024/03/38_yaizu.webp',                     url: 'https://www.aimegane.com/shop/shizuoka/708/',reserve: 'https://www.aimegane.com/qualification/7369/', tel: '054-656-0001', address: '〒425-0041 静岡県焼津市石津3丁目19-16',                 pref: '静岡県', lat: 34.865, lon: 138.323 },
   ];
 
+  // ---- 店舗ごとのブランド取扱データ ----
+  // 特別店舗（本体取扱あり）
+  const SPECIAL_BRANDS = {
+    'アイメガネ南浦和店': {
+      'MIRZA':          { body: true,  lens: true  },
+      'Rokid':          { body: false, lens: true  },
+      'Even Realities': { body: true,  lens: true  },
+      'Ray-Ban Meta':   { body: true,  lens: true  },
+      'VITURE':         { body: true,  lens: true  },
+      'Viture':         { body: true,  lens: true  },
+    },
+    'アイメガネ宇都宮錦店': {
+      'MIRZA':          { body: false, lens: true  },
+      'Rokid':          { body: false, lens: true  },
+      'Even Realities': { body: true,  lens: true  },
+      'Ray-Ban Meta':   { body: false, lens: true  },
+      'VITURE':         { body: false, lens: false },
+      'Viture':         { body: false, lens: false },
+    },
+    'アイメガネ八千代台ユアエルム店': {
+      'MIRZA':          { body: false, lens: true  },
+      'Rokid':          { body: false, lens: true  },
+      'Even Realities': { body: true,  lens: true  },
+      'Ray-Ban Meta':   { body: false, lens: true  },
+      'VITURE':         { body: false, lens: false },
+      'Viture':         { body: false, lens: false },
+    },
+  };
+  // その他34店舗のデフォルト（レンズのみ）
+  const DEFAULT_BRANDS = {
+    'MIRZA':          { body: false, lens: true  },
+    'Rokid':          { body: false, lens: true  },
+    'Even Realities': { body: false, lens: false },
+    'Ray-Ban Meta':   { body: false, lens: true  },
+    'VITURE':         { body: false, lens: false },
+    'Viture':         { body: false, lens: false },
+  };
+  function getStoreCaps(store) {
+    return SPECIAL_BRANDS[store.name] || DEFAULT_BRANDS;
+  }
+  function storeMatchesFilter(store, brand, purpose) {
+    const caps = getStoreCaps(store);
+    if (brand) {
+      const cap = caps[brand];
+      if (!cap) return false;
+      if (purpose === 'trial') return cap.body;
+      if (purpose === 'lens')  return cap.lens;
+      return cap.body || cap.lens;
+    }
+    if (purpose === 'trial') return Object.values(caps).some(function(c){ return c.body; });
+    if (purpose === 'lens')  return Object.values(caps).some(function(c){ return c.lens; });
+    return true;
+  }
+  function buildStoreTags(store, brand) {
+    const caps = getStoreCaps(store);
+    const BRAND_KEYS = ['MIRZA', 'Rokid', 'Even Realities', 'Ray-Ban Meta', 'VITURE'];
+    let tags = '';
+    if (brand) {
+      const c = caps[brand] || caps[brand === 'VITURE' ? 'Viture' : brand];
+      if (c && c.body) tags += '<span class="store-tag-product">本体取扱</span>';
+      if (c && c.lens) tags += '<span class="store-tag-lens">レンズ交換対応</span>';
+    } else {
+      const hasBody = BRAND_KEYS.some(function(b){ return caps[b] && caps[b].body; });
+      const hasLens = BRAND_KEYS.some(function(b){ return caps[b] && caps[b].lens; });
+      if (hasBody) tags += '<span class="store-tag-product">本体取扱あり</span>';
+      if (hasLens) tags += '<span class="store-tag-lens">レンズ交換対応</span>';
+    }
+    return tags || '<span class="store-tag-lens">レンズ交換対応</span>';
+  }
+
   function haversine(lat1, lon1, lat2, lon2) {
     const R = 6371;
     const dLat = (lat2 - lat1) * Math.PI / 180;
@@ -2696,8 +2766,8 @@
     return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   }
 
-  function renderResults(nearest, others) {
-    const tags = `<span class="store-tag-product">取り扱い：未確定（仮）</span><span class="store-tag-lens">レンズ交換対応</span>`;
+  function renderResults(nearest, others, brand) {
+    const tags = buildStoreTags(nearest, brand);
     const distLabel = nearest.dist != null ? `<p class="store-dist">お住まいから約 ${nearest.dist.toFixed(1)} km</p>` : '';
     const nearestHTML = `
       <div class="store-card-nearest">
@@ -2708,7 +2778,6 @@
           <p class="store-nearest-label">お客様に最も近い店舗</p>
           <p class="store-name">${nearest.name}</p>
           <div class="store-tags">${tags}</div>
-
           ${distLabel}
           <div class="store-actions">
             <a href="${nearest.reserve || nearest.url}" target="_blank" class="btn-store-web">WEB予約</a>
@@ -2720,6 +2789,7 @@
       <div class="store-other-item">
         <div class="store-other-left" style="flex:1;">
           <p class="store-other-name">${s.name}</p>
+          <div class="store-tags" style="margin-top:4px;font-size:11px;">${buildStoreTags(s, brand)}</div>
         </div>
         ${s.dist != null ? `<span class="store-other-dist">約 ${s.dist.toFixed(1)} km</span>` : ''}
       </div>`).join('');
@@ -2729,11 +2799,24 @@
   }
 
   function showResultsByCoords(lat, lon, label) {
-    const sorted = STORES
+    const brand   = document.getElementById('product-select').value;
+    const purpose = (document.querySelector('input[name="purpose"]:checked') || {}).value || '';
+
+    const filtered = STORES.filter(function(s){ return storeMatchesFilter(s, brand, purpose); });
+
+    if (filtered.length === 0) {
+      document.getElementById('result-label').textContent = '対応店舗が見つかりませんでした';
+      document.getElementById('store-results-inner').innerHTML =
+        '<p style="padding:24px 0;color:#666;">選択した条件に対応する店舗がありません。<br>別の商品・条件で検索してみてください。</p>';
+      document.getElementById('search-results').style.display = 'block';
+      return;
+    }
+
+    const sorted = filtered
       .map(s => Object.assign({}, s, { dist: haversine(lat, lon, s.lat, s.lon) }))
       .sort((a, b) => a.dist - b.dist);
     document.getElementById('result-label').textContent = label + ' から近い順';
-    document.getElementById('store-results-inner').innerHTML = renderResults(sorted[0], sorted.slice(1, 5));
+    document.getElementById('store-results-inner').innerHTML = renderResults(sorted[0], sorted.slice(1, 5), brand);
     const results = document.getElementById('search-results');
     results.style.display = 'block';
     setTimeout(() => results.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
