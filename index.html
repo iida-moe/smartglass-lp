@@ -2029,6 +2029,8 @@
     .pg-card {
       border: 1px solid #E0E0E0;
       border-radius: 12px;
+      display: flex;
+      flex-direction: column;
       overflow: hidden;
       cursor: pointer;
       transition: box-shadow 0.2s, transform 0.2s;
@@ -2052,7 +2054,8 @@
     .pg-img--mirza  { background: linear-gradient(135deg, #0D1B2A 0%, #1a3050 100%); }
     .pg-img--rokid  { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
     .pg-img--viture { background: linear-gradient(135deg, #1a2a3a 0%, #0d1b2a 100%); color: #7ECFFF; }
-    .pg-card-body { padding: 16px; }
+    .pg-card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
+    .pg-card-btn { margin-top: auto; }
     .pg-card-name  { font-size: 16px; font-weight: 800; margin-bottom: 4px; color: var(--navy); }
     .pg-card-catch { font-size: 11px; color: #666; margin-bottom: 10px; line-height: 1.5; }
     .pg-card-tags  { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
@@ -2862,6 +2865,12 @@
     el.classList.add('active');
   }
 
+  function modalEvenThumb(el, src) {
+    document.getElementById('modal-even-img').src = src;
+    document.querySelectorAll('#modal-even-thumbs .modal-img-thumb').forEach(function(t){ t.classList.remove('active'); });
+    el.classList.add('active');
+  }
+
   function switchEvenImg(color, el) {
     document.getElementById('even-img').src = 'images/even-g2/' + color + '.png';
     document.querySelectorAll('.pg-card[data-product="even"] .pg-swatch').forEach(function(s){ s.classList.remove('pg-swatch--active'); });
@@ -3194,8 +3203,8 @@
     even: {
       name: 'Even Realities G2',
       catch: 'Even G2. The everyday display of smart glasses.',
-      desc: 'わずか38gの超軽量ボディに高精細マイクロLEDディスプレイ搭載。普段のメガネ感覚で一日中かけられる入門に最適な一本。',
-      tags: ['初心者向け', '普段使い'],
+      desc: '約36gの超軽量ボディにヘッドアップディスプレイを搭載。会話支援AI・35言語リアルタイム翻訳・テレプロンプターなど、視野の中に必要な情報を届けます。カメラ・スピーカーなしでプライバシーにも配慮。Even R1リングと組み合わせれば、手元の小さなタップだけで操作できます。バッテリーは最大2日間。',
+      tags: ['普段使い', 'AI・翻訳', 'プライバシー重視'],
       store: '本体・レンズ取扱：<strong>南浦和店・宇都宮錦店・八千代店</strong>',
       searchBrand: 'Even Realities',
       gallery: 'even',
@@ -3244,7 +3253,9 @@
             <span class="modal-swatch" style="background:#6B5040;" onclick="modalEvenColor('brown-b',this)" title="ブラウン"></span>
           </div>
           <div class="modal-img-thumbs" id="modal-even-thumbs">
-            <!-- 追加画像のサムネイルをここに入れる -->
+            <img class="modal-img-thumb active" src="images/even-g2/grey.png" alt="商品写真" onclick="modalEvenThumb(this,'images/even-g2/grey.png')">
+            <img class="modal-img-thumb" src="images/even-g2/all-in-one.jpg" alt="セット全体" onclick="modalEvenThumb(this,'images/even-g2/all-in-one.jpg')">
+            <img class="modal-img-thumb" src="images/even-g2/spatial.jpg" alt="ディスプレイ内部" onclick="modalEvenThumb(this,'images/even-g2/spatial.jpg')">
           </div>
         </div>`;
     }
@@ -3309,11 +3320,20 @@
     document.querySelectorAll('#modal-even-sw-'+frame+' .modal-swatch').forEach(s=>s.classList.remove('active'));
     document.querySelector('#modal-even-sw-'+frame+' .modal-swatch').classList.add('active');
     document.getElementById('modal-even-img').src = EVEN_IMGS[firstColor] || EVEN_IMGS['grey'];
+    resetEvenThumbs(EVEN_IMGS[firstColor]);
   }
   function modalEvenColor(color, el) {
     document.querySelectorAll('#modal-even-sw-'+_evenFrame+' .modal-swatch').forEach(s=>s.classList.remove('active'));
     el.classList.add('active');
-    if (EVEN_IMGS[color]) document.getElementById('modal-even-img').src = EVEN_IMGS[color];
+    if (EVEN_IMGS[color]) {
+      document.getElementById('modal-even-img').src = EVEN_IMGS[color];
+      resetEvenThumbs(EVEN_IMGS[color]);
+    }
+  }
+  function resetEvenThumbs(src) {
+    var thumbs = document.querySelectorAll('#modal-even-thumbs .modal-img-thumb');
+    thumbs.forEach(function(t){ t.classList.remove('active'); });
+    if (thumbs[0]) { thumbs[0].src = src; thumbs[0].classList.add('active'); }
   }
 
   // Ray-Ban モーダル内ギャラリー
