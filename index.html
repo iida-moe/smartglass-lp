@@ -1135,9 +1135,25 @@
       border-radius: 10px;
       padding: 16px 20px;
       display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .store-other-top {
+      display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 12px;
+      gap: 8px;
+    }
+    .store-other-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 2px;
+    }
+    .store-other-actions .btn-store-web,
+    .store-other-actions .btn-store-tel {
+      flex: 1;
+      padding: 8px 10px;
+      font-size: 12px;
     }
     .store-other-left {}
     .store-other-name {
@@ -3178,11 +3194,15 @@
       </div>`;
     const othersHTML = others.map(s => `
       <div class="store-other-item">
-        <div class="store-other-left" style="flex:1;">
+        <div class="store-other-top">
           <p class="store-other-name">${s.name}</p>
-          <div class="store-tags" style="margin-top:4px;font-size:11px;">${buildStoreTags(s, brand)}</div>
+          ${s.dist != null ? `<span class="store-other-dist">約 ${s.dist.toFixed(1)} km</span>` : ''}
         </div>
-        ${s.dist != null ? `<span class="store-other-dist">約 ${s.dist.toFixed(1)} km</span>` : ''}
+        <div class="store-tags" style="font-size:11px;">${buildStoreTags(s, brand)}</div>
+        <div class="store-other-actions">
+          <a href="${s.reserve || s.url}" target="_blank" class="btn-store-web">WEB予約</a>
+          <a href="tel:${s.tel}" class="btn-store-tel">${s.tel}</a>
+        </div>
       </div>`).join('');
     return nearestHTML +
       '<p class="store-other-heading" style="margin-top:24px;">その他の対応店舗</p>' +
