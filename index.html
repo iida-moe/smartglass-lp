@@ -3011,9 +3011,27 @@
     el.classList.add('pg-variant-badge--active');
   }
 
+  // 本体をアイメガネで取り扱わないブランド（レンズ交換のみ）
+  const LENS_ONLY_BRANDS = ['Rokid'];
+
+  function updatePurposeOptions() {
+    const brand = document.getElementById('product-select').value;
+    const trialLabel = document.getElementById('r-trial').parentElement;
+    const isLensOnly = LENS_ONLY_BRANDS.includes(brand);
+    if (isLensOnly) {
+      trialLabel.style.display = 'none';
+      document.getElementById('r-lens').checked = true;
+    } else {
+      trialLabel.style.display = '';
+    }
+    updateSearchBtns();
+  }
+
   function setSearch(product, purpose) {
     if (product) document.getElementById('product-select').value = product;
-    if (purpose === 'trial') document.getElementById('r-trial').checked = true;
+    updatePurposeOptions();
+    const isLensOnly = LENS_ONLY_BRANDS.includes(product);
+    if (purpose === 'trial' && !isLensOnly) document.getElementById('r-trial').checked = true;
     else if (purpose === 'lens') document.getElementById('r-lens').checked = true;
     updateSearchBtns();
   }
@@ -3273,7 +3291,7 @@
     document.getElementById('search-btn').disabled = !ready;
     document.getElementById('btn-geolocate').disabled = !ready;
   }
-  document.getElementById('product-select').addEventListener('change', updateSearchBtns);
+  document.getElementById('product-select').addEventListener('change', updatePurposeOptions);
   document.querySelectorAll('input[name="purpose"]').forEach(r => r.addEventListener('change', updateSearchBtns));
 
   // SPブランドティッカー（ランダムスタート・自動切り替え）
@@ -3455,7 +3473,7 @@
           ${recommendHTML}
           <p class="prod-modal-store">${pd.store}</p>
           <div class="prod-modal-actions">
-            <a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">本体購入・体験へ</a>
+            ${LENS_ONLY_BRANDS.includes(pd.searchBrand) ? '' : `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">本体購入・体験へ</a>`}
             <a href="#search" class="btn btn-blue" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換へ</a>
           </div>
         </div>
