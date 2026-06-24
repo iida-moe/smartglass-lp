@@ -1767,12 +1767,10 @@
     #prescription { background: var(--navy); }
     #prescription .prescription-label { color: rgba(255,255,255,0.45); }
 
-    /* PC: カードを横並びに */
+    /* PC: タイトル・イントロ */
     @media (min-width: 768px) {
       .prescription-sp-title { font-size: clamp(28px, 3vw, 40px); margin-bottom: 20px; }
       .prescription-sp-intro { font-size: 16px; max-width: 680px; margin-bottom: 40px; }
-      .why-sp-cards { flex-direction: row; gap: 24px; margin-bottom: 40px; }
-      .why-sp-card { flex: 1; min-height: 300px; }
     }
 
     /* ===== WHY SP: タイトル ===== */
@@ -1849,6 +1847,11 @@
       font-size: 13px;
       color: rgba(13,27,42,0.65);
       line-height: 1.9;
+    }
+    /* PC: カードを横並びに（基本スタイルの後に記述しないと上書きされる） */
+    @media (min-width: 768px) {
+      .why-sp-cards { flex-direction: row; gap: 24px; margin-bottom: 40px; }
+      .why-sp-card { flex: 1; min-height: 300px; }
     }
     /* 旧スタイル（PC側で使用）*/
     .why-sp-badge {
