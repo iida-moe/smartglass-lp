@@ -2089,6 +2089,10 @@
       transition: background 0.2s, color 0.2s;
     }
     .pg-card-sub-btn:hover { background: var(--navy); color: #fff; }
+    .pg-card-swatches { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+    .pg-swatch { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid rgba(0,0,0,0.15); display: inline-block; }
+    .pg-card-variant-badges { display: flex; gap: 6px; margin-bottom: 10px; }
+    .pg-variant-badge { font-size: 10px; font-weight: 700; color: #444; border: 1.5px solid #aaa; border-radius: 20px; padding: 2px 10px; }
 
     /* === モーダル === */
     .prod-modal-overlay {
@@ -2540,6 +2544,11 @@
         </div>
         <div class="pg-card-body">
           <h3 class="pg-card-name">Even Realities G2</h3>
+          <div class="pg-card-swatches">
+            <span class="pg-swatch" style="background:#888;"></span>
+            <span class="pg-swatch" style="background:#5C7A5A;"></span>
+            <span class="pg-swatch" style="background:#7A5230;"></span>
+          </div>
           <div class="pg-card-tags">
             <span class="pg-tag">初心者向け</span>
             <span class="pg-tag">普段使い</span>
@@ -2559,6 +2568,10 @@
         </div>
         <div class="pg-card-body">
           <h3 class="pg-card-name">Ray-Ban Meta</h3>
+          <div class="pg-card-variant-badges">
+            <span class="pg-variant-badge">メガネ</span>
+            <span class="pg-variant-badge">サングラス</span>
+          </div>
           <div class="pg-card-tags">
             <span class="pg-tag">メガネユーザー</span>
             <span class="pg-tag">日常使い</span>
