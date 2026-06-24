@@ -2339,6 +2339,21 @@
     .prod-modal-recommend-list li { font-size: 13px; color: #333; padding: 3px 0; }
     .prod-modal-recommend-list li::before { content: '✓ '; color: var(--red); font-weight: 700; }
     .prod-modal-actions .btn { flex: 1; min-width: 140px; text-align: center; }
+    /* モーダル内アコーディオン */
+    .modal-accordion { border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 16px; overflow: hidden; }
+    .modal-accordion-btn { width: 100%; padding: 12px 16px; background: #f5f5f5; border: none; cursor: pointer; text-align: left; font-size: 14px; font-weight: 700; color: var(--navy); display: flex; justify-content: space-between; align-items: center; transition: background 0.15s; }
+    .modal-accordion-btn:hover { background: #ebebeb; }
+    .modal-accordion-arrow { display: inline-block; transition: transform 0.2s; }
+    .modal-accordion-btn.is-open .modal-accordion-arrow { transform: rotate(180deg); }
+    .modal-accordion-body { display: none; padding: 16px; border-top: 1px solid #e0e0e0; }
+    .modal-accordion-body.is-open { display: block; }
+    .modal-order-step { border-left: 3px solid var(--blue); padding: 10px 14px; margin-bottom: 12px; background: #f7f9fc; border-radius: 0 6px 6px 0; }
+    .modal-order-step-title { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .modal-order-step p { font-size: 13px; color: #444; line-height: 1.7; margin: 0; }
+    .modal-order-step a { color: var(--blue); }
+    .modal-spec-range { background: #fff8f0; border: 1px solid #f0c060; border-radius: 6px; padding: 12px 14px; }
+    .modal-spec-range-title { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .modal-spec-range p { font-size: 12px; color: #555; line-height: 1.8; margin: 0; }
 
     /* モーダル内フレームタブ */
     .modal-frame-tabs { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
@@ -3352,6 +3367,12 @@
   document.getElementById('product-select').addEventListener('change', updatePurposeOptions);
   document.querySelectorAll('input[name="purpose"]').forEach(r => r.addEventListener('change', updateSearchBtns));
 
+  // モーダル内アコーディオン
+  function toggleModalAccordion(btn) {
+    btn.classList.toggle('is-open');
+    btn.nextElementSibling.classList.toggle('is-open');
+  }
+
   // 商品ラインナップ フィルター
   function filterProducts(filter) {
     document.querySelectorAll('.product-filter-btn').forEach(btn => {
@@ -3405,15 +3426,33 @@
     },
     rokid: {
       name: 'Rokid スマートAIグラス',
-      catch: 'Rokidに、あなたの視力を。¥17,600（税込）から。',
-      desc: 'Rokid スマートAIグラス専用クリップオン式フレームに取り付ける度付きレンズです。メガネ装用者がRokidをより快適に使えるよう、視力に合わせたレンズに仕上げます。本体・クリップオン式フレームはRokid公式サイトにてご購入のうえ、フレームをアイジャパンオンラインへご郵送ください。',
-      tags: ['度付き対応', '¥17,600〜', 'オンライン注文OK'],
+      catch: 'Rokidに、あなたの視力を。',
+      desc: 'Rokid スマートAIグラス専用クリップオン式フレームに取り付ける度付きレンズです。本体・クリップオン式フレームはRokid販売店にてご購入のうえ、フレームをアイジャパンオンラインへご郵送ください。',
+      tags: ['度付き対応', 'オンライン注文OK'],
       specs: [
-        { label: '価格', value: '¥17,600（税込）' },
+        { label: '対応商品', value: 'Rokid スマートAIグラス専用' },
         { label: '納期', value: 'フレーム到着後10日前後' },
         { label: '対応度数', value: 'SPH / CYL / AXIS / PD' },
         { label: 'フレーム送料', value: 'お客様負担' },
       ],
+      accordion: `
+        <p style="font-size:13px;color:#444;line-height:1.8;margin-bottom:6px;">本製品は「Rokid スマートAIグラス」専用の「度付きレンズ」です。事前に「Rokid スマートAIグラス」専用の「クリップオン式フレーム」を販売店にてご用意ください。</p>
+        <p style="font-size:12px;color:#888;margin-bottom:16px;">※当サイトではRokid本体およびクリップオン式フレームは取り扱っておりません。</p>
+        <div class="modal-order-step">
+          <p class="modal-order-step-title">STEP 1 ── クリップオン式フレームをご用意ください</p>
+          <p>「Rokid スマートAIグラス」専用のクリップオン式フレームをRokid販売店にて別途ご購入ください。</p>
+          <p style="margin-top:8px;"><a href="https://jp.rokid.com/pages/rokid-glasses" target="_blank">Rokid公式ホームページ →</a></p>
+        </div>
+        <div class="modal-order-step">
+          <p class="modal-order-step-title">STEP 2 ── 度付きレンズをご注文</p>
+          <p>フォームに左右の度数（球面・乱視・軸度・PD）を入力してご注文ください。度数が分からない方は、眼科にて処方箋を発行していただいてからご注文をお願いいたします。</p>
+        </div>
+        <div class="modal-spec-range">
+          <p class="modal-spec-range-title">■ 製作範囲</p>
+          <p>・SPH -0.25 / -0.50 / -0.75 は、CYL（乱視度数）製作範囲外となります。</p>
+          <p>・SPH -6.25以上の場合、CYL との合算で -10.00 まで。</p>
+          <p style="margin-top:4px;font-size:11px;">例）SPH -6.50 の場合、CYL は -3.50 まで製作可能。</p>
+        </div>`,
       recommend: ['Rokidをすでに持っている、または購入予定の人', '普段からメガネやコンタクトを使用している人', 'スマートグラスを度付きでフル活用したい人'],
       store: 'オンライン注文対応：<strong>アイジャパンオンライン</strong><br><small style="color:#888;">※本体・クリップオン式フレームはRokid公式サイトにてご購入ください</small>',
       searchBrand: 'Rokid',
@@ -3530,6 +3569,11 @@
       <div class="prod-modal-specs">
         ${pd.specs.map(s => `<div class="prod-modal-spec-item"><div class="prod-modal-spec-label">${s.label}</div><div class="prod-modal-spec-value">${s.value}</div></div>`).join('')}
       </div>` : '';
+    const accordionHTML = pd.accordion ? `
+      <div class="modal-accordion">
+        <button class="modal-accordion-btn" onclick="toggleModalAccordion(this)">詳しい注文ガイド・製作範囲 <span class="modal-accordion-arrow">▼</span></button>
+        <div class="modal-accordion-body">${pd.accordion}</div>
+      </div>` : '';
     const recommendHTML = pd.recommend ? `
       <div class="prod-modal-recommend">
         <p class="prod-modal-recommend-title">こんな人におすすめ</p>
@@ -3543,6 +3587,7 @@
           <p class="prod-modal-catch">${pd.catch}</p>
           <p class="prod-modal-desc">${pd.desc}</p>
           ${specsHTML}
+          ${accordionHTML}
           ${recommendHTML}
           <p class="prod-modal-store">${pd.store}</p>
           <div class="prod-modal-actions">
