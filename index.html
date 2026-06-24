@@ -3209,16 +3209,13 @@
     }, 2800);
   })();
 
-  // FVまたは商品セクションが見えている間はフッターCTAを非表示
+  // FVが見えている間だけフッターCTAを非表示
   const fixedFooter = document.getElementById('fixed-footer');
-  let _fvVisible = true, _productsVisible = false;
-  function _updateFooter() {
-    fixedFooter.style.display = (_fvVisible || _productsVisible) ? 'none' : 'flex';
-  }
-  new IntersectionObserver(function(e) { _fvVisible = e[0].isIntersecting; _updateFooter(); }, { threshold: 0 })
-    .observe(document.getElementById('fv'));
-  new IntersectionObserver(function(e) { _productsVisible = e[0].isIntersecting; _updateFooter(); }, { threshold: 0 })
-    .observe(document.getElementById('products'));
+  let _fvVisible = true;
+  new IntersectionObserver(function(e) {
+    _fvVisible = e[0].isIntersecting;
+    fixedFooter.style.display = _fvVisible ? 'none' : 'flex';
+  }, { threshold: 0 }).observe(document.getElementById('fv'));
 
   // === 商品モーダル ===
   const PD = {
