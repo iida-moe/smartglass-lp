@@ -141,25 +141,29 @@
       margin-bottom: 12px;
     }
     .fv-main {
-      font-size: clamp(32px, 3.6vw, 56px);
       font-weight: 700;
       line-height: 1.3;
       margin-bottom: 28px;
       color: #fff;
-      white-space: nowrap;
     }
     .fv-main-line1 {
-      display: inline;
-      color: #fff;
+      display: block;
+      font-size: clamp(20px, 2vw, 30px);
+      font-weight: 400;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 8px;
     }
     .fv-main-accent {
       display: inline;
+      font-size: clamp(32px, 3.8vw, 58px);
+      font-weight: 800;
       white-space: nowrap;
       background: linear-gradient(90deg, #FFFFFF 0%, #66CCFF 50%, #0077CC 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+    .fv-pc-comma { display: inline; }
     .fv-brand-ticker { display: none; }
     .fv-body {
       font-size: 16px;
@@ -174,6 +178,7 @@
     }
     .fv-brand-label { display: none; }
     .fv-sp-cta { display: none; }
+    .fv-sub { display: none; }
     .btn-fv-primary {
       display: inline-block;
       padding: 17px 32px;
@@ -1627,6 +1632,7 @@
         );
       }
       .fv-sub { display: none; }
+      .fv-pc-comma { display: none; }
       .fv-content {
         display: flex;
         flex-direction: column;
@@ -1998,7 +2004,7 @@
       <p class="fv-sub">メーカー公認 · 全 37店舗 · 5ブランド取扱い</p>
       <h1 class="fv-main">
         <span class="fv-main-line1">スマートグラスは、</span>
-        <span class="fv-main-accent">視力を最適化し</span>
+        <span class="fv-main-accent">視力を最適化し<span class="fv-pc-comma">、</span></span>
         <span class="fv-main-accent fv-main-accent3">完成する。</span>
       </h1>
       <p class="fv-body">
