@@ -2090,9 +2090,11 @@
     }
     .pg-card-sub-btn:hover { background: var(--navy); color: #fff; }
     .pg-card-swatches { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
-    .pg-swatch { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid rgba(0,0,0,0.15); display: inline-block; }
     .pg-card-variant-badges { display: flex; gap: 6px; margin-bottom: 10px; }
-    .pg-variant-badge { font-size: 10px; font-weight: 700; color: #444; border: 1.5px solid #aaa; border-radius: 20px; padding: 2px 10px; }
+    .pg-variant-badge { font-size: 10px; font-weight: 700; color: #444; border: 1.5px solid #aaa; border-radius: 20px; padding: 2px 10px; cursor: pointer; transition: background 0.15s, color 0.15s; }
+    .pg-variant-badge--active { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .pg-swatch { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid rgba(0,0,0,0.15); display: inline-block; cursor: pointer; transition: box-shadow 0.15s; }
+    .pg-swatch--active { box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--navy); }
 
     /* === モーダル === */
     .prod-modal-overlay {
@@ -2539,15 +2541,15 @@
 
       <!-- Even Realities G2 -->
       <div class="pg-card" data-product="even">
-        <div class="pg-card-img">
-          <img src="images/even-g2/grey.png" alt="Even Realities G2">
+        <div class="pg-card-img" id="even-card-img">
+          <img src="images/even-g2/grey.png" alt="Even Realities G2" id="even-img">
         </div>
         <div class="pg-card-body">
           <h3 class="pg-card-name">Even Realities G2</h3>
           <div class="pg-card-swatches">
-            <span class="pg-swatch" style="background:#888;"></span>
-            <span class="pg-swatch" style="background:#5C7A5A;"></span>
-            <span class="pg-swatch" style="background:#7A5230;"></span>
+            <span class="pg-swatch pg-swatch--active" style="background:#888;" onclick="event.stopPropagation();switchEvenImg('grey',this)" title="グレー"></span>
+            <span class="pg-swatch" style="background:#5C7A5A;" onclick="event.stopPropagation();switchEvenImg('green',this)" title="グリーン"></span>
+            <span class="pg-swatch" style="background:#7A5230;" onclick="event.stopPropagation();switchEvenImg('brown',this)" title="ブラウン"></span>
           </div>
           <div class="pg-card-tags">
             <span class="pg-tag">初心者向け</span>
@@ -2563,14 +2565,14 @@
 
       <!-- Ray-Ban Meta -->
       <div class="pg-card" data-product="rayban">
-        <div class="pg-card-img">
-          <img src="images/rayban/blayzer.jpg" alt="Ray-Ban Meta">
+        <div class="pg-card-img" id="rayban-card-img">
+          <img src="images/rayban/wayfarer.jpg" alt="Ray-Ban Meta メガネ" id="rayban-img">
         </div>
         <div class="pg-card-body">
           <h3 class="pg-card-name">Ray-Ban Meta</h3>
           <div class="pg-card-variant-badges">
-            <span class="pg-variant-badge">メガネ</span>
-            <span class="pg-variant-badge">サングラス</span>
+            <span class="pg-variant-badge pg-variant-badge--active" onclick="event.stopPropagation();switchRaybanImg('wayfarer',this)">メガネ</span>
+            <span class="pg-variant-badge" onclick="event.stopPropagation();switchRaybanImg('blayzer',this)">サングラス</span>
           </div>
           <div class="pg-card-tags">
             <span class="pg-tag">メガネユーザー</span>
@@ -2838,6 +2840,20 @@
     document.getElementById('rb-desc').textContent = d.desc;
     el.closest('.product-image-gallery').querySelectorAll('.frame-tab').forEach(t => t.classList.remove('active'));
     el.classList.add('active');
+  }
+
+  function switchEvenImg(color, el) {
+    document.getElementById('even-img').src = 'images/even-g2/' + color + '.png';
+    document.querySelectorAll('.pg-card[data-product="even"] .pg-swatch').forEach(function(s){ s.classList.remove('pg-swatch--active'); });
+    el.classList.add('pg-swatch--active');
+  }
+
+  function switchRaybanImg(model, el) {
+    var img = document.getElementById('rayban-img');
+    img.src = 'images/rayban/' + model + '.jpg';
+    img.alt = 'Ray-Ban Meta ' + (model === 'wayfarer' ? 'メガネ' : 'サングラス');
+    document.querySelectorAll('.pg-card[data-product="rayban"] .pg-variant-badge').forEach(function(b){ b.classList.remove('pg-variant-badge--active'); });
+    el.classList.add('pg-variant-badge--active');
   }
 
   function setSearch(product, purpose) {
