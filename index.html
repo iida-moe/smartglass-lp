@@ -2,12 +2,15 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>スマートグラス | アイメガネ（仮）</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    @supports (padding-bottom: env(safe-area-inset-bottom)) {
+      body { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+    }
     body {
       font-family: 'Noto Sans JP', sans-serif;
       background: #FAFAF8;
@@ -1508,10 +1511,11 @@
     .fixed-footer {
       position: fixed;
       bottom: 0; left: 0; right: 0;
-      z-index: 99;
+      z-index: 200;
       background: #fff;
       border-top: 1px solid var(--border);
-      height: 64px;
+      padding: 10px 0;
+      padding-bottom: calc(10px + env(safe-area-inset-bottom));
       display: flex;
       align-items: center;
     }
@@ -1523,7 +1527,7 @@
     .fixed-footer .btn {
       flex: 1;
       text-align: center;
-      padding: 14px 8px;
+      padding: 13px 8px;
       font-size: 13px;
     }
     .btn-outline {
