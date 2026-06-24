@@ -1907,10 +1907,22 @@
     /* ===== WHY SP: オンラインCTA ===== */
     .why-sp-online {
       background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
       border-radius: 14px;
       padding: 28px 20px;
-      text-align: center;
+      text-align: left;
+    }
+    .why-sp-online-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--red);
+      background: rgba(204,0,0,0.12);
+      border: 1px solid rgba(204,0,0,0.3);
+      border-radius: 20px;
+      padding: 4px 12px;
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
     }
     .why-sp-online-title {
       font-weight: 700;
@@ -1932,14 +1944,14 @@
       color: #fff;
     }
     .why-sp-online-note {
-      font-size: 11px;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 12px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 14px;
     }
     .why-sp-online-desc {
-      font-size: 13px;
-      color: rgba(255,255,255,0.58);
-      line-height: 1.85;
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      line-height: 2.0;
       margin-bottom: 20px;
     }
     .btn-why-online {
@@ -2547,12 +2559,13 @@
 
       <!-- オンラインCTA -->
       <div class="why-sp-online">
+        <span class="why-sp-online-badge">すでに本体をお持ちの方へ</span>
         <p class="why-sp-online-title">
-          <span class="why-online-line1">インサートレンズに限り、来店が難しい方は、</span>
-          <span class="why-online-line2">オンラインでも対応できます。</span>
+          <span class="why-online-line1">本体があれば、</span>
+          <span class="why-online-line2">レンズ交換だけでOK。</span>
         </p>
-        <p class="why-sp-online-note">※オンラインでは本体の販売は行っておりません。</p>
-        <p class="why-sp-online-desc">処方箋をご入力いただき、スマートグラス本体を郵送するだけ。度付きレンズに加工してお手元にお届けします。（MIRZA・Rokid対応）</p>
+        <p class="why-sp-online-desc">スマートグラス本体を郵送するだけで、度付きレンズに加工してお届けします。来店不要で、視力補正も解決。（MIRZA・Rokid対応）</p>
+        <p class="why-sp-online-note">※オンラインでは本体の新規販売は行っておりません。</p>
         <a href="https://www.aijapan-online.com/" target="_blank" class="btn-why-online">
           <img src="logo_aijapanonline02.png" alt="アイメガネオンライン" style="height:26px;width:auto;display:block;">
           <span style="font-size:13px;font-weight:700;color:var(--navy);letter-spacing:0.04em;">オンラインで注文する →</span>
