@@ -2178,6 +2178,9 @@
     .prod-modal-tag { font-size: 12px; background: #F2F2F0; color: #444; padding: 4px 12px; border-radius: 20px; }
     .prod-modal-store { font-size: 13px; color: #444; line-height: 1.8; margin-bottom: 24px; padding: 12px 16px; background: #F8F8F8; border-radius: 8px; }
     .prod-modal-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .prod-modal-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; background: #F8F8F8; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; }
+    .prod-modal-spec-label { font-size: 10px; color: #999; margin-bottom: 2px; }
+    .prod-modal-spec-value { font-size: 14px; font-weight: 700; color: var(--navy); }
     .prod-modal-recommend { margin-bottom: 16px; background: #F8F8F8; border-radius: 8px; padding: 12px 16px; }
     .prod-modal-recommend-title { font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
     .prod-modal-recommend-list { list-style: none; padding: 0; margin: 0; }
@@ -3209,6 +3212,12 @@
       catch: '一見ふつうのメガネ。しかし、世界の見え方は一変する。',
       desc: '見た目は普通のメガネながら、翻訳・撮影・検索・文字起こし・ナビが視界の中で完結。89言語のリアルタイム翻訳（6言語オフライン対応）、1200万画素のハンズフリーカメラ、AI視覚認識を搭載。重量49g、急速充電対応。本体はRokid公式サイトでご購入いただき、アイメガネでは度付きレンズへの交換に対応します。',
       tags: ['89言語翻訳', 'ハンズフリーカメラ', 'AI視覚認識'],
+      specs: [
+        { label: '重量', value: '49g' },
+        { label: '翻訳', value: '89言語' },
+        { label: 'カメラ', value: '1,200万画素' },
+        { label: '急速充電', value: '20分で80%' },
+      ],
       recommend: ['海外旅行・出張が多い人', 'ハンズフリーで撮影・記録したい人', '翻訳をスマートに使いたい人'],
       store: 'レンズ交換対応：<strong>各店舗にお問い合わせください</strong><br><small style="color:#888;">※本体はRokid公式サイトでご購入ください</small>',
       searchBrand: 'Rokid',
@@ -3220,6 +3229,12 @@
       catch: 'Even G2. The everyday display of smart glasses.',
       desc: '会話・会議の要点をAIがリアルタイムで整理。35言語の翻訳が視界に表示され、自然なコミュニケーションをサポートします。カレンダー・通知も一元管理。カメラ非搭載でプライバシーにも配慮。Even R1リング（別売）で、手元タップだけで操作できます。',
       tags: ['AI翻訳対応', '35言語', 'カメラなし', '度付き対応'],
+      specs: [
+        { label: '重量', value: '約36g' },
+        { label: '翻訳', value: '35言語' },
+        { label: 'バッテリー', value: '最大2日間' },
+        { label: 'カメラ', value: 'なし' },
+      ],
       recommend: ['会議・商談が多い人', '外国語を使う仕事や旅行が多い人', 'スマートフォンを見る回数を減らしたい人', 'プライバシーを大切にしたい人'],
       store: '本体・レンズ取扱：<strong>南浦和店・宇都宮錦店・八千代店</strong>',
       searchBrand: 'Even Realities',
@@ -3295,6 +3310,10 @@
     if (!pd) return;
     const tagsHTML = pd.tags.map(t => `<span class="prod-modal-tag">${t}</span>`).join('');
     const imgHTML = buildModalImgHTML(key, pd);
+    const specsHTML = pd.specs ? `
+      <div class="prod-modal-specs">
+        ${pd.specs.map(s => `<div class="prod-modal-spec-item"><div class="prod-modal-spec-label">${s.label}</div><div class="prod-modal-spec-value">${s.value}</div></div>`).join('')}
+      </div>` : '';
     const recommendHTML = pd.recommend ? `
       <div class="prod-modal-recommend">
         <p class="prod-modal-recommend-title">こんな人におすすめ</p>
@@ -3307,6 +3326,7 @@
           <h3 class="prod-modal-name">${pd.name}</h3>
           <p class="prod-modal-catch">${pd.catch}</p>
           <p class="prod-modal-desc">${pd.desc}</p>
+          ${specsHTML}
           ${recommendHTML}
           <div class="prod-modal-tags">${tagsHTML}</div>
           <div class="prod-modal-store">${pd.store}</div>
