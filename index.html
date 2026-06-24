@@ -2175,6 +2175,11 @@
     .prod-modal-tag { font-size: 12px; background: #F2F2F0; color: #444; padding: 4px 12px; border-radius: 20px; }
     .prod-modal-store { font-size: 13px; color: #444; line-height: 1.8; margin-bottom: 24px; padding: 12px 16px; background: #F8F8F8; border-radius: 8px; }
     .prod-modal-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .prod-modal-recommend { margin-bottom: 16px; background: #F8F8F8; border-radius: 8px; padding: 12px 16px; }
+    .prod-modal-recommend-title { font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .prod-modal-recommend-list { list-style: none; padding: 0; margin: 0; }
+    .prod-modal-recommend-list li { font-size: 13px; color: #333; padding: 3px 0; }
+    .prod-modal-recommend-list li::before { content: '✓ '; color: var(--red); font-weight: 700; }
     .prod-modal-actions .btn { flex: 1; min-width: 140px; text-align: center; }
 
     /* モーダル内フレームタブ */
@@ -3194,8 +3199,9 @@
     even: {
       name: 'Even Realities G2',
       catch: 'Even G2. The everyday display of smart glasses.',
-      desc: '約36gの超軽量ボディにヘッドアップディスプレイを搭載。会話支援AI・35言語リアルタイム翻訳・テレプロンプターなど、視野の中に必要な情報を届けます。カメラ・スピーカーなしでプライバシーにも配慮。Even R1リングと組み合わせれば、手元の小さなタップだけで操作できます。バッテリーは最大2日間。',
-      tags: ['普段使い', 'AI・翻訳', 'プライバシー重視'],
+      desc: '一日中つけていられるよう設計された、日常に溶け込むスマートグラス。会話や会議の要点をリアルタイムで整理し、会話を止めることなく自然に続けられます。35言語対応の翻訳が視界に表示され、誰とでもどこでも自然なコミュニケーションが可能。カレンダー・リマインダー・通知もひとつに集約。カメラはあえて搭載せず、プライバシーにも配慮。Even R1リング（別売）と組み合わせれば、手元の小さなタップだけで声を出さず操作できます。',
+      tags: ['AI翻訳対応', '35言語', 'カメラなし', '度付き対応'],
+      recommend: ['会議・商談が多い人', '外国語を使う仕事や旅行が多い人', 'スマートフォンを見る回数を減らしたい人', 'プライバシーを大切にしたい人'],
       store: '本体・レンズ取扱：<strong>南浦和店・宇都宮錦店・八千代店</strong>',
       searchBrand: 'Even Realities',
       gallery: 'even',
@@ -3270,6 +3276,11 @@
     if (!pd) return;
     const tagsHTML = pd.tags.map(t => `<span class="prod-modal-tag">${t}</span>`).join('');
     const imgHTML = buildModalImgHTML(key, pd);
+    const recommendHTML = pd.recommend ? `
+      <div class="prod-modal-recommend">
+        <p class="prod-modal-recommend-title">こんな人におすすめ</p>
+        <ul class="prod-modal-recommend-list">${pd.recommend.map(r => `<li>${r}</li>`).join('')}</ul>
+      </div>` : '';
     document.getElementById('prod-modal-content').innerHTML = `
       <div class="prod-modal-layout">
         <div class="prod-modal-img-col">${imgHTML}</div>
@@ -3277,6 +3288,7 @@
           <h3 class="prod-modal-name">${pd.name}</h3>
           <p class="prod-modal-catch">${pd.catch}</p>
           <p class="prod-modal-desc">${pd.desc}</p>
+          ${recommendHTML}
           <div class="prod-modal-tags">${tagsHTML}</div>
           <div class="prod-modal-store">${pd.store}</div>
           <div class="prod-modal-actions">
