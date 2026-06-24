@@ -1771,7 +1771,7 @@
     @media (min-width: 768px) {
       .prescription-sp-title { font-size: clamp(28px, 3vw, 40px); margin-bottom: 20px; }
       .prescription-sp-intro { font-size: 16px; max-width: 680px; margin-bottom: 40px; }
-      .why-sp-cards { flex-direction: row; gap: 20px; }
+      .why-sp-cards { flex-direction: row; gap: 20px; margin-bottom: 32px; }
       .why-sp-card { flex: 1; }
     }
 
@@ -1793,50 +1793,51 @@
       margin-top: 12px;
     }
 
-    /* ===== WHY SP: イラストカード ===== */
+    /* ===== WHY SP: カード ===== */
     .why-sp-cards { display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px; }
     .why-sp-card {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 16px;
-      padding: 28px 24px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-top: 3px solid var(--red);
+      border-radius: 12px;
+      padding: 24px 22px;
     }
     .why-num-row {
       display: flex;
       align-items: baseline;
-      gap: 8px;
-      margin-bottom: 12px;
+      gap: 6px;
+      margin-bottom: 10px;
     }
     .why-num {
-      font-size: 72px;
+      font-size: 60px;
       font-weight: 900;
-      color: #fff;
+      color: var(--red);
       line-height: 1;
       letter-spacing: -0.03em;
     }
     .why-num-unit {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 700;
-      color: rgba(255,255,255,0.65);
+      color: rgba(255,255,255,0.75);
     }
     .why-num-icon {
-      font-size: 48px;
+      font-size: 36px;
       font-weight: 900;
       color: var(--red);
       line-height: 1;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       display: block;
     }
     .why-num-head {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       color: #fff;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       line-height: 1.5;
     }
     .why-num-desc {
       font-size: 13px;
-      color: rgba(255,255,255,0.58);
+      color: rgba(255,255,255,0.62);
       line-height: 1.85;
     }
     /* 旧スタイル（PC側で使用）*/
@@ -1922,9 +1923,12 @@
       margin-bottom: 20px;
     }
     .btn-why-online {
-      display: block;
-      width: 100%;
-      padding: 17px 16px;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      width: auto;
+      padding: 18px 40px;
       background: #fff;
       color: var(--navy);
       font-size: 16px;
@@ -2448,7 +2452,8 @@
         <p class="why-sp-online-note">※オンラインでは本体の販売は行っておりません。</p>
         <p class="why-sp-online-desc">処方箋をご入力いただき、スマートグラス本体を郵送するだけ。度付きレンズに加工してお手元にお届けします。（MIRZA・Rokid対応）</p>
         <a href="https://www.aijapan-online.com/" target="_blank" class="btn-why-online">
-          <img src="logo_aijapanonline02.png" alt="アイメガネオンライン" style="height:28px;width:auto;display:block;">
+          <img src="logo_aijapanonline02.png" alt="アイメガネオンライン" style="height:26px;width:auto;display:block;">
+          <span style="font-size:13px;font-weight:700;color:var(--navy);letter-spacing:0.04em;">オンラインで注文する →</span>
         </a>
       </div>
     </div><!-- /prescription-sp -->
