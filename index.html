@@ -2058,9 +2058,10 @@
     .pg-card-btn { margin-top: auto; }
     .pg-card-name  { font-size: 16px; font-weight: 800; margin-bottom: 4px; color: var(--navy); }
     .pg-card-catch { font-size: 11px; color: #666; margin-bottom: 10px; line-height: 1.5; }
-    .pg-card-tags  { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
-    .pg-card-for   { font-size: 11px; color: #999; margin-bottom: 12px; }
-    .pg-card-for strong { color: #555; font-weight: 600; }
+    .pg-card-scenes { margin-bottom: 12px; }
+    .pg-scene-label { font-size: 10px; color: #999; display: block; margin-bottom: 5px; }
+    .pg-scene-tags  { display: flex; flex-wrap: wrap; gap: 5px; }
+    .pg-scene-tag   { font-size: 11px; font-weight: 600; color: var(--navy); border: 1.5px solid var(--navy); padding: 3px 10px; border-radius: 20px; }
     .pg-tag { font-size: 10px; background: #F2F2F0; color: #444; padding: 3px 8px; border-radius: 20px; }
     .pg-card-btn {
       width: 100%;
@@ -2541,12 +2542,14 @@
         <div class="pg-card-body">
           <h3 class="pg-card-name">MIRZA</h3>
           <p class="pg-card-catch">現場の作業をARで効率化。業務・法人向けモデル。</p>
-          <div class="pg-card-tags">
-            <span class="pg-tag">法人・業務向け</span>
-            <span class="pg-tag">AR表示</span>
-            <span class="pg-tag">度付き対応</span>
+          <div class="pg-card-scenes">
+            <span class="pg-scene-label">こんなシーンに</span>
+            <div class="pg-scene-tags">
+              <span class="pg-scene-tag">ビジネス</span>
+              <span class="pg-scene-tag">現場作業</span>
+              <span class="pg-scene-tag">法人利用</span>
+            </div>
           </div>
-          <p class="pg-card-for"><strong>こんな人に：</strong>現場・製造業の方／業務効率化を求める法人</p>
           <button class="pg-card-btn">詳しく見る →</button>
         </div>
       </div>
@@ -2559,11 +2562,14 @@
         <div class="pg-card-body">
           <h3 class="pg-card-name">Rokid Max 2</h3>
           <p class="pg-card-catch">お手持ちの本体に、度付きレンズを。</p>
-          <div class="pg-card-tags">
-            <span class="pg-tag">レンズ交換のみ対応</span>
-            <span class="pg-tag">映画・動画向け</span>
+          <div class="pg-card-scenes">
+            <span class="pg-scene-label">こんなシーンに</span>
+            <div class="pg-scene-tags">
+              <span class="pg-scene-tag">映画鑑賞</span>
+              <span class="pg-scene-tag">動画視聴</span>
+              <span class="pg-scene-tag">自宅</span>
+            </div>
           </div>
-          <p class="pg-card-for"><strong>こんな人に：</strong>すでにRokidをお持ちの方／映画・動画を快適に楽しみたい方</p>
           <button class="pg-card-btn">詳しく見る →</button>
         </div>
       </div>
@@ -2581,12 +2587,14 @@
             <span class="pg-swatch" style="background:#5C7A5A;" onclick="event.stopPropagation();switchEvenImg('green',this)" title="グリーン"></span>
             <span class="pg-swatch" style="background:#7A5230;" onclick="event.stopPropagation();switchEvenImg('brown',this)" title="ブラウン"></span>
           </div>
-          <div class="pg-card-tags">
-            <span class="pg-tag">AI会話サポート</span>
-            <span class="pg-tag">35言語翻訳</span>
-            <span class="pg-tag">テレプロンプター</span>
+          <div class="pg-card-scenes">
+            <span class="pg-scene-label">こんなシーンに</span>
+            <div class="pg-scene-tags">
+              <span class="pg-scene-tag">ビジネス</span>
+              <span class="pg-scene-tag">日常</span>
+              <span class="pg-scene-tag">海外出張</span>
+            </div>
           </div>
-          <p class="pg-card-for"><strong>こんな人に：</strong>会議・商談が多い人／外国語を使う人／普段使いしたい人</p>
           <button class="pg-card-btn">詳しく見る →</button>
         </div>
       </div>
@@ -2603,12 +2611,14 @@
             <span class="pg-variant-badge pg-variant-badge--active" onclick="event.stopPropagation();switchRaybanImg('wayfarer',this)">メガネ</span>
             <span class="pg-variant-badge" onclick="event.stopPropagation();switchRaybanImg('blayzer',this)">サングラス</span>
           </div>
-          <div class="pg-card-tags">
-            <span class="pg-tag">Meta AI搭載</span>
-            <span class="pg-tag">通話・音楽</span>
-            <span class="pg-tag">度付き対応</span>
+          <div class="pg-card-scenes">
+            <span class="pg-scene-label">こんなシーンに</span>
+            <div class="pg-scene-tags">
+              <span class="pg-scene-tag">日常</span>
+              <span class="pg-scene-tag">カジュアル</span>
+              <span class="pg-scene-tag">ファッション</span>
+            </div>
           </div>
-          <p class="pg-card-for"><strong>こんな人に：</strong>ファッションも大切にしたい人／音楽・通話をよく使う人</p>
           <button class="pg-card-btn">詳しく見る →</button>
         </div>
       </div>
@@ -2619,12 +2629,14 @@
         <div class="pg-card-body">
           <h3 class="pg-card-name">VITURE One XR</h3>
           <p class="pg-card-catch">100インチの映像を、どこでも持ち運ぶ。</p>
-          <div class="pg-card-tags">
-            <span class="pg-tag">ゲーム・映画</span>
-            <span class="pg-tag">没入映像体験</span>
-            <span class="pg-tag">度付き対応</span>
+          <div class="pg-card-scenes">
+            <span class="pg-scene-label">こんなシーンに</span>
+            <div class="pg-scene-tags">
+              <span class="pg-scene-tag">ゲーム</span>
+              <span class="pg-scene-tag">映画</span>
+              <span class="pg-scene-tag">エンタメ</span>
+            </div>
           </div>
-          <p class="pg-card-for"><strong>こんな人に：</strong>ゲームや映画を迫力ある映像で楽しみたい人</p>
           <button class="pg-card-btn">詳しく見る →</button>
         </div>
       </div>
