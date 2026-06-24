@@ -473,7 +473,43 @@
       font-size: 13px;
       color: var(--text-secondary);
       margin-top: -24px;
+      margin-bottom: 24px;
+    }
+    .product-filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0;
       margin-bottom: 40px;
+    }
+    .product-filter-btn {
+      padding: 12px 32px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      border: 2px solid #0D1B2A;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .product-filter-btn:first-child {
+      border-radius: 6px 0 0 6px;
+      border-right-width: 1px;
+    }
+    .product-filter-btn:last-child {
+      border-radius: 0 6px 6px 0;
+      border-left-width: 1px;
+    }
+    .product-filter-btn--active {
+      background: #0D1B2A;
+      color: #fff;
+    }
+    .product-filter-btn:not(.product-filter-btn--active) {
+      background: #fff;
+      color: #0D1B2A;
+    }
+    .pg-card[data-ptype="lens"].pg-card--hidden,
+    .pg-card[data-ptype="all"].pg-card--hidden {
+      display: none;
     }
     .product-card {
       border-radius: 0;
@@ -2658,10 +2694,14 @@
   <div class="container">
     <h2 class="section-title center">商品ラインナップ</h2>
     <p class="products-note">※商品によって取り扱い店舗が異なります</p>
+    <div class="product-filter-tabs">
+      <button class="product-filter-btn product-filter-btn--active" data-filter="all" onclick="filterProducts('all')">本体・レンズ取り扱い</button>
+      <button class="product-filter-btn" data-filter="lens-only" onclick="filterProducts('lens-only')">レンズのみ取り扱い</button>
+    </div>
     <div class="pg-grid">
 
       <!-- MIRZA -->
-      <div class="pg-card" data-product="mirza">
+      <div class="pg-card" data-product="mirza" data-ptype="all">
         <div class="pg-card-img" id="mirza-card-img">
           <img src="MiRZA_kirinuki_1611_0616-2-1.jpg" alt="MiRZA XRグラス" id="mirza-img">
         </div>
@@ -2680,7 +2720,7 @@
       </div>
 
       <!-- Rokid -->
-      <div class="pg-card" data-product="rokid">
+      <div class="pg-card" data-product="rokid" data-ptype="lens">
         <div class="pg-card-img">
           <img src="images/rokid/lens.jpg" alt="Rokid 度付きレンズ">
         </div>
@@ -2699,7 +2739,7 @@
       </div>
 
       <!-- Even Realities G2 -->
-      <div class="pg-card" data-product="even">
+      <div class="pg-card" data-product="even" data-ptype="all">
         <div class="pg-card-img" id="even-card-img">
           <img src="images/even-g2/grey.png" alt="Even Realities G2" id="even-img">
         </div>
@@ -2724,7 +2764,7 @@
       </div>
 
       <!-- Ray-Ban Meta -->
-      <div class="pg-card" data-product="rayban">
+      <div class="pg-card" data-product="rayban" data-ptype="all">
         <div class="pg-card-img" id="rayban-card-img">
           <img src="images/rayban/wayfarer.jpg" alt="Ray-Ban Meta メガネ" id="rayban-img">
         </div>
@@ -2747,7 +2787,7 @@
       </div>
 
       <!-- VITURE One XR -->
-      <div class="pg-card" data-product="viture">
+      <div class="pg-card" data-product="viture" data-ptype="all">
         <div class="pg-card-img pg-img--viture">VITURE</div>
         <div class="pg-card-body">
           <h3 class="pg-card-name">VITURE One XR</h3>
@@ -3311,6 +3351,20 @@
   }
   document.getElementById('product-select').addEventListener('change', updatePurposeOptions);
   document.querySelectorAll('input[name="purpose"]').forEach(r => r.addEventListener('change', updateSearchBtns));
+
+  // 商品ラインナップ フィルター
+  function filterProducts(filter) {
+    document.querySelectorAll('.product-filter-btn').forEach(btn => {
+      btn.classList.toggle('product-filter-btn--active', btn.dataset.filter === filter);
+    });
+    document.querySelectorAll('.pg-card[data-ptype]').forEach(card => {
+      const ptype = card.dataset.ptype;
+      const show = filter === 'all' ? ptype === 'all' : ptype === 'lens';
+      card.style.display = show ? '' : 'none';
+    });
+  }
+  // 初期状態: 本体・レンズ取り扱い
+  filterProducts('all');
 
   // SPブランドティッカー（ランダムスタート・自動切り替え）
   (function() {
