@@ -2191,7 +2191,19 @@
       transition: border-color 0.15s;
     }
     .modal-frame-tab.active { border-color: var(--navy); background: var(--navy); color: #fff; }
-    .modal-color-swatches { display: flex; gap: 8px; margin-bottom: 8px; }
+    .modal-color-swatches { display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+    .modal-swatch-btn {
+      display: flex; flex-direction: column; align-items: center; gap: 5px;
+      border: 2px solid transparent; border-radius: 10px; padding: 5px;
+      cursor: pointer; background: none; font-family: inherit; transition: border-color 0.15s;
+    }
+    .modal-swatch-btn.active { border-color: var(--navy); background: #f5f5f5; }
+    .modal-swatch-thumb {
+      width: 60px; height: 60px; border-radius: 6px;
+      object-fit: contain; background: #f0f0f0;
+    }
+    .modal-swatch-dot { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid rgba(0,0,0,0.2); display: block; }
+    /* 旧スウォッチ（互換残し） */
     .modal-swatch {
       width: 22px; height: 22px;
       border-radius: 50%;
@@ -3213,14 +3225,32 @@
           <button class="modal-frame-tab" onclick="modalEvenFrame('B',this)">B フレーム<br><small>ウェリントン</small></button>
         </div>
         <div class="modal-color-swatches" id="modal-even-sw-A">
-          <span class="modal-swatch active" style="background:#4E4E4E;" onclick="modalEvenColor('grey',this)" title="グレイ"></span>
-          <span class="modal-swatch" style="background:#516050;" onclick="modalEvenColor('green',this)" title="グリーン"></span>
-          <span class="modal-swatch" style="background:#6B5040;" onclick="modalEvenColor('brown',this)" title="ブラウン"></span>
+          <button class="modal-swatch-btn active" onclick="modalEvenColor('grey',this)">
+            <img class="modal-swatch-thumb" src="images/even-g2/grey.png" alt="グレイ">
+            <span class="modal-swatch-dot" style="background:#4E4E4E;"></span>
+          </button>
+          <button class="modal-swatch-btn" onclick="modalEvenColor('green',this)">
+            <img class="modal-swatch-thumb" src="images/even-g2/green.png" alt="グリーン">
+            <span class="modal-swatch-dot" style="background:#516050;"></span>
+          </button>
+          <button class="modal-swatch-btn" onclick="modalEvenColor('brown',this)">
+            <img class="modal-swatch-thumb" src="images/even-g2/brown.png" alt="ブラウン">
+            <span class="modal-swatch-dot" style="background:#6B5040;"></span>
+          </button>
         </div>
         <div class="modal-color-swatches" id="modal-even-sw-B" style="display:none;">
-          <span class="modal-swatch active" style="background:#4E4E4E;" onclick="modalEvenColor('grey-b',this)" title="グレイ"></span>
-          <span class="modal-swatch" style="background:#516050;" onclick="modalEvenColor('green-b',this)" title="グリーン"></span>
-          <span class="modal-swatch" style="background:#6B5040;" onclick="modalEvenColor('brown-b',this)" title="ブラウン"></span>
+          <button class="modal-swatch-btn active" onclick="modalEvenColor('grey-b',this)">
+            <img class="modal-swatch-thumb" src="images/even-g2/grey-b.png" alt="グレイ">
+            <span class="modal-swatch-dot" style="background:#4E4E4E;"></span>
+          </button>
+          <button class="modal-swatch-btn" onclick="modalEvenColor('green-b',this)">
+            <img class="modal-swatch-thumb" src="images/even-g2/green-b.png" alt="グリーン">
+            <span class="modal-swatch-dot" style="background:#516050;"></span>
+          </button>
+          <button class="modal-swatch-btn" onclick="modalEvenColor('brown-b',this)">
+            <img class="modal-swatch-thumb" src="images/even-g2/brown-b.png" alt="ブラウン">
+            <span class="modal-swatch-dot" style="background:#6B5040;"></span>
+          </button>
         </div>`;
     }
     if (pd.gallery === 'rayban') {
@@ -3281,12 +3311,12 @@
     document.getElementById('modal-even-sw-A').style.display = frame==='A' ? 'flex' : 'none';
     document.getElementById('modal-even-sw-B').style.display = frame==='B' ? 'flex' : 'none';
     var firstColor = frame==='A' ? 'grey' : 'grey-b';
-    document.querySelectorAll('#modal-even-sw-'+frame+' .modal-swatch').forEach(s=>s.classList.remove('active'));
-    document.querySelector('#modal-even-sw-'+frame+' .modal-swatch').classList.add('active');
+    document.querySelectorAll('#modal-even-sw-'+frame+' .modal-swatch-btn').forEach(s=>s.classList.remove('active'));
+    document.querySelector('#modal-even-sw-'+frame+' .modal-swatch-btn').classList.add('active');
     document.getElementById('modal-even-img').src = EVEN_IMGS[firstColor] || EVEN_IMGS['grey'];
   }
   function modalEvenColor(color, el) {
-    document.querySelectorAll('#modal-even-sw-'+_evenFrame+' .modal-swatch').forEach(s=>s.classList.remove('active'));
+    document.querySelectorAll('#modal-even-sw-'+_evenFrame+' .modal-swatch-btn').forEach(s=>s.classList.remove('active'));
     el.classList.add('active');
     if (EVEN_IMGS[color]) document.getElementById('modal-even-img').src = EVEN_IMGS[color];
   }
