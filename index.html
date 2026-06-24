@@ -3405,18 +3405,19 @@
     },
     rokid: {
       name: 'Rokid スマートAIグラス',
-      catch: '一見ふつうのメガネ。しかし、世界の見え方は一変する。',
-      desc: '見た目は普通のメガネながら、翻訳・撮影・検索・文字起こし・ナビが視界の中で完結。89言語のリアルタイム翻訳（6言語オフライン対応）、1200万画素のハンズフリーカメラ、AI視覚認識を搭載。重量49g、急速充電対応。本体はRokid公式サイトでご購入いただき、アイメガネでは度付きレンズへの交換に対応します。',
-      tags: ['89言語翻訳', 'ハンズフリーカメラ', 'AI視覚認識'],
+      catch: 'お手持ちのRokidに、あなたの視力に合ったレンズを。',
+      desc: 'アイメガネでは、Rokid スマートAIグラスへの度付きレンズ交換に対応しています。本体はRokid公式サイトにてご購入いただき、お手持ちのフレームをご持参ください。視力に合わせた度付きレンズに仕上げ、スマートグラスをより快適に毎日お使いいただけます。',
+      tags: ['度付き対応', '全37店舗'],
       specs: [
-        { label: '重量', value: '49g' },
-        { label: '翻訳', value: '89言語' },
-        { label: 'カメラ', value: '1,200万画素' },
-        { label: '急速充電', value: '20分で80%' },
+        { label: '対応レンズ', value: '単焦点・累進屈折率' },
+        { label: 'UVカット', value: '標準搭載' },
+        { label: 'ブルーライトカット', value: 'オプション対応' },
+        { label: '取扱店舗', value: '全37店舗' },
       ],
-      recommend: ['海外旅行・出張が多い人', 'ハンズフリーで撮影・記録したい人', '翻訳をスマートに使いたい人'],
-      store: 'レンズ交換対応：<strong>各店舗にお問い合わせください</strong><br><small style="color:#888;">※本体はRokid公式サイトでご購入ください</small>',
+      recommend: ['Rokidをすでに持っている、または購入予定の人', 'スマートグラスを裸眼でなく度付きで使いたい人', '普段から眼鏡やコンタクトを使用している人'],
+      store: 'レンズ交換対応：<strong>全37店舗</strong><br><small style="color:#888;">※本体はRokid公式サイトにてご購入ください</small>',
       searchBrand: 'Rokid',
+      onlineStore: 'https://www.aijapan-online.com/',
       imgBg: 'linear-gradient(135deg,#1a1a2e,#16213e)',
       imgText: 'Rokid',
     },
@@ -3545,8 +3546,13 @@
           ${recommendHTML}
           <p class="prod-modal-store">${pd.store}</p>
           <div class="prod-modal-actions">
-            ${LENS_ONLY_BRANDS.includes(pd.searchBrand) ? '' : `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">本体購入・体験へ</a>`}
-            <a href="#search" class="btn btn-blue" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換へ</a>
+            ${pd.onlineStore ? `
+              <a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a>
+              <a href="${pd.onlineStore}" target="_blank" class="btn btn-blue">オンラインストアを見る</a>
+            ` : `
+              ${LENS_ONLY_BRANDS.includes(pd.searchBrand) ? '' : `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">本体購入・体験へ</a>`}
+              <a href="#search" class="btn btn-blue" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換へ</a>
+            `}
           </div>
         </div>
       </div>`;
