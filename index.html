@@ -2172,16 +2172,15 @@
     .prod-modal-img-main img { width: 100%; height: 100%; object-fit: contain; padding: 16px; box-sizing: border-box; }
     .prod-modal-info-col { flex: 1; min-width: 0; }
     .prod-modal-name { font-size: 26px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
-    .prod-modal-catch { font-size: 13px; color: #666; margin-bottom: 14px; }
+    .prod-modal-catch { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 14px; opacity: 0.7; }
     .prod-modal-desc { font-size: 14px; color: #333; line-height: 1.85; margin-bottom: 16px; }
-    .prod-modal-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
-    .prod-modal-tag { font-size: 12px; background: #F2F2F0; color: #444; padding: 4px 12px; border-radius: 20px; }
-    .prod-modal-store { font-size: 13px; color: #444; line-height: 1.8; margin-bottom: 24px; padding: 12px 16px; background: #F8F8F8; border-radius: 8px; }
+    .prod-modal-tags { display: none; }
+    .prod-modal-store { font-size: 12px; color: #888; line-height: 1.8; margin-bottom: 20px; }
     .prod-modal-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-    .prod-modal-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; background: #F8F8F8; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; }
+    .prod-modal-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; border-left: 3px solid var(--navy); padding: 8px 16px; margin-bottom: 16px; }
     .prod-modal-spec-label { font-size: 10px; color: #999; margin-bottom: 2px; }
     .prod-modal-spec-value { font-size: 14px; font-weight: 700; color: var(--navy); }
-    .prod-modal-recommend { margin-bottom: 16px; background: #F8F8F8; border-radius: 8px; padding: 12px 16px; }
+    .prod-modal-recommend { margin-bottom: 20px; background: #F8F8F8; border-radius: 8px; padding: 12px 16px; }
     .prod-modal-recommend-title { font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
     .prod-modal-recommend-list { list-style: none; padding: 0; margin: 0; }
     .prod-modal-recommend-list li { font-size: 13px; color: #333; padding: 3px 0; }
@@ -3335,8 +3334,7 @@
           <p class="prod-modal-desc">${pd.desc}</p>
           ${specsHTML}
           ${recommendHTML}
-          <div class="prod-modal-tags">${tagsHTML}</div>
-          <div class="prod-modal-store">${pd.store}</div>
+          <p class="prod-modal-store">${pd.store}</p>
           <div class="prod-modal-actions">
             <a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">本体購入・体験へ</a>
             <a href="#search" class="btn btn-blue" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換へ</a>
