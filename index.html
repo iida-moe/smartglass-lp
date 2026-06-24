@@ -2118,6 +2118,10 @@
     .pg-card-img img { width: 100%; height: 100%; object-fit: cover; }
     #rayban-card-img { background: #f5f5f5; }
     #rayban-img { object-fit: contain; object-position: center; }
+    #mirza-card-img { background: #f2f4f8; }
+    #mirza-img { object-fit: contain; object-position: center; }
+    .pg-furigana { display: block; font-size: 11px; font-weight: 400; color: #888; letter-spacing: 0.08em; margin-top: 1px; }
+    .prod-modal-furigana { display: block; font-size: 14px; font-weight: 400; color: #888; letter-spacing: 0.08em; margin-top: 2px; }
     .pg-img--mirza  { background: linear-gradient(135deg, #0D1B2A 0%, #1a3050 100%); }
     .pg-img--rokid  { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
     .pg-img--viture { background: linear-gradient(135deg, #1a2a3a 0%, #0d1b2a 100%); color: #7ECFFF; }
@@ -2633,9 +2637,11 @@
 
       <!-- MIRZA -->
       <div class="pg-card" data-product="mirza">
-        <div class="pg-card-img pg-img--mirza">MIRZA</div>
+        <div class="pg-card-img" id="mirza-card-img">
+          <img src="MiRZA_kirinuki_1611_0616-2-1.jpg" alt="MiRZA XRグラス" id="mirza-img">
+        </div>
         <div class="pg-card-body">
-          <h3 class="pg-card-name">MIRZA</h3>
+          <h3 class="pg-card-name">MiRZA<sup>®</sup><span class="pg-furigana">ミルザ</span></h3>
           <p class="pg-card-catch">現場の作業をARで効率化。業務・法人向けモデル。</p>
           <div class="pg-card-scenes">
             <span class="pg-scene-label">こんなシーンに</span>
@@ -3289,15 +3295,14 @@
   // === 商品モーダル ===
   const PD = {
     mirza: {
-      name: 'MIRZA',
+      name: 'MiRZA<sup>®</sup><span class="prod-modal-furigana">ミルザ</span>',
       catch: '本格XRグラス・日本製 / NTT系',
       desc: 'Snapdragon AR2搭載の本格XRグラス。高輝度ディスプレイに140言語超のリアルタイム翻訳・字幕機能を搭載。',
       tags: ['プロ・法人向け', 'XR・空間活用'],
       recommend: ['業務・法人でスマートグラスを活用したい人', '本格的なXR体験を求める人', '日本製・国内サポートにこだわりたい人', '高精度な翻訳・字幕機能が必要な人'],
       store: '本体取扱：<strong>南浦和店</strong>　レンズ交換：<strong>全37店舗</strong>',
       searchBrand: 'MIRZA',
-      imgBg: 'linear-gradient(135deg,#0D1B2A,#1a3050)',
-      imgText: 'MIRZA',
+      gallery: 'mirza',
     },
     rokid: {
       name: 'Rokid スマートAIグラス',
@@ -3363,6 +3368,12 @@
   };
 
   function buildModalImgHTML(key, pd) {
+    if (pd.gallery === 'mirza') {
+      return `
+        <div class="prod-modal-img-main" style="background:#f2f4f8;">
+          <img src="MiRZA_kirinuki_1611_0616-2-1.jpg" alt="MiRZA XRグラス" style="width:100%;height:100%;object-fit:contain;padding:12px;box-sizing:border-box;">
+        </div>`;
+    }
     if (pd.gallery === 'even') {
       return `
         <div class="prod-modal-img-main" id="modal-img-box" style="background:#f0f0f0;">
