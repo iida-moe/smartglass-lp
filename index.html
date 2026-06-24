@@ -1788,9 +1788,14 @@
     #prescription { background: var(--navy); }
     #prescription .prescription-label { color: rgba(255,255,255,0.45); }
 
-    /* PC: イントロ幅 */
+    /* PC: イントロ幅・オンラインCTA 2カラム */
     @media (min-width: 768px) {
       .prescription-sp-intro { max-width: 680px; }
+      .why-sp-online { display: flex; align-items: center; gap: 48px; padding: 36px 48px; }
+      .why-sp-online-text { flex: 1; min-width: 0; }
+      .why-sp-online-action { flex-shrink: 0; }
+      .why-sp-online-desc { margin-bottom: 8px; }
+      .why-sp-online-note { margin-bottom: 0; }
     }
 
     /* ===== WHY SP: タイトル ===== */
@@ -2611,17 +2616,21 @@
 
       <!-- オンラインCTA -->
       <div class="why-sp-online">
-        <span class="why-sp-online-badge">すでに本体をお持ちの方へ</span>
-        <p class="why-sp-online-title">
-          <span class="why-online-line1">本体があれば、</span>
-          <span class="why-online-line2">レンズ交換だけでOK。</span>
-        </p>
-        <p class="why-sp-online-desc">スマートグラス本体を郵送するだけで、度付きレンズに加工してお届けします。来店不要で、視力補正も解決。（MIRZA・Rokid対応）</p>
-        <p class="why-sp-online-note">※オンラインでは本体の新規販売は行っておりません。</p>
-        <a href="https://www.aijapan-online.com/" target="_blank" class="btn-why-online">
-          <img src="logo_aijapanonline02.png" alt="アイメガネオンライン" style="height:26px;width:auto;display:block;">
-          <span style="font-size:13px;font-weight:700;color:var(--navy);letter-spacing:0.04em;">オンラインで注文する →</span>
-        </a>
+        <div class="why-sp-online-text">
+          <span class="why-sp-online-badge">すでに本体をお持ちの方へ</span>
+          <p class="why-sp-online-title">
+            <span class="why-online-line1">本体があれば、</span>
+            <span class="why-online-line2">レンズ交換だけでOK。</span>
+          </p>
+          <p class="why-sp-online-desc">スマートグラス本体を郵送するだけで、度付きレンズに加工してお届けします。来店不要で、視力補正も解決。（MIRZA・Rokid対応）</p>
+          <p class="why-sp-online-note">※オンラインでは本体の新規販売は行っておりません。</p>
+        </div>
+        <div class="why-sp-online-action">
+          <a href="https://www.aijapan-online.com/" target="_blank" class="btn-why-online">
+            <img src="logo_aijapanonline02.png" alt="アイメガネオンライン" style="height:26px;width:auto;display:block;">
+            <span style="font-size:13px;font-weight:700;color:var(--navy);letter-spacing:0.04em;">オンラインで注文する →</span>
+          </a>
+        </div>
       </div>
     </div><!-- /prescription-sp -->
 
