@@ -1517,49 +1517,24 @@
     }
     .fixed-footer .container {
       display: flex;
-      align-items: center;
-      gap: 8px;
+      gap: 10px;
       width: 100%;
     }
-    .fixed-footer .btn-main {
+    .fixed-footer .btn {
       flex: 1;
       text-align: center;
-      padding: 11px 6px;
-      font-size: 12px;
-      font-weight: 700;
-      border-radius: 6px;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      transition: opacity 0.2s;
+      padding: 14px 8px;
+      font-size: 13px;
     }
-    .fixed-footer .btn-main:hover { opacity: 0.85; }
-    .fixed-footer .btn-main.red { background: var(--red); color: #fff; }
-    .fixed-footer .btn-main.navy { background: var(--navy); color: #fff; }
-    .fixed-footer-web {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: 1.5px solid var(--border);
+    .btn-outline {
       background: #fff;
-      color: var(--text-secondary);
-      font-size: 9px;
-      font-weight: 700;
-      text-decoration: none;
-      flex-shrink: 0;
-      transition: border-color 0.2s, color 0.2s;
-      line-height: 1.2;
-      letter-spacing: 0.02em;
+      color: var(--navy);
+      border: 1.5px solid var(--navy);
     }
-    .fixed-footer-web:hover { border-color: var(--navy); color: var(--navy); }
+    .btn-outline:hover { background: #f4f6f9; opacity: 1; }
     @media (min-width: 768px) {
-      .fixed-footer .btn-main { font-size: 14px; max-width: 260px; padding: 13px 12px; }
+      .fixed-footer .btn { font-size: 15px; max-width: 280px; }
       .fixed-footer .container { justify-content: center; }
-      .fixed-footer-web { width: 50px; height: 50px; font-size: 10px; }
     }
 
     /* ===== HAMBURGER ===== */
@@ -2872,9 +2847,8 @@
 <!-- FIXED FOOTER CTA -->
 <div class="fixed-footer" id="fixed-footer" style="display:none">
   <div class="container">
-    <a href="#search" class="btn-main red">本体を購入・相談する</a>
-    <a href="#search" class="btn-main navy">度付きレンズ交換する</a>
-    <a href="https://www.aijapan-online.com/" target="_blank" class="fixed-footer-web">オン<br>ライン</a>
+    <a href="#search" class="btn btn-red">来店予約する</a>
+    <a href="https://www.aijapan-online.com/" target="_blank" class="btn btn-outline">オンラインストアを見る</a>
   </div>
 </div>
 
