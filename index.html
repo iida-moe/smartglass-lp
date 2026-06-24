@@ -2102,6 +2102,30 @@
     .pg-swatch { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid rgba(0,0,0,0.15); display: inline-block; cursor: pointer; transition: box-shadow 0.15s; }
     .pg-swatch--active { box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--navy); }
 
+    /* === モーダルナビ矢印 === */
+    .modal-nav-btn {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      width: 48px; height: 48px; border-radius: 50%;
+      background: rgba(255,255,255,0.92);
+      border: none; cursor: pointer;
+      font-size: 24px; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+      color: var(--navy);
+      transition: background 0.15s, transform 0.15s;
+      z-index: 10;
+      flex-shrink: 0;
+    }
+    .modal-nav-btn:hover { background: #fff; transform: translateY(-50%) scale(1.08); }
+    .modal-nav-prev { left: 16px; }
+    .modal-nav-next { right: 16px; }
+    @media (max-width: 767px) {
+      .modal-nav-btn { width: 36px; height: 36px; font-size: 18px; }
+      .modal-nav-prev { left: 6px; }
+      .modal-nav-next { right: 6px; }
+    }
+
     /* === モーダル === */
     .prod-modal-overlay {
       display: none;
@@ -2824,10 +2848,12 @@
 
 <!-- 商品詳細モーダル -->
 <div id="product-modal" class="prod-modal-overlay">
+  <button class="modal-nav-btn modal-nav-prev" id="modal-nav-prev">&#8249;</button>
   <div class="prod-modal-inner">
     <button class="prod-modal-close" id="prod-modal-close">✕</button>
     <div class="prod-modal-content" id="prod-modal-content"></div>
   </div>
+  <button class="modal-nav-btn modal-nav-next" id="modal-nav-next">&#8250;</button>
 </div>
 
 <script>
@@ -3311,9 +3337,13 @@
     return `<div class="prod-modal-img-main" style="background:${bg};color:${col};">${pd.imgText || pd.name}</div>`;
   }
 
+  const PRODUCT_ORDER = ['mirza', 'rokid', 'even', 'rayban', 'viture'];
+  let currentProductKey = null;
+
   function openProductModal(key) {
     const pd = PD[key];
     if (!pd) return;
+    currentProductKey = key;
     const tagsHTML = pd.tags.map(t => `<span class="prod-modal-tag">${t}</span>`).join('');
     const imgHTML = buildModalImgHTML(key, pd);
     const specsHTML = pd.specs ? `
@@ -3352,7 +3382,21 @@
   }
   document.getElementById('prod-modal-close').addEventListener('click', function(){ document.getElementById('product-modal').classList.remove('open'); document.body.style.overflow=''; });
   document.getElementById('product-modal').addEventListener('click', function(e){ if(e.target===this){ document.getElementById('product-modal').classList.remove('open'); document.body.style.overflow=''; } });
-  document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ document.getElementById('product-modal').classList.remove('open'); document.body.style.overflow=''; } });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape'){ document.getElementById('product-modal').classList.remove('open'); document.body.style.overflow=''; }
+    if(e.key==='ArrowRight' && currentProductKey){ var i=PRODUCT_ORDER.indexOf(currentProductKey); openProductModal(PRODUCT_ORDER[(i+1)%PRODUCT_ORDER.length]); }
+    if(e.key==='ArrowLeft' && currentProductKey){ var i=PRODUCT_ORDER.indexOf(currentProductKey); openProductModal(PRODUCT_ORDER[(i-1+PRODUCT_ORDER.length)%PRODUCT_ORDER.length]); }
+  });
+  document.getElementById('modal-nav-prev').addEventListener('click', function(){
+    if(!currentProductKey) return;
+    var i = PRODUCT_ORDER.indexOf(currentProductKey);
+    openProductModal(PRODUCT_ORDER[(i - 1 + PRODUCT_ORDER.length) % PRODUCT_ORDER.length]);
+  });
+  document.getElementById('modal-nav-next').addEventListener('click', function(){
+    if(!currentProductKey) return;
+    var i = PRODUCT_ORDER.indexOf(currentProductKey);
+    openProductModal(PRODUCT_ORDER[(i + 1) % PRODUCT_ORDER.length]);
+  });
 
   // Even Realities モーダル内ギャラリー
   const EVEN_IMGS = { grey:'images/even-g2/grey.png', green:'images/even-g2/green.png', brown:'images/even-g2/brown.png', 'grey-b':'images/even-g2/grey-b.png', 'green-b':'images/even-g2/green-b.png', 'brown-b':'images/even-g2/brown-b.png' };
