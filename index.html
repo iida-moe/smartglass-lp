@@ -1982,6 +1982,167 @@
       .final-main { font-size: clamp(20px, 5.5vw, 26px); }
       .final-sub { font-size: 14px; }
     }
+
+    /* === 商品グリッド === */
+    .pg-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    @media (max-width: 767px) {
+      .pg-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    }
+    .pg-card {
+      border: 1px solid #E0E0E0;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: box-shadow 0.2s, transform 0.2s;
+      background: #fff;
+    }
+    .pg-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.12); transform: translateY(-2px); }
+    .pg-card-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.04em;
+      overflow: hidden;
+    }
+    .pg-card-img img { width: 100%; height: 100%; object-fit: cover; }
+    .pg-img--mirza  { background: linear-gradient(135deg, #0D1B2A 0%, #1a3050 100%); }
+    .pg-img--rokid  { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
+    .pg-img--viture { background: linear-gradient(135deg, #1a2a3a 0%, #0d1b2a 100%); color: #7ECFFF; }
+    .pg-card-body { padding: 16px; }
+    .pg-card-name  { font-size: 16px; font-weight: 800; margin-bottom: 4px; color: var(--navy); }
+    .pg-card-catch { font-size: 11px; color: #666; margin-bottom: 10px; line-height: 1.5; }
+    .pg-card-tags  { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
+    .pg-tag { font-size: 10px; background: #F2F2F0; color: #444; padding: 3px 8px; border-radius: 20px; }
+    .pg-card-btn {
+      width: 100%;
+      padding: 10px;
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: opacity 0.2s;
+    }
+    .pg-card-btn:hover { opacity: 0.8; }
+
+    /* === モーダル === */
+    .prod-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 9000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .prod-modal-overlay.open { display: flex; }
+    .prod-modal-inner {
+      background: #fff;
+      border-radius: 16px;
+      max-width: 860px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      padding: 40px;
+      box-sizing: border-box;
+    }
+    @media (max-width: 767px) {
+      .prod-modal-inner { padding: 24px 20px; border-radius: 12px; }
+    }
+    .prod-modal-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: #333;
+      line-height: 1;
+      padding: 4px 8px;
+    }
+    .prod-modal-layout {
+      display: flex;
+      gap: 36px;
+      align-items: flex-start;
+    }
+    @media (max-width: 767px) {
+      .prod-modal-layout { flex-direction: column; gap: 20px; }
+    }
+    .prod-modal-img-col {
+      flex: 0 0 300px;
+      width: 300px;
+    }
+    @media (max-width: 767px) {
+      .prod-modal-img-col { flex: none; width: 100%; }
+    }
+    .prod-modal-img-main {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #F2F2F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .prod-modal-img-main img { width: 100%; height: 100%; object-fit: contain; padding: 16px; box-sizing: border-box; }
+    .prod-modal-info-col { flex: 1; min-width: 0; }
+    .prod-modal-name { font-size: 26px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+    .prod-modal-catch { font-size: 13px; color: #666; margin-bottom: 14px; }
+    .prod-modal-desc { font-size: 14px; color: #333; line-height: 1.85; margin-bottom: 16px; }
+    .prod-modal-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .prod-modal-tag { font-size: 12px; background: #F2F2F0; color: #444; padding: 4px 12px; border-radius: 20px; }
+    .prod-modal-store { font-size: 13px; color: #444; line-height: 1.8; margin-bottom: 24px; padding: 12px 16px; background: #F8F8F8; border-radius: 8px; }
+    .prod-modal-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .prod-modal-actions .btn { flex: 1; min-width: 140px; text-align: center; }
+
+    /* モーダル内フレームタブ */
+    .modal-frame-tabs { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+    .modal-frame-tab {
+      flex: 1;
+      padding: 6px 4px;
+      font-size: 11px;
+      font-weight: 700;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      background: #fff;
+      cursor: pointer;
+      font-family: inherit;
+      text-align: center;
+      line-height: 1.4;
+      transition: border-color 0.15s;
+    }
+    .modal-frame-tab.active { border-color: var(--navy); background: var(--navy); color: #fff; }
+    .modal-color-swatches { display: flex; gap: 8px; margin-bottom: 8px; }
+    .modal-swatch {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.15s;
+    }
+    .modal-swatch.active { border-color: #333; }
   </style>
 </head>
 <body>
@@ -2277,138 +2438,82 @@
   <div class="container">
     <h2 class="section-title center">商品ラインナップ</h2>
     <p class="products-note">※商品によって取り扱い店舗が異なります</p>
+    <div class="pg-grid">
 
-    <!-- MIRZA -->
-    <div class="product-card">
-      <div class="product-image product-image--mirza">MIRZA</div>
-      <div class="product-right">
-        <div class="product-body">
-          <h3 class="product-name">MIRZA</h3>
-          <p class="product-catch">本格XRグラス・日本製 / NTT系</p>
-          <p class="product-desc">Snapdragon AR2搭載の本格XRグラス。高輝度ディスプレイに140言語超のリアルタイム翻訳・字幕機能を搭載。</p>
-          <div class="product-tags-row">
-            <span class="product-tags-label">こんな人に：</span>
-            <span class="product-tag-chip">プロ・法人向け</span>
-            <span class="product-tag-chip">XR・空間活用</span>
+      <!-- MIRZA -->
+      <div class="pg-card" data-product="mirza">
+        <div class="pg-card-img pg-img--mirza">MIRZA</div>
+        <div class="pg-card-body">
+          <h3 class="pg-card-name">MIRZA</h3>
+          <p class="pg-card-catch">本格XRグラス・日本製 / NTT系</p>
+          <div class="pg-card-tags">
+            <span class="pg-tag">プロ・法人向け</span>
+            <span class="pg-tag">XR・空間活用</span>
           </div>
-          <p class="product-store-row">本体取扱：<strong>南浦和店</strong>　レンズ交換：<strong>全37店舗</strong></p>
-        </div>
-        <div class="product-actions">
-          <a href="#search" class="btn btn-red" onclick="setSearch('MIRZA','trial')">本体購入・体験へ</a>
-          <a href="#search" class="btn btn-blue" onclick="setSearch('MIRZA','lens')">レンズ交換へ</a>
+          <button class="pg-card-btn">詳しく見る →</button>
         </div>
       </div>
-    </div>
 
-    <!-- Rokid -->
-    <div class="product-card">
-      <div class="product-image product-image--rokid">Rokid Max 2</div>
-      <div class="product-right">
-        <div class="product-body">
-          <h3 class="product-name">Rokid Max 2</h3>
-          <p class="product-catch">ARグラス・ビジネス向け</p>
-          <p class="product-desc">ARナビ・翻訳・通知をリアルタイムで視野内に表示。ハンズフリーで情報確認できる次世代ビジネスツール。</p>
-          <div class="product-tags-row">
-            <span class="product-tags-label">こんな人に：</span>
-            <span class="product-tag-chip">ビジネス向け</span>
-            <span class="product-tag-chip">AR情報活用</span>
+      <!-- Rokid -->
+      <div class="pg-card" data-product="rokid">
+        <div class="pg-card-img pg-img--rokid">Rokid Max 2</div>
+        <div class="pg-card-body">
+          <h3 class="pg-card-name">Rokid Max 2</h3>
+          <p class="pg-card-catch">ARグラス・ビジネス向け</p>
+          <div class="pg-card-tags">
+            <span class="pg-tag">ビジネス向け</span>
+            <span class="pg-tag">AR情報活用</span>
           </div>
-          <p class="product-store-row">本体取扱：<strong>南浦和店</strong>　レンズ交換：<strong>全37店舗</strong></p>
-        </div>
-        <div class="product-actions">
-          <a href="#search" class="btn btn-red" onclick="setSearch('Rokid','trial')">本体購入・体験へ</a>
-          <a href="#search" class="btn btn-blue" onclick="setSearch('Rokid','lens')">レンズ交換へ</a>
+          <button class="pg-card-btn">詳しく見る →</button>
         </div>
       </div>
-    </div>
 
-    <!-- Even Realities G2 -->
-    <div class="product-card">
-      <div class="product-image-gallery">
-        <img id="even-main-img" src="images/even-g2/grey.png" alt="Even Realities G2">
-        <div class="product-frame-tabs">
-          <button class="frame-tab active" onclick="switchEvenFrame('A',this)">A フレーム<br><small style="font-weight:400;font-size:10px;">スリムライン</small></button>
-          <button class="frame-tab" onclick="switchEvenFrame('B',this)">B フレーム<br><small style="font-weight:400;font-size:10px;">ウェリントン</small></button>
+      <!-- Even Realities G2 -->
+      <div class="pg-card" data-product="even">
+        <div class="pg-card-img">
+          <img src="images/even-g2/grey.png" alt="Even Realities G2">
         </div>
-        <div class="product-color-swatches" id="even-swatches-A">
-          <span class="color-swatch active" style="background:#4E4E4E;" onclick="switchEvenColor('grey',this)" title="グレイ"></span>
-          <span class="color-swatch" style="background:#516050;" onclick="switchEvenColor('green',this)" title="グリーン"></span>
-          <span class="color-swatch" style="background:#6B5040;" onclick="switchEvenColor('brown',this)" title="ブラウン"></span>
-        </div>
-        <div class="product-color-swatches" id="even-swatches-B" style="display:none;">
-          <span class="color-swatch active" style="background:#4E4E4E;" onclick="switchEvenColor('grey-b',this)" title="グレイ"></span>
-          <span class="color-swatch" style="background:#516050;" onclick="switchEvenColor('green-b',this)" title="グリーン"></span>
-          <span class="color-swatch" style="background:#6B5040;" onclick="switchEvenColor('brown-b',this)" title="ブラウン"></span>
-        </div>
-      </div>
-      <div class="product-right">
-        <div class="product-body">
-          <h3 class="product-name">Even Realities G2</h3>
-          <p class="product-catch">超軽量ARグラス・普段使い向け</p>
-          <p class="product-desc">わずか38gの超軽量ボディに高精細マイクロLEDディスプレイ搭載。普段のメガネ感覚で一日中かけられる入門に最適な一本。</p>
-          <div class="product-tags-row">
-            <span class="product-tags-label">こんな人に：</span>
-            <span class="product-tag-chip">初心者向け</span>
-            <span class="product-tag-chip">普段使い</span>
+        <div class="pg-card-body">
+          <h3 class="pg-card-name">Even Realities G2</h3>
+          <p class="pg-card-catch">超軽量ARグラス・普段使い向け</p>
+          <div class="pg-card-tags">
+            <span class="pg-tag">初心者向け</span>
+            <span class="pg-tag">普段使い</span>
           </div>
-          <p class="product-store-row">本体・レンズ取扱：<strong>南浦和店・宇都宮錦店・八千代店</strong></p>
-        </div>
-        <div class="product-actions">
-          <a href="#search" class="btn btn-red" onclick="setSearch('Even Realities','trial')">本体購入・体験へ</a>
-          <a href="#search" class="btn btn-blue" onclick="setSearch('Even Realities','lens')">レンズ交換へ</a>
+          <button class="pg-card-btn">詳しく見る →</button>
         </div>
       </div>
-    </div>
 
-    <!-- Ray-Ban Meta -->
-    <div class="product-card">
-      <div class="product-image-gallery">
-        <img id="rb-main-img" src="images/rayban/blayzer.jpg" alt="Ray-Ban Meta Blayzer">
-        <div class="product-frame-tabs">
-          <button class="frame-tab active" onclick="switchRBStyle('blayzer',this)">Blayzer<br><small style="font-weight:400;font-size:10px;">メガネ（OPT）</small></button>
-          <button class="frame-tab" onclick="switchRBStyle('wayfarer',this)">Wayfarer<br><small style="font-weight:400;font-size:10px;">サングラス（SUN）</small></button>
+      <!-- Ray-Ban Meta -->
+      <div class="pg-card" data-product="rayban">
+        <div class="pg-card-img">
+          <img src="images/rayban/blayzer.jpg" alt="Ray-Ban Meta">
         </div>
-      </div>
-      <div class="product-right">
-        <div class="product-body">
-          <h3 class="product-name" id="rb-name">Ray-Ban Meta Blayzer</h3>
-          <p class="product-catch" id="rb-catch">スマートグラス・Meta AI搭載 / 度付き対応メガネ</p>
-          <p class="product-desc" id="rb-desc">Ray-Banの洗練されたデザインにMeta AIを搭載。通常のメガネと同じ見た目で、ハンズフリー通話・音楽・AI質問を実現。</p>
-          <div class="product-tags-row">
-            <span class="product-tags-label">こんな人に：</span>
-            <span class="product-tag-chip">メガネユーザー</span>
-            <span class="product-tag-chip">日常使い</span>
+        <div class="pg-card-body">
+          <h3 class="pg-card-name">Ray-Ban Meta</h3>
+          <p class="pg-card-catch">AI搭載スマートグラス・Meta AI</p>
+          <div class="pg-card-tags">
+            <span class="pg-tag">メガネユーザー</span>
+            <span class="pg-tag">日常使い</span>
           </div>
-          <p class="product-store-row">本体取扱：<strong>南浦和店</strong>　レンズ交換：<strong>全37店舗</strong></p>
-        </div>
-        <div class="product-actions">
-          <a href="#search" class="btn btn-red" onclick="setSearch('Ray-Ban Meta','trial')">本体購入・体験へ</a>
-          <a href="#search" class="btn btn-blue" onclick="setSearch('Ray-Ban Meta','lens')">レンズ交換へ</a>
+          <button class="pg-card-btn">詳しく見る →</button>
         </div>
       </div>
-    </div>
 
-
-    <!-- Viture -->
-    <div class="product-card">
-      <div class="product-image" style="background:#1a2a3a;color:#7ECFFF;font-size:22px;font-weight:700;letter-spacing:0.05em;">VITURE</div>
-      <div class="product-right">
-        <div class="product-body">
-          <h3 class="product-name">VITURE One XR</h3>
-          <p class="product-catch">大画面エンタメグラス・ゲーム・映画向け</p>
-          <p class="product-desc">ゲームや映画を大画面・マルチ画面で楽しめるXRグラス。Nintendo Switchや各種デバイスに接続して、どこでもシアター体験が実現。スマートグラスとは少し異なる"見る"体験に特化したモデルです。</p>
-          <div class="product-tags-row">
-            <span class="product-tags-label">こんな人に：</span>
-            <span class="product-tag-chip">ゲーム好き</span>
-            <span class="product-tag-chip">映画・エンタメ</span>
+      <!-- VITURE One XR -->
+      <div class="pg-card" data-product="viture">
+        <div class="pg-card-img pg-img--viture">VITURE</div>
+        <div class="pg-card-body">
+          <h3 class="pg-card-name">VITURE One XR</h3>
+          <p class="pg-card-catch">大画面エンタメグラス・ゲーム・映画向け</p>
+          <div class="pg-card-tags">
+            <span class="pg-tag">ゲーム好き</span>
+            <span class="pg-tag">映画・エンタメ</span>
           </div>
-          <p class="product-store-row">本体・レンズ取扱：<strong>南浦和店</strong></p>
-        </div>
-        <div class="product-actions">
-          <a href="#search" class="btn btn-red" onclick="setSearch('Viture','trial')">体験・購入へ</a>
-          <a href="#search" class="btn btn-blue" onclick="setSearch('Viture','lens')">レンズ交換へ</a>
+          <button class="pg-card-btn">詳しく見る →</button>
         </div>
       </div>
+
     </div>
 
     <!-- どれを選べばいい？ -->
@@ -2595,6 +2700,14 @@
   <div class="container">
     <a href="#search" class="btn btn-red" onclick="setSearch('','trial')">本体を購入・体験 店舗を探す</a>
     <a href="#search" class="btn btn-blue" onclick="setSearch('','lens')">レンズ交換 店舗を探す</a>
+  </div>
+</div>
+
+<!-- 商品詳細モーダル -->
+<div id="product-modal" class="prod-modal-overlay">
+  <div class="prod-modal-inner">
+    <button class="prod-modal-close" id="prod-modal-close">✕</button>
+    <div class="prod-modal-content" id="prod-modal-content"></div>
   </div>
 </div>
 
@@ -2941,6 +3054,164 @@
     .observe(document.getElementById('fv'));
   new IntersectionObserver(function(e) { _productsVisible = e[0].isIntersecting; _updateFooter(); }, { threshold: 0 })
     .observe(document.getElementById('products'));
+
+  // === 商品モーダル ===
+  const PD = {
+    mirza: {
+      name: 'MIRZA',
+      catch: '本格XRグラス・日本製 / NTT系',
+      desc: 'Snapdragon AR2搭載の本格XRグラス。高輝度ディスプレイに140言語超のリアルタイム翻訳・字幕機能を搭載。',
+      tags: ['プロ・法人向け', 'XR・空間活用'],
+      store: '本体取扱：<strong>南浦和店</strong>　レンズ交換：<strong>全37店舗</strong>',
+      searchBrand: 'MIRZA',
+      imgBg: 'linear-gradient(135deg,#0D1B2A,#1a3050)',
+      imgText: 'MIRZA',
+    },
+    rokid: {
+      name: 'Rokid Max 2',
+      catch: 'ARグラス・ビジネス向け',
+      desc: 'ARナビ・翻訳・通知をリアルタイムで視野内に表示。ハンズフリーで情報確認できる次世代ビジネスツール。',
+      tags: ['ビジネス向け', 'AR情報活用'],
+      store: '本体取扱：<strong>南浦和店</strong>　レンズ交換：<strong>全37店舗</strong>',
+      searchBrand: 'Rokid',
+      imgBg: 'linear-gradient(135deg,#1a1a2e,#16213e)',
+      imgText: 'Rokid Max 2',
+    },
+    even: {
+      name: 'Even Realities G2',
+      catch: '超軽量ARグラス・普段使い向け',
+      desc: 'わずか38gの超軽量ボディに高精細マイクロLEDディスプレイ搭載。普段のメガネ感覚で一日中かけられる入門に最適な一本。',
+      tags: ['初心者向け', '普段使い'],
+      store: '本体・レンズ取扱：<strong>南浦和店・宇都宮錦店・八千代店</strong>',
+      searchBrand: 'Even Realities',
+      gallery: 'even',
+    },
+    rayban: {
+      name: 'Ray-Ban Meta',
+      catch: 'AI搭載スマートグラス / Meta AI搭載',
+      desc: 'Ray-Banの洗練されたデザインにMeta AIを搭載。通常のメガネと同じ見た目で、ハンズフリー通話・音楽・AI質問を実現。',
+      tags: ['メガネユーザー', '日常使い'],
+      store: '本体取扱：<strong>南浦和店</strong>　レンズ交換：<strong>全37店舗</strong>',
+      searchBrand: 'Ray-Ban Meta',
+      gallery: 'rayban',
+    },
+    viture: {
+      name: 'VITURE One XR',
+      catch: '大画面エンタメグラス・ゲーム・映画向け',
+      desc: 'ゲームや映画を大画面・マルチ画面で楽しめるXRグラス。Nintendo Switchや各種デバイスに接続して、どこでもシアター体験が実現。スマートグラスとは少し異なる"見る"体験に特化したモデルです。',
+      tags: ['ゲーム好き', '映画・エンタメ'],
+      store: '本体・レンズ取扱：<strong>南浦和店</strong>',
+      searchBrand: 'Viture',
+      imgBg: 'linear-gradient(135deg,#1a2a3a,#0d1b2a)',
+      imgText: 'VITURE',
+      imgColor: '#7ECFFF',
+    },
+  };
+
+  function buildModalImgHTML(key, pd) {
+    if (pd.gallery === 'even') {
+      return `
+        <div class="prod-modal-img-main" id="modal-img-box" style="background:#f0f0f0;">
+          <img id="modal-even-img" src="images/even-g2/grey.png" alt="Even Realities G2">
+        </div>
+        <div class="modal-frame-tabs">
+          <button class="modal-frame-tab active" onclick="modalEvenFrame('A',this)">A フレーム<br><small>スリムライン</small></button>
+          <button class="modal-frame-tab" onclick="modalEvenFrame('B',this)">B フレーム<br><small>ウェリントン</small></button>
+        </div>
+        <div class="modal-color-swatches" id="modal-even-sw-A">
+          <span class="modal-swatch active" style="background:#4E4E4E;" onclick="modalEvenColor('grey',this)" title="グレイ"></span>
+          <span class="modal-swatch" style="background:#516050;" onclick="modalEvenColor('green',this)" title="グリーン"></span>
+          <span class="modal-swatch" style="background:#6B5040;" onclick="modalEvenColor('brown',this)" title="ブラウン"></span>
+        </div>
+        <div class="modal-color-swatches" id="modal-even-sw-B" style="display:none;">
+          <span class="modal-swatch active" style="background:#4E4E4E;" onclick="modalEvenColor('grey-b',this)" title="グレイ"></span>
+          <span class="modal-swatch" style="background:#516050;" onclick="modalEvenColor('green-b',this)" title="グリーン"></span>
+          <span class="modal-swatch" style="background:#6B5040;" onclick="modalEvenColor('brown-b',this)" title="ブラウン"></span>
+        </div>`;
+    }
+    if (pd.gallery === 'rayban') {
+      return `
+        <div class="prod-modal-img-main" style="background:#f0f0f0;">
+          <img id="modal-rb-img" src="images/rayban/blayzer.jpg" alt="Ray-Ban Meta">
+        </div>
+        <div class="modal-frame-tabs">
+          <button class="modal-frame-tab active" onclick="modalRBStyle('blayzer',this)">Blayzer<br><small>メガネ（OPT）</small></button>
+          <button class="modal-frame-tab" onclick="modalRBStyle('wayfarer',this)">Wayfarer<br><small>サングラス（SUN）</small></button>
+        </div>`;
+    }
+    const bg = pd.imgBg || '#0D1B2A';
+    const col = pd.imgColor || '#fff';
+    return `<div class="prod-modal-img-main" style="background:${bg};color:${col};">${pd.imgText || pd.name}</div>`;
+  }
+
+  function openProductModal(key) {
+    const pd = PD[key];
+    if (!pd) return;
+    const tagsHTML = pd.tags.map(t => `<span class="prod-modal-tag">${t}</span>`).join('');
+    const imgHTML = buildModalImgHTML(key, pd);
+    document.getElementById('prod-modal-content').innerHTML = `
+      <div class="prod-modal-layout">
+        <div class="prod-modal-img-col">${imgHTML}</div>
+        <div class="prod-modal-info-col">
+          <h3 class="prod-modal-name">${pd.name}</h3>
+          <p class="prod-modal-catch">${pd.catch}</p>
+          <p class="prod-modal-desc">${pd.desc}</p>
+          <div class="prod-modal-tags">${tagsHTML}</div>
+          <div class="prod-modal-store">${pd.store}</div>
+          <div class="prod-modal-actions">
+            <a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">本体購入・体験へ</a>
+            <a href="#search" class="btn btn-blue" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換へ</a>
+          </div>
+        </div>
+      </div>`;
+    document.getElementById('product-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeProductModal(e) {
+    if (e && e.target !== document.getElementById('product-modal') && e.target !== document.getElementById('prod-modal-close')) return;
+    document.getElementById('product-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('prod-modal-close').addEventListener('click', function(){ document.getElementById('product-modal').classList.remove('open'); document.body.style.overflow=''; });
+  document.getElementById('product-modal').addEventListener('click', function(e){ if(e.target===this){ document.getElementById('product-modal').classList.remove('open'); document.body.style.overflow=''; } });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ document.getElementById('product-modal').classList.remove('open'); document.body.style.overflow=''; } });
+
+  // Even Realities モーダル内ギャラリー
+  const EVEN_IMGS = { grey:'images/even-g2/grey.png', green:'images/even-g2/green.png', brown:'images/even-g2/brown.png', 'grey-b':'images/even-g2/grey-b.png', 'green-b':'images/even-g2/green-b.png', 'brown-b':'images/even-g2/brown-b.png' };
+  let _evenFrame = 'A';
+  function modalEvenFrame(frame, btn) {
+    _evenFrame = frame;
+    document.querySelectorAll('.modal-frame-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('modal-even-sw-A').style.display = frame==='A' ? 'flex' : 'none';
+    document.getElementById('modal-even-sw-B').style.display = frame==='B' ? 'flex' : 'none';
+    var firstColor = frame==='A' ? 'grey' : 'grey-b';
+    document.querySelectorAll('#modal-even-sw-'+frame+' .modal-swatch').forEach(s=>s.classList.remove('active'));
+    document.querySelector('#modal-even-sw-'+frame+' .modal-swatch').classList.add('active');
+    document.getElementById('modal-even-img').src = EVEN_IMGS[firstColor] || EVEN_IMGS['grey'];
+  }
+  function modalEvenColor(color, el) {
+    document.querySelectorAll('#modal-even-sw-'+_evenFrame+' .modal-swatch').forEach(s=>s.classList.remove('active'));
+    el.classList.add('active');
+    if (EVEN_IMGS[color]) document.getElementById('modal-even-img').src = EVEN_IMGS[color];
+  }
+
+  // Ray-Ban モーダル内ギャラリー
+  const RB_DATA = {
+    blayzer:  { img:'images/rayban/blayzer.jpg' },
+    wayfarer: { img:'images/rayban/wayfarer.jpg' },
+  };
+  function modalRBStyle(style, btn) {
+    document.querySelectorAll('.modal-frame-tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    if (RB_DATA[style]) document.getElementById('modal-rb-img').src = RB_DATA[style].img;
+  }
+
+  // カードクリックでモーダル開く
+  document.querySelectorAll('.pg-card').forEach(function(card){
+    card.addEventListener('click', function(){ openProductModal(this.dataset.product); });
+  });
 
   // パスワード保護
   (function () {
