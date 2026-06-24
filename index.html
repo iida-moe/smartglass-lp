@@ -2060,7 +2060,7 @@
     .pg-card-btn {
       width: 100%;
       padding: 10px;
-      background: var(--navy);
+      background: var(--red);
       color: #fff;
       border: none;
       border-radius: 6px;
@@ -2071,6 +2071,24 @@
       transition: opacity 0.2s;
     }
     .pg-card-btn:hover { opacity: 0.8; }
+    .pg-card-sub-btns { display: flex; gap: 6px; margin-top: 8px; }
+    .pg-card-sub-btn {
+      flex: 1;
+      padding: 8px 4px;
+      background: #fff;
+      color: var(--navy);
+      border: 1.5px solid var(--navy);
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+      transition: background 0.2s, color 0.2s;
+    }
+    .pg-card-sub-btn:hover { background: var(--navy); color: #fff; }
 
     /* === モーダル === */
     .prod-modal-overlay {
@@ -2492,6 +2510,10 @@
             <span class="pg-tag">XR・空間活用</span>
           </div>
           <button class="pg-card-btn">詳しく見る →</button>
+          <div class="pg-card-sub-btns">
+            <a href="#search" class="pg-card-sub-btn" onclick="setSearch('MIRZA','trial')">本体購入・体験</a>
+            <a href="#search" class="pg-card-sub-btn" onclick="setSearch('MIRZA','lens')">度付きレンズ交換</a>
+          </div>
         </div>
       </div>
 
@@ -2506,6 +2528,10 @@
             <span class="pg-tag">AR情報活用</span>
           </div>
           <button class="pg-card-btn">詳しく見る →</button>
+          <div class="pg-card-sub-btns">
+            <a href="#search" class="pg-card-sub-btn" onclick="setSearch('Rokid','trial')">本体購入・体験</a>
+            <a href="#search" class="pg-card-sub-btn" onclick="setSearch('Rokid','lens')">度付きレンズ交換</a>
+          </div>
         </div>
       </div>
 
@@ -2516,12 +2542,16 @@
         </div>
         <div class="pg-card-body">
           <h3 class="pg-card-name">Even Realities G2</h3>
-          <p class="pg-card-catch">超軽量ARグラス・普段使い向け</p>
+          <p class="pg-card-catch">超軽量ARグラス</p>
           <div class="pg-card-tags">
             <span class="pg-tag">初心者向け</span>
             <span class="pg-tag">普段使い</span>
           </div>
           <button class="pg-card-btn">詳しく見る →</button>
+          <div class="pg-card-sub-btns">
+            <a href="#search" class="pg-card-sub-btn" onclick="setSearch('Even Realities','trial')">本体購入・体験</a>
+            <a href="#search" class="pg-card-sub-btn" onclick="setSearch('Even Realities','lens')">度付きレンズ交換</a>
+          </div>
         </div>
       </div>
 
@@ -2538,6 +2568,10 @@
             <span class="pg-tag">日常使い</span>
           </div>
           <button class="pg-card-btn">詳しく見る →</button>
+          <div class="pg-card-sub-btns">
+            <a href="#search" class="pg-card-sub-btn" onclick="setSearch('Ray-Ban Meta','trial')">本体購入・体験</a>
+            <a href="#search" class="pg-card-sub-btn" onclick="setSearch('Ray-Ban Meta','lens')">度付きレンズ交換</a>
+          </div>
         </div>
       </div>
 
@@ -2552,6 +2586,10 @@
             <span class="pg-tag">映画・エンタメ</span>
           </div>
           <button class="pg-card-btn">詳しく見る →</button>
+          <div class="pg-card-sub-btns">
+            <a href="#search" class="pg-card-sub-btn" onclick="setSearch('VITURE','trial')">本体購入・体験</a>
+            <a href="#search" class="pg-card-sub-btn" onclick="setSearch('VITURE','lens')">度付きレンズ交換</a>
+          </div>
         </div>
       </div>
 
