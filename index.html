@@ -1511,38 +1511,55 @@
       z-index: 99;
       background: #fff;
       border-top: 1px solid var(--border);
-      padding: 8px 0;
+      height: 64px;
+      display: flex;
+      align-items: center;
+    }
+    .fixed-footer .container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+    }
+    .fixed-footer .btn-main {
+      flex: 1;
+      text-align: center;
+      padding: 11px 6px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.2s;
+    }
+    .fixed-footer .btn-main:hover { opacity: 0.85; }
+    .fixed-footer .btn-main.red { background: var(--red); color: #fff; }
+    .fixed-footer .btn-main.navy { background: var(--navy); color: #fff; }
+    .fixed-footer-web {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-    }
-    .fixed-footer-micro {
-      font-size: 11px;
-      color: var(--text-secondary);
-      margin-bottom: 6px;
-      letter-spacing: 0.03em;
-    }
-    .fixed-footer .container {
-      display: flex;
-      gap: 10px;
-      width: 100%;
-    }
-    .fixed-footer .btn {
-      flex: 1;
-      text-align: center;
-      padding: 11px 8px;
-      font-size: 13px;
-    }
-    .btn-outline {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
       background: #fff;
-      color: var(--navy);
-      border: 1.5px solid var(--navy);
+      color: var(--text-secondary);
+      font-size: 9px;
+      font-weight: 700;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: border-color 0.2s, color 0.2s;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
     }
-    .btn-outline:hover { background: #f4f6f9; opacity: 1; }
+    .fixed-footer-web:hover { border-color: var(--navy); color: var(--navy); }
     @media (min-width: 768px) {
-      .fixed-footer .btn { font-size: 15px; max-width: 280px; }
+      .fixed-footer .btn-main { font-size: 14px; max-width: 260px; padding: 13px 12px; }
       .fixed-footer .container { justify-content: center; }
+      .fixed-footer-web { width: 50px; height: 50px; font-size: 10px; }
     }
 
     /* ===== HAMBURGER ===== */
@@ -2854,10 +2871,10 @@
 
 <!-- FIXED FOOTER CTA -->
 <div class="fixed-footer" id="fixed-footer" style="display:none">
-  <p class="fixed-footer-micro">相談だけでも大歓迎です</p>
   <div class="container">
-    <a href="#search" class="btn btn-red">無料で相談・試着を予約</a>
-    <a href="https://www.aijapan-online.com/" target="_blank" class="btn btn-outline">オンラインストアを見る</a>
+    <a href="#search" class="btn-main red">本体を購入・相談する</a>
+    <a href="#search" class="btn-main navy">度付きレンズ交換する</a>
+    <a href="https://www.aijapan-online.com/" target="_blank" class="fixed-footer-web">オン<br>ライン</a>
   </div>
 </div>
 
