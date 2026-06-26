@@ -1535,10 +1535,10 @@
       top: 24px;
       left: 12.5%; right: 12.5%;
       height: 3px;
-      background: linear-gradient(to right, #E88888, #8B0000);
+      background: linear-gradient(to right, #CC6666, #8B0000);
       z-index: 0;
     }
-    .flow-tl-step:nth-child(1) .flow-tl-num { background: #E88888; }
+    .flow-tl-step:nth-child(1) .flow-tl-num { background: #CC6666; }
     .flow-tl-step:nth-child(2) .flow-tl-num { background: #D44444; }
     .flow-tl-step:nth-child(3) .flow-tl-num { background: #BB1E1E; }
     .flow-tl-step:nth-child(4) .flow-tl-num { background: #8B0000; }
@@ -1565,9 +1565,9 @@
     .flow-arrow-band {
       margin-top: 32px;
       background: var(--red); color: #fff;
-      padding: 18px 80px;
+      padding: 18px 32px;
       display: flex; align-items: center; justify-content: center; gap: 20px;
-      clip-path: polygon(32px 0%, calc(100% - 32px) 0%, 100% 50%, calc(100% - 32px) 100%, 32px 100%, 0% 50%);
+      border-radius: 8px;
     }
     .flow-arrow-band-label { font-size: 13px; font-weight: 600; opacity: 0.9; white-space: nowrap; }
     .flow-arrow-band-value { font-size: 22px; font-weight: 800; white-space: nowrap; }
@@ -2347,7 +2347,6 @@
         margin-top: 6px; font-size: 13px; text-align: left;
       }
       .flow-arrow-band {
-        clip-path: none; border-radius: 8px;
         flex-direction: column; gap: 4px;
         padding: 16px 24px; text-align: center; margin-top: 16px;
       }
@@ -3194,13 +3193,13 @@
           <div class="flow-tl-num">1</div>
           <div class="flow-tl-icon"><img src="flow-icon-store.svg" alt="ご来店"></div>
           <p class="flow-title">ご来店</p>
-          <p class="flow-desc">予約・当日相談もOK<br>スタッフが丁寧にご案内します。<span class="flow-desc-note">※機種によって設置店が異なります。あらかじめお確かめの上ご来店くださいませ。</span></p>
+          <p class="flow-desc">予約・当日相談もOK<br>スタッフが丁寧にご案内します。</p>
         </div>
         <div class="flow-tl-step">
           <div class="flow-tl-num">2</div>
           <div class="flow-tl-icon"><img src="flow-icon-eye.svg" alt="測定"></div>
           <p class="flow-title">測定</p>
-          <p class="flow-desc">専門スタッフがお客様の見え方に合わせた度数を測定。<span class="flow-desc-note">※処方箋での作成も賜ります。</span></p>
+          <p class="flow-desc">専門スタッフがお客様の見え方に合わせた度数を測定。</p>
         </div>
         <div class="flow-tl-step">
           <div class="flow-tl-num">3</div>
@@ -3212,10 +3211,12 @@
           <div class="flow-tl-num">4</div>
           <div class="flow-tl-icon"><img src="flow-icon-gift.svg" alt="お渡し"></div>
           <p class="flow-title">お渡し</p>
-          <p class="flow-desc">見え方、使用方法を確認お渡し。<br>クリアな視界でお使いいただけます。<span class="flow-desc-note">※ご使用方法注意事項等は各製品取扱書をお確かめくださいませ。</span></p>
+          <p class="flow-desc">見え方、使用方法を確認お渡し。<br>クリアな視界でお使いいただけます。</p>
         </div>
       </div>
     </div>
+
+    <p class="flow-note" style="margin-top:20px;">※機種によって設置店が異なります。あらかじめお確かめの上ご来店くださいませ。<br>※処方箋での作成も賜ります。<br>※ご使用方法注意事項等は各製品取扱書をお確かめくださいませ。</p>
 
     <div class="flow-arrow-band">
       <span class="flow-arrow-band-label">ご来店〜お渡しまでの目安</span>
