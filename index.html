@@ -1535,12 +1535,13 @@
       top: 24px;
       left: 12.5%; right: 12.5%;
       height: 3px;
-      background: linear-gradient(to right, rgba(204,0,0,0.25), #CC0000);
+      background: linear-gradient(to right, #E88888, #8B0000);
       z-index: 0;
     }
-    .flow-tl-step:nth-child(1) .flow-tl-num { background: rgba(204,0,0,0.40); box-shadow: 0 0 0 6px #F2F2F0, 0 0 0 8px rgba(204,0,0,0.10); }
-    .flow-tl-step:nth-child(2) .flow-tl-num { background: rgba(204,0,0,0.60); box-shadow: 0 0 0 6px #F2F2F0, 0 0 0 8px rgba(204,0,0,0.14); }
-    .flow-tl-step:nth-child(3) .flow-tl-num { background: rgba(204,0,0,0.80); box-shadow: 0 0 0 6px #F2F2F0, 0 0 0 8px rgba(204,0,0,0.18); }
+    .flow-tl-step:nth-child(1) .flow-tl-num { background: #E88888; }
+    .flow-tl-step:nth-child(2) .flow-tl-num { background: #D44444; }
+    .flow-tl-step:nth-child(3) .flow-tl-num { background: #BB1E1E; }
+    .flow-tl-step:nth-child(4) .flow-tl-num { background: #8B0000; }
     .flow-tl-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -1559,7 +1560,6 @@
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 16px;
       position: relative; z-index: 2;
-      box-shadow: 0 0 0 6px #F2F2F0, 0 0 0 8px rgba(204,0,0,0.2);
     }
     /* 矢印帯 */
     .flow-arrow-band {
