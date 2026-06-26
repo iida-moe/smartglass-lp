@@ -1077,7 +1077,7 @@
       letter-spacing: 0.05em;
     }
     .store-name {
-      font-size: 24px;
+      font-size: 27px;
       font-weight: 700;
       color: var(--text-primary);
       margin-bottom: 10px;
@@ -1152,6 +1152,9 @@
       transition: opacity 0.2s;
     }
     .btn-store-web:hover, .btn-store-tel:hover { opacity: 0.8; }
+    .btn-store-hp { font-size: 13px; color: var(--blue); font-weight: 700; text-decoration: none; white-space: nowrap; }
+    .btn-store-hp:hover { opacity: 0.7; }
+    .store-name-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
     /* その他の店舗（小カード2列） */
     .store-other-heading {
       font-size: 13px;
@@ -1432,30 +1435,55 @@
 
     /* ===== SECTION 06: 購入までの流れ ===== */
     #flow { background: var(--bg-gray); }
+    /* 安心ポイント */
+    .flow-points {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .flow-point {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      background: #fff;
+      border: 1.5px solid #dce6f0;
+      padding: 8px 16px;
+      border-radius: 20px;
+      line-height: 1.4;
+    }
     .flow-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0;
+      gap: 16px;
       align-items: start;
       position: relative;
     }
     .flow-step {
       text-align: center;
-      padding: 0 24px;
+      padding: 28px 20px 24px;
       position: relative;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
     .flow-step:not(:last-child)::after {
       content: '→';
       position: absolute;
-      right: -8px;
-      top: 16px;
-      font-size: 22px;
+      right: -14px;
+      top: 40px;
+      font-size: 20px;
       color: var(--red);
       font-weight: 700;
+      z-index: 2;
     }
     .flow-num {
-      width: 52px;
-      height: 52px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       background: var(--red);
       color: #fff;
@@ -1464,7 +1492,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 20px;
+      margin: 0 auto 14px;
     }
     .flow-label {
       font-size: 11px;
@@ -1476,14 +1504,83 @@
     .flow-title {
       font-size: 17px;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       color: var(--text-primary);
       line-height: 1.4;
+    }
+    .flow-step-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--red);
+      background: rgba(197,29,29,0.07);
+      padding: 3px 9px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      line-height: 1.6;
     }
     .flow-desc {
       font-size: 13px;
       color: var(--text-secondary);
       line-height: 1.8;
+      text-align: left;
+    }
+    .flow-icon { line-height: 1; margin-bottom: 10px; }
+    .flow-icon img { width: 44px; height: 44px; object-fit: contain; display: block; margin: 0 auto; }
+    /* === フロー: タイムライン === */
+    .flow-tl-wrap { position: relative; }
+    .flow-tl-line {
+      position: absolute;
+      top: 84px;
+      left: 12.5%; right: 12.5%;
+      height: 3px;
+      background: linear-gradient(to right, var(--red), rgba(204,0,0,0.3));
+      z-index: 0;
+    }
+    .flow-tl-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .flow-tl-step { text-align: center; padding: 0 20px 24px; }
+    .flow-tl-icon { margin-bottom: 16px; }
+    .flow-tl-icon img { width: 44px; height: 44px; object-fit: contain; display: block; margin: 0 auto; }
+    .flow-tl-num {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--red); color: #fff;
+      font-size: 20px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+      position: relative; z-index: 2;
+      box-shadow: 0 0 0 6px #F2F2F0, 0 0 0 8px rgba(204,0,0,0.2);
+    }
+    /* 矢印帯 */
+    .flow-arrow-band {
+      margin-top: 32px;
+      background: var(--red); color: #fff;
+      padding: 18px 80px;
+      display: flex; align-items: center; justify-content: center; gap: 20px;
+      clip-path: polygon(32px 0%, calc(100% - 32px) 0%, 100% 50%, calc(100% - 32px) 100%, 32px 100%, 0% 50%);
+    }
+    .flow-arrow-band-label { font-size: 13px; font-weight: 600; opacity: 0.9; white-space: nowrap; }
+    .flow-arrow-band-value { font-size: 22px; font-weight: 800; white-space: nowrap; }
+    .flow-note {
+      margin-top: 14px; font-size: 12px; color: var(--text-secondary);
+      line-height: 1.9; text-align: center; max-width: 680px; margin-left: auto; margin-right: auto;
+    }
+    .flow-online-block {
+      margin-top: 56px; padding-top: 48px;
+      border-top: 1px dashed var(--border);
+    }
+    .flow-online-head { text-align: center; margin-bottom: 32px; }
+    .flow-online-title {
+      font-size: 20px; font-weight: 800; color: var(--navy); margin-bottom: 6px;
+    }
+    .flow-online-sub {
+      font-size: 14px; color: var(--text-secondary); line-height: 1.7;
     }
 
     /* ===== SECTION 08: Q&A ===== */
@@ -1629,7 +1726,7 @@
       .fv-content { max-width: 560px; padding: 40px 0; }
       .fv-main { font-size: clamp(48px, 6vw, 80px); }
       .fv-main-line1 { font-size: clamp(18px, 2.2vw, 36px); }
-      .fv-main-accent { font-size: clamp(44px, 5.5vw, 78px); }
+      .fv-main-accent { font-size: clamp(46px, 5.5vw, 80px); }
       #fv .container { padding: 0 32px 0 4%; }
 
       /* フィーチャーグリッド：4列→2列 */
@@ -1670,7 +1767,7 @@
       .fv-content { max-width: 560px; padding: 40px 0; }
       .fv-main { font-size: clamp(48px, 6vw, 80px); }
       .fv-main-line1 { font-size: clamp(18px, 2.2vw, 36px); }
-      .fv-main-accent { font-size: clamp(44px, 5.5vw, 78px); }
+      .fv-main-accent { font-size: clamp(46px, 5.5vw, 80px); }
       #fv .container { padding: 0 32px 0 4%; }
     }
 
@@ -1837,22 +1934,46 @@
     /* ===== WHY SECTION: SP版を全幅で使用 ===== */
     .prescription-pc { display: none; }
     .prescription-sp { display: block; }
-    #prescription { background: var(--navy); }
+    #prescription { background: #162236; }
     #prescription .prescription-label { color: rgba(255,255,255,0.45); }
+
+    /* SP: オンラインCTAを縦積みに */
+    @media (max-width: 767px) {
+      .why-sp-online { flex-direction: column; gap: 16px; padding: 20px 18px; }
+      .why-sp-online-text { font-size: 18px !important; }
+      .btn-why-online { width: 100%; justify-content: center; box-sizing: border-box; }
+    }
 
     /* PC: イントロ幅・オンラインCTA 2カラム */
     @media (min-width: 768px) {
       .prescription-sp-intro { max-width: 680px; }
-      .why-sp-online { display: flex; align-items: center; gap: 48px; padding: 36px 48px; }
-      .why-sp-online-text { flex: 1; min-width: 0; }
-      .why-sp-online-action { flex-shrink: 0; }
-      .why-sp-online-desc { margin-bottom: 8px; }
+      .why-sp-online { gap: 32px; padding: 18px 28px; }
       .why-sp-online-note { margin-bottom: 0; }
     }
 
     /* ===== WHY SP: タイトル ===== */
+    .why-title-marker {
+      position: relative;
+      display: inline;
+    }
+    .why-title-marker::after {
+      content: '';
+      position: absolute;
+      left: -3px;
+      right: -3px;
+      bottom: 6px;
+      height: 0.32em;
+      background: #FFD600;
+      z-index: 0;
+      transform: rotate(-1.8deg);
+      opacity: 0.75;
+    }
+    .why-title-marker > span {
+      position: relative;
+      z-index: 1;
+    }
     .prescription-sp-title {
-      font-size: clamp(20px, 5.8vw, 26px);
+      font-size: clamp(18px, 5.2vw, 22px);
       font-weight: 700;
       color: #fff;
       line-height: 1.45;
@@ -1872,14 +1993,22 @@
     .why-sp-cards { display: flex; flex-direction: column; gap: 20px; margin-bottom: 20px; }
     .why-sp-card {
       background: #fff;
-      padding: 28px 26px 32px;
-      box-shadow: 0 6px 28px rgba(0,0,0,0.18);
+      padding: 16px 18px 18px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
     }
     .why-num-row {
       display: flex;
       align-items: baseline;
       gap: 6px;
-      margin-bottom: 14px;
+      margin-bottom: 4px;
+    }
+    .why-num-prefix {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--red);
+      line-height: 1;
+      align-self: flex-end;
+      padding-bottom: 12px;
     }
     .why-num {
       font-size: 64px;
@@ -1893,11 +2022,78 @@
       font-weight: 700;
       color: var(--navy);
     }
+    .why-num-prefix {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--red);
+      align-self: flex-end;
+      padding-bottom: 10px;
+      letter-spacing: 0;
+    }
+    .why-card-pillar {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      border-bottom: 2px solid var(--red);
+      display: inline-block;
+      padding-bottom: 3px;
+      margin-bottom: 14px;
+    }
+    .why-check-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .why-check-list li {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      padding-left: 20px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .why-check-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--red);
+      font-weight: 800;
+    }
+    .why-trust-badge {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--red);
+      border: 2px solid var(--red);
+      border-radius: 6px;
+      padding: 8px 14px;
+      line-height: 1.5;
+      margin-bottom: 16px;
+      letter-spacing: 0.04em;
+    }
+    .why-card-sub {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      opacity: 0.65;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .why-num-note {
+      font-size: 10px;
+      color: rgba(13,27,42,0.4);
+      margin-bottom: 10px;
+    }
     .why-num-icon {
-      font-size: 40px;
+      font-size: 36px;
       color: var(--red);
       line-height: 1;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
       display: block;
     }
     .why-num-label {
@@ -1909,26 +2105,28 @@
       border: 1px solid var(--red);
       border-radius: 4px;
       padding: 2px 8px;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
     .why-num-head {
-      font-size: 20px;
+      font-size: 21px;
       font-weight: 700;
       color: var(--navy);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       line-height: 1.45;
     }
     .why-num-desc {
-      font-size: 13px;
-      color: rgba(13,27,42,0.65);
-      line-height: 1.9;
+      font-size: 12px;
+      color: rgba(13,27,42,0.6);
+      line-height: 1.85;
+      margin-top: auto;
+      padding-top: 8px;
     }
     /* PC: 基本スタイルの後に記述しないと上書きされるため、ここにまとめる */
     @media (min-width: 768px) {
-      .prescription-sp-title { font-size: 52px; line-height: 1.2; margin-bottom: 24px; }
+      .prescription-sp-title { font-size: 47px; line-height: 1.2; margin-bottom: 24px; white-space: nowrap; }
       .prescription-sp-intro { font-size: 16px; margin-bottom: 40px; }
-      .why-sp-cards { flex-direction: row; gap: 24px; margin-bottom: 40px; }
-      .why-sp-card { flex: 1; min-height: 300px; }
+      .why-sp-cards { flex-direction: row; gap: 24px; margin-bottom: 40px; align-items: stretch; }
+      .why-sp-card { flex: 1; display: flex; flex-direction: column; }
     }
     /* 旧スタイル（PC側で使用）*/
     .why-sp-badge {
@@ -1977,18 +2175,21 @@
     /* ===== WHY SP: オンラインCTA ===== */
     .why-sp-online {
       background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 14px;
-      padding: 28px 20px;
-      text-align: left;
+      border-radius: 10px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-top: 32px;
     }
     .why-sp-online-badge {
       display: inline-block;
       font-size: 11px;
       font-weight: 700;
-      color: var(--red);
-      letter-spacing: 0.06em;
-      margin-bottom: 12px;
+      color: rgba(13,27,42,0.5);
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
     }
     .why-sp-online-title {
       font-weight: 700;
@@ -2062,16 +2263,24 @@
 
     /* ===== SP: FLOW ===== */
     @media (max-width: 767px) {
-      .flow-grid { grid-template-columns: 1fr; gap: 0; }
+      .flow-points { gap: 8px; margin-bottom: 24px; }
+      .flow-point { font-size: 12px; padding: 7px 12px; }
+      .flow-grid { grid-template-columns: 1fr; gap: 12px; }
       .flow-step {
         display: grid;
-        grid-template-columns: 44px 1fr;
-        grid-template-rows: auto auto auto;
+        grid-template-columns: 48px 1fr;
+        grid-template-rows: auto auto auto auto;
         column-gap: 14px;
         row-gap: 0;
         align-items: center;
-        padding: 20px 4px 0;
+        padding: 16px;
         text-align: left;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      }
+      .flow-step .flow-icon {
+        display: none;
       }
       .flow-step .flow-num {
         grid-column: 1;
@@ -2089,28 +2298,63 @@
         font-size: 16px;
         align-self: center;
       }
-      .flow-step .flow-desc {
+      .flow-step .flow-step-tag {
         grid-column: 1 / -1;
         grid-row: 2;
-        padding-left: 54px;
-        margin-top: 6px;
+        margin: 8px 0 4px;
+        text-align: left;
+      }
+      .flow-step .flow-desc {
+        grid-column: 1 / -1;
+        grid-row: 3;
+        margin-top: 4px;
         font-size: 13px;
+        text-align: left;
       }
       .flow-step:not(:last-child)::after {
         content: '↓';
-        grid-column: 1 / -1;
-        grid-row: 3;
-        display: block;
-        position: static;
-        right: auto;
-        top: auto;
-        font-size: 24px;
-        color: var(--red);
-        margin-top: 16px;
-        font-weight: 900;
-        line-height: 1;
-        padding-left: 8px;
+        display: none;
       }
+      .flow-tl-line { display: none; }
+      .flow-tl-grid { grid-template-columns: 1fr; gap: 12px; }
+      .flow-tl-step {
+        display: grid;
+        grid-template-columns: 48px 1fr;
+        grid-template-rows: auto auto auto;
+        column-gap: 14px; row-gap: 0;
+        align-items: center;
+        padding: 16px; text-align: left;
+        background: #fff; border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      }
+      .flow-tl-icon { display: none; }
+      .flow-tl-num {
+        grid-column: 1; grid-row: 1;
+        width: 40px; height: 40px;
+        font-size: 17px; margin: 0;
+        box-shadow: none; flex-shrink: 0;
+      }
+      .flow-tl-step .flow-title {
+        grid-column: 2; grid-row: 1;
+        margin-bottom: 0; font-size: 16px; align-self: center;
+      }
+      .flow-tl-step .flow-step-tag {
+        grid-column: 1 / -1; grid-row: 2;
+        margin: 8px 0 4px; text-align: left;
+      }
+      .flow-tl-step .flow-desc {
+        grid-column: 1 / -1; grid-row: 3;
+        margin-top: 4px; font-size: 13px; text-align: left;
+      }
+      .flow-arrow-band {
+        clip-path: none; border-radius: 8px;
+        flex-direction: column; gap: 4px;
+        padding: 16px 24px; text-align: center; margin-top: 16px;
+      }
+      .flow-arrow-band-value { font-size: 19px; }
+      .flow-note { text-align: left; }
+      .flow-online-block { margin-top: 36px; padding-top: 32px; }
+      .flow-online-title { font-size: 17px; }
     }
 
     /* ===== SP: STORE SEARCH ===== */
@@ -2136,6 +2380,58 @@
     @media (max-width: 767px) {
       .final-main { font-size: clamp(20px, 5.5vw, 26px); }
       .final-sub { font-size: 14px; }
+    }
+
+    /* ===== SP NAV ===== */
+    .sp-nav {
+      display: none;
+      position: fixed;
+      top: 80px;
+      left: 0; right: 0;
+      background: #fff;
+      z-index: 98;
+      padding: 0 24px 24px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+      border-top: 1px solid #f0f0f0;
+    }
+    .sp-nav--open { display: block; }
+    .sp-nav a:not(.sp-nav-cta) {
+      display: block;
+      padding: 16px 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-decoration: none;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .sp-nav a:first-child { border-top: 1px solid #f0f0f0; }
+    .sp-nav-cta { display: block; width: 100%; box-sizing: border-box; text-align: center; margin-top: 20px; }
+    .sp-nav-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 97;
+      background: rgba(0,0,0,0.3);
+    }
+    .sp-nav-backdrop--open { display: block; }
+
+    /* ===== SP: 商品ラインナップ フィルター ===== */
+    @media (max-width: 767px) {
+      .product-filter-btn { padding: 10px 18px; font-size: 13px; }
+      .product-filter-tabs { margin-bottom: 28px; }
+    }
+
+    /* ===== SP: モーダル追加 ===== */
+    @media (max-width: 767px) {
+      .prod-modal-name { font-size: 20px; }
+      .prod-modal-spec-key { flex: 0 0 88px; }
+      .prod-modal-actions { flex-direction: column; gap: 10px; }
+      .prod-modal-actions .btn { width: 100%; text-align: center; flex: none; min-width: unset; }
+    }
+
+    /* ===== SP: STORE ===== */
+    @media (max-width: 767px) {
+      .store-name { font-size: 21px; }
     }
 
     /* === 商品グリッド === */
@@ -2181,8 +2477,10 @@
     .prod-modal-furigana { display: block; font-size: 14px; font-weight: 400; color: #888; letter-spacing: 0.08em; margin-top: 2px; }
     .pg-img--mirza  { background: linear-gradient(135deg, #0D1B2A 0%, #1a3050 100%); }
     .pg-img--rokid  { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
-    .pg-img--viture { background: linear-gradient(135deg, #1a2a3a 0%, #0d1b2a 100%); color: #7ECFFF; }
+    .pg-img--viture { background: #f2f4f8; }
     .pg-card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
+    .pg-card-store { font-size: 11px; color: #888; line-height: 1.6; margin-bottom: 10px; padding-top: 8px; border-top: 1px solid #eee; margin-top: 10px; }
+    .pg-card-store strong { color: var(--navy); font-weight: 700; }
     .pg-card-btn { margin-top: auto; }
     .pg-card-name  { font-size: 16px; font-weight: 800; margin-bottom: 4px; color: var(--navy); }
     .pg-card-catch { font-size: 11px; color: #666; margin-bottom: 10px; line-height: 1.5; }
@@ -2324,15 +2622,52 @@
     .prod-modal-img-main img { width: 100%; height: 100%; object-fit: contain; object-position: center; padding: 8px; box-sizing: border-box; background: #fff; }
     .prod-modal-img-main img.rb-img { object-fit: contain; object-position: center; padding: 8px; }
     .prod-modal-info-col { flex: 1; min-width: 0; }
-    .prod-modal-name { font-size: 26px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+    .prod-modal-name { font-size: 28px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
     .prod-modal-catch { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 14px; opacity: 0.7; }
     .prod-modal-desc { font-size: 14px; color: #333; line-height: 1.85; margin-bottom: 16px; }
     .prod-modal-tags { display: none; }
-    .prod-modal-store { font-size: 12px; color: #888; line-height: 1.8; margin-bottom: 20px; }
+    .prod-modal-store { font-size: 14px; color: #333; font-weight: 600; line-height: 1.9; margin-bottom: 8px; }
+    .prod-modal-store-link { display: inline-block; font-size: 12px; color: var(--blue); text-decoration: none; margin-bottom: 20px; }
+    .prod-modal-store-link:hover { text-decoration: underline; }
+    .store-name-link { color: var(--blue); cursor: pointer; text-decoration: underline; text-underline-offset: 2px; font-weight: 700; }
+    .store-name-link:hover { opacity: 0.75; }
+    .prod-modal-ec-block { display: flex; align-items: center; gap: 14px; background: #F0F5FA; border: 1px solid #C5D9EA; border-radius: 10px; padding: 14px 18px; margin-bottom: 16px; }
+    .prod-modal-ec-block-icon { font-size: 22px; flex-shrink: 0; }
+    .prod-modal-ec-block-body { flex: 1; min-width: 0; }
+    .prod-modal-ec-block-label { font-size: 11px; font-weight: 700; color: var(--blue); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
+    .prod-modal-ec-block-text { font-size: 13px; color: #333; line-height: 1.6; }
+    .prod-modal-ec-block-btn { flex-shrink: 0; display: inline-block; padding: 8px 16px; background: var(--blue); color: #fff; border-radius: 6px; font-size: 13px; font-weight: 700; text-decoration: none; white-space: nowrap; transition: opacity 0.2s; }
+    .prod-modal-ec-block-btn:hover { opacity: 0.85; }
+    @media (max-width: 767px) {
+      .prod-modal-store { font-size: 13px; }
+      .prod-modal-ec-block { flex-wrap: wrap; gap: 10px; padding: 12px 14px; }
+      .prod-modal-ec-block-icon { display: none; }
+      .prod-modal-ec-block-body { width: 100%; }
+      .prod-modal-ec-block-btn { width: 100%; text-align: center; padding: 10px; }
+    }
     .prod-modal-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-    .prod-modal-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; border-left: 3px solid var(--navy); padding: 8px 16px; margin-bottom: 16px; }
-    .prod-modal-spec-label { font-size: 10px; color: #999; margin-bottom: 2px; }
-    .prod-modal-spec-value { font-size: 14px; font-weight: 700; color: var(--navy); }
+    /* モーダル 本体/レンズ タブ */
+    .modal-content-tabs { display: flex; border-radius: 10px; overflow: hidden; border: 1px solid #d0d0d0; margin-bottom: 20px; flex-shrink: 0; }
+    .modal-content-tab { flex: 1; padding: 8px 10px; font-size: 12px; font-weight: 700; background: #fff; border: none; cursor: pointer; color: var(--navy); font-family: inherit; transition: background 0.15s, color 0.15s; text-align: center; }
+    .modal-content-tab.active { background: var(--navy); color: #fff; }
+    .modal-content-tab:hover:not(.active) { background: #f0f0f0; }
+    /* レンズタブ内容 */
+    .modal-lens-intro { font-size: 13px; color: #555; line-height: 1.8; margin-bottom: 20px; }
+    .modal-lens-block { margin-bottom: 20px; }
+    .modal-lens-block-ttl { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid #e0e0e0; }
+    .modal-lens-tbd { font-size: 13px; color: #aaa; padding: 12px; background: #f9f9f9; border-radius: 6px; text-align: center; }
+    .modal-lens-notes { padding-left: 16px; }
+    .modal-lens-notes li { font-size: 13px; color: #444; line-height: 1.8; }
+    .modal-lens-meta { font-size: 13px; color: #333; line-height: 1.7; }
+    .prod-modal-spec-table { border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+    .prod-modal-spec-row { display: flex; border-bottom: 1px solid #e8e8e8; }
+    .prod-modal-spec-row:last-of-type { border-bottom: none; }
+    .prod-modal-spec-key { flex: 0 0 110px; background: #f5f5f5; font-size: 12px; font-weight: 700; color: var(--navy); padding: 9px 12px; border-right: 1px solid #e0e0e0; display: flex; align-items: center; line-height: 1.4; }
+    .prod-modal-spec-val { flex: 1; font-size: 13px; color: #333; padding: 9px 14px; line-height: 1.5; display: flex; align-items: center; }
+    .spec-more-btn { width: 100%; background: #f7f7f7; border: none; border-top: 1px solid #e0e0e0; padding: 9px 16px; font-size: 12px; font-weight: 700; color: var(--navy); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; font-family: inherit; transition: background 0.15s; }
+    .spec-more-btn:hover { background: #efefef; }
+    .spec-more-btn .spec-more-arrow { display: inline-block; transition: transform 0.2s; }
+    .spec-more-btn.is-open .spec-more-arrow { transform: rotate(180deg); }
     .prod-modal-recommend { margin-bottom: 20px; background: #F8F8F8; border-radius: 8px; padding: 12px 16px; }
     .prod-modal-recommend-title { font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
     .prod-modal-recommend-list { list-style: none; padding: 0; margin: 0; }
@@ -2419,12 +2754,19 @@
       <div class="header-cta">
         <a href="#search" class="btn btn-red">店舗予約する</a>
       </div>
-      <button class="header-menu-btn" aria-label="メニュー" onclick="this.classList.toggle('open')">
+      <button class="header-menu-btn" aria-label="メニュー" onclick="toggleSpNav()">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 </header>
+
+<nav id="sp-nav" class="sp-nav" aria-hidden="true">
+  <a href="#products" onclick="closeSpNav()">商品一覧</a>
+  <a href="#search" onclick="closeSpNav()">店舗検索</a>
+  <a href="#search" class="btn btn-red sp-nav-cta" onclick="closeSpNav()">店舗予約する</a>
+</nav>
+<div id="sp-nav-backdrop" class="sp-nav-backdrop" onclick="closeSpNav()"></div>
 
 <!-- 01 FV -->
 <section id="fv">
@@ -2454,13 +2796,15 @@
           <span class="brand-sep"></span>
           <span class="brand-tag">Even Realities</span>
           <span class="brand-sep"></span>
-          <span class="brand-tag brand-tag--img"><img src="images/rayban/logo_white.png" alt="Ray-Ban Meta"></span>
+          <span class="brand-tag">Ray-Ban × Meta</span>
+          <span class="brand-sep"></span>
+          <span class="brand-tag">VITURE</span>
         </div>
       </div>
       <!-- SP専用ブランドティッカー -->
       <div class="fv-brand-ticker">
         <p class="fv-brand-ticker-label">取り扱いブランド</p>
-        <p class="fv-brand-ticker-name" id="fv-ticker-name">Ray-Ban Meta</p>
+        <p class="fv-brand-ticker-name" id="fv-ticker-name">Ray-Ban × Meta</p>
       </div>
       <!-- SP専用CTAボタン -->
       <div class="fv-sp-cta">
@@ -2642,62 +2986,60 @@
 
     <!-- ▼ SP LAYOUT ▼ -->
     <div class="prescription-sp">
-      <h2 class="prescription-sp-title">度付きスマートグラスなら、<br><span style="color:var(--red);">アイメガネ</span><span style="font-size:0.55em;font-weight:600;vertical-align:middle;"> or </span>アイジャパンオンラインで。</h2>
+      <h2 class="prescription-sp-title">アイメガネが選ばれる<span class="why-title-marker"><span>３つの理由</span></span></h2>
 
       <div class="prescription-sp-intro">
-        <p>スマートグラスを快適に使うためには機能だけでなく「見え方」も重要です。体験・購入からレンズ交換までアイメガネがトータルでサポートします。</p>
+        <p>関東を中心に38店舗。全国からオンライン注文にも対応。</p>
       </div>
 
       <div class="why-sp-cards">
 
-        <!-- カード①：国家資格者60名 -->
+        <!-- カード①：技術 -->
         <div class="why-sp-card">
+          <p class="why-card-pillar">技術</p>
           <div class="why-num-row">
             <span class="why-num">60</span>
             <span class="why-num-unit">名</span>
           </div>
-          <p class="why-num-head">全店に国家資格<br><span style="font-size:26px;color:var(--red);">眼鏡作製技能士</span> が在籍</p>
-          <p class="why-num-desc">スマートグラスの度付き加工には、通常の眼鏡以上の精密さが求められます。アイメガネは全店舗に国家資格者を配置。お客様の視力・用途に合わせた最適なレンズを提案します。</p>
+          <p class="why-num-note">※2026年6月現在</p>
+          <p class="why-num-head">国家資格<strong style="color:var(--red);">眼鏡作製技能士</strong>が在籍</p>
         </div>
 
-        <!-- カード②：インサートレンズ実績（仮） -->
+        <!-- カード②：実績 -->
         <div class="why-sp-card">
+          <p class="why-card-pillar">実績</p>
           <div class="why-num-row">
-            <span class="why-num">○</span>
-            <span class="why-num-unit">年目</span>
+            <span class="why-num-prefix">約</span><span class="why-num">6</span><span class="why-num-unit">年目</span>
           </div>
-          <p class="why-num-label">※確認中</p>
-          <p class="why-num-head">スマートグラス向けインサートレンズの取扱実績</p>
-          <p class="why-num-desc">スマートグラスの黎明期からインサートレンズに取り組んできたパイオニア。機種ごとのレンズ特性・加工ノウハウを蓄積しており、確実な仕上がりをお約束します。</p>
+          <p class="why-num-note">※スマートグラス対応実績</p>
+          <p class="why-num-head">スマートグラス対応の<strong>パイオニア</strong></p>
         </div>
 
-        <!-- カード③：メーカー公認（仮） -->
+        <!-- カード③：信頼 -->
         <div class="why-sp-card">
-          <span class="why-num-icon">🏅</span>
-          <p class="why-num-label">※メーカー名確認中</p>
-          <p class="why-num-head">メーカーから直接依頼される技術力</p>
-          <p class="why-num-desc">一部スマートグラスメーカーより、インサートレンズ製作を直接依頼される数少ない眼鏡チェーンです。業界最前線で培った技術と信頼の証です。</p>
+          <p class="why-card-pillar">信頼</p>
+          <p class="why-num-head" style="font-size:21px;margin-bottom:16px;">法人・メーカーにも<br>選ばれる品質</p>
+          <ul class="why-check-list">
+            <li>メーカー・企業案件の加工に対応</li>
+            <li>法人パートナーとして活用を支援</li>
+            <li>スマートグラス専門部署を設置</li>
+          </ul>
         </div>
 
       </div>
 
       <!-- オンラインCTA -->
       <div class="why-sp-online">
-        <div class="why-sp-online-text">
-          <span class="why-sp-online-badge">すでに本体をお持ちの方へ</span>
-          <p class="why-sp-online-title">
-            <span class="why-online-line1">本体があれば、</span>
-            <span class="why-online-line2">レンズ交換だけでOK。</span>
-          </p>
-          <p class="why-sp-online-desc">スマートグラス本体を郵送するだけで、度付きレンズに加工してお届けします。来店不要で、視力補正も解決。（MIRZA・Rokid対応）</p>
-          <p class="why-sp-online-note">※オンラインでは本体の新規販売は行っておりません。</p>
+        <div style="flex:1;min-width:0;">
+          <span class="why-sp-online-badge" style="color:rgba(255,255,255,0.5);">すでに本体をお持ちの方へ</span>
+          <p class="why-sp-online-text" style="font-size:24px;font-weight:800;color:#fff;margin:4px 0 6px;line-height:1.25;">来店不要。全国どこからでも注文できます。</p>
+          <p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.5;margin:0 0 2px;">(MIRZA・Rokid対応）本体を送るだけで、度付きレンズに交換してお届け。</p>
+          <p style="font-size:11px;color:rgba(255,255,255,0.35);margin:0;">※オンラインでは本体の新規販売は行っておりません。</p>
         </div>
-        <div class="why-sp-online-action">
-          <a href="https://www.aijapan-online.com/" target="_blank" class="btn-why-online">
-            <img src="logo_aijapanonline02.png" alt="アイメガネオンライン" style="height:26px;width:auto;display:block;">
-            <span style="font-size:13px;font-weight:700;color:var(--navy);letter-spacing:0.04em;">オンラインで注文する →</span>
-          </a>
-        </div>
+        <a href="https://www.aijapan-online.com/" target="_blank" class="btn-why-online" style="flex-shrink:0;display:flex;flex-direction:row;align-items:center;gap:10px;background:transparent;border:1.5px solid rgba(255,255,255,0.5);border-radius:8px;padding:10px 18px;text-decoration:none;">
+          <img src="logo_aijapanonline02.png" alt="アイメガネオンライン" style="height:22px;width:auto;display:block;filter:brightness(0) invert(1);">
+          <span style="font-size:14px;font-weight:800;color:#fff;letter-spacing:0.05em;white-space:nowrap;">オンライン注文 ▶</span>
+        </a>
       </div>
     </div><!-- /prescription-sp -->
 
@@ -2718,7 +3060,7 @@
       <!-- MIRZA -->
       <div class="pg-card" data-product="mirza" data-ptype="all">
         <div class="pg-card-img" id="mirza-card-img">
-          <img src="MiRZA_kirinuki_1611_0616-2-1.jpg" alt="MiRZA XRグラス" id="mirza-img">
+          <img src="mirza/MiRZA_kirinuki_1611_0616-1.jpg" alt="MiRZA XRグラス" id="mirza-img">
         </div>
         <div class="pg-card-body">
           <h3 class="pg-card-name">MiRZA<sup>®</sup><span class="pg-furigana">ミルザ</span></h3>
@@ -2730,6 +3072,7 @@
               <span class="pg-scene-tag">法人利用</span>
             </div>
           </div>
+          <p class="pg-card-store">本体取扱：<strong>南浦和店</strong>　レンズ交換：<strong>全37店舗</strong></p>
           <button class="pg-card-btn">詳しく見る →</button>
         </div>
       </div>
@@ -2741,7 +3084,6 @@
         </div>
         <div class="pg-card-body">
           <h3 class="pg-card-name">Rokid スマートAIグラス</h3>
-          <p class="pg-card-catch">お手持ちの本体に、度付きレンズを。</p>
           <div class="pg-card-scenes">
             <span class="pg-scene-label">こんなシーンに</span>
             <div class="pg-scene-tags">
@@ -2749,6 +3091,7 @@
               <span class="pg-scene-tag">観光</span>
             </div>
           </div>
+          <p class="pg-card-store">レンズ交換：<strong>全37店舗 / オンライン対応</strong></p>
           <button class="pg-card-btn">詳しく見る →</button>
         </div>
       </div>
@@ -2760,7 +3103,10 @@
         </div>
         <div class="pg-card-body">
           <h3 class="pg-card-name">Even Realities G2</h3>
-          <p class="pg-card-catch">見た目は普通のメガネ。視界に情報が流れる。</p>
+          <div class="pg-card-variant-badges">
+            <span class="pg-variant-badge pg-variant-badge--active" onclick="event.stopPropagation();switchEvenCardFrame('A',this)">スリムライン</span>
+            <span class="pg-variant-badge" onclick="event.stopPropagation();switchEvenCardFrame('B',this)">ウェリントン</span>
+          </div>
           <div class="pg-card-swatches">
             <span class="pg-swatch pg-swatch--active" style="background:#888;" onclick="event.stopPropagation();switchEvenImg('grey',this)" title="グレー"></span>
             <span class="pg-swatch" style="background:#5C7A5A;" onclick="event.stopPropagation();switchEvenImg('green',this)" title="グリーン"></span>
@@ -2774,6 +3120,7 @@
               <span class="pg-scene-tag">観光</span>
             </div>
           </div>
+          <p class="pg-card-store">本体・レンズ取扱：<strong>南浦和店・宇都宮錦店・八千代店</strong></p>
           <button class="pg-card-btn">詳しく見る →</button>
         </div>
       </div>
@@ -2797,24 +3144,29 @@
               <span class="pg-scene-tag">ファッション</span>
             </div>
           </div>
+          <p class="pg-card-store">本体取扱：<strong>南浦和店</strong>　レンズ交換：<strong>全37店舗</strong></p>
           <button class="pg-card-btn">詳しく見る →</button>
         </div>
       </div>
 
-      <!-- VITURE One XR -->
+      <!-- VITURE Luma / Luma Ultra -->
       <div class="pg-card" data-product="viture" data-ptype="all">
-        <div class="pg-card-img pg-img--viture">VITURE</div>
+        <div class="pg-card-img pg-img--viture"><img src="viture/luma/01.avif" alt="VITURE Luma" id="viture-card-img" style="width:100%;height:100%;object-fit:contain;padding:12px;box-sizing:border-box;"></div>
         <div class="pg-card-body">
-          <h3 class="pg-card-name">VITURE One XR</h3>
-          <p class="pg-card-catch">100インチの映像を、どこでも持ち運ぶ。</p>
+          <h3 class="pg-card-name">VITURE</h3>
+          <div class="pg-card-variant-badges">
+            <span class="pg-variant-badge pg-variant-badge--active" onclick="event.stopPropagation();switchVitureCardModel('luma',this)">Luma</span>
+            <span class="pg-variant-badge" onclick="event.stopPropagation();switchVitureCardModel('ultra',this)">Luma Ultra</span>
+          </div>
           <div class="pg-card-scenes">
             <span class="pg-scene-label">こんなシーンに</span>
-            <div class="pg-scene-tags">
+            <div class="pg-scene-tags" id="viture-card-scenes">
               <span class="pg-scene-tag">ゲーム</span>
               <span class="pg-scene-tag">映画</span>
               <span class="pg-scene-tag">エンタメ</span>
             </div>
           </div>
+          <p class="pg-card-store">本体・レンズ取扱：<strong>南浦和店</strong></p>
           <button class="pg-card-btn">詳しく見る →</button>
         </div>
       </div>
@@ -2827,32 +3179,83 @@
 
 <!-- 06 料金・納期 -->
 
-<!-- 07 購入までの流れ -->
+<!-- 07 購入・レンズ交換の流れ -->
 <section id="flow" class="section">
   <div class="container">
-    <h2 class="section-title center">度付きレンズ交換の流れ</h2>
-    <p style="text-align:center;font-size:15px;color:var(--text-secondary);margin-top:-24px;margin-bottom:28px;">お持ちの本体でも、これから購入でもOK。来店からお渡しまで、シンプルな4ステップ。</p>
-    <div class="flow-grid">
-      <div class="flow-step">
-        <div class="flow-num">1</div>
-        <p class="flow-title">来店・ご相談</p>
-        <p class="flow-desc">機種と希望の見え方をお聞かせください。実機体験も可能です。</p>
+    <p class="section-label" style="text-align:center;">FLOW</p>
+    <h2 class="section-title center">来店時 商品購入の流れ</h2>
+    <p style="text-align:center;font-size:15px;color:var(--text-secondary);margin-top:-24px;margin-bottom:28px;">本体購入・度付きレンズ交換、どちらにも対応。シンプルな4ステップです。</p>
+
+    <!-- 来店フロー -->
+    <div class="flow-tl-wrap">
+      <div class="flow-tl-line" aria-hidden="true"></div>
+      <div class="flow-tl-grid">
+        <div class="flow-tl-step">
+          <div class="flow-tl-icon"><img src="flow-icon-store.svg" alt="ご来店"></div>
+          <div class="flow-tl-num">1</div>
+          <p class="flow-title">ご来店</p>
+          <p class="flow-step-tag">予約推奨・当日のご相談もOK</p>
+          <p class="flow-desc">実機体験・商品選びからレンズのご相談まで。スタッフが丁寧にご案内します。</p>
+        </div>
+        <div class="flow-tl-step">
+          <div class="flow-tl-icon"><img src="flow-icon-eye.svg" alt="測定"></div>
+          <div class="flow-tl-num">2</div>
+          <p class="flow-title">測定</p>
+          <p class="flow-step-tag">眼鏡作製技能士が担当</p>
+          <p class="flow-desc">眼鏡作製技能士が度数を精密に測定。お客様の見え方に合わせた度数を確認します。</p>
+        </div>
+        <div class="flow-tl-step">
+          <div class="flow-tl-icon"><img src="flow-icon-glasses.svg" alt="レンズ加工"></div>
+          <div class="flow-tl-num">3</div>
+          <p class="flow-title">レンズ加工</p>
+          <p class="flow-step-tag">機種別の専用レンズを使用</p>
+          <p class="flow-desc">機種に合わせたインサートレンズ・交換レンズを熟練スタッフが加工します。</p>
+        </div>
+        <div class="flow-tl-step">
+          <div class="flow-tl-icon"><img src="flow-icon-gift.svg" alt="お渡し"></div>
+          <div class="flow-tl-num">4</div>
+          <p class="flow-title">お渡し</p>
+          <p class="flow-step-tag">見え方確認まで丁寧に対応</p>
+          <p class="flow-desc">見え方・かけ心地を確認してお渡し。そのままクリアな視界でお使いいただけます。</p>
+        </div>
       </div>
-      <div class="flow-step">
-        <div class="flow-num">2</div>
-        <p class="flow-title">検眼・度数確認</p>
-        <p class="flow-desc">プロの検眼で度数を測定。最適なレンズをご提案します。</p>
+    </div>
+
+    <div class="flow-arrow-band">
+      <span class="flow-arrow-band-label">ご来店〜お渡しまでの目安</span>
+      <span class="flow-arrow-band-value">約 1〜2週間</span>
+    </div>
+    <p class="flow-note">※ レンズの種類・コーティングによっては2〜3週間かかる場合があります。完成次第ご連絡いたします。<br>※ 遠方のお客様は郵送でのお受け取りもご相談ください（別途送料）。</p>
+
+    <!-- オンライン購入フロー -->
+    <div class="flow-online-block">
+      <div class="flow-online-head">
+        <h3 class="flow-online-title">オンライン購入の流れ</h3>
+        <p class="flow-online-sub">ブランド公式ECなどで本体をご購入後、アイメガネでレンズ交換が可能です。</p>
       </div>
-      <div class="flow-step">
-        <div class="flow-num">3</div>
-        <p class="flow-title">レンズ加工</p>
-        <p class="flow-desc">機種に合わせてインサート／交換レンズを加工します。</p>
+      <div class="flow-grid">
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <p class="flow-title">ECで本体購入</p>
+          <p class="flow-desc">各ブランド公式サイト・Amazon等でスマートグラス本体をご購入ください。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <p class="flow-title">アイメガネへご連絡</p>
+          <p class="flow-desc">本体が届いたら、お近くの対応店舗へご予約・ご相談のご連絡を。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <p class="flow-title">測定・レンズ加工</p>
+          <p class="flow-desc">ご来店の上で度数測定・レンズ選定・加工を行います。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">4</div>
+          <p class="flow-title">お渡し・配送</p>
+          <p class="flow-desc">店頭でのお渡し、またはご自宅への郵送もご相談ください（別途送料）。</p>
+        </div>
       </div>
-      <div class="flow-step">
-        <div class="flow-num">4</div>
-        <p class="flow-title">装着・お渡し</p>
-        <p class="flow-desc">かけ心地と見え方を確認してお渡し。すぐにクリアな視界へ。</p>
-      </div>
+      <p class="flow-note">※ オンラインで本体を購入される場合も、レンズ交換はご来店（または本体のご郵送）が必要です。</p>
     </div>
   </div>
 </section>
@@ -2872,7 +3275,7 @@
             <option value="Rokid">Rokid</option>
             <option value="Even Realities">Even Realities</option>
             <option value="Ray-Ban Meta">Ray-Ban × Meta</option>
-            <option value="Viture">VITURE</option>
+            <option value="Viture">VITURE Luma シリーズ</option>
           </select>
         </div>
         <div class="search-form-row">
@@ -2906,7 +3309,7 @@
       <p class="search-result-note">※表示される距離は直線距離です。実際の道のりとは異なる場合があります。</p>
 
       <div id="store-results-inner"></div>
-      <div class="more-wrap">
+      <div class="more-wrap" id="more-wrap">
         <button class="btn-more">もっと見る ∨</button>
       </div>
     </div>
@@ -3066,10 +3469,34 @@
     el.classList.add('active');
   }
 
+  function modalMirzaThumb(el, src) {
+    document.getElementById('modal-mirza-img').src = src;
+    document.querySelectorAll('#modal-mirza-thumbs .modal-img-thumb').forEach(function(t){ t.classList.remove('active'); });
+    el.classList.add('active');
+  }
+
+  let _evenCardFrame = 'A';
+  function switchEvenCardFrame(frame, el) {
+    _evenCardFrame = frame;
+    document.querySelectorAll('.pg-card[data-product="even"] .pg-variant-badge').forEach(function(b){ b.classList.remove('pg-variant-badge--active'); });
+    el.classList.add('pg-variant-badge--active');
+    var firstColor = frame === 'A' ? 'grey' : 'grey-b';
+    document.getElementById('even-img').src = 'images/even-g2/' + firstColor + '.png';
+    document.querySelectorAll('.pg-card[data-product="even"] .pg-swatch').forEach(function(s, i){ s.classList.toggle('pg-swatch--active', i === 0); });
+  }
   function switchEvenImg(color, el) {
-    document.getElementById('even-img').src = 'images/even-g2/' + color + '.png';
+    var suffix = _evenCardFrame === 'A' ? color : color + '-b';
+    document.getElementById('even-img').src = 'images/even-g2/' + suffix + '.png';
     document.querySelectorAll('.pg-card[data-product="even"] .pg-swatch').forEach(function(s){ s.classList.remove('pg-swatch--active'); });
     el.classList.add('pg-swatch--active');
+  }
+
+  function switchVitureCardModel(model, el) {
+    document.getElementById('viture-card-img').src = 'viture/' + model + '/01.avif';
+    document.querySelectorAll('.pg-card[data-product="viture"] .pg-variant-badge').forEach(function(b){ b.classList.remove('pg-variant-badge--active'); });
+    el.classList.add('pg-variant-badge--active');
+    var scenes = VITURE_MODELS[model].scenes;
+    document.getElementById('viture-card-scenes').innerHTML = scenes.map(function(s){ return '<span class="pg-scene-tag">' + s + '</span>'; }).join('');
   }
 
   function switchRaybanImg(model, el) {
@@ -3078,6 +3505,94 @@
     img.alt = 'Ray-Ban Meta ' + (model === 'wayfarer' ? 'メガネ' : 'サングラス');
     document.querySelectorAll('.pg-card[data-product="rayban"] .pg-variant-badge').forEach(function(b){ b.classList.remove('pg-variant-badge--active'); });
     el.classList.add('pg-variant-badge--active');
+  }
+
+  // VITURE 2モデルデータ
+  const VITURE_MODELS = {
+    luma: {
+      label: 'Luma XR',
+      subLabel: 'スタンダードモデル',
+      name: 'VITURE Luma XRグラス',
+      catch: '大画面エンタメグラス・映画・ゲーム向け',
+      desc: 'Micro OLED 1200p・146インチ相当の大画面で映画やゲームを楽しめるXRグラス。電子調光フィルムで外光を99.5%カット。2D映像をリアルタイムで3D変換する「Immersive 3D」機能を搭載。近視補正は業界トップクラスの−6.0Dまで対応。USB-C接続で多種デバイスに対応します。',
+      specs: [
+        { label: '近視調整範囲', value: '0D〜-6.0D' },
+        { label: '最大輝度', value: '1000ニト' },
+        { label: '視野角（FOV）', value: '50°' },
+        { label: '解像度', value: '最大1200p' },
+        { label: 'IPD', value: '56-72mm' },
+        { label: '音響システム', value: 'AAC System' },
+        { label: '接続方式', value: 'USB-Cコネクタ接続' },
+        { label: '光透過率', value: '0.5または40%' },
+      ],
+      recommend: ['映画・ゲームを大画面で楽しみたい人', 'Nintendo Switchなど携帯ゲーム機を使っている人', 'テレビなしで大画面を実現したい人', '強めの近視（−6.0Dまで）の方'],
+      imgBg: 'linear-gradient(135deg,#1a2a3a,#0d1b2a)',
+      imgColor: '#7ECFFF',
+      imgText: 'Luma',
+      scenes: ['ゲーム', '映画', 'エンタメ'],
+      images: ['viture/luma/01.avif', 'viture/luma/02.avif'],
+    },
+    ultra: {
+      label: 'Luma Ultra XR/AR',
+      subLabel: 'フラグシップモデル',
+      name: 'VITURE Luma Ultra XR/ARグラス',
+      catch: 'XR・AR両対応のフラグシップモデル',
+      desc: 'ソニー製最新Micro OLEDを採用した1,500ニトの高輝度モデル。6DoFの空間コンピューティングとAR機能を備え、フロントRGBカメラ＋デュアル深度カメラで本格的なAR体験を実現。HARMAN製オーディオ搭載、ハンドジェスチャー操作にも対応します。',
+      specs: [
+        { label: '近視調整範囲', value: '0D〜-4.0D' },
+        { label: '最大輝度', value: '1500ニト' },
+        { label: '視野角（FOV）', value: '52°' },
+        { label: '解像度', value: '最大1200p' },
+        { label: 'IPD', value: '58-70mm' },
+        { label: '音響システム', value: 'HARMAN AudioEFX' },
+        { label: '接続方式', value: 'マグネット式ポゴピン' },
+        { label: '光透過率', value: '0.5または40%' },
+      ],
+      recommend: ['本格的なAR体験をしたい人', '空間コンピューティングに興味がある人', '映画・ゲーム・ビジネスを1台でこなしたい人', '最高スペックにこだわりたい人'],
+      imgBg: 'linear-gradient(135deg,#0d1b2a,#1a3a5c)',
+      imgColor: '#A0E0FF',
+      imgText: 'Luma Ultra',
+      scenes: ['ビジネス', 'AR', 'ゲーム', '映画'],
+      images: ['viture/ultra/01.avif', 'viture/ultra/02.avif', 'viture/ultra/03.avif'],
+    },
+  };
+
+  function vitureThumb(el, src) {
+    document.querySelectorAll('#viture-thumbs .modal-img-thumb').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    const imgEl = document.getElementById('viture-img');
+    if (imgEl) imgEl.src = src;
+  }
+
+  function modalVitureModel(model, btn) {
+    document.querySelectorAll('#viture-model-tabs .modal-frame-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const vm = VITURE_MODELS[model];
+    const imgEl = document.getElementById('viture-img');
+    if (imgEl) {
+      imgEl.src = vm.images[0];
+      imgEl.alt = vm.name;
+    }
+    const thumbsEl = document.getElementById('viture-thumbs');
+    if (thumbsEl) {
+      thumbsEl.innerHTML = vm.images.map((src, i) =>
+        `<img class="modal-img-thumb${i===0?' active':''}" src="${src}" alt="${vm.label} ${i+1}" onclick="vitureThumb(this,'${src}')">`
+      ).join('');
+    }
+    const nameEl = document.getElementById('viture-modal-name');
+    if (nameEl) nameEl.textContent = vm.name;
+    const catchEl = document.getElementById('viture-modal-catch');
+    if (catchEl) catchEl.textContent = vm.catch;
+    const descEl = document.getElementById('viture-modal-desc');
+    if (descEl) descEl.textContent = vm.desc;
+    const specsEl = document.getElementById('viture-modal-specs');
+    if (specsEl && specsEl.parentNode) {
+      const temp = document.createElement('div');
+      temp.innerHTML = buildSpecTableHTML(vm.specs, 'viture-modal-specs');
+      specsEl.parentNode.replaceChild(temp.firstChild, specsEl);
+    }
+    const recEl = document.getElementById('viture-modal-recommend-list');
+    if (recEl) recEl.innerHTML = vm.recommend.map(r => `<li>${r}</li>`).join('');
   }
 
   // 本体をアイメガネで取り扱わないブランド（レンズ交換のみ）
@@ -3236,7 +3751,10 @@
         </div>
         <div class="store-info-nearest">
           <p class="store-nearest-label">お客様に最も近い店舗</p>
-          <p class="store-name">${nearest.name}</p>
+          <div class="store-name-row">
+            <p class="store-name">${nearest.name}</p>
+            <a href="${nearest.url}" target="_blank" class="btn-store-hp">店舗HPへ →</a>
+          </div>
           <div class="store-tags">${tags}</div>
           ${distLabel}
           <div class="store-actions">
@@ -3258,8 +3776,7 @@
         </div>
       </div>`).join('');
     return nearestHTML +
-      '<p class="store-other-heading" style="margin-top:24px;">その他の対応店舗</p>' +
-      '<div class="store-other-grid">' + othersHTML + '</div>';
+      (othersHTML ? '<p class="store-other-heading" style="margin-top:24px;">その他の対応店舗</p><div class="store-other-grid">' + othersHTML + '</div>' : '');
   }
 
   function showResultsByCoords(lat, lon, label) {
@@ -3280,7 +3797,9 @@
       .map(s => Object.assign({}, s, { dist: haversine(lat, lon, s.lat, s.lon) }))
       .sort((a, b) => a.dist - b.dist);
     document.getElementById('result-label').textContent = label + ' から近い順';
-    document.getElementById('store-results-inner').innerHTML = renderResults(sorted[0], sorted.slice(1, 5), brand);
+    const others = sorted.slice(1, 5);
+    document.getElementById('store-results-inner').innerHTML = renderResults(sorted[0], others, brand);
+    document.getElementById('more-wrap').style.display = others.length ? 'block' : 'none';
     const results = document.getElementById('search-results');
     results.style.display = 'block';
     setTimeout(() => results.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
@@ -3356,6 +3875,12 @@
   document.getElementById('zip1').addEventListener('input', function () {
     if (this.value.length === 3) document.getElementById('zip2').focus();
   });
+  document.getElementById('zip1').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+  document.getElementById('zip2').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
 
   function updateSearchBtns() {
     const productOk = document.getElementById('product-select').value !== '';
@@ -3371,6 +3896,25 @@
   function toggleModalAccordion(btn) {
     btn.classList.toggle('is-open');
     btn.nextElementSibling.classList.toggle('is-open');
+  }
+
+  function buildSpecTableHTML(specs, id) {
+    if (!specs || !specs.length) return '';
+    const makeRow = function(s) {
+      return '<div class="prod-modal-spec-row"><div class="prod-modal-spec-key">' + s.label + '</div><div class="prod-modal-spec-val">' + s.value + '</div></div>';
+    };
+    const visible = specs.slice(0, 2).map(makeRow).join('');
+    const hidden = specs.slice(2);
+    const hiddenHTML = hidden.length ? '<div class="spec-more-body" style="display:none;">' + hidden.map(makeRow).join('') + '</div><button class="spec-more-btn" onclick="toggleSpecMore(this)"><span class="spec-label-txt">スペックをさらに見る</span> <span class="spec-more-arrow">▼</span></button>' : '';
+    return '<div class="prod-modal-spec-table"' + (id ? ' id="' + id + '"' : '') + '>' + visible + hiddenHTML + '</div>';
+  }
+
+  function toggleSpecMore(btn) {
+    const body = btn.previousElementSibling;
+    if (!body || !body.classList.contains('spec-more-body')) return;
+    const isOpen = btn.classList.toggle('is-open');
+    body.style.display = isOpen ? 'block' : 'none';
+    btn.querySelector('.spec-label-txt').textContent = isOpen ? 'スペックを閉じる' : 'スペックをさらに見る';
   }
 
   // 商品ラインナップ フィルター
@@ -3416,13 +3960,54 @@
   const PD = {
     mirza: {
       name: 'MiRZA<sup>®</sup><span class="prod-modal-furigana">ミルザ</span>',
-      catch: '本格XRグラス・日本製 / NTT系',
-      desc: 'Snapdragon AR2搭載の本格XRグラス。高輝度ディスプレイに140言語超のリアルタイム翻訳・字幕機能を搭載。',
+      catch: '本格XRグラス',
+      desc: 'Snapdragon AR2搭載の本格XRグラス。軽量設計・無線接続・6DoF対応。',
       tags: ['プロ・法人向け', 'XR・空間活用'],
-      recommend: ['業務・法人でスマートグラスを活用したい人', '本格的なXR体験を求める人', '日本製・国内サポートにこだわりたい人', '高精度な翻訳・字幕機能が必要な人'],
-      store: '本体取扱：<strong>南浦和店</strong>　レンズ交換：<strong>全37店舗</strong>',
+      specs: [
+        { label: '重量', value: '約125g' },
+        { label: 'チップセット', value: 'Snapdragon® AR2 Gen1' },
+        { label: '解像度', value: 'FHD（1920×1080）' },
+        { label: '視野角', value: '45°（対角）' },
+        { label: '輝度', value: '約1,000nits' },
+        { label: '連続使用時間', value: '1〜1.5時間' },
+        { label: '接続方式', value: 'Bluetooth 5.0、Wi-Fi 6E' },
+        { label: 'カメラ', value: '正面RGBカメラ×1、側面モノクロカメラ×2' },
+      ],
+      recommend: ['業務・法人でスマートグラスを活用したい人', '本格的なXR体験を求める人', '日本製・国内サポートにこだわりたい人', '空間コンピューティングを体験したい人'],
+      store: '本体取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span></strong>　レンズ交換：<strong>全37店舗</strong>',
       searchBrand: 'MIRZA',
       gallery: 'mirza',
+      hasLens: true,
+      lensHTML: `
+        <p class="modal-lens-intro">MiRZA専用の視力補正度付きインサートレンズです。メガネ装用者がMiRZAをより快適に使用できるよう設計されています。ご使用には<strong>インサートレンズ用フレーム（別途購入）</strong>が必要です。</p>
+        <div class="modal-lens-block">
+          <p class="modal-lens-block-ttl">レンズ仕様</p>
+          <p class="modal-lens-meta">プラスチック単焦点　薄型非球面レンズ</p>
+        </div>
+        <div class="modal-lens-block">
+          <p class="modal-lens-block-ttl">必要な処方情報</p>
+          <p class="modal-lens-meta">SPH（球面度数）・CYL（乱視度数）・AXIS（乱視軸度）・PD（瞳孔間距離）</p>
+        </div>
+        <div class="modal-lens-block">
+          <p class="modal-lens-block-ttl">納期</p>
+          <p class="modal-lens-meta">レンズご注文後、2週間程度で購入店舗にて、お渡しとなります。</p>
+        </div>
+        <div class="modal-lens-block">
+          <p class="modal-lens-block-ttl">製作範囲</p>
+          <p class="modal-lens-meta">球面（SPH）：0〜−10.00 ／ +0.25〜+4.00</p>
+          <p class="modal-lens-meta">乱視（CYL）：なし ／ −0.25〜−2.00</p>
+        </div>
+        <div class="modal-lens-block">
+          <p class="modal-lens-block-ttl">注意事項</p>
+          <ul class="modal-lens-notes">
+            <li>視力補正レンズを使用しても、通常の見え方とは異なります。また慣れるまで時間がかかることがあります。</li>
+            <li>MiRZA度付きインサートレンズを使用された状態で運転や操縦はしないでください。</li>
+            <li>日常用のメガネとしてはご使用できませんので、ご注意ください。</li>
+            <li>使用時はクリーニングクロスで軽く拭いてください。</li>
+            <li>乾いた布での強い摩擦はお避けください。</li>
+            <li>酸性・アルカリ性洗剤のご使用はお控えください。</li>
+          </ul>
+        </div>`,
     },
     rokid: {
       name: 'Rokid スマートAIグラス',
@@ -3449,9 +4034,11 @@
         </div>
         <div class="modal-spec-range">
           <p class="modal-spec-range-title">■ 製作範囲</p>
-          <p>・SPH -0.25 / -0.50 / -0.75 は、CYL（乱視度数）製作範囲外となります。</p>
-          <p>・SPH -6.25以上の場合、CYL との合算で -10.00 まで。</p>
-          <p style="margin-top:4px;font-size:11px;">例）SPH -6.50 の場合、CYL は -3.50 まで製作可能。</p>
+          <p>・球面（SPH）：±0.00〜−10.00</p>
+          <p>・乱視（CYL）：なし ／ −0.25〜−4.00</p>
+          <p style="margin-top:6px;">※ SPH −0.25 / −0.50 / −0.75 は、CYL（乱視度数）製作範囲外となります。</p>
+          <p>※ SPH −6.25以上の場合、CYL との合算で −10.00 まで。</p>
+          <p style="margin-top:4px;font-size:11px;">例）SPH −6.50 の場合、CYL は −3.50 まで製作可能。</p>
         </div>`,
       recommend: ['Rokidをすでに持っている、または購入予定の人', '普段からメガネやコンタクトを使用している人', 'スマートグラスを度付きでフル活用したい人'],
       store: 'オンライン注文対応：<strong>アイジャパンオンライン</strong><br><small style="color:#888;">※本体・クリップオン式フレームはRokid公式サイトにてご購入ください</small>',
@@ -3463,18 +4050,22 @@
     even: {
       name: 'Even Realities G2',
       catch: 'Even G2. The everyday display of smart glasses.',
-      desc: '会話・会議の要点をAIがリアルタイムで整理。35言語の翻訳が視界に表示され、自然なコミュニケーションをサポートします。カレンダー・通知も一元管理。カメラ非搭載でプライバシーにも配慮。Even R1リング（別売）で、手元タップだけで操作できます。',
-      tags: ['AI翻訳対応', '35言語', 'カメラなし', '度付き対応'],
+      desc: '会話・会議の要点をAIがリアルタイムで整理。35言語の翻訳が視界に表示され、自然なコミュニケーションをサポートします。カレンダー・通知も一元管理。カメラ非搭載でプライバシーにも配慮。Even R1リング（別売）で、手元タップだけで操作できます。累進レンズ（遠近両用）にも対応しています。',
+      tags: ['AI翻訳対応', '35言語', 'カメラなし', '度付き対応', '累進レンズ対応'],
       specs: [
         { label: '重量', value: '約36g' },
         { label: '翻訳', value: '35言語' },
         { label: 'バッテリー', value: '最大2日間' },
         { label: 'カメラ', value: 'なし' },
+        { label: '防水防塵', value: 'IP65' },
+        { label: '充電ケース', value: '最大7回分充電' },
+        { label: '視度対応範囲', value: '−12.00〜+12.00' },
       ],
       recommend: ['会議・商談が多い人', '外国語を使う仕事や旅行が多い人', 'スマートフォンを見る回数を減らしたい人', 'プライバシーを大切にしたい人'],
-      store: '本体・レンズ取扱：<strong>南浦和店・宇都宮錦店・八千代店</strong>',
+      store: '本体・レンズ取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span>・<span class="store-name-link" onclick="showStoreByName(\'宇都宮錦\')">宇都宮錦店</span>・<span class="store-name-link" onclick="showStoreByName(\'八千代\')">八千代店</span></strong>',
       searchBrand: 'Even Realities',
       gallery: 'even',
+      hasLens: true,
     },
     rayban: {
       name: 'Ray-Ban Meta',
@@ -3488,29 +4079,55 @@
         { label: 'メモリ', value: '32GB' },
       ],
       recommend: ['メガネをおしゃれに楽しみたい人', '音楽・通話を日常的に使いたい人', 'スマートグラスをはじめて使う人', 'Meta AIを気軽に活用したい人'],
-      store: '本体取扱：<strong>南浦和店</strong>　レンズ交換：<strong>全37店舗</strong>',
+      store: '本体取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span></strong>　レンズ交換：<strong>全37店舗</strong>',
       searchBrand: 'Ray-Ban Meta',
       gallery: 'rayban',
+      hasLens: true,
     },
     viture: {
-      name: 'VITURE One XR',
-      catch: '大画面エンタメグラス・ゲーム・映画向け',
-      desc: 'ゲームや映画を大画面・マルチ画面で楽しめるXRグラス。Nintendo Switchや各種デバイスに接続して、どこでもシアター体験が実現。スマートグラスとは少し異なる"見る"体験に特化したモデルです。',
-      tags: ['ゲーム好き', '映画・エンタメ'],
-      recommend: ['ゲームを大画面で楽しみたい人', '映画・動画をどこでも見たい人', 'Nintendo Switchなど携帯ゲーム機を使っている人', 'テレビなしで大画面を実現したい人'],
-      store: '本体・レンズ取扱：<strong>南浦和店</strong>',
+      name: 'VITURE Luma シリーズ',
+      catch: '2モデルから選べる大画面エンタメグラス',
+      desc: '',
+      tags: ['映画・ゲーム・エンタメ', '度付き対応'],
+      store: '本体・レンズ取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span></strong>',
       searchBrand: 'Viture',
-      imgBg: 'linear-gradient(135deg,#1a2a3a,#0d1b2a)',
-      imgText: 'VITURE',
-      imgColor: '#7ECFFF',
+      gallery: 'viture',
+      hasLens: true,
     },
   };
+
+  function switchModalTab(tab, el) {
+    document.querySelectorAll('.modal-content-tab').forEach(function(b){ b.classList.remove('active'); });
+    el.classList.add('active');
+    document.getElementById('modal-tab-body').style.display = tab === 'body' ? '' : 'none';
+    document.getElementById('modal-tab-lens').style.display = tab === 'lens' ? '' : 'none';
+  }
+
+  function buildLensTabHTML(pd) {
+    const inner = pd.lensHTML || `
+      <p class="modal-lens-intro">お手持ちの処方箋をもとに、スマートグラス専用の度付きレンズを加工してご提供します。</p>
+      <div class="modal-lens-block">
+        <p class="modal-lens-block-ttl">製作範囲</p>
+        <p class="modal-lens-tbd">準備中</p>
+      </div>
+      <div class="modal-lens-block">
+        <p class="modal-lens-block-ttl">注意事項</p>
+        <p class="modal-lens-tbd">準備中</p>
+      </div>`;
+    return `<div>${inner}<div class="prod-modal-actions" style="margin-top:24px;"><a href="#search" class="btn btn-blue" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換の店舗を探す</a></div></div>`;
+  }
 
   function buildModalImgHTML(key, pd) {
     if (pd.gallery === 'mirza') {
       return `
         <div class="prod-modal-img-main" style="background:#f2f4f8;">
-          <img src="MiRZA_kirinuki_1611_0616-2-1.jpg" alt="MiRZA XRグラス" style="width:100%;height:100%;object-fit:contain;padding:12px;box-sizing:border-box;">
+          <img id="modal-mirza-img" src="mirza/MiRZA_kirinuki_1611_0616-1.jpg" alt="MiRZA XRグラス" style="width:100%;height:100%;object-fit:contain;padding:12px;box-sizing:border-box;">
+        </div>
+        <div class="modal-img-thumbs" id="modal-mirza-thumbs" style="margin-top:8px;">
+          <img class="modal-img-thumb active" src="mirza/MiRZA_kirinuki_1611_0616-1.jpg" alt="斜め" onclick="modalMirzaThumb(this,'mirza/MiRZA_kirinuki_1611_0616-1.jpg')">
+          <img class="modal-img-thumb" src="mirza/MiRZA_kirinuki_1501_0616-1.jpg" alt="正面" onclick="modalMirzaThumb(this,'mirza/MiRZA_kirinuki_1501_0616-1.jpg')">
+          <img class="modal-img-thumb" src="mirza/QD_B_240522-3.jpg" alt="俯瞰" onclick="modalMirzaThumb(this,'mirza/QD_B_240522-3.jpg')">
+          <img class="modal-img-thumb" src="mirza/MiRZA_kirinuki_1636_0616-1.jpg" alt="レンズ" onclick="modalMirzaThumb(this,'mirza/MiRZA_kirinuki_1636_0616-1.jpg')">
         </div>`;
     }
     if (pd.gallery === 'even') {
@@ -3551,6 +4168,21 @@
           <button class="modal-frame-tab" onclick="modalRBStyle('wayfarer',this)">Wayfarer<br><small>サングラス（SUN）</small></button>
         </div>`;
     }
+    if (pd.gallery === 'viture') {
+      const vm = VITURE_MODELS.luma;
+      const thumbsHTML = vm.images.map((src, i) =>
+        `<img class="modal-img-thumb${i===0?' active':''}" src="${src}" alt="Luma ${i+1}" onclick="vitureThumb(this,'${src}')">`
+      ).join('');
+      return `
+        <div class="prod-modal-img-main" id="viture-img-main" style="background:#f2f4f8;">
+          <img id="viture-img" src="${vm.images[0]}" alt="${vm.name}" style="width:100%;height:100%;object-fit:contain;padding:12px;box-sizing:border-box;">
+        </div>
+        <div class="modal-img-thumbs" id="viture-thumbs" style="margin-top:8px;">${thumbsHTML}</div>
+        <div class="modal-frame-tabs" id="viture-model-tabs">
+          <button class="modal-frame-tab active" onclick="modalVitureModel('luma',this)">Luma XR<br><small>スタンダード</small></button>
+          <button class="modal-frame-tab" onclick="modalVitureModel('ultra',this)">Luma Ultra XR/AR<br><small>フラグシップ</small></button>
+        </div>`;
+    }
     const bg = pd.imgBg || '#0D1B2A';
     const col = pd.imgColor || '#fff';
     return `<div class="prod-modal-img-main" style="background:${bg};color:${col};">${pd.imgText || pd.name}</div>`;
@@ -3563,46 +4195,91 @@
     const pd = PD[key];
     if (!pd) return;
     currentProductKey = key;
-    const tagsHTML = pd.tags.map(t => `<span class="prod-modal-tag">${t}</span>`).join('');
     const imgHTML = buildModalImgHTML(key, pd);
-    const specsHTML = pd.specs ? `
-      <div class="prod-modal-specs">
-        ${pd.specs.map(s => `<div class="prod-modal-spec-item"><div class="prod-modal-spec-label">${s.label}</div><div class="prod-modal-spec-value">${s.value}</div></div>`).join('')}
-      </div>` : '';
+
+    // VITURE: 初期モデルはLuma
+    const isViture = pd.gallery === 'viture';
+    const activeData = isViture ? VITURE_MODELS.luma : pd;
+
+    const specsHTML = activeData.specs ? buildSpecTableHTML(activeData.specs, isViture ? 'viture-modal-specs' : null) : '';
     const accordionHTML = pd.accordion ? `
       <div class="modal-accordion">
         <button class="modal-accordion-btn" onclick="toggleModalAccordion(this)">詳しい注文ガイド・製作範囲 <span class="modal-accordion-arrow">▼</span></button>
         <div class="modal-accordion-body">${pd.accordion}</div>
       </div>` : '';
-    const recommendHTML = pd.recommend ? `
+    const recommendHTML = activeData.recommend ? `
       <div class="prod-modal-recommend">
         <p class="prod-modal-recommend-title">こんな人におすすめ</p>
-        <ul class="prod-modal-recommend-list">${pd.recommend.map(r => `<li>${r}</li>`).join('')}</ul>
+        <ul class="prod-modal-recommend-list"${isViture ? ' id="viture-modal-recommend-list"' : ''}>${activeData.recommend.map(r => `<li>${r}</li>`).join('')}</ul>
       </div>` : '';
+
+    // Rokid: 本体購入ECブロック
+    const rokidBodyHTML = key === 'rokid' ? `
+      <div class="prod-modal-ec-block">
+        <div class="prod-modal-ec-block-icon">🛒</div>
+        <div class="prod-modal-ec-block-body">
+          <p class="prod-modal-ec-block-label">本体・フレームのご購入</p>
+          <p class="prod-modal-ec-block-text">Rokid本体・クリップオン式フレームはRokid公式サイトにてご購入ください。</p>
+        </div>
+        <a href="https://jp.rokid.com/pages/rokid-glasses" target="_blank" class="prod-modal-ec-block-btn">Rokid公式 →</a>
+      </div>` : '';
+
+    // 店舗テキスト → クリックで検索へジャンプ
+    const storeClickFn = `setSearch('${pd.searchBrand}','lens');document.getElementById('product-modal').classList.remove('open');document.body.style.overflow='';setTimeout(function(){document.getElementById('search').scrollIntoView({behavior:'smooth',block:'start'});},80);`;
+
+    const bodyInner = `
+      <h3 class="prod-modal-name"${isViture ? ' id="viture-modal-name"' : ''}>${isViture ? activeData.name : pd.name}</h3>
+      <p class="prod-modal-desc"${isViture ? ' id="viture-modal-desc"' : ''}>${isViture ? activeData.desc : pd.desc}</p>
+      ${specsHTML}
+      ${accordionHTML}
+      ${recommendHTML}
+      <p class="prod-modal-store">${pd.store}</p>
+      ${rokidBodyHTML}
+      <div class="prod-modal-actions">
+        ${pd.onlineStore ? `
+          <a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a>
+          <a href="${pd.onlineStore}" target="_blank" class="btn btn-blue">オンラインストアを見る</a>
+        ` : `
+          ${LENS_ONLY_BRANDS.includes(pd.searchBrand) ? '' : `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">本体購入・体験へ</a>`}
+          <a href="#search" class="btn btn-blue" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換へ</a>
+        `}
+      </div>`;
+    const tabsHTML = pd.hasLens ? `
+      <div class="modal-content-tabs">
+        <button class="modal-content-tab active" onclick="switchModalTab('body',this)">本体について</button>
+        <button class="modal-content-tab" onclick="switchModalTab('lens',this)">レンズ交換について</button>
+      </div>` : '';
+    const infoColInner = pd.hasLens
+      ? `${tabsHTML}<div id="modal-tab-body">${bodyInner}</div><div id="modal-tab-lens" style="display:none">${buildLensTabHTML(pd)}</div>`
+      : bodyInner;
+
     document.getElementById('prod-modal-content').innerHTML = `
       <div class="prod-modal-layout">
         <div class="prod-modal-img-col">${imgHTML}</div>
-        <div class="prod-modal-info-col">
-          <h3 class="prod-modal-name">${pd.name}</h3>
-          <p class="prod-modal-catch">${pd.catch}</p>
-          <p class="prod-modal-desc">${pd.desc}</p>
-          ${specsHTML}
-          ${accordionHTML}
-          ${recommendHTML}
-          <p class="prod-modal-store">${pd.store}</p>
-          <div class="prod-modal-actions">
-            ${pd.onlineStore ? `
-              <a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a>
-              <a href="${pd.onlineStore}" target="_blank" class="btn btn-blue">オンラインストアを見る</a>
-            ` : `
-              ${LENS_ONLY_BRANDS.includes(pd.searchBrand) ? '' : `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">本体購入・体験へ</a>`}
-              <a href="#search" class="btn btn-blue" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換へ</a>
-            `}
-          </div>
-        </div>
+        <div class="prod-modal-info-col">${infoColInner}</div>
       </div>`;
     document.getElementById('product-modal').classList.add('open');
     document.body.style.overflow = 'hidden';
+  }
+
+  function showStoreByName(name) {
+    const store = STORES.find(function(s) { return s.name.indexOf(name) !== -1; });
+    if (!store) return;
+    document.getElementById('product-modal').classList.remove('open');
+    document.body.style.overflow = '';
+    const brand = document.getElementById('product-select').value;
+    const nearby = STORES
+      .filter(function(s) { return s.name !== store.name; })
+      .map(function(s) { return Object.assign({}, s, { dist: haversine(store.lat, store.lon, s.lat, s.lon) }); })
+      .sort(function(a, b) { return a.dist - b.dist; })
+      .slice(0, 4);
+    document.getElementById('result-label').textContent = store.name;
+    document.getElementById('store-results-inner').innerHTML = renderResults(store, nearby, brand);
+    document.getElementById('more-wrap').style.display = nearby.length ? 'block' : 'none';
+    document.getElementById('search-results').style.display = 'block';
+    setTimeout(function() {
+      document.getElementById('search-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
   }
 
   function closeProductModal(e) {
@@ -3612,8 +4289,22 @@
   }
   document.getElementById('prod-modal-close').addEventListener('click', function(){ document.getElementById('product-modal').classList.remove('open'); document.body.style.overflow=''; });
   document.getElementById('product-modal').addEventListener('click', function(e){ if(e.target===this){ document.getElementById('product-modal').classList.remove('open'); document.body.style.overflow=''; } });
+  // SP ナビ
+  function toggleSpNav() {
+    var nav = document.getElementById('sp-nav');
+    var backdrop = document.getElementById('sp-nav-backdrop');
+    var isOpen = nav.classList.toggle('sp-nav--open');
+    backdrop.classList.toggle('sp-nav-backdrop--open', isOpen);
+    nav.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+  }
+  function closeSpNav() {
+    document.getElementById('sp-nav').classList.remove('sp-nav--open');
+    document.getElementById('sp-nav-backdrop').classList.remove('sp-nav-backdrop--open');
+    document.getElementById('sp-nav').setAttribute('aria-hidden', 'true');
+  }
+
   document.addEventListener('keydown', function(e){
-    if(e.key==='Escape'){ document.getElementById('product-modal').classList.remove('open'); document.body.style.overflow=''; }
+    if(e.key==='Escape'){ closeSpNav(); document.getElementById('product-modal').classList.remove('open'); document.body.style.overflow=''; }
     if(e.key==='ArrowRight' && currentProductKey){ var i=PRODUCT_ORDER.indexOf(currentProductKey); openProductModal(PRODUCT_ORDER[(i+1)%PRODUCT_ORDER.length]); }
     if(e.key==='ArrowLeft' && currentProductKey){ var i=PRODUCT_ORDER.indexOf(currentProductKey); openProductModal(PRODUCT_ORDER[(i-1+PRODUCT_ORDER.length)%PRODUCT_ORDER.length]); }
   });
