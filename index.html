@@ -1523,8 +1523,9 @@
       font-size: 13px;
       color: var(--text-secondary);
       line-height: 1.8;
-      text-align: left;
+      text-align: center;
     }
+    .flow-desc-note { display: block; font-size: 10px; color: var(--text-secondary); margin-top: 6px; line-height: 1.7; }
     .flow-icon { line-height: 1; margin-bottom: 10px; }
     .flow-icon img { width: 44px; height: 44px; object-fit: contain; display: block; margin: 0 auto; }
     /* === フロー: タイムライン === */
@@ -1534,9 +1535,12 @@
       top: 24px;
       left: 12.5%; right: 12.5%;
       height: 3px;
-      background: linear-gradient(to right, var(--red), rgba(204,0,0,0.3));
+      background: linear-gradient(to right, rgba(204,0,0,0.25), #CC0000);
       z-index: 0;
     }
+    .flow-tl-step:nth-child(1) .flow-tl-num { background: rgba(204,0,0,0.40); box-shadow: 0 0 0 6px #F2F2F0, 0 0 0 8px rgba(204,0,0,0.10); }
+    .flow-tl-step:nth-child(2) .flow-tl-num { background: rgba(204,0,0,0.60); box-shadow: 0 0 0 6px #F2F2F0, 0 0 0 8px rgba(204,0,0,0.14); }
+    .flow-tl-step:nth-child(3) .flow-tl-num { background: rgba(204,0,0,0.80); box-shadow: 0 0 0 6px #F2F2F0, 0 0 0 8px rgba(204,0,0,0.18); }
     .flow-tl-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -3190,13 +3194,13 @@
           <div class="flow-tl-num">1</div>
           <div class="flow-tl-icon"><img src="flow-icon-store.svg" alt="ご来店"></div>
           <p class="flow-title">ご来店</p>
-          <p class="flow-desc">実機体験・商品選びからレンズのご相談まで。スタッフが丁寧にご案内します。</p>
+          <p class="flow-desc">予約・当日相談もOK<br>スタッフが丁寧にご案内します。<span class="flow-desc-note">※機種によって設置店が異なります。あらかじめお確かめの上ご来店くださいませ。</span></p>
         </div>
         <div class="flow-tl-step">
           <div class="flow-tl-num">2</div>
           <div class="flow-tl-icon"><img src="flow-icon-eye.svg" alt="測定"></div>
           <p class="flow-title">測定</p>
-          <p class="flow-desc">眼鏡作製技能士が度数を精密に測定。お客様の見え方に合わせた度数を確認します。</p>
+          <p class="flow-desc">専門スタッフがお客様の見え方に合わせた度数を測定。</p>
         </div>
         <div class="flow-tl-step">
           <div class="flow-tl-num">3</div>
