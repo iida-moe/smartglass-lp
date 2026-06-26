@@ -1565,9 +1565,9 @@
     .flow-arrow-band {
       margin-top: 32px;
       background: var(--red); color: #fff;
-      padding: 18px 32px;
+      padding: 18px 72px 18px 32px;
       display: flex; align-items: center; justify-content: center; gap: 20px;
-      border-radius: 8px;
+      clip-path: polygon(0% 0%, calc(100% - 48px) 0%, 100% 50%, calc(100% - 48px) 100%, 0% 100%);
     }
     .flow-arrow-band-label { font-size: 13px; font-weight: 600; opacity: 0.9; white-space: nowrap; }
     .flow-arrow-band-value { font-size: 22px; font-weight: 800; white-space: nowrap; }
@@ -2347,6 +2347,7 @@
         margin-top: 6px; font-size: 13px; text-align: left;
       }
       .flow-arrow-band {
+        clip-path: none; border-radius: 8px;
         flex-direction: column; gap: 4px;
         padding: 16px 24px; text-align: center; margin-top: 16px;
       }
@@ -3216,13 +3217,11 @@
       </div>
     </div>
 
-    <p class="flow-note" style="margin-top:20px;">※機種によって設置店が異なります。あらかじめお確かめの上ご来店くださいませ。<br>※処方箋での作成も賜ります。<br>※ご使用方法注意事項等は各製品取扱書をお確かめくださいませ。</p>
-
     <div class="flow-arrow-band">
       <span class="flow-arrow-band-label">ご来店〜お渡しまでの目安</span>
       <span class="flow-arrow-band-value">約 1〜2週間</span>
     </div>
-    <p class="flow-note">※ レンズの種類・コーティングによっては2〜3週間かかる場合があります。完成次第ご連絡いたします。<br>※ 遠方のお客様は郵送でのお受け取りもご相談ください（別途送料）。</p>
+    <p class="flow-note" style="margin-top:16px;">※機種によって設置店が異なります。あらかじめお確かめの上ご来店くださいませ。<br>※処方箋での作成も賜ります。<br>※ご使用方法注意事項等は各製品取扱書をお確かめくださいませ。<br>※レンズの種類・コーティングによっては2〜3週間かかる場合があります。完成次第ご連絡いたします。<br>※遠方のお客様は郵送でのお受け取りもご相談ください（別途送料）。</p>
 
     <!-- オンライン購入フロー -->
     <div class="flow-online-block">
