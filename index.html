@@ -1586,6 +1586,14 @@
     .flow-online-sub {
       font-size: 14px; color: var(--text-secondary); line-height: 1.7;
     }
+    /* オンラインフロー: 5ステップ */
+    .flow-tl-grid--5 { grid-template-columns: repeat(5, 1fr); }
+    .flow-online-block .flow-tl-line { left: 10%; right: 10%; }
+    .flow-online-block .flow-tl-step:nth-child(1) .flow-tl-num { background: #CC6666; }
+    .flow-online-block .flow-tl-step:nth-child(2) .flow-tl-num { background: #BC4D4D; }
+    .flow-online-block .flow-tl-step:nth-child(3) .flow-tl-num { background: #AC3434; }
+    .flow-online-block .flow-tl-step:nth-child(4) .flow-tl-num { background: #9C1B1B; }
+    .flow-online-block .flow-tl-step:nth-child(5) .flow-tl-num { background: #8B0000; }
 
     /* ===== SECTION 08: Q&A ===== */
     #qa { background: #fff; }
@@ -3226,32 +3234,49 @@
     <!-- オンライン購入フロー -->
     <div class="flow-online-block">
       <div class="flow-online-head">
-        <h3 class="flow-online-title">オンライン購入の流れ</h3>
-        <p class="flow-online-sub">ブランド公式ECなどで本体をご購入後、アイメガネでレンズ交換が可能です。</p>
+        <h3 class="flow-online-title">オンラインでのご注文の流れ</h3>
+        <p class="flow-online-sub">本体を別途ご準備の上、アイメガネのオンラインショップにてレンズをご注文。フレームをご郵送いただくと自宅へ返送いたします。</p>
       </div>
-      <div class="flow-grid">
-        <div class="flow-step">
-          <div class="flow-num">1</div>
-          <p class="flow-title">ECで本体購入</p>
-          <p class="flow-desc">各ブランド公式サイト・Amazon等でスマートグラス本体をご購入ください。</p>
-        </div>
-        <div class="flow-step">
-          <div class="flow-num">2</div>
-          <p class="flow-title">アイメガネへご連絡</p>
-          <p class="flow-desc">本体が届いたら、お近くの対応店舗へご予約・ご相談のご連絡を。</p>
-        </div>
-        <div class="flow-step">
-          <div class="flow-num">3</div>
-          <p class="flow-title">測定・レンズ加工</p>
-          <p class="flow-desc">ご来店の上で度数測定・レンズ選定・加工を行います。</p>
-        </div>
-        <div class="flow-step">
-          <div class="flow-num">4</div>
-          <p class="flow-title">お渡し・配送</p>
-          <p class="flow-desc">店頭でのお渡し、またはご自宅への郵送もご相談ください（別途送料）。</p>
+      <div class="flow-tl-wrap">
+        <div class="flow-tl-line" aria-hidden="true"></div>
+        <div class="flow-tl-grid flow-tl-grid--5">
+          <div class="flow-tl-step">
+            <div class="flow-tl-num">1</div>
+            <div class="flow-tl-icon"><img src="flow-online-icon-frame.svg" alt="フレームを準備"></div>
+            <p class="flow-title">フレームを準備</p>
+            <p class="flow-desc">インサートフレームを別途ご準備ください。</p>
+          </div>
+          <div class="flow-tl-step">
+            <div class="flow-tl-num">2</div>
+            <div class="flow-tl-icon"><img src="flow-online-icon-order.svg" alt="オンラインで注文"></div>
+            <p class="flow-title">オンラインで注文</p>
+            <p class="flow-desc">アイメガネのオンラインショップにて度数を入力してご注文ください。</p>
+          </div>
+          <div class="flow-tl-step">
+            <div class="flow-tl-num">3</div>
+            <div class="flow-tl-icon"><img src="flow-online-icon-truck.svg" alt="フレームを郵送"></div>
+            <p class="flow-title">フレームを郵送</p>
+            <p class="flow-desc">フレームと処方箋（お持ちの方）を指定住所へ郵送ください。送料はお客様負担。</p>
+          </div>
+          <div class="flow-tl-step">
+            <div class="flow-tl-num">4</div>
+            <div class="flow-tl-icon"><img src="flow-icon-glasses.svg" alt="レンズ加工"></div>
+            <p class="flow-title">レンズ加工</p>
+            <p class="flow-desc">眼鏡専門スタッフがお客様専用のレンズを加工・装着します。</p>
+          </div>
+          <div class="flow-tl-step">
+            <div class="flow-tl-num">5</div>
+            <div class="flow-tl-icon"><img src="flow-icon-gift.svg" alt="自宅へ返送"></div>
+            <p class="flow-title">自宅へ返送</p>
+            <p class="flow-desc">加工完了後、ご指定の住所へ返送いたします。送料はお客様負担。</p>
+          </div>
         </div>
       </div>
-      <p class="flow-note">※ オンラインで本体を購入される場合も、レンズ交換はご来店（または本体のご郵送）が必要です。</p>
+      <div class="flow-arrow-band">
+        <span class="flow-arrow-band-label">ご注文〜返送までの目安</span>
+        <span class="flow-arrow-band-value">約 2〜3週間</span>
+      </div>
+      <p class="flow-note" style="margin-top:16px;">※ Rokid・MiRZAのインサートレンズ・交換レンズに対応しています。<br>※ 処方箋がある場合はフレームと合わせてご郵送ください。<br>※ 郵送の送料はお客様のご負担となります。<br>※ レンズの種類・コーティングによっては2〜3週間以上かかる場合があります。完成次第ご連絡いたします。</p>
     </div>
   </div>
 </section>
