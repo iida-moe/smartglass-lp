@@ -4261,10 +4261,10 @@
       <div class="prod-modal-actions">
         ${pd.onlineStore ? `
           <a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a>
-          <a href="${pd.onlineStore}" target="_blank" class="btn btn-blue">オンラインストアを見る</a>
+          <a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインストアを見る</a>
         ` : `
           ${LENS_ONLY_BRANDS.includes(pd.searchBrand) ? '' : `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">本体購入・体験へ</a>`}
-          <a href="#search" class="btn btn-blue" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換へ</a>
+          <a href="#search" class="btn btn-outline" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換へ</a>
         `}
       </div>`;
     const tabsHTML = pd.hasLens ? `
