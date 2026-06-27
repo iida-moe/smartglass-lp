@@ -1576,10 +1576,11 @@
     /* 矢印帯 */
     .flow-arrow-band {
       margin-top: 32px;
-      background: var(--red); color: #fff;
-      padding: 18px 72px 18px 32px;
+      background: linear-gradient(to right, var(--navy) 0%, #8B0000 60%, var(--red) 100%);
+      color: #fff;
+      padding: 18px 72px 18px 48px;
       display: flex; align-items: center; justify-content: center; gap: 20px;
-      clip-path: polygon(0% 0%, calc(100% - 48px) 0%, 100% 50%, calc(100% - 48px) 100%, 0% 100%);
+      clip-path: polygon(0 38%, calc(100% - 48px) 0%, 100% 50%, calc(100% - 48px) 100%, 0 62%);
     }
     .flow-arrow-band-label { font-size: 13px; font-weight: 600; opacity: 0.9; white-space: nowrap; }
     .flow-arrow-band-value { font-size: 22px; font-weight: 800; white-space: nowrap; }
