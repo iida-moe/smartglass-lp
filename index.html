@@ -1715,31 +1715,31 @@
       margin-bottom: 40px;
     }
     .footer-left {}
-    .footer-logo-link {
-      display: inline-block;
-      margin-bottom: 16px;
-      opacity: 0.9;
-      transition: opacity 0.2s;
-    }
-    .footer-logo-link:hover { opacity: 1; }
-    .footer-logo-link img {
-      height: 36px;
-      width: auto;
-      display: block;
-      filter: brightness(0) invert(1);
-    }
+    .footer-logo-link,
     .footer-logo-online {
-      display: inline-block;
-      margin-bottom: 24px;
-      opacity: 0.9;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border-radius: 12px;
+      padding: 12px 24px;
+      margin-bottom: 12px;
+      text-decoration: none;
       transition: opacity 0.2s;
     }
-    .footer-logo-online:hover { opacity: 1; }
-    .footer-logo-online img {
-      height: 30px;
+    .footer-logo-link { margin-bottom: 12px; }
+    .footer-logo-online { margin-bottom: 24px; }
+    .footer-logo-link:hover,
+    .footer-logo-online:hover { opacity: 0.85; }
+    .footer-logo-link img {
+      height: 38px;
       width: auto;
       display: block;
-      filter: brightness(0) invert(1);
+    }
+    .footer-logo-online img {
+      height: 32px;
+      width: auto;
+      display: block;
     }
     .footer-info {
       font-size: 12px;
@@ -3525,12 +3525,16 @@
   <div class="container">
     <div class="footer-inner">
       <div class="footer-left">
-        <a href="https://www.aimegane.com/" target="_blank" class="footer-logo-link">
-          <img src="aimegane_yoko_3.jpg" alt="アイメガネ">
-        </a>
-        <a href="https://www.aijapan-online.com/" target="_blank" class="footer-logo-online">
-          <img src="logo_aijapanonline02.png" alt="アイジャパンオンライン">
-        </a>
+        <div>
+          <a href="https://www.aimegane.com/" target="_blank" class="footer-logo-link">
+            <img src="aimegane_yoko_3.jpg" alt="アイメガネ">
+          </a>
+        </div>
+        <div>
+          <a href="https://www.aijapan-online.com/" target="_blank" class="footer-logo-online">
+            <img src="logo_aijapanonline02.png" alt="アイジャパンオンライン">
+          </a>
+        </div>
         <div class="footer-info">
           アイジャパン株式会社<br>
           〒331-0812　埼玉県さいたま市北区宮原町1丁目505番地1<br>
