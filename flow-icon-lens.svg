@@ -16,7 +16,5 @@
 		M372,151 A105,105 0 0 1 372,361 A105,105 0 0 1 372,151 Z
 		M372,190 A66,66 0 0 1 372,322 A66,66 0 0 1 372,190 Z
 	" style="fill: rgb(75, 75, 75);"/>
-	<!-- Bridge (nose piece) -->
-	<rect class="st0" x="242" y="238" width="28" height="36" rx="3" style="fill: rgb(75, 75, 75);"/>
 </g>
 </svg>
