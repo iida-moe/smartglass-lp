@@ -1703,6 +1703,62 @@
       .final-btn { width: 100%; max-width: 320px; }
     }
 
+    /* ===== FOOTER ===== */
+    #site-footer {
+      background: #0A1520;
+      padding: 48px 0 32px;
+      color: rgba(255,255,255,0.6);
+    }
+    .footer-logos {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .footer-logo-link {
+      display: block;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+    .footer-logo-link:hover { opacity: 1; }
+    .footer-logo-link img { height: 28px; width: auto; display: block; }
+    .footer-logo-divider {
+      width: 1px;
+      height: 24px;
+      background: rgba(255,255,255,0.2);
+    }
+    .footer-info {
+      font-size: 12px;
+      line-height: 2;
+      margin-bottom: 28px;
+      color: rgba(255,255,255,0.45);
+    }
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .footer-links a {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy {
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 20px;
+    }
+    @media (max-width: 767px) {
+      #site-footer { padding: 40px 0 24px; }
+      .footer-logos { gap: 16px; }
+      .footer-logo-link img { height: 22px; }
+    }
+
     /* ===== FIXED FOOTER CTA ===== */
     .fixed-footer {
       position: fixed;
@@ -2780,7 +2836,7 @@
 <!-- HEADER -->
 <header>
   <div class="container">
-    <a class="header-logo" href="#">
+    <a class="header-logo" href="https://www.aimegane.com/" target="_blank">
       <img src="aimegane_yoko_3.jpg" alt="アイメガネ">
     </a>
     <div class="header-right">
@@ -3444,6 +3500,33 @@
     </div>
   </div>
 </section>
+
+<!-- FOOTER -->
+<footer id="site-footer">
+  <div class="container">
+    <div class="footer-logos">
+      <a href="https://www.aimegane.com/" target="_blank" class="footer-logo-link">
+        <img src="aimegane_yoko_3.jpg" alt="アイメガネ">
+      </a>
+      <div class="footer-logo-divider"></div>
+      <a href="https://www.aijapan-online.com/" target="_blank" class="footer-logo-link">
+        <img src="logo_aijapanonline02.png" alt="アイジャパンオンライン">
+      </a>
+    </div>
+    <div class="footer-info">
+      アイジャパン株式会社<br>
+      〒331-0812　埼玉県さいたま市北区宮原町1丁目505番地1<br>
+      お客様相談室：0120-21-0110
+    </div>
+    <div class="footer-links">
+      <a href="https://www.aimegane.com/" target="_blank">アイメガネ公式サイト</a>
+      <a href="https://www.aijapan-online.com/" target="_blank">アイジャパンオンライン</a>
+      <a href="https://www.ai-group.net/privacy/" target="_blank">プライバシーポリシー</a>
+      <a href="https://www.aimegane.com/inquiry/" target="_blank">お問い合わせ</a>
+    </div>
+    <p class="footer-copy">© 2026 アイジャパン株式会社</p>
+  </div>
+</footer>
 
 <!-- FIXED FOOTER CTA -->
 <div class="fixed-footer" id="fixed-footer" style="display:none">
