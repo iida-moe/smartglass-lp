@@ -4439,6 +4439,7 @@
 
     const bodyInner = `
       <h3 class="prod-modal-name"${isViture ? ' id="viture-modal-name"' : ''}>${isViture ? activeData.name : pd.name}</h3>
+      ${(isViture ? activeData.catch : pd.catch) ? `<p class="prod-modal-catch"${isViture ? ' id="viture-modal-catch"' : ''}>${isViture ? activeData.catch : pd.catch}</p>` : ''}
       <p class="prod-modal-desc"${isViture ? ' id="viture-modal-desc"' : ''}>${isViture ? activeData.desc : pd.desc}</p>
       ${specsHTML}
       ${accordionHTML}
