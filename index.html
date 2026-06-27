@@ -1705,78 +1705,78 @@
 
     /* ===== FOOTER ===== */
     #site-footer {
-      background: #080f18;
-      padding: 56px 0 32px;
+      background: #FAFAF8;
+      border-top: 1px solid #E0E0E0;
+      padding: 28px 0 16px;
     }
     .footer-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
     }
-    .footer-left {}
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
     .footer-logo-link,
     .footer-logo-online {
       display: inline-block;
       text-decoration: none;
       transition: opacity 0.2s;
-      margin-bottom: 10px;
     }
     .footer-logo-link:hover,
     .footer-logo-online:hover { opacity: 0.7; }
-    .footer-brand-name {
-      font-size: 26px;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: 0.02em;
-      line-height: 1.2;
+    .footer-logo-link img {
+      height: 41px;
+      width: auto;
+      display: block;
     }
-    .footer-brand-name-sub {
-      font-size: 20px;
-      font-weight: 700;
-      color: rgba(255,255,255,0.75);
-      letter-spacing: 0.03em;
-      line-height: 1.2;
+    .footer-logo-online img {
+      height: 35px;
+      width: auto;
+      display: block;
     }
-    @media (max-width: 767px) {
-      .footer-brand-name { font-size: 22px; }
-      .footer-brand-name-sub { font-size: 17px; }
+    .footer-logo-divider {
+      width: 1px;
+      height: 28px;
+      background: #D0D0D0;
     }
     .footer-info {
-      font-size: 12px;
-      line-height: 2;
-      color: rgba(255,255,255,0.35);
-    }
-    .footer-right {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      padding-top: 4px;
+      font-size: 11px;
+      line-height: 1.8;
+      color: #aaa;
     }
     .footer-links {
       display: flex;
-      flex-direction: column;
-      gap: 14px;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
     }
     .footer-links a {
-      font-size: 13px;
-      color: rgba(255,255,255,0.55);
+      font-size: 12px;
+      color: #888;
       text-decoration: none;
       transition: color 0.2s;
     }
-    .footer-links a:hover { color: #fff; }
+    .footer-links a:hover { color: #1A1A1A; }
     .footer-copy {
       font-size: 11px;
-      color: rgba(255,255,255,0.2);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding-top: 20px;
+      color: #bbb;
+      border-top: 1px solid #E8E8E8;
+      padding-top: 14px;
       text-align: center;
     }
     @media (max-width: 767px) {
-      #site-footer { padding: 44px 0 24px; }
-      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
-      .footer-logo-link img { height: 30px; }
-      .footer-logo-online img { height: 24px; }
+      #site-footer { padding: 24px 0 14px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .footer-logo-link img { height: 34px; }
+      .footer-logo-online img { height: 28px; }
+      .footer-links { gap: 12px; }
     }
 
     /* ===== FIXED FOOTER CTA ===== */
@@ -3526,32 +3526,22 @@
   <div class="container">
     <div class="footer-inner">
       <div class="footer-left">
-        <div>
-          <a href="https://www.aimegane.com/" target="_blank" class="footer-logo-link">
-            <span class="footer-brand-name">アイメガネ</span>
-          </a>
-        </div>
-        <div>
-          <a href="https://www.aijapan-online.com/" target="_blank" class="footer-logo-online">
-            <span class="footer-brand-name-sub">Ai Japan Online</span>
-          </a>
-        </div>
-        <div class="footer-info">
-          アイジャパン株式会社<br>
-          〒331-0812　埼玉県さいたま市北区宮原町1丁目505番地1<br>
-          お客様相談室：0120-21-0110
-        </div>
+        <a href="https://www.aimegane.com/" target="_blank" class="footer-logo-link">
+          <img src="aimegane_yoko_3.jpg" alt="アイメガネ">
+        </a>
+        <div class="footer-logo-divider"></div>
+        <a href="https://www.aijapan-online.com/" target="_blank" class="footer-logo-online">
+          <img src="logo_aijapanonline02.png" alt="アイジャパンオンライン">
+        </a>
       </div>
-      <div class="footer-right">
-        <div class="footer-links">
-          <a href="https://www.aimegane.com/" target="_blank">アイメガネ公式サイト</a>
-          <a href="https://www.aijapan-online.com/" target="_blank">アイジャパンオンライン</a>
-          <a href="https://www.ai-group.net/privacy/" target="_blank">プライバシーポリシー</a>
-          <a href="https://www.aimegane.com/inquiry/" target="_blank">お問い合わせ</a>
-        </div>
+      <div class="footer-links">
+        <a href="https://www.aimegane.com/" target="_blank">アイメガネ公式サイト</a>
+        <a href="https://www.aijapan-online.com/" target="_blank">アイジャパンオンライン</a>
+        <a href="https://www.ai-group.net/privacy/" target="_blank">プライバシーポリシー</a>
+        <a href="https://www.aimegane.com/inquiry/" target="_blank">お問い合わせ</a>
       </div>
     </div>
-    <p class="footer-copy">© 2026 アイジャパン株式会社</p>
+    <p class="footer-copy">アイジャパン株式会社　〒331-0812 埼玉県さいたま市北区宮原町1丁目505番地1　お客様相談室：0120-21-0110　© 2026 アイジャパン株式会社</p>
   </div>
 </footer>
 
