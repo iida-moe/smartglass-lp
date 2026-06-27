@@ -1717,29 +1717,30 @@
     .footer-left {}
     .footer-logo-link,
     .footer-logo-online {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: #fff;
-      border-radius: 12px;
-      padding: 12px 24px;
-      margin-bottom: 12px;
+      display: inline-block;
       text-decoration: none;
       transition: opacity 0.2s;
+      margin-bottom: 10px;
     }
-    .footer-logo-link { margin-bottom: 12px; }
-    .footer-logo-online { margin-bottom: 24px; }
     .footer-logo-link:hover,
-    .footer-logo-online:hover { opacity: 0.85; }
-    .footer-logo-link img {
-      height: 38px;
-      width: auto;
-      display: block;
+    .footer-logo-online:hover { opacity: 0.7; }
+    .footer-brand-name {
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
     }
-    .footer-logo-online img {
-      height: 32px;
-      width: auto;
-      display: block;
+    .footer-brand-name-sub {
+      font-size: 20px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.03em;
+      line-height: 1.2;
+    }
+    @media (max-width: 767px) {
+      .footer-brand-name { font-size: 22px; }
+      .footer-brand-name-sub { font-size: 17px; }
     }
     .footer-info {
       font-size: 12px;
@@ -3527,12 +3528,12 @@
       <div class="footer-left">
         <div>
           <a href="https://www.aimegane.com/" target="_blank" class="footer-logo-link">
-            <img src="aimegane_yoko_3.jpg" alt="アイメガネ">
+            <span class="footer-brand-name">アイメガネ</span>
           </a>
         </div>
         <div>
           <a href="https://www.aijapan-online.com/" target="_blank" class="footer-logo-online">
-            <img src="logo_aijapanonline02.png" alt="アイジャパンオンライン">
+            <span class="footer-brand-name-sub">Ai Japan Online</span>
           </a>
         </div>
         <div class="footer-info">
