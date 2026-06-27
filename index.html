@@ -1653,31 +1653,82 @@
 
     /* ===== SECTION 06: 最終CTA ===== */
     #final-cta {
-      background: var(--navy);
+      background: linear-gradient(135deg, var(--navy) 0%, #5C0D10 55%, #CC0000 100%);
       text-align: center;
-      padding: 88px 0;
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    #final-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(204,0,0,0.25) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    #final-cta .container { position: relative; z-index: 1; }
+    .final-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      margin-bottom: 20px;
     }
     .final-main {
-      font-size: clamp(22px, 3.5vw, 32px);
-      font-weight: 700;
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 800;
       color: #fff;
-      line-height: 1.55;
-      margin-bottom: 18px;
+      line-height: 1.4;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
     }
     .final-sub {
       font-size: 15px;
       color: rgba(255,255,255,0.68);
       line-height: 1.9;
-      margin-bottom: 40px;
+      margin-bottom: 36px;
+    }
+    .final-trust {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 44px;
+      flex-wrap: wrap;
+    }
+    .final-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.85);
+    }
+    .final-trust-item::before {
+      content: '✓';
+      color: #FF6B6B;
+      font-size: 14px;
+    }
+    .final-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
     .final-btn {
-      width: 100%;
-      max-width: 360px;
-      display: block;
-      margin: 0 auto;
-      padding: 18px;
+      min-width: 220px;
+      padding: 18px 32px;
       font-size: 16px;
       text-align: center;
+      border-radius: 8px;
+      font-weight: 800;
+    }
+    @media (max-width: 767px) {
+      #final-cta { padding: 72px 0; }
+      .final-main { font-size: clamp(22px, 6vw, 30px); }
+      .final-trust { gap: 16px; }
+      .final-btns { flex-direction: column; align-items: center; }
+      .final-btn { width: 100%; max-width: 320px; }
     }
 
     /* ===== FIXED FOOTER CTA ===== */
@@ -1780,7 +1831,6 @@
       .qa-list { max-width: 100%; }
 
       /* 最終CTA */
-      .final-btn { max-width: 300px; }
 
       /* ティッカーブランド（PC表示） */
       .fv-brand-ticker { display: none; }
@@ -2396,11 +2446,6 @@
       .qa-a { font-size: 14px; padding-left: 26px; }
     }
 
-    /* ===== SP: FINAL CTA ===== */
-    @media (max-width: 767px) {
-      .final-main { font-size: clamp(20px, 5.5vw, 26px); }
-      .final-sub { font-size: 14px; }
-    }
 
     /* ===== SP NAV ===== */
     .sp-nav {
@@ -3417,13 +3462,22 @@
 <!-- 09 最終CTA -->
 <section id="final-cta">
   <div class="container">
+    <p class="final-eyebrow">VISIT US</p>
     <p class="final-main">
-      まずは店舗で<br>スマートグラスを体験してみませんか？
+      スマートグラスを、<br>あなたの視力で使う。
     </p>
     <p class="final-sub">
-      専門スタッフが度付きレンズの<br>ご相談も承ります。
+      実機を試して、そのまま相談できる。<br>度付きレンズのことも、まとめてお任せください。
     </p>
-    <a href="#search" class="btn btn-red final-btn">店舗を探す →</a>
+    <div class="final-trust">
+      <span class="final-trust-item">予約無料</span>
+      <span class="final-trust-item">当日相談OK</span>
+      <span class="final-trust-item">眼鏡作製技能士が在籍</span>
+    </div>
+    <div class="final-btns">
+      <a href="#search" class="btn btn-red final-btn">来店予約する →</a>
+      <a href="https://www.aijapan-online.com/" target="_blank" class="btn btn-outline final-btn">オンラインで注文する →</a>
+    </div>
   </div>
 </section>
 
