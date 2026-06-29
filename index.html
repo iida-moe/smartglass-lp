@@ -3326,9 +3326,6 @@
         </div>
         <div class="pg-card-body">
           <h3 class="pg-card-name">Rokid スマートAIグラス</h3>
-          <div class="pg-card-swatches">
-            <span class="pg-swatch pg-swatch--active" style="background:#1a1a2e;" title="ダーク"></span>
-          </div>
           <div class="pg-card-scenes">
             <span class="pg-scene-label">こんなシーンに</span>
             <div class="pg-scene-tags">
@@ -4517,7 +4514,8 @@
         <p class="modal-lens-tbd">準備中</p>
       </div>`;
     const actionBtn = (pd.lensOnly && pd.onlineStore)
-      ? `<a href="${pd.onlineStore}" target="_blank" class="btn btn-red">オンラインで注文する</a>`
+      ? `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a>
+         <a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインで注文する</a>`
       : `<a href="#search" class="btn btn-blue" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換の店舗を探す</a>`;
     return `<div>${inner}<div class="prod-modal-actions" style="margin-top:24px;">${actionBtn}</div></div>`;
   }
@@ -4677,6 +4675,9 @@
         <div class="prod-modal-img-col">${imgHTML}</div>
         <div class="prod-modal-info-col">${infoColInner}</div>
       </div>`;
+    var navDisplay = pd.lensOnly ? 'none' : '';
+    document.getElementById('modal-nav-prev').style.display = navDisplay;
+    document.getElementById('modal-nav-next').style.display = navDisplay;
     document.getElementById('product-modal').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
