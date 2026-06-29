@@ -3803,10 +3803,10 @@
       catch: '大画面エンタメグラス・映画・ゲーム向け',
       desc: 'Micro OLED 1200p・146インチ相当の大画面で映画やゲームを楽しめるXRグラス。電子調光フィルムで外光を99.5%カット。2D映像をリアルタイムで3D変換する「Immersive 3D」機能を搭載。近視補正は業界トップクラスの−6.0Dまで対応。USB-C接続で多種デバイスに対応します。',
       specs: [
-        { label: '近視調整範囲', value: '0D〜-6.0D' },
-        { label: '最大輝度', value: '1000ニト' },
-        { label: '視野角（FOV）', value: '50°' },
         { label: '解像度', value: '最大1200p' },
+        { label: '最大輝度', value: '1000ニト' },
+        { label: '近視調整範囲', value: '0D〜-6.0D' },
+        { label: '視野角（FOV）', value: '50°' },
         { label: 'IPD', value: '56-72mm' },
         { label: '音響システム', value: 'AAC System' },
         { label: '接続方式', value: 'USB-Cコネクタ接続' },
@@ -3826,10 +3826,10 @@
       catch: 'XR・AR両対応のフラグシップモデル',
       desc: 'ソニー製最新Micro OLEDを採用した1,500ニトの高輝度モデル。6DoFの空間コンピューティングとAR機能を備え、フロントRGBカメラ＋デュアル深度カメラで本格的なAR体験を実現。HARMAN製オーディオ搭載、ハンドジェスチャー操作にも対応します。',
       specs: [
-        { label: '近視調整範囲', value: '0D〜-4.0D' },
-        { label: '最大輝度', value: '1500ニト' },
-        { label: '視野角（FOV）', value: '52°' },
         { label: '解像度', value: '最大1200p' },
+        { label: '最大輝度', value: '1500ニト' },
+        { label: '近視調整範囲', value: '0D〜-4.0D' },
+        { label: '視野角（FOV）', value: '52°' },
         { label: 'IPD', value: '58-70mm' },
         { label: '音響システム', value: 'HARMAN AudioEFX' },
         { label: '接続方式', value: 'マグネット式ポゴピン' },
@@ -4206,6 +4206,7 @@
 
   // 商品ラインナップ フィルター
   function filterProducts(filter) {
+    currentFilter = filter;
     document.querySelectorAll('.product-filter-btn').forEach(btn => {
       btn.classList.toggle('product-filter-btn--active', btn.dataset.filter === filter);
     });
@@ -4259,12 +4260,12 @@
       desc: 'Snapdragon AR2搭載の本格XRグラス。軽量設計・無線接続・6DoF対応。',
       tags: ['プロ・法人向け', 'XR・空間活用'],
       specs: [
-        { label: '重量', value: '約125g' },
-        { label: 'チップセット', value: 'Snapdragon® AR2 Gen1' },
+        { label: '連続使用時間', value: '1〜1.5時間' },
         { label: '解像度', value: 'FHD（1920×1080）' },
+        { label: '重量', value: '約125g' },
         { label: '視野角', value: '45°（対角）' },
         { label: '輝度', value: '約1,000nits' },
-        { label: '連続使用時間', value: '1〜1.5時間' },
+        { label: 'チップセット', value: 'Snapdragon® AR2 Gen1' },
         { label: '接続方式', value: 'Bluetooth 5.0、Wi-Fi 6E' },
         { label: 'カメラ', value: '正面RGBカメラ×1、側面モノクロカメラ×2' },
       ],
@@ -4349,9 +4350,9 @@
       desc: '会話・会議の要点をAIがリアルタイムで整理。35言語の翻訳が視界に表示され、自然なコミュニケーションをサポートします。カレンダー・通知も一元管理。カメラ非搭載でプライバシーにも配慮。Even R1リング（別売）で、手元タップだけで操作できます。累進レンズ（遠近両用）にも対応しています。',
       tags: ['AI翻訳対応', '35言語', 'カメラなし', '度付き対応', '累進レンズ対応'],
       specs: [
+        { label: '連続使用時間', value: '最大2日間' },
         { label: '重量', value: '約36g' },
         { label: '翻訳', value: '35言語' },
-        { label: 'バッテリー', value: '最大2日間' },
         { label: 'カメラ', value: 'なし' },
         { label: '防水防塵', value: 'IP65' },
         { label: '充電ケース', value: '最大7回分充電' },
@@ -4394,8 +4395,8 @@
       desc: 'Ray-Banの洗練されたデザインにMeta AIを搭載。通常のメガネと同じ見た目で、ハンズフリー通話・音楽・AI質問を実現。',
       tags: ['メガネユーザー', '日常使い'],
       specs: [
+        { label: '連続使用時間', value: '最大8時間' },
         { label: 'カメラ', value: '3K Ultra HD' },
-        { label: 'バッテリー', value: '最大8時間' },
         { label: '防水', value: 'IPX4' },
         { label: 'メモリ', value: '32GB' },
       ],
@@ -4536,6 +4537,15 @@
 
   const PRODUCT_ORDER = ['mirza', 'rokid', 'even', 'rayban', 'viture'];
   let currentProductKey = null;
+  let currentFilter = 'all';
+
+  function getNavOrder() {
+    return PRODUCT_ORDER.filter(function(k) {
+      var card = document.querySelector('[data-product="' + k + '"]');
+      if (!card) return false;
+      return currentFilter === 'all' ? card.dataset.ptype === 'all' : card.dataset.ptype === 'lens';
+    });
+  }
 
   function openProductModal(key) {
     const pd = PD[key];
@@ -4652,18 +4662,20 @@
 
   document.addEventListener('keydown', function(e){
     if(e.key==='Escape'){ closeSpNav(); document.getElementById('product-modal').classList.remove('open'); document.body.style.overflow=''; }
-    if(e.key==='ArrowRight' && currentProductKey){ var i=PRODUCT_ORDER.indexOf(currentProductKey); openProductModal(PRODUCT_ORDER[(i+1)%PRODUCT_ORDER.length]); }
-    if(e.key==='ArrowLeft' && currentProductKey){ var i=PRODUCT_ORDER.indexOf(currentProductKey); openProductModal(PRODUCT_ORDER[(i-1+PRODUCT_ORDER.length)%PRODUCT_ORDER.length]); }
+    if(e.key==='ArrowRight' && currentProductKey){ var o=getNavOrder(); var i=o.indexOf(currentProductKey); openProductModal(o[(i+1)%o.length]); }
+    if(e.key==='ArrowLeft' && currentProductKey){ var o=getNavOrder(); var i=o.indexOf(currentProductKey); openProductModal(o[(i-1+o.length)%o.length]); }
   });
   document.getElementById('modal-nav-prev').addEventListener('click', function(){
     if(!currentProductKey) return;
-    var i = PRODUCT_ORDER.indexOf(currentProductKey);
-    openProductModal(PRODUCT_ORDER[(i - 1 + PRODUCT_ORDER.length) % PRODUCT_ORDER.length]);
+    var o = getNavOrder();
+    var i = o.indexOf(currentProductKey);
+    openProductModal(o[(i - 1 + o.length) % o.length]);
   });
   document.getElementById('modal-nav-next').addEventListener('click', function(){
     if(!currentProductKey) return;
-    var i = PRODUCT_ORDER.indexOf(currentProductKey);
-    openProductModal(PRODUCT_ORDER[(i + 1) % PRODUCT_ORDER.length]);
+    var o = getNavOrder();
+    var i = o.indexOf(currentProductKey);
+    openProductModal(o[(i + 1) % o.length]);
   });
 
   // Even Realities モーダル内ギャラリー
