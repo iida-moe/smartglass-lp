@@ -1631,13 +1631,28 @@
     }
     /* 矢印帯 */
     .flow-arrow-band {
+      position: relative;
       margin-top: 32px;
       background: #fff;
       color: var(--red);
       border: 2px solid var(--red);
-      border-radius: 8px;
-      padding: 18px 48px;
+      border-right: none;
+      border-radius: 8px 0 0 8px;
+      padding: 18px 72px 18px 48px;
       display: flex; align-items: center; justify-content: center; gap: 20px;
+      overflow: visible;
+    }
+    .flow-arrow-band::after {
+      content: '';
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+      width: 38px;
+      height: 38px;
+      background: #fff;
+      border-top: 2px solid var(--red);
+      border-right: 2px solid var(--red);
     }
     .flow-arrow-band-label { font-size: 13px; font-weight: 600; opacity: 0.9; white-space: nowrap; }
     .flow-arrow-band-value { font-size: 22px; font-weight: 800; white-space: nowrap; }
@@ -2571,7 +2586,10 @@
       .flow-arrow-band {
         flex-direction: column; gap: 4px;
         padding: 16px 24px; text-align: center; margin-top: 16px;
+        border-right: 2px solid var(--red);
+        border-radius: 8px;
       }
+      .flow-arrow-band::after { display: none; }
       .flow-arrow-band-value { font-size: 19px; }
       .flow-note { text-align: left; }
       .flow-online-block { margin-top: 36px; padding-top: 32px; }
