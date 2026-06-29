@@ -1632,11 +1632,12 @@
     /* 矢印帯 */
     .flow-arrow-band {
       margin-top: 32px;
-      background: linear-gradient(to right, var(--navy) 0%, #8B0000 60%, var(--red) 100%);
-      color: #fff;
-      padding: 18px 72px 18px 48px;
+      background: #fff;
+      color: var(--red);
+      border: 2px solid var(--red);
+      border-radius: 8px;
+      padding: 18px 48px;
       display: flex; align-items: center; justify-content: center; gap: 20px;
-      clip-path: polygon(0 38%, calc(100% - 48px) 0%, 100% 50%, calc(100% - 48px) 100%, 0 62%);
     }
     .flow-arrow-band-label { font-size: 13px; font-weight: 600; opacity: 0.9; white-space: nowrap; }
     .flow-arrow-band-value { font-size: 22px; font-weight: 800; white-space: nowrap; }
@@ -2568,7 +2569,6 @@
         color: var(--text-secondary); line-height: 1.75; text-align: left;
       }
       .flow-arrow-band {
-        clip-path: none; border-radius: 8px;
         flex-direction: column; gap: 4px;
         padding: 16px 24px; text-align: center; margin-top: 16px;
       }
