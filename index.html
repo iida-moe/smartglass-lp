@@ -4366,7 +4366,7 @@
       searchBrand: 'Rokid',
       onlineStore: 'https://www.aijapan-online.com/product-page/rokidsumartaigalassesinsrtlens',
       gallery: 'rokid',
-      hasLens: true,
+      lensOnly: true,
       lensHTML: `
         <p class="modal-lens-intro">Rokid スマートAIグラス専用のクリップオン式フレームに取り付ける度付きレンズです。事前にRokid販売店にてクリップオン式フレームをご用意のうえ、フレームをアイジャパンオンラインへご郵送ください。</p>
         <div class="modal-lens-block">
@@ -4516,7 +4516,10 @@
         <p class="modal-lens-block-ttl">注意事項</p>
         <p class="modal-lens-tbd">準備中</p>
       </div>`;
-    return `<div>${inner}<div class="prod-modal-actions" style="margin-top:24px;"><a href="#search" class="btn btn-blue" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換の店舗を探す</a></div></div>`;
+    const actionBtn = (pd.lensOnly && pd.onlineStore)
+      ? `<a href="${pd.onlineStore}" target="_blank" class="btn btn-red">オンラインで注文する</a>`
+      : `<a href="#search" class="btn btn-blue" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換の店舗を探す</a>`;
+    return `<div>${inner}<div class="prod-modal-actions" style="margin-top:24px;">${actionBtn}</div></div>`;
   }
 
   function buildModalImgHTML(key, pd) {
@@ -4663,9 +4666,11 @@
         <button class="modal-content-tab active" onclick="switchModalTab('body',this)">本体について</button>
         <button class="modal-content-tab" onclick="switchModalTab('lens',this)">レンズ交換について</button>
       </div>` : '';
-    const infoColInner = pd.hasLens
-      ? `${tabsHTML}<div id="modal-tab-body">${bodyInner}</div><div id="modal-tab-lens" style="display:none">${buildLensTabHTML(pd)}</div>`
-      : bodyInner;
+    const infoColInner = pd.lensOnly
+      ? `<h3 class="prod-modal-name">${pd.name}</h3>${pd.catch ? `<p class="prod-modal-catch">${pd.catch}</p>` : ''}${buildLensTabHTML(pd)}`
+      : pd.hasLens
+        ? `${tabsHTML}<div id="modal-tab-body">${bodyInner}</div><div id="modal-tab-lens" style="display:none">${buildLensTabHTML(pd)}</div>`
+        : bodyInner;
 
     document.getElementById('prod-modal-content').innerHTML = `
       <div class="prod-modal-layout">
