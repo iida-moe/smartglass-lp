@@ -2693,9 +2693,10 @@
     .pg-card-name  { font-size: 16px; font-weight: 800; margin-bottom: 4px; color: var(--navy); }
     .pg-card-catch { font-size: 11px; color: #666; margin-bottom: 10px; line-height: 1.5; }
     .pg-card-scenes { margin-bottom: 12px; }
-    .pg-scene-label { font-size: 10px; color: #999; display: block; margin-bottom: 5px; }
-    .pg-scene-tags  { display: flex; flex-wrap: wrap; gap: 5px; }
-    .pg-scene-tag   { font-size: 11px; font-weight: 600; color: var(--navy); border: 1.5px solid var(--navy); padding: 3px 10px; border-radius: 20px; }
+    .pg-scene-label { font-size: 10px; color: #999; display: block; margin-bottom: 4px; }
+    .pg-scene-tags  { display: flex; flex-wrap: wrap; gap: 6px; }
+    .pg-scene-tag   { font-size: 12px; font-weight: 700; color: var(--navy); padding: 0; border: none; border-radius: 0; opacity: 0.75; }
+    .pg-scene-tag::before { content: '#'; }
     .pg-tag { font-size: 10px; background: #F2F2F0; color: #444; padding: 3px 8px; border-radius: 20px; }
     .pg-card-btn {
       width: 100%;
@@ -4206,6 +4207,10 @@
   }
 
   // 商品ラインナップ フィルター
+  const PRODUCT_ORDER = ['mirza', 'rokid', 'even', 'rayban', 'viture'];
+  let currentProductKey = null;
+  let currentFilter = 'all';
+
   function filterProducts(filter) {
     currentFilter = filter;
     document.querySelectorAll('.product-filter-btn').forEach(btn => {
@@ -4535,10 +4540,6 @@
     const col = pd.imgColor || '#fff';
     return `<div class="prod-modal-img-main" style="background:${bg};color:${col};">${pd.imgText || pd.name}</div>`;
   }
-
-  const PRODUCT_ORDER = ['mirza', 'rokid', 'even', 'rayban', 'viture'];
-  let currentProductKey = null;
-  let currentFilter = 'all';
 
   function getNavOrder() {
     return PRODUCT_ORDER.filter(function(k) {
