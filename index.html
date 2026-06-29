@@ -2516,19 +2516,24 @@
       .flow-tl-grid { grid-template-columns: 1fr; gap: 12px; }
       .flow-tl-step {
         display: grid;
-        grid-template-columns: 48px 1fr;
-        grid-template-rows: auto auto auto;
+        grid-template-columns: 52px 1fr;
+        grid-template-rows: auto auto;
         column-gap: 14px; row-gap: 0;
-        align-items: center;
+        align-items: start;
         padding: 16px; text-align: left;
         background: #fff; border-radius: 12px;
         box-shadow: 0 2px 8px rgba(0,0,0,0.06);
       }
-      .flow-tl-icon { display: none; }
+      .flow-tl-icon {
+        grid-column: 1; grid-row: 2;
+        display: flex; justify-content: center;
+        margin: 8px 0 0;
+      }
+      .flow-tl-icon img { width: 30px; height: 30px; }
       .flow-tl-num {
         grid-column: 1; grid-row: 1;
         width: 40px; height: 40px;
-        font-size: 17px; margin: 0;
+        font-size: 17px; margin: 0 auto;
         box-shadow: none; flex-shrink: 0;
       }
       .flow-tl-step .flow-title {
@@ -2536,7 +2541,7 @@
         margin-bottom: 0; font-size: 16px; align-self: center; white-space: normal;
       }
       .flow-tl-step .flow-desc {
-        grid-column: 1 / -1; grid-row: 2;
+        grid-column: 2; grid-row: 2;
         margin-top: 6px; font-size: 13px; text-align: left;
       }
       .flow-arrow-band {
