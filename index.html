@@ -2692,8 +2692,10 @@
     .pg-img--rokid  { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
     .pg-img--viture { background: #f2f4f8; }
     .pg-card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
-    .pg-card-store { font-size: 11px; color: #888; line-height: 1.6; margin-bottom: 10px; padding-top: 8px; border-top: 1px solid #eee; margin-top: 10px; }
-    .pg-card-store strong { color: var(--navy); font-weight: 700; }
+    .pg-card-store { font-size: 11px; border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 10px; padding-top: 8px; border-top: 1px solid #eee; }
+    .pg-card-store th { text-align: left; color: #999; font-weight: 500; padding: 2px 10px 2px 0; white-space: nowrap; vertical-align: top; }
+    .pg-card-store td { color: var(--navy); font-weight: 700; padding: 2px 0; vertical-align: top; }
+    .pg-card-store tr + tr th, .pg-card-store tr + tr td { border-top: 1px solid #f5f5f5; }
     .pg-card-btn { margin-top: auto; }
     .pg-card-name  { font-size: 16px; font-weight: 800; margin-bottom: 4px; color: var(--navy); }
     .pg-card-catch { font-size: 11px; color: #666; margin-bottom: 10px; line-height: 1.5; }
@@ -3301,7 +3303,10 @@
               <span class="pg-scene-tag">法人利用</span>
             </div>
           </div>
-          <p class="pg-card-store">本体取扱：<strong>南浦和店</strong>　レンズ交換：<strong>全37店舗 / オンライン対応</strong></p>
+          <table class="pg-card-store">
+            <tr><th>本体取扱</th><td>南浦和店</td></tr>
+            <tr><th>レンズ交換</th><td>全37店舗 / オンライン対応</td></tr>
+          </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('mirza')">詳しく見る ▶</button>
         </div>
       </div>
@@ -3320,7 +3325,9 @@
               <span class="pg-scene-tag">観光</span>
             </div>
           </div>
-          <p class="pg-card-store">レンズ交換：<strong>全37店舗 / オンライン対応</strong></p>
+          <table class="pg-card-store">
+            <tr><th>レンズ交換</th><td>全37店舗 / オンライン対応</td></tr>
+          </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('rokid')">詳しく見る ▶</button>
         </div>
       </div>
@@ -3349,7 +3356,9 @@
               <span class="pg-scene-tag">観光</span>
             </div>
           </div>
-          <p class="pg-card-store">本体・レンズ取扱：<strong>南浦和店・宇都宮錦店・八千代店</strong></p>
+          <table class="pg-card-store">
+            <tr><th>本体・レンズ</th><td>南浦和店・宇都宮錦店・八千代店</td></tr>
+          </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('even')">詳しく見る ▶</button>
         </div>
       </div>
@@ -3373,7 +3382,10 @@
               <span class="pg-scene-tag">ファッション</span>
             </div>
           </div>
-          <p class="pg-card-store">本体取扱：<strong>南浦和店</strong>　レンズ交換：<strong>全37店舗</strong></p>
+          <table class="pg-card-store">
+            <tr><th>本体取扱</th><td>南浦和店</td></tr>
+            <tr><th>レンズ交換</th><td>全37店舗</td></tr>
+          </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('rayban')">詳しく見る ▶</button>
         </div>
       </div>
@@ -3395,7 +3407,9 @@
               <span class="pg-scene-tag">エンタメ</span>
             </div>
           </div>
-          <p class="pg-card-store">本体・レンズ取扱：<strong>南浦和店</strong></p>
+          <table class="pg-card-store">
+            <tr><th>本体・レンズ</th><td>南浦和店</td></tr>
+          </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('viture')">詳しく見る ▶</button>
         </div>
       </div>
