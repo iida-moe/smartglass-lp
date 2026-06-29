@@ -2642,6 +2642,7 @@
     }
 
     /* === 商品グリッド === */
+    .pg-card[data-ptype="lens"] { display: none; }
     .pg-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -3293,7 +3294,7 @@
             </div>
           </div>
           <p class="pg-card-store">本体取扱：<strong>南浦和店</strong>　レンズ交換：<strong>全37店舗 / オンライン対応</strong></p>
-          <button class="pg-card-btn">詳しく見る →</button>
+          <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('mirza')">詳しく見る ▶</button>
         </div>
       </div>
 
@@ -3312,7 +3313,7 @@
             </div>
           </div>
           <p class="pg-card-store">レンズ交換：<strong>全37店舗 / オンライン対応</strong></p>
-          <button class="pg-card-btn">詳しく見る →</button>
+          <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('rokid')">詳しく見る ▶</button>
         </div>
       </div>
 
@@ -3341,7 +3342,7 @@
             </div>
           </div>
           <p class="pg-card-store">本体・レンズ取扱：<strong>南浦和店・宇都宮錦店・八千代店</strong></p>
-          <button class="pg-card-btn">詳しく見る →</button>
+          <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('even')">詳しく見る ▶</button>
         </div>
       </div>
 
@@ -3365,7 +3366,7 @@
             </div>
           </div>
           <p class="pg-card-store">本体取扱：<strong>南浦和店</strong>　レンズ交換：<strong>全37店舗</strong></p>
-          <button class="pg-card-btn">詳しく見る →</button>
+          <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('rayban')">詳しく見る ▶</button>
         </div>
       </div>
 
@@ -3387,7 +3388,7 @@
             </div>
           </div>
           <p class="pg-card-store">本体・レンズ取扱：<strong>南浦和店</strong></p>
-          <button class="pg-card-btn">詳しく見る →</button>
+          <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('viture')">詳しく見る ▶</button>
         </div>
       </div>
 
@@ -4213,7 +4214,7 @@
     document.querySelectorAll('.pg-card[data-ptype]').forEach(card => {
       const ptype = card.dataset.ptype;
       const show = filter === 'all' ? ptype === 'all' : ptype === 'lens';
-      card.style.display = show ? '' : 'none';
+      card.style.display = show ? 'flex' : 'none';
     });
   }
   // 初期状態: 本体・レンズ取り扱い
