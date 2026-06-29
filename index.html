@@ -2513,37 +2513,50 @@
         display: none;
       }
       .flow-tl-line { display: none; }
-      .flow-tl-grid { grid-template-columns: 1fr; gap: 12px; }
+      .flow-tl-grid { grid-template-columns: 1fr; gap: 0; }
       .flow-tl-step {
         display: grid;
-        grid-template-columns: 40px 36px 1fr;
+        grid-template-columns: 44px 34px 1fr;
         grid-template-rows: auto auto;
-        column-gap: 10px; row-gap: 0;
-        align-items: center;
-        padding: 16px; text-align: left;
-        background: #fff; border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        column-gap: 12px; row-gap: 0;
+        align-items: start;
+        padding: 0 0 28px 0;
+        background: transparent; border-radius: 0;
+        box-shadow: none;
+        position: relative;
+      }
+      .flow-tl-step:not(:last-child)::before {
+        content: '';
+        position: absolute;
+        left: 21px; top: 44px; bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, rgba(204,0,0,0.28), rgba(204,0,0,0.04));
+        pointer-events: none;
       }
       .flow-tl-num {
-        grid-column: 1; grid-row: 1 / -1;
+        grid-column: 1; grid-row: 1;
         width: 40px; height: 40px;
         font-size: 17px; margin: 0;
-        box-shadow: none; flex-shrink: 0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+        flex-shrink: 0; position: relative; z-index: 1;
         align-self: start;
       }
       .flow-tl-icon {
-        grid-column: 2; grid-row: 1 / -1;
-        display: flex; align-items: flex-start;
-        margin: 2px 0 0;
+        grid-column: 2; grid-row: 1;
+        display: flex; justify-content: center; align-items: center;
+        padding-top: 6px; margin: 0;
       }
-      .flow-tl-icon img { width: 30px; height: 30px; }
+      .flow-tl-icon img { width: 28px; height: 28px; }
       .flow-tl-step .flow-title {
         grid-column: 3; grid-row: 1;
-        margin-bottom: 0; font-size: 16px; align-self: center; white-space: normal;
+        margin-bottom: 0; font-size: 17px; font-weight: 800;
+        color: var(--navy); align-self: center; white-space: normal;
+        padding-top: 4px;
       }
       .flow-tl-step .flow-desc {
-        grid-column: 3; grid-row: 2;
-        margin-top: 6px; font-size: 13px; text-align: left;
+        grid-column: 2 / -1; grid-row: 2;
+        margin-top: 8px; font-size: 13px;
+        color: var(--text-secondary); line-height: 1.75; text-align: left;
       }
       .flow-arrow-band {
         clip-path: none; border-radius: 8px;
