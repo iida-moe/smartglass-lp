@@ -434,6 +434,99 @@
     .btn-glasses-icon { width: 32px; height: auto; filter: invert(1); }
     .btn-features-banner:hover { opacity: 0.82; }
 
+    /* ===== SECTION 02 REDESIGN: features-list / lens-bridge ===== */
+    .features-head { max-width: 640px; margin-bottom: 52px; }
+    .features-lead {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 2.0;
+      margin-top: 16px;
+    }
+    .pc-br { display: inline; }
+    .features-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 56px;
+      margin-bottom: 56px;
+    }
+    .feature-row {
+      display: flex;
+      gap: 22px;
+      align-items: flex-start;
+      padding: 28px 0;
+      border-top: 1px solid #E4E4E4;
+    }
+    .feature-row:nth-child(3),
+    .feature-row:nth-child(4) { border-bottom: 1px solid #E4E4E4; }
+    .feature-num {
+      font-size: 44px;
+      font-weight: 800;
+      color: rgba(13,27,42,0.07);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 54px;
+      letter-spacing: -0.03em;
+      padding-top: 3px;
+    }
+    .feature-row-body { flex: 1; min-width: 0; }
+    .feature-row-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .feature-row-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.9;
+    }
+    /* 度付きブリッジ */
+    .features-lens-bridge {
+      background: var(--navy);
+      border-radius: 12px;
+      padding: 36px 40px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      justify-content: space-between;
+    }
+    .features-lens-bridge-text { flex: 1; min-width: 0; }
+    .features-lens-bridge-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.38);
+      margin-bottom: 10px;
+    }
+    .features-lens-bridge-main {
+      font-size: clamp(18px, 2.2vw, 24px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .features-lens-bridge-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.62);
+      line-height: 1.85;
+      max-width: 520px;
+    }
+    .features-lens-bridge-btn {
+      flex-shrink: 0;
+      display: inline-block;
+      padding: 14px 28px;
+      background: #fff;
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 6px;
+      text-decoration: none;
+      white-space: nowrap;
+      font-family: inherit;
+      transition: opacity 0.2s;
+    }
+    .features-lens-bridge-btn:hover { opacity: 0.85; }
+
     /* ===== SECTION 03: スマートグラスのある暮らし ===== */
     #lifestyle { padding: 72px 0 80px; }
     .lifestyle-heading {
@@ -2044,6 +2137,17 @@
       .features-banner-right { width: 100%; }
       .btn-features-banner { width: 100%; justify-content: center; }
       .banner-title-main { font-size: clamp(16px, 5vw, 22px); white-space: normal; }
+      /* features-list SP */
+      .pc-br { display: none; }
+      .features-head { margin-bottom: 36px; }
+      .features-lead { font-size: 14px; margin-top: 12px; }
+      .features-list { grid-template-columns: 1fr; column-gap: 0; margin-bottom: 36px; }
+      .feature-row { padding: 22px 0; gap: 16px; }
+      .feature-row:nth-child(3) { border-bottom: none; }
+      .feature-row:nth-child(4) { border-bottom: 1px solid #E4E4E4; }
+      .feature-num { font-size: 32px; width: 40px; }
+      .features-lens-bridge { flex-direction: column; align-items: flex-start; gap: 20px; padding: 28px 24px; border-radius: 10px; }
+      .features-lens-bridge-btn { width: 100%; text-align: center; box-sizing: border-box; padding: 14px 20px; }
     }
 
     /* ===== SP: LIFESTYLE ===== */
@@ -2947,51 +3051,57 @@
 <!-- 02 スマートグラスとは？ -->
 <section id="features" class="section">
   <div class="container">
-    <p class="section-label">WHAT IS SMART GLASSES</p>
-    <h2 class="section-title">スマートグラスとは？</h2>
-    <div class="features-intro">
-      <p>メガネとして快適な見え方と最新のテクノロジーを組み合わせた新しいデバイスです。</p>
+
+    <div class="features-head">
+      <p class="section-label">WHAT IS SMART GLASSES</p>
+      <h2 class="section-title">スマートグラスとは？</h2>
+      <p class="features-lead">
+        メガネと同じ感覚でかけながら、AI・通話・翻訳・カメラが使えるデバイスです。<br class="pc-br">
+        スマートフォンをポケットから取り出す回数が、劇的に減ります。
+      </p>
     </div>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon"><img src="テレオペアイコン (1).svg" alt="AIアシスタント"></div>
-        <p class="feature-title">AIアシスタント</p>
-        <p class="feature-desc">声で質問すればすぐ回答。スケジュール管理から情報検索まで、日常をサポートする。</p>
+
+    <div class="features-list">
+      <div class="feature-row">
+        <span class="feature-num">01</span>
+        <div class="feature-row-body">
+          <p class="feature-row-title">AIアシスタント</p>
+          <p class="feature-row-desc">声で質問すればすぐ回答。スケジュール管理から情報検索まで、日常をサポートします。</p>
+        </div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon"><img src="吹き出しのアイコン6.svg" alt="通話"></div>
-        <p class="feature-title">通話・自動翻訳</p>
-        <p class="feature-desc">両手が自由なまま通話・メッセージ。リアルタイム翻訳で、海外でも安心して使える。</p>
+      <div class="feature-row">
+        <span class="feature-num">02</span>
+        <div class="feature-row-body">
+          <p class="feature-row-title">通話・自動翻訳</p>
+          <p class="feature-row-desc">両手が自由なまま通話・メッセージが届きます。リアルタイム翻訳で、海外でも安心して使えます。</p>
+        </div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon"><img src="カメラのアイコン素材 7.svg" alt="カメラ"></div>
-        <p class="feature-title">ハンズフリーで撮影</p>
-        <p class="feature-desc">見えている景色をそのまま記録。両手が空いたまま、いつでもシャッターを切れる。</p>
+      <div class="feature-row">
+        <span class="feature-num">03</span>
+        <div class="feature-row-body">
+          <p class="feature-row-title">ハンズフリーで撮影</p>
+          <p class="feature-row-desc">見えている景色をそのまま記録。両手が空いたまま、いつでもシャッターを切れます。</p>
+        </div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon"><img src="音楽アイコン.svg" alt="音楽"></div>
-        <p class="feature-title">音楽をどこでも</p>
-        <p class="feature-desc">耳をふさがずに音楽やポッドキャストを楽しめる。周囲の音も聞こえて安全に使える。</p>
+      <div class="feature-row">
+        <span class="feature-num">04</span>
+        <div class="feature-row-body">
+          <p class="feature-row-title">音楽をどこでも</p>
+          <p class="feature-row-desc">耳をふさがずに音楽やポッドキャストを楽しめます。周囲の音も聞こえて安全に使えます。</p>
+        </div>
       </div>
     </div>
 
-    <!-- 度付き訴求バナー -->
-    <div class="features-prescription-banner" style="display:none">
-      <div class="features-banner-body">
-        <p class="features-banner-label">AIMEGANE ONLY</p>
-        <p class="features-banner-title">
-          <span class="banner-title-sub">これらの機能を、</span>
-          <span class="banner-title-main"><strong>度付きのまま</strong>使用できます。</span>
-        </p>
-        <p class="features-banner-desc">視力が弱くてもあきらめなくていい。アイメガネは、スマートグラスを度付きレンズに対応させる数少ない眼鏡店です。</p>
+    <!-- 度付き接続ブリッジ -->
+    <div class="features-lens-bridge">
+      <div class="features-lens-bridge-text">
+        <p class="features-lens-bridge-label">AIMEGANE ONLY</p>
+        <p class="features-lens-bridge-main">視力が弱くても、あきらめなくていい。</p>
+        <p class="features-lens-bridge-sub">アイメガネは、スマートグラスへの度付きレンズ組み込みに対応できる数少ない眼鏡店です。上記の機能を、あなたの視力のまま使えます。</p>
       </div>
-      <div class="features-banner-right">
-        <a href="#prescription" class="btn-features-banner">
-          <img src="黒縁メガネフリー素材2 (1).svg" class="btn-glasses-icon" alt="">
-          度付きレンズについて▶
-        </a>
-      </div>
+      <a href="#prescription" class="features-lens-bridge-btn">度付きレンズについて →</a>
     </div>
+
   </div>
 </section>
 
