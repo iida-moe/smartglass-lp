@@ -4361,31 +4361,43 @@
         { label: '対応度数', value: 'SPH / CYL / AXIS / PD' },
         { label: 'フレーム送料', value: 'お客様負担' },
       ],
-      accordion: `
-        <p style="font-size:13px;color:#444;line-height:1.8;margin-bottom:6px;">本製品は「Rokid スマートAIグラス」専用の「度付きレンズ」です。事前に「Rokid スマートAIグラス」専用の「クリップオン式フレーム」を販売店にてご用意ください。</p>
-        <p style="font-size:12px;color:#888;margin-bottom:16px;">※当サイトではRokid本体およびクリップオン式フレームは取り扱っておりません。</p>
-        <div class="modal-order-step">
-          <p class="modal-order-step-title">STEP 1 ── クリップオン式フレームをご用意ください</p>
-          <p>「Rokid スマートAIグラス」専用のクリップオン式フレームをRokid販売店にて別途ご購入ください。</p>
-          <p style="margin-top:8px;"><a href="https://jp.rokid.com/pages/rokid-glasses" target="_blank">Rokid公式ホームページ →</a></p>
-        </div>
-        <div class="modal-order-step">
-          <p class="modal-order-step-title">STEP 2 ── 度付きレンズをご注文</p>
-          <p>フォームに左右の度数（球面・乱視・軸度・PD）を入力してご注文ください。度数が分からない方は、眼科にて処方箋を発行していただいてからご注文をお願いいたします。</p>
-        </div>
-        <div class="modal-spec-range">
-          <p class="modal-spec-range-title">■ 製作範囲</p>
-          <p>・球面（SPH）：±0.00〜−10.00</p>
-          <p>・乱視（CYL）：なし ／ −0.25〜−4.00</p>
-          <p style="margin-top:6px;">※ SPH −0.25 / −0.50 / −0.75 は、CYL（乱視度数）製作範囲外となります。</p>
-          <p>※ SPH −6.25以上の場合、CYL との合算で −10.00 まで。</p>
-          <p style="margin-top:4px;font-size:11px;">例）SPH −6.50 の場合、CYL は −3.50 まで製作可能。</p>
-        </div>`,
       recommend: ['Rokidをすでに持っている、または購入予定の人', '普段からメガネやコンタクトを使用している人', 'スマートグラスを度付きでフル活用したい人'],
       store: '度付きレンズオンライン注文対応：<strong>アイジャパンオンライン</strong><br><small style="color:#888;">※本体・クリップオン式フレームはRokid公式サイトにてご購入ください</small>',
       searchBrand: 'Rokid',
       onlineStore: 'https://www.aijapan-online.com/product-page/rokidsumartaigalassesinsrtlens',
       gallery: 'rokid',
+      hasLens: true,
+      lensHTML: `
+        <p class="modal-lens-intro">Rokid スマートAIグラス専用のクリップオン式フレームに取り付ける度付きレンズです。事前にRokid販売店にてクリップオン式フレームをご用意のうえ、フレームをアイジャパンオンラインへご郵送ください。</p>
+        <div class="modal-lens-block">
+          <p class="modal-lens-block-ttl">ご注文の流れ</p>
+          <p class="modal-lens-meta"><strong>STEP 1</strong>　Rokid公式サイトにてクリップオン式フレームをご購入ください。<br><a href="https://jp.rokid.com/pages/rokid-glasses" target="_blank" style="color:var(--navy);">Rokid公式ホームページ →</a></p>
+          <p class="modal-lens-meta" style="margin-top:8px;"><strong>STEP 2</strong>　度数（球面・乱視・軸度・PD）を入力してオンラインでご注文後、フレームをご郵送ください。</p>
+        </div>
+        <div class="modal-lens-block">
+          <p class="modal-lens-block-ttl">必要な処方情報</p>
+          <p class="modal-lens-meta">SPH（球面度数）・CYL（乱視度数）・AXIS（乱視軸度）・PD（瞳孔間距離）</p>
+        </div>
+        <div class="modal-lens-block">
+          <p class="modal-lens-block-ttl">製作範囲</p>
+          <p class="modal-lens-meta">球面（SPH）：±0.00〜−10.00</p>
+          <p class="modal-lens-meta">乱視（CYL）：なし ／ −0.25〜−4.00</p>
+          <p class="modal-lens-meta" style="font-size:11px;color:#888;margin-top:4px;">※ SPH −0.25 / −0.50 / −0.75 は、CYL（乱視度数）製作範囲外となります。</p>
+          <p class="modal-lens-meta" style="font-size:11px;color:#888;">※ SPH −6.25以上の場合、CYL との合算で −10.00 まで。</p>
+        </div>
+        <div class="modal-lens-block">
+          <p class="modal-lens-block-ttl">納期</p>
+          <p class="modal-lens-meta">フレーム到着後10日前後</p>
+        </div>
+        <div class="modal-lens-block">
+          <p class="modal-lens-block-ttl">注意事項</p>
+          <ul class="modal-lens-notes">
+            <li>本サービスはレンズ交換のみです。Rokid本体・クリップオン式フレームはRokid公式サイトにてご購入ください。</li>
+            <li>フレームの送料はお客様負担となります。</li>
+            <li>度付きレンズは特注品となるため、ご注文後のキャンセル・返品はお受けできません。</li>
+            <li>ご注文の際は処方箋をご準備ください。度数が分からない方は眼科にて処方箋を発行していただいてからご注文をお願いいたします。</li>
+          </ul>
+        </div>`,
     },
     even: {
       name: 'Even Realities G2',
