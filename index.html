@@ -1277,6 +1277,10 @@
       flex-shrink: 0;
     }
     .more-wrap { text-align: center; margin-top: 24px; }
+    .store-product-context { background: #F0F3F8; border: 1px solid rgba(13,27,42,0.12); border-radius: 8px; padding: 10px 14px; margin: 12px 0; }
+    .store-product-context-title { font-size: 11px; font-weight: 700; color: var(--navy); letter-spacing: 0.06em; margin-bottom: 6px; }
+    .store-product-context-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .store-product-context-tag { font-size: 11px; background: var(--navy); color: #fff; padding: 3px 10px; border-radius: 12px; font-weight: 600; }
     .btn-more {
       background: transparent;
       border: 1px solid rgba(255,255,255,0.35);
@@ -3308,7 +3312,7 @@
             </div>
           </div>
           <table class="pg-card-store">
-            <tr><th>本体取扱</th><td><span class="pg-store-link" onclick="event.stopPropagation();showStoreByName('南浦和')">南浦和店</span></td></tr>
+            <tr><th>本体取扱</th><td><span class="pg-store-link" onclick="event.stopPropagation();showStoreFromCard('南浦和','mirza')">南浦和店</span></td></tr>
             <tr><th>レンズ交換</th><td>全37店舗 / オンライン対応</td></tr>
           </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('mirza')">詳しく見る ▶</button>
@@ -3364,7 +3368,7 @@
             </div>
           </div>
           <table class="pg-card-store">
-            <tr><th>本体・レンズ</th><td><span class="pg-store-link" onclick="event.stopPropagation();showStoreByName('南浦和')">南浦和店</span>・<span class="pg-store-link" onclick="event.stopPropagation();showStoreByName('宇都宮錦')">宇都宮錦店</span>・<span class="pg-store-link" onclick="event.stopPropagation();showStoreByName('八千代')">八千代店</span></td></tr>
+            <tr><th>本体・レンズ</th><td><span class="pg-store-link" onclick="event.stopPropagation();showStoreFromCard('南浦和','even')">南浦和店</span>・<span class="pg-store-link" onclick="event.stopPropagation();showStoreFromCard('宇都宮錦','even')">宇都宮錦店</span>・<span class="pg-store-link" onclick="event.stopPropagation();showStoreFromCard('八千代','even')">八千代店</span></td></tr>
           </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('even')">詳しく見る ▶</button>
         </div>
@@ -3393,7 +3397,7 @@
             </div>
           </div>
           <table class="pg-card-store">
-            <tr><th>本体取扱</th><td><span class="pg-store-link" onclick="event.stopPropagation();showStoreByName('南浦和')">南浦和店</span></td></tr>
+            <tr><th>本体取扱</th><td><span class="pg-store-link" onclick="event.stopPropagation();showStoreFromCard('南浦和','rayban')">南浦和店</span></td></tr>
             <tr><th>レンズ交換</th><td>全37店舗</td></tr>
           </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('rayban')">詳しく見る ▶</button>
@@ -3421,7 +3425,7 @@
             </div>
           </div>
           <table class="pg-card-store">
-            <tr><th>本体・レンズ</th><td><span class="pg-store-link" onclick="event.stopPropagation();showStoreByName('南浦和')">南浦和店</span></td></tr>
+            <tr><th>本体・レンズ</th><td><span class="pg-store-link" onclick="event.stopPropagation();showStoreFromCard('南浦和','viture')">南浦和店</span></td></tr>
           </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('viture')">詳しく見る ▶</button>
         </div>
@@ -4658,6 +4662,42 @@
       </div>`;
     document.getElementById('product-modal').classList.add('open');
     document.body.style.overflow = 'hidden';
+  }
+
+  // 商品カードから来たときの店舗表示（その他非表示・商品取り扱い情報付き）
+  const STORE_PRODUCT_CTX = {
+    'mirza_南浦和':   { name: 'MiRZA', tags: ['本体取扱', 'レンズ交換対応'] },
+    'even_南浦和':    { name: 'Even Realities G2', tags: ['本体取扱', 'レンズ交換対応'] },
+    'even_宇都宮錦':  { name: 'Even Realities G2', tags: ['本体取扱', 'レンズ交換対応'] },
+    'even_八千代':    { name: 'Even Realities G2', tags: ['本体取扱', 'レンズ交換対応'] },
+    'rayban_南浦和':  { name: 'Ray-Ban Meta', tags: ['本体取扱', 'レンズ交換対応'] },
+    'viture_南浦和':  { name: 'VITURE Luma シリーズ', tags: ['本体取扱', 'レンズ交換対応'] },
+  };
+  function showStoreFromCard(storeName, productKey) {
+    var store = STORES.find(function(s) { return s.name.indexOf(storeName) !== -1; });
+    if (!store) return;
+    document.getElementById('product-modal').classList.remove('open');
+    document.body.style.overflow = '';
+    document.getElementById('result-label').textContent = store.name;
+    document.getElementById('store-results-inner').innerHTML = renderResults(store, [], '');
+    document.getElementById('more-wrap').style.display = 'none';
+    var ctx = STORE_PRODUCT_CTX[productKey + '_' + storeName];
+    if (ctx) {
+      var tagsEl = document.querySelector('#store-results-inner .store-tags');
+      if (tagsEl) {
+        var div = document.createElement('div');
+        div.className = 'store-product-context';
+        div.innerHTML = '<p class="store-product-context-title">' + ctx.name + ' の取り扱い</p>'
+          + '<div class="store-product-context-tags">'
+          + ctx.tags.map(function(t){ return '<span class="store-product-context-tag">' + t + '</span>'; }).join('')
+          + '</div>';
+        tagsEl.insertAdjacentElement('afterend', div);
+      }
+    }
+    document.getElementById('search-results').style.display = 'block';
+    setTimeout(function() {
+      document.getElementById('search-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
   }
 
   function showStoreByName(name) {
