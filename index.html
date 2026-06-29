@@ -2119,16 +2119,21 @@
     @media (max-width: 767px) {
       .why-sp-online { padding: 14px 16px; }
       .why-sp-online-text { font-size: 20px; margin-bottom: 8px; }
-      .why-sp-online-body { margin-bottom: 12px; }
+      .why-sp-online-body { margin-bottom: 0; }
+      .why-sp-online-action { margin-top: 14px; }
       .why-sp-online-disclaimer { margin: 6px 0 0; }
     }
 
     /* PC: イントロ幅・オンラインCTA 2カラム */
     @media (min-width: 768px) {
       .prescription-sp-intro { max-width: 680px; }
-      .why-sp-online { display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 24px 32px; }
-      .why-sp-online-text { font-size: 24px; }
-      .btn-why-online { width: auto; white-space: nowrap; padding: 15px 32px; }
+      .why-sp-online { display: flex; align-items: center; gap: 40px; padding: 20px 32px; }
+      .why-sp-online-inner { flex: 1; min-width: 0; }
+      .why-sp-online-text { font-size: 26px; font-weight: 900; white-space: nowrap; margin-bottom: 4px; }
+      .why-sp-online-body { margin-bottom: 0; }
+      .why-sp-online-action { flex-shrink: 0; text-align: center; }
+      .why-sp-online-disclaimer { margin: 6px 0 0; text-align: center; }
+      .btn-why-online { width: auto; white-space: nowrap; padding: 15px 28px; }
     }
 
     /* ===== WHY SP: タイトル ===== */
@@ -3254,8 +3259,10 @@
       </div>
       <div class="why-sp-online">
         <div class="why-sp-online-inner">
-          <p class="why-sp-online-text">度付きレンズ交換<br>全国どこからでもOK</p>
+          <p class="why-sp-online-text">度付きレンズ交換 全国どこからでもOK</p>
           <p class="why-sp-online-body">本体を送るだけで、度付きレンズに交換してお届け。<br><span class="why-sp-online-models">対応機種：MIRZA・Rokid</span></p>
+        </div>
+        <div class="why-sp-online-action">
           <a href="https://www.aijapan-online.com/" target="_blank" class="btn-why-online">
             <img src="logo_aijapanonline02.png" alt="Ai Japan Online" class="btn-why-online-logo">
             <span>オンラインで注文する▶</span>
