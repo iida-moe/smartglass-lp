@@ -500,32 +500,38 @@
       gap: 24px;
     }
     .lifestyle-slide {
-      text-align: center;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
     }
     .lifestyle-slide-img {
       width: 100%;
       height: 320px;
-      border-radius: 16px;
       background: var(--bg-gray);
       object-fit: cover;
       display: block;
     }
     .lifestyle-slide-caption {
-      margin-top: 14px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 52px 20px 22px;
+      background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0) 100%);
       text-align: left;
     }
     .lifestyle-slide-label {
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--red);
+      color: rgba(255,255,255,0.6);
       margin-bottom: 6px;
     }
     .lifestyle-slide-text {
       font-size: 15px;
-      font-weight: 500;
-      color: var(--text-main);
+      font-weight: 600;
+      color: #fff;
       line-height: 1.65;
     }
 
@@ -2103,8 +2109,9 @@
     /* ===== SP: LIFESTYLE ===== */
     @media (max-width: 767px) {
       .lifestyle-heading { font-size: 20px; margin-bottom: 24px; }
-      .lifestyle-grid { grid-template-columns: 1fr; gap: 20px; }
-      .lifestyle-slide-img { height: 260px; object-position: top center; }
+      .lifestyle-grid { grid-template-columns: 1fr; gap: 16px; }
+      .lifestyle-slide-img { height: 240px; object-position: top center; }
+      .lifestyle-slide-text { font-size: 14px; }
     }
 
     /* ===== WHY SECTION: SP版を全幅で使用 ===== */
