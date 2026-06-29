@@ -2084,14 +2084,16 @@
 
     /* ===== SP: FEATURES (スマートグラスとは) ===== */
     @media (max-width: 767px) {
-      .features-intro { margin-bottom: 28px; }
-      .features-intro p { font-size: 14px; margin-bottom: 12px; }
-      .features-grid { gap: 10px; margin-bottom: 20px; }
-      .feature-card { padding: 20px 12px 18px; }
-      .feature-icon { width: 56px; height: 56px; margin-bottom: 14px; }
-      .feature-icon img { width: 30px; height: 30px; }
+      .features-intro { margin-bottom: 24px; }
+      .features-intro p { font-size: 14px; line-height: 1.85; }
+      .features-intro p br { display: none; }
+      .features-grid { grid-template-columns: 1fr; gap: 10px; margin-bottom: 24px; }
+      .feature-card { padding: 20px 16px 18px; }
+      .feature-icon { width: 52px; height: 52px; margin-bottom: 12px; }
+      .feature-icon img { width: 28px; height: 28px; }
       .feature-title { font-size: 14px; margin-bottom: 6px; }
       .feature-desc { font-size: 13px; }
+      .feature-desc br { display: none; }
       .features-prescription-banner { padding: 24px 20px; flex-direction: column; align-items: flex-start; gap: 16px; }
       .features-banner-right { width: 100%; }
       .btn-features-banner { width: 100%; justify-content: center; }
