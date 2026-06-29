@@ -18,7 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 80px; }
     @supports (padding-bottom: env(safe-area-inset-bottom)) {
       body { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
     }
@@ -2684,17 +2684,19 @@
       max-width: 1060px;
       width: 100%;
       max-height: 90vh;
-      overflow-y: auto;
+      overflow: hidden;
       position: relative;
-      padding: 48px;
+      display: flex;
+      flex-direction: column;
       box-sizing: border-box;
     }
     @media (max-width: 767px) {
-      .prod-modal-inner { padding: 24px 20px; border-radius: 12px; }
+      .prod-modal-inner { border-radius: 12px; }
     }
     .prod-modal-close {
-      position: absolute;
-      top: 16px; right: 16px;
+      align-self: flex-end;
+      flex-shrink: 0;
+      margin: 14px 14px 0;
       background: none;
       border: none;
       font-size: 22px;
@@ -2702,6 +2704,14 @@
       color: #333;
       line-height: 1;
       padding: 4px 8px;
+    }
+    .prod-modal-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 48px 48px;
+    }
+    @media (max-width: 767px) {
+      .prod-modal-body { padding: 4px 20px 24px; }
     }
     .prod-modal-layout {
       display: flex;
@@ -3005,7 +3015,7 @@
         </div>
       </div>
       <div class="lifestyle-slide">
-        <img class="lifestyle-slide-img" src="都会の朝、スマートグラスをかけたランニング男子.png" alt="ランニング">
+        <img class="lifestyle-slide-img" src="images/lifestyle/running.png" alt="ランニング">
         <div class="lifestyle-slide-caption">
           <p class="lifestyle-slide-label">ランニング</p>
           <p class="lifestyle-slide-text">スマホを取り出さず、音楽や通話をもっと快適に。</p>
@@ -3503,6 +3513,33 @@
         <div class="qa-a">VR（仮想現実）は視界を完全に仮想空間に置き換える大型ゴーグル型、AR（拡張現実）は現実にデジタル情報を重ねる屋内向け機器が多いです。スマートグラスは普通のメガネと同じ形状で外出先でも普通にかけられ、音楽・通話・AI・カメラなどを「日常使い」できることが最大の違いです。</div>
       </div>
 
+      <div class="qa-item">
+        <button class="qa-q" onclick="toggleQA(this)">
+          <span class="qa-prefix">Q</span>
+          <span class="qa-q-text">予約なしでも来店できますか？</span>
+          <span class="qa-icon">+</span>
+        </button>
+        <div class="qa-a">はい、当日のご相談も歓迎しています。ただし、混雑状況によってはお待ちいただく場合がございます。よりスムーズにご案内するため、事前のご予約をおすすめしています。</div>
+      </div>
+
+      <div class="qa-item">
+        <button class="qa-q" onclick="toggleQA(this)">
+          <span class="qa-prefix">Q</span>
+          <span class="qa-q-text">どの店舗でも全機種に対応していますか？</span>
+          <span class="qa-icon">+</span>
+        </button>
+        <div class="qa-a">機種によって本体の展示・販売対応店舗が異なります。レンズ交換（度付き加工）は全37店舗で承っております。ご希望の機種の取扱店舗は、ページ内の「店舗検索」でご確認いただけます。</div>
+      </div>
+
+      <div class="qa-item">
+        <button class="qa-q" onclick="toggleQA(this)">
+          <span class="qa-prefix">Q</span>
+          <span class="qa-q-text">処方箋がなくても度付きレンズを作れますか？</span>
+          <span class="qa-icon">+</span>
+        </button>
+        <div class="qa-a">はい、処方箋がなくても店頭で検眼（度数測定）を行い、お客様に合った度数でレンズを製作できます。現在お使いのメガネをお持ちいただくと、参考度数としてお役立ていただけます。</div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -3558,7 +3595,9 @@
   <button class="modal-nav-btn modal-nav-prev" id="modal-nav-prev">&#8249;</button>
   <div class="prod-modal-inner">
     <button class="prod-modal-close" id="prod-modal-close">✕</button>
-    <div class="prod-modal-content" id="prod-modal-content"></div>
+    <div class="prod-modal-body">
+      <div class="prod-modal-content" id="prod-modal-content"></div>
+    </div>
   </div>
   <button class="modal-nav-btn modal-nav-next" id="modal-nav-next">&#8250;</button>
 </div>
