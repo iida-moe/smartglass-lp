@@ -446,12 +446,12 @@
     .features-list {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      column-gap: 56px;
+      column-gap: 36px;
       margin-bottom: 56px;
     }
     .feature-row {
       display: flex;
-      gap: 22px;
+      gap: 18px;
       align-items: flex-start;
       padding: 28px 0;
       border-top: 1px solid #E4E4E4;
@@ -464,21 +464,34 @@
       color: rgba(13,27,42,0.07);
       line-height: 1;
       flex-shrink: 0;
-      width: 54px;
+      width: 48px;
       letter-spacing: -0.03em;
       padding-top: 3px;
     }
     .feature-row-body { flex: 1; min-width: 0; }
+    .feature-row-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .feature-row-icon {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      opacity: 0.6;
+      flex-shrink: 0;
+    }
     .feature-row-title {
       font-size: 15px;
       font-weight: 700;
       color: var(--text-primary);
-      margin-bottom: 8px;
     }
     .feature-row-desc {
       font-size: 13px;
       color: var(--text-secondary);
       line-height: 1.9;
+      padding-left: 26px;
     }
     /* 度付きブリッジ */
     .features-lens-bridge {
@@ -3065,28 +3078,40 @@
       <div class="feature-row">
         <span class="feature-num">01</span>
         <div class="feature-row-body">
-          <p class="feature-row-title">AIアシスタント</p>
+          <div class="feature-row-head">
+            <img src="テレオペアイコン (1).svg" class="feature-row-icon" alt="">
+            <p class="feature-row-title">AIアシスタント</p>
+          </div>
           <p class="feature-row-desc">声で質問すればすぐ回答。スケジュール管理から情報検索まで、日常をサポートします。</p>
         </div>
       </div>
       <div class="feature-row">
         <span class="feature-num">02</span>
         <div class="feature-row-body">
-          <p class="feature-row-title">通話・自動翻訳</p>
+          <div class="feature-row-head">
+            <img src="吹き出しのアイコン6.svg" class="feature-row-icon" alt="">
+            <p class="feature-row-title">通話・自動翻訳</p>
+          </div>
           <p class="feature-row-desc">両手が自由なまま通話・メッセージが届きます。リアルタイム翻訳で、海外でも安心して使えます。</p>
         </div>
       </div>
       <div class="feature-row">
         <span class="feature-num">03</span>
         <div class="feature-row-body">
-          <p class="feature-row-title">ハンズフリーで撮影</p>
+          <div class="feature-row-head">
+            <img src="カメラのアイコン素材 7.svg" class="feature-row-icon" alt="">
+            <p class="feature-row-title">ハンズフリーで撮影</p>
+          </div>
           <p class="feature-row-desc">見えている景色をそのまま記録。両手が空いたまま、いつでもシャッターを切れます。</p>
         </div>
       </div>
       <div class="feature-row">
         <span class="feature-num">04</span>
         <div class="feature-row-body">
-          <p class="feature-row-title">音楽をどこでも</p>
+          <div class="feature-row-head">
+            <img src="音楽アイコン.svg" class="feature-row-icon" alt="">
+            <p class="feature-row-title">音楽をどこでも</p>
+          </div>
           <p class="feature-row-desc">耳をふさがずに音楽やポッドキャストを楽しめます。周囲の音も聞こえて安全に使えます。</p>
         </div>
       </div>
