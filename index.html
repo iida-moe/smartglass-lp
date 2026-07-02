@@ -2571,38 +2571,53 @@
         display: none;
       }
       .flow-tl-line { display: none; }
-      .flow-tl-grid { grid-template-columns: 1fr; gap: 12px; }
+      .flow-tl-grid { grid-template-columns: 1fr; gap: 0; }
       .flow-tl-step {
         display: grid;
-        grid-template-columns: 48px 1fr;
+        grid-template-columns: 44px 1fr;
         grid-template-rows: auto auto;
         column-gap: 12px; row-gap: 0;
         align-items: start;
-        padding: 14px 16px;
-        background: #fff; border-radius: 10px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        padding: 0 0 22px 0;
+        background: transparent; border-radius: 0;
+        box-shadow: none;
         position: relative;
       }
-      .flow-tl-step:not(:last-child)::before { display: none; }
+      .flow-tl-step:not(:last-child)::before {
+        content: '';
+        position: absolute;
+        left: 20px; top: 44px; bottom: 0;
+        width: 2px;
+        transform: translateX(-50%);
+        background: #ccc;
+        pointer-events: none;
+      }
+      .flow-tl-step:nth-child(1)::before { background: linear-gradient(to bottom, #1A3A72, #6B2050); }
+      .flow-tl-step:nth-child(2)::before { background: linear-gradient(to bottom, #6B2050, #A80E1C); }
+      .flow-tl-step:nth-child(3)::before { background: linear-gradient(to bottom, #A80E1C, #CC0000); }
+      .flow-online-block .flow-tl-step:nth-child(1)::before { background: linear-gradient(to bottom, #1A3A72, #52206B); }
+      .flow-online-block .flow-tl-step:nth-child(2)::before { background: linear-gradient(to bottom, #52206B, #831240); }
+      .flow-online-block .flow-tl-step:nth-child(3)::before { background: linear-gradient(to bottom, #831240, #B00C1C); }
+      .flow-online-block .flow-tl-step:nth-child(4)::before { background: linear-gradient(to bottom, #B00C1C, #CC0000); }
       .flow-tl-num {
         grid-column: 1; grid-row: 1;
         width: 40px; height: 40px;
-        font-size: 17px; margin: 0;
+        font-size: 20px; margin: 0;
         box-shadow: 0 2px 8px rgba(0,0,0,0.18);
         flex-shrink: 0; position: relative; z-index: 1;
-        align-self: center;
+        align-self: start;
       }
       .flow-tl-icon { display: none; }
       .flow-tl-step .flow-title {
         grid-column: 2; grid-row: 1;
-        margin-bottom: 0; font-size: 17px; font-weight: 800;
+        margin-bottom: 0; font-size: 23px; font-weight: 800;
         color: var(--navy); align-self: center; white-space: normal;
-        padding-top: 0;
+        padding-top: 4px; text-align: left;
       }
-      .flow-desc br { display: none; }
       .flow-tl-step .flow-desc {
-        grid-column: 2; grid-row: 2;
-        margin-top: 6px; font-size: 13px;
+        grid-column: 1 / -1; grid-row: 2;
+        padding-left: 56px;
+        margin-top: 8px; font-size: 13px;
         color: var(--text-secondary); line-height: 1.75; text-align: left;
       }
       .flow-arrow-band-wrap {
@@ -2614,8 +2629,8 @@
       }
       .flow-arrow-band {
         clip-path: none;
-        flex-direction: column; gap: 4px;
-        padding: 16px 24px; text-align: center;
+        flex-direction: column; gap: 1px;
+        padding: 6px 16px; text-align: center;
       }
       .flow-arrow-band-value { font-size: 19px; }
       .flow-note { text-align: left; }
@@ -3480,7 +3495,7 @@
   <div class="container">
     <p class="section-label" style="text-align:center;">FLOW</p>
     <h2 class="section-title center">来店時 商品購入の流れ</h2>
-    <p style="text-align:center;font-size:15px;color:var(--text-secondary);margin-top:-24px;margin-bottom:28px;">本体購入・度付きレンズ交換、どちらにも対応。<br class="sp-br">シンプルな4ステップです。</p>
+    <p style="text-align:center;font-size:15px;color:var(--text-secondary);margin-top:-24px;margin-bottom:28px;line-height:1.6;">本体購入・度付きレンズ交換、どちらにも対応。<br class="sp-br">シンプルな4ステップです。</p>
 
     <!-- 来店フロー -->
     <div class="flow-tl-wrap">
@@ -3490,7 +3505,7 @@
           <div class="flow-tl-num">1</div>
           <div class="flow-tl-icon"><img src="flow-icon-store.svg" alt="ご来店"></div>
           <p class="flow-title">ご来店</p>
-          <p class="flow-desc">予約・当日相談もOK。<br>レンズ交換ご希望の際は、<br>本体をご持参ください。</p>
+          <p class="flow-desc">予約・当日相談もOK。<br>レンズ交換ご希望の場合は、本体をご持参ください。</p>
         </div>
         <div class="flow-tl-step">
           <div class="flow-tl-num">2</div>
