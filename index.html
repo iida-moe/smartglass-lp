@@ -167,6 +167,7 @@
       color: rgba(255,255,255,0.85);
       margin-bottom: 8px;
     }
+    .fv-main-accent3 { display: block; }
     .fv-main-accent {
       display: inline;
       font-size: clamp(32px, 3.8vw, 58px);
@@ -211,15 +212,15 @@
     .btn-fv-primary:hover { opacity: 0.88; }
     .btn-fv-secondary {
       display: inline-block;
-      padding: 17px 32px;
+      padding: 17px 24px;
       border-radius: 6px;
-      font-size: 16px;
-      font-weight: 700;
+      font-size: 14px;
+      font-weight: 600;
       font-family: inherit;
       text-decoration: none;
-      background: #fff;
-      color: var(--red);
-      border: 2px solid var(--red);
+      background: transparent;
+      color: rgba(255,255,255,0.75);
+      border: 1.5px solid rgba(255,255,255,0.4);
       cursor: pointer;
       white-space: nowrap;
       transition: opacity 0.2s;
@@ -283,6 +284,8 @@
 
     /* ===== SECTION COMMON ===== */
     .section { padding: 72px 0; }
+    #features { padding-bottom: 32px; }
+    #lifestyle { padding-top: 32px; }
     .section-dark { background: var(--navy); color: #fff; }
     .section-label {
       font-size: 11px;
@@ -488,7 +491,7 @@
     }
 
     /* ===== SECTION 03: スマートグラスのある暮らし ===== */
-    #lifestyle { padding: 72px 0 80px; }
+    #lifestyle { padding: 44px 0 80px; }
     .lifestyle-heading {
       font-size: clamp(20px, 2.8vw, 28px);
       font-weight: 700;
@@ -541,26 +544,27 @@
     .product-filter-tabs {
       display: flex;
       justify-content: center;
-      gap: 0;
+      gap: 8px;
       margin-bottom: 40px;
     }
     .product-filter-btn {
-      padding: 12px 32px;
+      padding: 10px 28px;
       font-size: 14px;
       font-weight: 700;
       letter-spacing: 0.04em;
       cursor: pointer;
       border: 2px solid #0D1B2A;
+      border-radius: 24px;
       transition: background 0.2s, color 0.2s;
       white-space: nowrap;
     }
     .product-filter-btn:first-child {
-      border-radius: 6px 0 0 6px;
-      border-right-width: 1px;
+      border-radius: 24px;
+      border-right-width: 2px;
     }
     .product-filter-btn:last-child {
-      border-radius: 0 6px 6px 0;
-      border-left-width: 1px;
+      border-radius: 24px;
+      border-left-width: 2px;
     }
     .product-filter-btn--active {
       background: #0D1B2A;
@@ -1966,7 +1970,7 @@
 
     /* ===== SP: GLOBAL ===== */
     @media (max-width: 767px) {
-      .section { padding: 52px 0; }
+      .section { padding: 20px 0; }
       #final-cta { padding: 60px 0; }
     }
 
@@ -2015,7 +2019,7 @@
       }
       .fv-main-line1 {
         display: block;
-        font-size: 29px;
+        font-size: 22px;
         font-weight: 400;
         color: #fff;
         background: none;
@@ -2026,15 +2030,16 @@
       }
       .fv-main-accent {
         display: block;
-        font-size: clamp(42px, 12.5vw, 54px);
+        font-size: clamp(30px, 9vw, 48px);
         font-weight: 800;
         line-height: 1.2;
-        white-space: nowrap;
+        white-space: normal;
         background: linear-gradient(90deg, #FFFFFF 0%, #66CCFF 50%, #0077CC 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
+      .fv-main-accent3 { font-size: clamp(20px, 8vw, 48px); white-space: nowrap; }
       .fv-body { display: none; }
       .fv-btns { display: none; }
       .fv-brands-wrap { display: none; }
@@ -2046,18 +2051,21 @@
         margin-bottom: 24px;
       }
       .fv-brand-ticker-label {
-        font-size: 11px;
-        color: rgba(255,255,255,0.50);
-        letter-spacing: 0.12em;
+        font-size: 12px;
+        color: rgba(255,255,255,0.75);
+        letter-spacing: 0.14em;
         text-transform: uppercase;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
+        font-weight: 600;
       }
       .fv-brand-ticker-name {
-        font-size: 18px;
+        font-size: 22px;
         font-weight: 700;
-        color: rgba(255,255,255,0.90);
+        color: #fff;
         line-height: 1.4;
         transition: opacity 0.4s;
+        border-left: 3px solid var(--red);
+        padding-left: 10px;
       }
       /* SP専用CTAボタン */
       .fv-sp-cta {
@@ -2066,12 +2074,12 @@
         align-items: flex-start;
         gap: 10px;
         margin-top: auto;
-        padding-bottom: 24px;
+        padding-bottom: 8px;
       }
       .fv-sp-btn {
         display: inline-block;
-        padding: 15px 28px;
-        font-size: 18px;
+        padding: 10px 20px;
+        font-size: 16px;
         font-weight: 700;
         text-align: center;
         text-decoration: none;
@@ -2084,9 +2092,9 @@
         border: none;
       }
       .fv-sp-btn--blue {
-        background: #fff;
-        color: var(--red);
-        border: 2px solid var(--red);
+        background: transparent;
+        color: rgba(255,255,255,0.75);
+        border: 1.5px solid rgba(255,255,255,0.4);
       }
       /* アクションバーはSPでは非表示 */
       #fv-action-bar { display: none; }
@@ -2094,15 +2102,16 @@
 
     /* ===== SP: FEATURES (スマートグラスとは) ===== */
     @media (max-width: 767px) {
+      #features { padding-bottom: 8px; }
       .features-intro { margin-bottom: 20px; }
       .features-intro p { font-size: 13px; line-height: 1.8; }
       .features-intro p br { display: none; }
-      .features-grid { grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
-      .feature-card { display: block; padding: 18px 10px 16px; text-align: center; }
-      .feature-icon { width: 52px; height: 52px; margin: 0 auto 10px; }
-      .feature-icon img { width: 28px; height: 28px; }
-      .feature-title { font-size: 13px; margin-bottom: 6px; }
-      .feature-desc { font-size: 12px; line-height: 1.75; text-align: left; }
+      .features-grid { grid-template-columns: 1fr; gap: 10px; margin-bottom: 20px; }
+      .feature-card { display: grid; grid-template-columns: 44px 1fr; grid-template-rows: auto auto; align-items: center; column-gap: 14px; row-gap: 2px; padding: 14px 16px; text-align: left; }
+      .feature-icon { grid-column: 1; grid-row: 1 / 3; width: 44px; height: 44px; margin: 0; align-self: center; }
+      .feature-icon img { width: 26px; height: 26px; }
+      .feature-title { grid-column: 2; grid-row: 1; font-size: 13px; margin-bottom: 0; align-self: end; }
+      .feature-desc { grid-column: 2; grid-row: 2; font-size: 12px; line-height: 1.7; align-self: start; }
       .feature-desc br { display: none; }
       .features-prescription-banner { padding: 24px 20px; flex-direction: column; align-items: flex-start; gap: 16px; }
       .features-banner-right { width: 100%; }
@@ -2115,7 +2124,7 @@
       .lifestyle-heading { font-size: 20px; margin-bottom: 24px; }
       .lifestyle-grid { grid-template-columns: 1fr; gap: 20px; }
       .lifestyle-slide-img { height: 260px; border-radius: 12px; object-position: top center; }
-      .lifestyle-slide-label { font-size: 14px; }
+      .lifestyle-slide-label { font-size: 16px; }
       .lifestyle-slide-text { font-size: 14px; }
     }
 
@@ -2127,23 +2136,51 @@
 
     /* SP: オンラインCTA */
     @media (max-width: 767px) {
-      .why-sp-online { padding: 14px 16px; }
-      .why-sp-online-text { font-size: 20px; margin-bottom: 8px; }
-      .why-sp-online-body { margin-bottom: 0; }
-      .why-sp-online-action { margin-top: 14px; }
-      .why-sp-online-disclaimer { margin: 6px 0 0; }
+      .why-num-head--trust { font-size: 32px; line-height: 1.3; margin-bottom: 16px; }
+      .why-sp-cards .why-sp-card:last-child .why-num-head--trust { font-size: 23px; }
+      .why-sp-online-arrow { display: none; }
+      .why-sp-online-lead { display: none !important; }
+      .why-sp-online {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 6px;
+        padding: 20px 16px !important;
+      }
+      .why-sp-online-text { font-size: clamp(18px, 5.5vw, 24px) !important; white-space: normal; margin-bottom: 4px !important; }
+      .why-sp-online-body { margin-bottom: 0 !important; font-size: 13px; text-align: center; }
+      .why-sp-online-models { display: block; margin-top: 2px; text-align: center; }
+      .why-sp-online-action { width: 100%; display: flex; flex-direction: column; align-items: center; margin-top: 10px; }
+      .btn-why-online { background: var(--red) !important; width: 100% !important; }
+      .why-sp-online-disclaimer { margin: 6px 0 0; text-align: center; }
     }
 
     /* PC: イントロ幅・オンラインCTA 2カラム */
     @media (min-width: 768px) {
       .prescription-sp-intro { max-width: 680px; }
-      .why-sp-online { display: flex; align-items: center; gap: 40px; padding: 14px 28px; }
-      .why-sp-online-inner { flex: 1; min-width: 0; }
-      .why-sp-online-text { font-size: 29px; font-weight: 900; white-space: nowrap; margin-bottom: 10px; }
-      .why-sp-online-body { font-size: 13px; font-weight: 700; color: #333 !important; margin-bottom: 0; }
-      .why-sp-online-action { flex-shrink: 0; text-align: center; }
-      .why-sp-online-disclaimer { margin: 6px 0 0; text-align: center; }
-      .btn-why-online { width: auto; white-space: nowrap; padding: 15px 28px; }
+      .why-sp-online-arrow { display: none; }
+      .why-sp-online-lead { margin-bottom: 12px; }
+      .why-sp-online-lead { display: none; }
+      .why-sp-online {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 8px;
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 14px 40px !important;
+        background: #fff !important;
+        border-radius: 12px !important;
+      }
+      .why-sp-online-inner { width: 100%; }
+      .why-sp-online-text { font-size: 30px !important; font-weight: 900; white-space: normal; margin-bottom: 6px !important; color: #111 !important; }
+      .why-sp-online-body { font-size: 14px; font-weight: 500; color: #444 !important; margin-bottom: 0 !important; }
+      .why-sp-online-models { display: block; margin-top: 4px; font-size: 12px; color: #999 !important; }
+      .why-sp-online-action { width: 100%; display: flex; flex-direction: column; align-items: center; }
+      .why-sp-online-disclaimer { margin: 8px 0 0; text-align: center; color: #aaa; }
+      .btn-why-online { width: auto !important; white-space: nowrap; padding: 15px 36px; background: var(--red) !important; }
     }
 
     /* ===== WHY SP: タイトル ===== */
@@ -2152,15 +2189,7 @@
       display: inline;
     }
     .why-title-marker::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 2px;
-      height: 3px;
-      background: #FFD600;
-      z-index: 0;
-      border-radius: 2px;
+      content: none;
     }
     .why-title-marker > span {
       position: relative;
@@ -2224,6 +2253,10 @@
       padding-bottom: 10px;
       letter-spacing: 0;
     }
+    @media (max-width: 767px) {
+      .why-num-prefix { font-size: 21px; }
+      .why-num-unit { font-size: 19px; }
+    }
     .why-card-pillar {
       font-size: 16px;
       font-weight: 800;
@@ -2238,13 +2271,13 @@
     .why-check-list {
       list-style: none;
       padding: 0;
-      margin: 0 0 8px;
+      margin: 12px 0 8px;
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
     .why-check-list li {
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 600;
       color: var(--navy);
       padding-left: 20px;
@@ -2258,6 +2291,8 @@
       color: var(--red);
       font-weight: 800;
     }
+    .why-check-list li.no-check { padding-left: 0; }
+    .why-check-list li.no-check::before { display: none; }
     .why-trust-badge {
       display: inline-block;
       font-size: 13px;
@@ -2321,6 +2356,14 @@
       .prescription-sp-intro { font-size: 16px; margin-bottom: 40px; }
       .why-sp-cards { flex-direction: row; gap: 24px; margin-bottom: 40px; align-items: stretch; }
       .why-sp-card { flex: 1; display: flex; flex-direction: column; }
+      .why-num-head { font-size: 14px; line-height: 1.6; }
+      .why-num-head--trust { font-size: 27px; line-height: 1.0; margin-top: 8px; }
+      .why-sp-cards .why-sp-card:first-child { padding-top: 21px; }
+      .why-sp-cards .why-sp-card:first-child .why-check-list { margin-top: 20px; }
+      .why-sp-cards .why-sp-card:last-child .why-num-head--trust { font-size: 22px; line-height: 1.3; }
+      .why-num-head--push { margin-top: auto; }
+      .why-check-list li { font-size: 13px; }
+      .why-check-list { margin-top: 19px; }
     }
     /* 旧スタイル（PC側で使用）*/
     .why-sp-badge {
@@ -2401,14 +2444,11 @@
       color: #111;
       line-height: 1.3;
       margin-bottom: 12px;
-      text-decoration: underline;
-      text-decoration-color: #FFD600;
-      text-underline-offset: 5px;
-      text-decoration-thickness: 3px;
+      text-decoration: none;
     }
     .why-sp-online-body {
       font-size: 12px;
-      color: #555 !important;
+      color: #555;
       line-height: 1.75;
       margin-bottom: 20px;
     }
@@ -2429,7 +2469,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 14px;
       width: 100%;
       box-sizing: border-box;
       background: #111;
@@ -2473,8 +2513,11 @@
       }
     }
 
+    .sp-br { display: none; }
+
     /* ===== SP: FLOW ===== */
     @media (max-width: 767px) {
+      .sp-br { display: inline; }
       .flow-points { gap: 8px; margin-bottom: 24px; }
       .flow-point { font-size: 12px; padding: 7px 12px; }
       .flow-grid { grid-template-columns: 1fr; gap: 12px; }
@@ -2528,50 +2571,38 @@
         display: none;
       }
       .flow-tl-line { display: none; }
-      .flow-tl-grid { grid-template-columns: 1fr; gap: 0; }
+      .flow-tl-grid { grid-template-columns: 1fr; gap: 12px; }
       .flow-tl-step {
         display: grid;
-        grid-template-columns: 44px 34px 1fr;
+        grid-template-columns: 48px 1fr;
         grid-template-rows: auto auto;
         column-gap: 12px; row-gap: 0;
         align-items: start;
-        padding: 0 0 28px 0;
-        background: transparent; border-radius: 0;
-        box-shadow: none;
+        padding: 14px 16px;
+        background: #fff; border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
         position: relative;
       }
-      .flow-tl-step:not(:last-child)::before {
-        content: '';
-        position: absolute;
-        left: 21px; top: 44px; bottom: 0;
-        width: 2px;
-        background: linear-gradient(to bottom, rgba(204,0,0,0.28), rgba(204,0,0,0.04));
-        pointer-events: none;
-      }
+      .flow-tl-step:not(:last-child)::before { display: none; }
       .flow-tl-num {
         grid-column: 1; grid-row: 1;
         width: 40px; height: 40px;
         font-size: 17px; margin: 0;
         box-shadow: 0 2px 8px rgba(0,0,0,0.18);
         flex-shrink: 0; position: relative; z-index: 1;
-        align-self: start;
+        align-self: center;
       }
-      .flow-tl-icon {
-        grid-column: 2; grid-row: 1;
-        display: flex; justify-content: center; align-items: center;
-        padding-top: 6px; margin: 0;
-      }
-      .flow-tl-icon img { width: 28px; height: 28px; }
+      .flow-tl-icon { display: none; }
       .flow-tl-step .flow-title {
-        grid-column: 3; grid-row: 1;
+        grid-column: 2; grid-row: 1;
         margin-bottom: 0; font-size: 17px; font-weight: 800;
         color: var(--navy); align-self: center; white-space: normal;
-        padding-top: 4px;
+        padding-top: 0;
       }
       .flow-desc br { display: none; }
       .flow-tl-step .flow-desc {
-        grid-column: 2 / -1; grid-row: 2;
-        margin-top: 8px; font-size: 13px;
+        grid-column: 2; grid-row: 2;
+        margin-top: 6px; font-size: 13px;
         color: var(--text-secondary); line-height: 1.75; text-align: left;
       }
       .flow-arrow-band-wrap {
@@ -2699,6 +2730,7 @@
       color: #fff;
       letter-spacing: 0.04em;
       overflow: hidden;
+      border-bottom: 1px solid #e8e8e8;
     }
     .pg-card-img img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.10); }
     #rayban-card-img { background: #f5f5f5; }
@@ -2718,18 +2750,18 @@
     .pg-img--rokid  { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
     .pg-img--viture { background: #f2f4f8; }
     .pg-card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
-    .pg-card-store { font-size: 11px; border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 10px; padding-top: 8px; border-top: 1px solid #eee; }
-    .pg-card-store th { text-align: left; color: #999; font-weight: 500; padding: 2px 10px 2px 0; white-space: nowrap; vertical-align: top; }
-    .pg-card-store td { color: var(--navy); font-weight: 700; padding: 2px 0; vertical-align: top; }
+    .pg-card-store { font-size: 11px; border-collapse: collapse; width: 100%; margin-top: 8px; margin-bottom: 10px; padding-top: 8px; border-top: 1px solid #eee; }
+    .pg-card-store th { text-align: left; color: #777; font-weight: 600; padding: 3px 10px 3px 0; white-space: nowrap; vertical-align: top; }
+    .pg-card-store td { color: var(--navy); font-weight: 700; padding: 3px 0; vertical-align: top; }
     .except-note { display: block; font-size: 10px; color: #999; font-weight: 400; margin-top: 1px; }
     .pg-card-store tr + tr th, .pg-card-store tr + tr td { border-top: 1px solid #f5f5f5; }
     .pg-card-btn { margin-top: auto; }
-    .pg-card-name  { font-size: 16px; font-weight: 800; margin-bottom: 4px; color: var(--navy); }
+    .pg-card-name  { font-size: 18px; font-weight: 800; margin-bottom: 4px; color: var(--navy); }
     .pg-card-catch { font-size: 11px; color: #666; margin-bottom: 10px; line-height: 1.5; }
-    .pg-card-scenes { margin-bottom: 12px; }
-    .pg-scene-label { font-size: 10px; color: #999; display: block; margin-bottom: 4px; }
-    .pg-scene-tags  { display: flex; flex-wrap: wrap; gap: 6px; }
-    .pg-scene-tag   { font-size: 12px; font-weight: 700; color: var(--navy); padding: 0; border: none; border-radius: 0; opacity: 0.75; }
+    .pg-card-scenes { margin-bottom: 10px; }
+    .pg-scene-label { font-size: 11px; color: #aaa; display: block; margin-bottom: 5px; }
+    .pg-scene-tags  { display: flex; flex-wrap: wrap; gap: 5px; }
+    .pg-scene-tag   { font-size: 11px; font-weight: 600; color: var(--navy); background: #EEF2F8; padding: 3px 8px; border-radius: 4px; opacity: 1; }
     .pg-scene-tag::before { content: '#'; }
     .pg-tag { font-size: 10px; background: #F2F2F0; color: #444; padding: 3px 8px; border-radius: 20px; }
     .pg-card-btn {
@@ -2764,7 +2796,7 @@
       transition: background 0.2s, color 0.2s;
     }
     .pg-card-sub-btn:hover { background: var(--navy); color: #fff; }
-    .pg-card-swatches { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+    .pg-card-swatches { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
     .pg-card-variant-badges { display: flex; gap: 6px; margin-bottom: 10px; }
     .pg-variant-badge { font-size: 10px; font-weight: 700; color: #444; border: 1.5px solid #aaa; border-radius: 20px; padding: 2px 10px; cursor: pointer; transition: background 0.15s, color 0.15s; }
     .pg-variant-badge--active { background: var(--navy); color: #fff; border-color: var(--navy); }
@@ -3028,17 +3060,18 @@
     <div class="fv-content">
       <p class="fv-sub">メーカー公認 · 全 37店舗 · 5ブランド取扱い</p>
       <h1 class="fv-main">
-        <span class="fv-main-line1">スマートグラスは、</span>
-        <span class="fv-main-accent">視力を最適化し<span class="fv-pc-comma">、</span></span>
-        <span class="fv-main-accent fv-main-accent3">完成する。</span>
+        <span class="fv-main-line1">見える世界が、変わる。</span>
+        <span class="fv-main-accent">度付きで、</span>
+        <span class="fv-main-accent fv-main-accent3">スマートグラス時代へ。</span>
       </h1>
       <p class="fv-body">
-        話題の5ブランドの「体験・購入・度付きレンズ交換」を、1つの店で。<br>
-        アイメガネは、度付き加工にも対応できる<strong>その数少ない１店</strong>です。
+        視力を気にせず、スマートグラスへ。<br>
+        度付きインサートレンズに対応できるお店は、全国でもごく僅か。<br>
+        アイメガネは、その数少ない一つです。
       </p>
       <div class="fv-btns">
-        <a href="#search" class="btn-fv-primary">来店予約する</a>
-        <a href="https://www.aijapan-online.com/" target="_blank" class="btn-fv-secondary">オンラインストアを見る</a>
+        <a href="#search" class="btn-fv-primary">体験・相談を予約する</a>
+        <a href="https://www.aijapan-online.com/" target="_blank" class="btn-fv-secondary">オンライン注文<span style="font-size:0.72em; opacity:0.75;">（MIRZA・Rokid対応）</span></a>
       </div>
       <div class="fv-brands-wrap">
         <div class="fv-brands-title"><span class="fv-brands-label">取扱ブランド</span></div>
@@ -3061,8 +3094,8 @@
       </div>
       <!-- SP専用CTAボタン -->
       <div class="fv-sp-cta">
-        <a href="#search" class="fv-sp-btn fv-sp-btn--red">来店予約する</a>
-        <a href="https://www.aijapan-online.com/" target="_blank" class="fv-sp-btn fv-sp-btn--blue">オンラインストアを見る</a>
+        <a href="#search" class="fv-sp-btn fv-sp-btn--red">体験・相談を予約する</a>
+        <a href="https://www.aijapan-online.com/" target="_blank" class="fv-sp-btn fv-sp-btn--blue">オンライン注文<span style="font-size:0.72em; opacity:0.75;">（MIRZA・Rokid対応）</span></a>
       </div>
     </div>
   </div>
@@ -3070,14 +3103,14 @@
 
 <!-- SP専用FVアクションバー -->
 <div id="fv-action-bar">
-  <a href="#search" class="fv-action-btn fv-action-btn--primary">来店予約する</a>
-  <a href="https://www.aijapan-online.com/" target="_blank" class="fv-action-btn fv-action-btn--secondary">オンラインストアを見る</a>
+  <a href="#search" class="fv-action-btn fv-action-btn--primary">体験・相談を予約する</a>
+  <a href="https://www.aijapan-online.com/" target="_blank" class="fv-action-btn fv-action-btn--secondary">オンライン注文<span style="font-size:0.72em; opacity:0.75;">（MIRZA・Rokid対応）</span></a>
 </div>
 
 <!-- 02 スマートグラスとは？ -->
 <section id="features" class="section">
   <div class="container">
-    <p class="section-label">WHAT IS SMART GLASSES</p>
+    <p class="section-label">WHAT ARE SMART GLASSES</p>
     <h2 class="section-title">スマートグラスとは？</h2>
     <div class="features-intro">
       <p>声で質問、耳で音楽を楽しむ、両手がふさがっていても大丈夫。<br>スマートフォンを取り出す必要がない。目の前のことに集中できる。</p>
@@ -3127,6 +3160,7 @@
 <!-- 03 スマートグラスのある暮らし -->
 <section id="lifestyle" class="section">
   <div class="container">
+    <p class="section-label">SMART GLASS LIFESTYLE</p>
     <h2 class="lifestyle-heading">スマートグラスのある暮らし</h2>
     <div class="lifestyle-grid">
       <div class="lifestyle-slide">
@@ -3212,24 +3246,19 @@
       <!-- 右：理由カード -->
       <div class="why-cards">
         <div class="why-card">
-          <span class="why-card-icon">🏭</span>
-          <p class="why-card-title">メーカー公認の加工技術</p>
-          <p class="why-card-desc">各ブランドのメーカーから直接加工を依頼されるほどの精密技術。一般の眼鏡店では対応できない機種も扱えます。</p>
+          <span class="why-card-icon">🏅</span>
+          <p class="why-card-title">各メーカーの正規認定店</p>
+          <p class="why-card-desc">取り扱う全スマートグラスブランドの<br>正規認定を取得。社内にスマートグラス専門部署を設け、専門スタッフが接客・フィッティングを担当します。</p>
         </div>
         <div class="why-card">
-          <span class="why-card-icon">👓</span>
-          <p class="why-card-title">全店に技能士が在籍</p>
-          <p class="why-card-desc">37店舗すべてに眼鏡作製技能士が在籍。正確な検眼から最適なレンズ選定、フィッティングまで一貫対応します。</p>
+          <span class="why-card-icon">📅</span>
+          <p class="why-card-title">約6年の専門実績</p>
+          <p class="why-card-desc">スマートグラスの度付き対応に早期から特化。経験と実績が違います。</p>
         </div>
         <div class="why-card">
-          <span class="why-card-icon">📍</span>
-          <p class="why-card-title">37店舗でアクセスしやすい</p>
-          <p class="why-card-desc">埼玉・東京・茨城・栃木・群馬・千葉・静岡に展開。お近くの店舗でスマートグラスの相談・加工に対応します。</p>
-        </div>
-        <div class="why-card">
-          <span class="why-card-icon">📦</span>
-          <p class="why-card-title">5ブランドを一店で</p>
-          <p class="why-card-desc">MIRZA・Rokid・Even Realities・Ray-Ban Meta・VITURE。体験・購入・度付き加工をまとめて相談できます。</p>
+          <span class="why-card-icon">🔍</span>
+          <p class="why-card-title">対応できるお店が、ほとんどない</p>
+          <p class="why-card-desc">度付きインサートレンズの加工は技術と設備が必要です。「近くの眼鏡店では断られた」というお客様からのご来店も多くいただいています。アイメガネはその数少ない専門店の一つです。</p>
         </div>
       </div>
     </div>
@@ -3238,23 +3267,17 @@
 
     <!-- ▼ SP LAYOUT ▼ -->
     <div class="prescription-sp">
-      <h2 class="prescription-sp-title">アイメガネが選ばれる<span class="why-title-marker"><span>３つの理由</span></span></h2>
-
-      <div class="prescription-sp-intro">
-        <p>関東を中心に37店舗。全国からオンライン注文にも対応。</p>
-      </div>
+      <h2 class="prescription-sp-title">なぜ、アイメガネで度付き<br>スマートグラスなのか</h2>
 
       <div class="why-sp-cards">
 
-        <!-- カード①：技術 -->
+        <!-- カード①：認定 -->
         <div class="why-sp-card">
-          <p class="why-card-pillar">技術</p>
-          <div class="why-num-row">
-            <span class="why-num">60</span>
-            <span class="why-num-unit">名</span>
-          </div>
-          <p class="why-num-note">※2026年6月現在</p>
-          <p class="why-num-head">国家資格<strong style="color:var(--red);">眼鏡作製技能士</strong>が在籍</p>
+          <p class="why-card-pillar">認定</p>
+          <p class="why-num-head why-num-head--trust">各メーカーの正規認定店</p>
+          <ul class="why-check-list">
+            <li class="no-check">取り扱うスマートグラス<br>ブランドの正規認定を取得。<br>社内にスマートグラス専門部署を設け、<br>専門スタッフがお客様をサポート。</li>
+          </ul>
         </div>
 
         <!-- カード②：実績 -->
@@ -3264,17 +3287,15 @@
             <span class="why-num-prefix">約</span><span class="why-num">6</span><span class="why-num-unit">年目</span>
           </div>
           <p class="why-num-note">※スマートグラス対応実績</p>
-          <p class="why-num-head">眼鏡 × テクノロジーの<strong>パイオニア</strong></p>
+          <p class="why-num-head why-num-head--push">スマートグラスの度付き対応に早期から特化。経験と実績が違います。</p>
         </div>
 
-        <!-- カード③：信頼 -->
+        <!-- カード③：希少性 -->
         <div class="why-sp-card">
-          <p class="why-card-pillar">信頼</p>
-          <p class="why-num-head" style="font-size:21px;margin-bottom:16px;">法人・メーカーにも<br>選ばれる品質</p>
+          <p class="why-card-pillar">希少性</p>
+          <p class="why-num-head why-num-head--trust">対応できるお店が、ほとんどない</p>
           <ul class="why-check-list">
-            <li>メーカー・企業案件の加工に対応</li>
-            <li>法人パートナーとして活用を支援</li>
-            <li>スマートグラス専門部署を設置</li>
+            <li class="no-check">度付きインサートレンズの加工は<br>技術と設備が必要です。<br>「近くの眼鏡店では断られた」というお客様からのご来店も多くいただいています。アイメガネはその数少ない専門店の一つです。</li>
           </ul>
         </div>
 
@@ -3288,8 +3309,8 @@
       </div>
       <div class="why-sp-online">
         <div class="why-sp-online-inner">
-          <p class="why-sp-online-text">度付きレンズ交換 全国どこからでもOK</p>
-          <p class="why-sp-online-body">本体を送るだけで、度付きレンズに交換してお届け。<br><span class="why-sp-online-models">対応機種：MIRZA・Rokid</span></p>
+          <p class="why-sp-online-text">度付きレンズ交換<br>全国どこからでも対応</p>
+          <p class="why-sp-online-body">お持ちの本体を送るだけで、度付きレンズに交換してお届け。<span class="why-sp-online-models">※対応機種：MIRZA・Rokid</span></p>
         </div>
         <div class="why-sp-online-action">
           <a href="https://www.aijapan-online.com/" target="_blank" class="btn-why-online">
@@ -3321,7 +3342,7 @@
           <img src="mirza/MiRZA_kirinuki_1611_0616-1.jpg" alt="MiRZA XRグラス" id="mirza-img">
         </div>
         <div class="pg-card-body">
-          <h3 class="pg-card-name">MiRZA<sup>®</sup><span class="pg-furigana">ミルザ</span></h3>
+          <h3 class="pg-card-name">MiRZA<sup>®</sup><span class="pg-furigana">（ミルザ）</span></h3>
           <div class="pg-card-swatches">
             <span class="pg-swatch pg-swatch--active" style="background:#0D1B2A;" title="ダークネイビー"></span>
           </div>
@@ -3459,7 +3480,7 @@
   <div class="container">
     <p class="section-label" style="text-align:center;">FLOW</p>
     <h2 class="section-title center">来店時 商品購入の流れ</h2>
-    <p style="text-align:center;font-size:15px;color:var(--text-secondary);margin-top:-24px;margin-bottom:28px;">本体購入・度付きレンズ交換、どちらにも対応。シンプルな4ステップです。</p>
+    <p style="text-align:center;font-size:15px;color:var(--text-secondary);margin-top:-24px;margin-bottom:28px;">本体購入・度付きレンズ交換、どちらにも対応。<br class="sp-br">シンプルな4ステップです。</p>
 
     <!-- 来店フロー -->
     <div class="flow-tl-wrap">
@@ -3630,7 +3651,7 @@
           <span class="qa-q-text">強い近視や乱視でも対応できますか？</span>
           <span class="qa-icon">+</span>
         </button>
-        <div class="qa-a">機種ごとに対応度数の範囲が異なります。強度近視・乱視の方も、専門スタッフが検眼のうえ最適な方法をご提案しますので、まずはご相談ください。</div>
+        <div class="qa-a">機種ごとに対応度数の範囲が異なります。強度近視・乱視の方も、専門スタッフが視力測定のうえ最適なレンズをご提案しますので、まずはご相談ください。</div>
       </div>
 
       <div class="qa-item">
@@ -3639,7 +3660,7 @@
           <span class="qa-q-text">費用と納期の目安は？</span>
           <span class="qa-icon">+</span>
         </button>
-        <div class="qa-a">費用は機種・度数・レンズの種類により異なります。ご来店の際に検眼・お見積りを行い、専門スタッフが丁寧にご案内いたします。まずはお気軽にご予約ください。</div>
+        <div class="qa-a">費用は機種・度数・レンズの種類により異なります。ご来店の際に視力測定・お見積りを行い、専門スタッフが丁寧にご案内します。まずはお気軽にご予約ください。</div>
       </div>
 
       <div class="qa-item">
@@ -3693,7 +3714,7 @@
           <span class="qa-q-text">処方箋がなくても度付きレンズを作れますか？</span>
           <span class="qa-icon">+</span>
         </button>
-        <div class="qa-a">はい、処方箋がなくても店頭で検眼（度数測定）を行い、お客様に合った度数でレンズを製作できます。現在お使いのメガネをお持ちいただくと、参考度数としてお役立ていただけます。</div>
+        <div class="qa-a">はい、処方箋がなくても店頭で視力測定を行い、お客様に合った度数でレンズを製作できます。現在お使いのメガネをお持ちいただくと、参考度数としてお役立ていただけます。</div>
       </div>
 
     </div>
@@ -3824,12 +3845,20 @@
     el.classList.add('active');
   }
 
-  function modalRBThumb(el, src, alt, bg) {
+  const RB_DESC = {
+    optics: 'Ray-Ban史上で最も洗練されたフレーム「Scriber」と「Blayzer」が登場。軽量で快適、そしてスタイリッシュなデザインを採用しています。10度の追加回転が可能なオーバーエクステンションヒンジ、柔軟なノーズパッド、調整可能なテンプルチップにより、これまでで最もカスタマイズ性の高いフィット感を体験してください。度付ユーザー向けに特別にデザインされており、快適なかけ心地を追求した新しいフレームを体験してください。通常のメガネのような見た目と装着感で、広範囲の度数に対応しています。',
+    sunglass: 'Ray-Ban Meta サングラススタイルは、スタイリッシュでカラフルなAIグラスのラインアップです。Meta AIを使えばスマートフォンに手を伸ばすことなく、カメラ機能で人生の瞬間を記録したり、音楽を操作したり、会話をリアルタイムで翻訳したりできます。アイコンのWayfarerから最新のSkylerまで、日中を通して快適に着用できるスリムで心地よいフィット感を提供します。',
+  };
+  function modalRBThumb(el, src, alt, bg, style) {
     var wrap = document.getElementById('modal-rb-img-wrap');
     var img = document.getElementById('modal-rb-img');
     if (wrap) wrap.style.background = bg;
     if (img) { img.src = src; img.alt = 'Ray-Ban Meta ' + alt; }
     document.querySelectorAll('.modal-img-thumb').forEach(function(t){ t.classList.remove('active'); });
+    if (style && RB_DESC[style]) {
+      var descEl = document.querySelector('#product-modal .prod-modal-desc');
+      if (descEl) descEl.textContent = RB_DESC[style];
+    }
     el.classList.add('active');
   }
 
@@ -3875,10 +3904,10 @@
   const VITURE_MODELS = {
     luma: {
       label: 'Luma XR',
-      subLabel: 'スタンダードモデル',
+      subLabel: 'フラッグシップエントリーモデル',
       name: 'VITURE Luma XRグラス',
-      catch: '大画面エンタメグラス・映画・ゲーム向け',
-      desc: 'Micro OLED 1200p・146インチ相当の大画面で映画やゲームを楽しめるXRグラス。電子調光フィルムで外光を99.5%カット。2D映像をリアルタイムで3D変換する「Immersive 3D」機能を搭載。近視補正は業界トップクラスの−6.0Dまで対応。USB-C接続で多種デバイスに対応します。',
+      catch: 'RGBカメラ/深度カメラ非搭載 USB-C接続・シンプル設計',
+      desc: '新しい時代の幕開けとなるVITURE Luma。VITURE史上もっとも印象的で視覚的に美しいXR体験を届ける、シリーズモデルの先陣を切る第一弾です。<br><br><strong>スタイリッシュで手の届くフラッグシップ</strong><br>146インチ相当・視野角50°の大画面を、1,000ニトの高輝度と4Kに迫る1200pの高解像度で再現。最新のソニー製ディスプレイとAACオーディオを融合し、より豊かで厚みのあるサウンドを実現。日常使いしやすい価格帯ながら、映像も音響も本格的な仕上がりです。<br><br><strong>幅広いユーザーに応える柔軟性</strong><br>USB-C接続に対応した初のフラッグシップモデルとして、幅広いデバイスとシームレスに連携。さらに業界トップクラス最大−6.0Dまでの近視補正に対応、より多くのユーザーに快適なXR体験を開放します。<br><br><strong>快適さとデザインの革新</strong><br>VITURE独自の電子調光フィルムを採用し、環境に応じた視認性と快適性を確保。新しいリデザインによるスタイリッシュな半透明フレームは、未来的な存在感で日常を華やかに彩ります。',
       specs: [
         { label: '解像度', value: '最大1200p' },
         { label: '最大輝度', value: '1000ニト' },
@@ -3894,13 +3923,13 @@
       imgColor: '#7ECFFF',
       imgText: 'Luma',
       scenes: ['ゲーム', '映画', 'エンタメ'],
-      images: ['viture/luma/01.avif', 'viture/luma/02.avif'],
+      images: ['viture/luma/01.avif', 'viture/luma/02.avif', 'viture/luma/03.avif'],
     },
     ultra: {
       label: 'Luma Ultra XR/AR',
-      subLabel: 'フラグシップモデル',
+      subLabel: 'パワーユーザーモデル',
       name: 'VITURE Luma Ultra XR/ARグラス',
-      catch: 'XR・AR両対応のフラグシップモデル',
+      catch: 'ビジネス/ヘビーユース向け 最高性能を追求したフラッグシップ',
       desc: 'ソニー製最新Micro OLEDを採用した1,500ニトの高輝度モデル。6DoFの空間コンピューティングとAR機能を備え、フロントRGBカメラ＋デュアル深度カメラで本格的なAR体験を実現。HARMAN製オーディオ搭載、ハンドジェスチャー操作にも対応します。',
       specs: [
         { label: '解像度', value: '最大1200p' },
@@ -3948,7 +3977,7 @@
     const catchEl = document.getElementById('viture-modal-catch');
     if (catchEl) catchEl.textContent = vm.catch;
     const descEl = document.getElementById('viture-modal-desc');
-    if (descEl) descEl.textContent = vm.desc;
+    if (descEl) descEl.innerHTML = vm.desc;
     const specsEl = document.getElementById('viture-modal-specs');
     if (specsEl && specsEl.parentNode) {
       const temp = document.createElement('div');
@@ -4338,7 +4367,7 @@
     mirza: {
       name: 'MiRZA<sup>®</sup><span class="prod-modal-furigana">ミルザ</span>',
       catch: '本格XRグラス',
-      desc: 'Snapdragon AR2搭載の本格XRグラス。軽量設計・無線接続・6DoF対応。',
+      desc: '毎日の「見る」をあたらしくする。',
       tags: ['プロ・法人向け', 'XR・空間活用'],
       specs: [
         { label: '連続使用時間', value: '1〜1.5時間' },
@@ -4455,18 +4484,18 @@
       gallery: 'even',
       hasLens: true,
       lensHTML: `
-        <p class="modal-lens-intro">アイメガネはEven Realitiesの提携オプティシャン店として、Even G2専用の<strong>UltraFitレンズ</strong>を使用した度付きレンズへの交換を店頭にて承ります。単焦点・累進（遠近両用）のどちらにも対応しています。</p>
+        <p class="modal-lens-intro">アイメガネはEven Realitiesの提携オプティシャン店として、Even G2専用の<strong>UltraFitレンズ</strong>を使用した度付きレンズへの交換を店頭にて承ります。単焦点・累進（遠近両用）のどちらにも対応しています。<br><small>※累進レンズはオンラインでは非対応。提携オプティシャン店（アイメガネ）でのみご対応可能です。</small></p>
         <div class="modal-lens-block">
-          <p class="modal-lens-block-ttl">レンズ仕様</p>
-          <p class="modal-lens-meta">UltraFitレンズ（単焦点 / 累進）</p>
+          <p class="modal-lens-block-ttl">レンズラインアップ</p>
+          <ul class="modal-lens-notes">
+            <li><strong>エッセンシャルスリム（屈折率1.60）</strong>　軽度〜中等度向け</li>
+            <li><strong>エンハンストスリム（屈折率1.67）</strong>　中等度〜強度向け</li>
+            <li><strong>スーペリアスリム（屈折率1.74）</strong>　強度数向け・最薄最軽量</li>
+          </ul>
         </div>
         <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">必要な処方情報</p>
           <p class="modal-lens-meta">SPH（球面度数）・CYL（乱視度数）・AXIS（乱視軸度）・PD（瞳孔間距離）</p>
-        </div>
-        <div class="modal-lens-block">
-          <p class="modal-lens-block-ttl">視度対応範囲</p>
-          <p class="modal-lens-meta">−12.00〜+12.00</p>
         </div>
         <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">納期</p>
@@ -4483,7 +4512,7 @@
     rayban: {
       name: 'Ray-Ban Meta',
       catch: 'Meta AI搭載スマートグラス / 5モデル取扱',
-      desc: 'Ray-Banの洗練されたデザインにMeta AIを搭載。通常のメガネ・サングラスと同じ見た目で、ハンズフリー通話・音楽・AI質問を実現。度付き対応のOpticsフレームも取り扱っています。',
+      desc: 'Ray-Ban史上で最も洗練されたフレーム「Scriber」と「Blayzer」が登場。軽量で快適、そしてスタイリッシュなデザインを採用しています。10度の追加回転が可能なオーバーエクステンションヒンジ、柔軟なノーズパッド、調整可能なテンプルチップにより、これまでで最もカスタマイズ性の高いフィット感を体験してください。度付ユーザー向けに特別にデザインされており、通常のメガネのような見た目と装着感で、広範囲の度数に対応しています。',
       modelListHTML: `<div class="modal-model-list">
         <p class="modal-model-list-ttl">取扱モデル</p>
         <div class="modal-model-group">
@@ -4498,9 +4527,13 @@
       </div>`,
       tags: ['メガネユーザー', '日常使い'],
       specs: [
-        { label: '連続使用時間', value: '最大8時間' },
-        { label: '防水', value: 'IPX4' },
+        { label: 'オーディオ', value: 'オープンイヤーオーディオ' },
+        { label: 'カメラ', value: '最大3K Ultra HD解像度' },
+        { label: '視野角', value: '100°' },
+        { label: '音声', value: '最大5時間（連続音声）/ 5.5時間（通話）' },
+        { label: 'バッテリー', value: '最大8時間（1回充電）' },
         { label: 'メモリ', value: '32GB' },
+        { label: '防水', value: 'IPX4' },
       ],
       recommend: ['メガネをおしゃれに楽しみたい人', '音楽・通話を日常的に使いたい人', 'スマートグラスをはじめて使う人', 'Meta AIを気軽に活用したい人'],
       store: '本体取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span></strong>　レンズ交換：<strong>全37店舗</strong><small class="except-note">※本庄南大通り店を除く</small>',
@@ -4628,10 +4661,10 @@
           <img id="modal-rb-img" src="images/rayban/RW_BLAYZER_Product_Black_4x5.jpg" alt="Ray-Ban Meta Blayzer Optics" style="width:100%;height:100%;object-fit:contain;padding:12px;box-sizing:border-box;">
         </div>
         <div class="modal-img-thumbs" style="margin-top:8px;">
-          <img class="modal-img-thumb active" src="images/rayban/RW_BLAYZER_Product_Black_4x5.jpg" alt="Blayzer Optics" onclick="modalRBThumb(this,'images/rayban/RW_BLAYZER_Product_Black_4x5.jpg','Blayzer Optics','#f5f5f5')">
-          <img class="modal-img-thumb" src="images/rayban/RW_WAYFARER_Product_Black_4x5.jpg" alt="Wayfarer" onclick="modalRBThumb(this,'images/rayban/RW_WAYFARER_Product_Black_4x5.jpg','Wayfarer','#f5f5f5')">
-          <img class="modal-img-thumb" src="images/rayban/RW4012_D_NEW__JA_4x5.jpg" alt="Wayfarer（着用）" onclick="modalRBThumb(this,'images/rayban/RW4012_D_NEW__JA_4x5.jpg','Wayfarer','#111')">
-          <img class="modal-img-thumb" src="images/rayban/RW7001_NEW__JA_4x5.jpg" alt="Headliner" onclick="modalRBThumb(this,'images/rayban/RW7001_NEW__JA_4x5.jpg','Headliner','#111')">
+          <img class="modal-img-thumb active" src="images/rayban/RW_BLAYZER_Product_Black_4x5.jpg" alt="Blayzer Optics" onclick="modalRBThumb(this,'images/rayban/RW_BLAYZER_Product_Black_4x5.jpg','Blayzer Optics','#f5f5f5','optics')">
+          <img class="modal-img-thumb" src="images/rayban/RW_WAYFARER_Product_Black_4x5.jpg" alt="Wayfarer" onclick="modalRBThumb(this,'images/rayban/RW_WAYFARER_Product_Black_4x5.jpg','Wayfarer','#f5f5f5','sunglass')">
+          <img class="modal-img-thumb" src="images/rayban/RW4012_D_NEW__JA_4x5.jpg" alt="Wayfarer（着用）" onclick="modalRBThumb(this,'images/rayban/RW4012_D_NEW__JA_4x5.jpg','Wayfarer','#111','sunglass')">
+          <img class="modal-img-thumb" src="images/rayban/RW7001_NEW__JA_4x5.jpg" alt="Headliner" onclick="modalRBThumb(this,'images/rayban/RW7001_NEW__JA_4x5.jpg','Headliner','#111','sunglass')">
         </div>`;
     }
     if (pd.gallery === 'viture') {

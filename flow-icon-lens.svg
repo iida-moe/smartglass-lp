@@ -1,20 +1,7 @@
-<!--?xml version="1.0" encoding="utf-8"?-->
-<!-- Lens icon for flow step -->
-
-<svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="width: 256px; height: 256px; opacity: 1;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#4B4B4B;}
-</style>
-<g>
-	<!-- Left lens ring -->
-	<path class="st0" fill-rule="evenodd" d="
-		M140,151 A105,105 0 0 1 140,361 A105,105 0 0 1 140,151 Z
-		M140,190 A66,66 0 0 1 140,322 A66,66 0 0 1 140,190 Z
-	" style="fill: rgb(75, 75, 75);"/>
-	<!-- Right lens ring -->
-	<path class="st0" fill-rule="evenodd" d="
-		M372,151 A105,105 0 0 1 372,361 A105,105 0 0 1 372,151 Z
-		M372,190 A66,66 0 0 1 372,322 A66,66 0 0 1 372,190 Z
-	" style="fill: rgb(75, 75, 75);"/>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <circle cx="155" cy="256" r="78" fill="none" stroke="#4B4B4B" stroke-width="38"/>
+  <circle cx="357" cy="256" r="78" fill="none" stroke="#4B4B4B" stroke-width="38"/>
+  <line x1="233" y1="256" x2="279" y2="256" stroke="#4B4B4B" stroke-width="38" stroke-linecap="round"/>
+  <line x1="77" y1="218" x2="22" y2="200" stroke="#4B4B4B" stroke-width="38" stroke-linecap="round"/>
+  <line x1="435" y1="218" x2="490" y2="200" stroke="#4B4B4B" stroke-width="38" stroke-linecap="round"/>
 </svg>
