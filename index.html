@@ -1171,6 +1171,10 @@
       background: #EAFAF1;
       color: var(--success);
     }
+    .store-model-detail { margin: 10px 0 4px; }
+    .store-model-row { display: flex; align-items: flex-start; font-size: 12px; color: #444; margin: 3px 0; line-height: 1.5; }
+    .store-model-label { font-weight: 700; color: var(--navy); flex-shrink: 0; white-space: nowrap; width: 6em; }
+    .store-model-value { flex: 1; }
     .store-address {
       font-size: 13px;
       color: var(--text-secondary);
@@ -1489,7 +1493,7 @@
       font-size: 14px;
       font-weight: 700;
       color: var(--text-primary);
-      margin-bottom: 6px;
+      margin-bottom: 16px;
     }
     .why-card-desc {
       font-size: 13px;
@@ -2075,6 +2079,7 @@
         gap: 10px;
         margin-top: auto;
         padding-bottom: 8px;
+        padding-top: 16px;
       }
       .fv-sp-btn {
         display: inline-block;
@@ -2164,23 +2169,20 @@
       .why-sp-online-lead { display: none; }
       .why-sp-online {
         display: flex !important;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
-        text-align: center;
-        gap: 8px;
-        max-width: 680px;
-        margin: 0 auto;
-        padding: 14px 40px !important;
-        background: #fff !important;
-        border-radius: 12px !important;
+        justify-content: center;
+        gap: 20px;
+        text-align: left;
+        padding: 0 !important;
       }
-      .why-sp-online-inner { width: 100%; }
-      .why-sp-online-text { font-size: 30px !important; font-weight: 900; white-space: normal; margin-bottom: 6px !important; color: #111 !important; }
-      .why-sp-online-body { font-size: 14px; font-weight: 500; color: #444 !important; margin-bottom: 0 !important; }
-      .why-sp-online-models { display: block; margin-top: 4px; font-size: 12px; color: #999 !important; }
-      .why-sp-online-action { width: 100%; display: flex; flex-direction: column; align-items: center; }
-      .why-sp-online-disclaimer { margin: 8px 0 0; text-align: center; color: #aaa; }
-      .btn-why-online { width: auto !important; white-space: nowrap; padding: 15px 36px; background: var(--red) !important; }
+      .why-sp-online-inner { flex: 1; }
+      .why-sp-online-text { font-size: 30px !important; font-weight: 900; white-space: normal; margin-bottom: 6px !important; color: #fff !important; }
+      .why-sp-online-body { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.75) !important; margin-bottom: 0 !important; }
+      .why-sp-online-models { display: block; margin-top: 4px; font-size: 12px; color: rgba(255,255,255,0.5) !important; }
+      .why-sp-online-action { flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-start; }
+      .why-sp-online-disclaimer { margin: 8px 0 0; text-align: left; color: rgba(255,255,255,0.45); }
+      .btn-why-online { width: auto !important; white-space: nowrap; padding: 15px 36px; background: var(--red) !important; display: inline-flex !important; }
     }
 
     /* ===== WHY SP: タイトル ===== */
@@ -2315,8 +2317,8 @@
     }
     .why-num-note {
       font-size: 10px;
-      color: rgba(13,27,42,0.4);
-      margin-bottom: 10px;
+      color: rgba(13,27,42,0.6);
+      margin-bottom: 4px;
     }
     .why-num-icon {
       font-size: 36px;
@@ -2361,7 +2363,7 @@
       .why-sp-cards .why-sp-card:first-child { padding-top: 21px; }
       .why-sp-cards .why-sp-card:first-child .why-check-list { margin-top: 20px; }
       .why-sp-cards .why-sp-card:last-child .why-num-head--trust { font-size: 22px; line-height: 1.3; }
-      .why-num-head--push { margin-top: auto; }
+      .why-num-head--push { margin-top: 12px; }
       .why-check-list li { font-size: 13px; }
       .why-check-list { margin-top: 19px; }
     }
@@ -2411,9 +2413,6 @@
 
     /* ===== WHY SP: オンラインCTA ===== */
     .why-sp-online {
-      background: #fff;
-      border-radius: 12px;
-      padding: 24px 20px;
       margin-top: 32px;
     }
     .why-sp-online-lead {
@@ -2441,14 +2440,14 @@
     .why-sp-online-text {
       font-size: 24px;
       font-weight: 800;
-      color: #111;
+      color: #fff;
       line-height: 1.3;
       margin-bottom: 12px;
       text-decoration: none;
     }
     .why-sp-online-body {
       font-size: 12px;
-      color: #555;
+      color: rgba(255,255,255,0.75);
       line-height: 1.75;
       margin-bottom: 20px;
     }
@@ -2461,7 +2460,7 @@
     }
     .why-sp-online-disclaimer {
       font-size: 11px;
-      color: #999;
+      color: rgba(255,255,255,0.5);
       text-align: center;
       margin: 10px 0 0;
     }
@@ -2472,7 +2471,7 @@
       gap: 14px;
       width: 100%;
       box-sizing: border-box;
-      background: #111;
+      background: var(--red);
       color: #fff;
       font-size: 14px;
       font-weight: 800;
@@ -3189,7 +3188,7 @@
         <img class="lifestyle-slide-img" src="images/lifestyle/meeting.png" alt="仕事">
         <div class="lifestyle-slide-caption">
           <p class="lifestyle-slide-label">仕事</p>
-          <p class="lifestyle-slide-text">AIが会議をリアルタイムで整理。発言しながら、情報を逃さない。</p>
+          <p class="lifestyle-slide-text">AIが会議をリアルタイムで整理。<br>発言しながら、情報を逃さない。</p>
         </div>
       </div>
       <div class="lifestyle-slide">
@@ -3268,7 +3267,7 @@
         <div class="why-card">
           <span class="why-card-icon">📅</span>
           <p class="why-card-title">約6年の専門実績</p>
-          <p class="why-card-desc">スマートグラスの度付き対応に早期から特化。経験と実績が違います。</p>
+          <p class="why-card-desc">スマートグラスの度付き対応に早期から特化。<br>経験と実績が違います。</p>
         </div>
         <div class="why-card">
           <span class="why-card-icon">🔍</span>
@@ -3302,7 +3301,7 @@
             <span class="why-num-prefix">約</span><span class="why-num">6</span><span class="why-num-unit">年目</span>
           </div>
           <p class="why-num-note">※スマートグラス対応実績</p>
-          <p class="why-num-head why-num-head--push">スマートグラスの度付き対応に早期から特化。経験と実績が違います。</p>
+          <p class="why-num-head why-num-head--push">スマートグラスの度付き対応に早期から特化。<br>経験と実績が違います。</p>
         </div>
 
         <!-- カード③：希少性 -->
@@ -3310,7 +3309,7 @@
           <p class="why-card-pillar">希少性</p>
           <p class="why-num-head why-num-head--trust">対応できるお店が、ほとんどない</p>
           <ul class="why-check-list">
-            <li class="no-check">度付きインサートレンズの加工は<br>技術と設備が必要です。<br>「近くの眼鏡店では断られた」というお客様からのご来店も多くいただいています。アイメガネはその数少ない専門店の一つです。</li>
+            <li class="no-check">インサートレンズの加工には専門技術が必要です。<br>「近くの眼鏡店では断られた」というお客様からの<br>ご来店も多くいただいています。<br>アイメガネはその数少ない専門店の一つです。</li>
           </ul>
         </div>
 
@@ -3324,7 +3323,7 @@
       </div>
       <div class="why-sp-online">
         <div class="why-sp-online-inner">
-          <p class="why-sp-online-text">度付きレンズ交換<br>全国どこからでも対応</p>
+          <p class="why-sp-online-text">度付きレンズ交換、全国どこからでも対応。</p>
           <p class="why-sp-online-body">お持ちの本体を送るだけで、度付きレンズに交換してお届け。<span class="why-sp-online-models">※対応機種：MIRZA・Rokid</span></p>
         </div>
         <div class="why-sp-online-action">
@@ -3549,13 +3548,13 @@
             <div class="flow-tl-num">1</div>
             <div class="flow-tl-icon"><img src="flow-online-icon-frame.svg" alt="インサートフレームを準備"></div>
             <p class="flow-title">フレームを準備</p>
-            <p class="flow-desc">Rokid・MiRZA対応の<br>専用インサートフレームを、<br>各ブランドの販売店等で<br>別途ご購入ください。</p>
+            <p class="flow-desc">MiRZA対応の専用インサートフレーム、またはRokid対応のクリップ式フレームを、<br>各ブランドの販売店等で別途ご購入ください。</p>
           </div>
           <div class="flow-tl-step">
             <div class="flow-tl-num">2</div>
             <div class="flow-tl-icon"><img src="flow-online-icon-order.svg" alt="オンラインで注文"></div>
             <p class="flow-title">オンラインで注文</p>
-            <p class="flow-desc">アイジャパンオンラインにて<br>左右の度数<br>（球面・乱視・軸度・PD）を<br>入力してご注文ください。</p>
+            <p class="flow-desc">アイジャパンオンラインにて<br>左右の度数（球面・乱視・軸度・PD）を<br>入力してご注文ください。</p>
           </div>
           <div class="flow-tl-step">
             <div class="flow-tl-num">3</div>
@@ -3567,13 +3566,13 @@
             <div class="flow-tl-num">4</div>
             <div class="flow-tl-icon"><img src="flow-icon-lens.svg" alt="レンズ加工"></div>
             <p class="flow-title">レンズ加工</p>
-            <p class="flow-desc">眼鏡専門スタッフが<br>お客様専用のレンズを<br>丁寧に加工・装着します。</p>
+            <p class="flow-desc">スマートグラス専門のスタッフが、お客様専用のレンズを<br>丁寧に加工いたします。</p>
           </div>
           <div class="flow-tl-step">
             <div class="flow-tl-num">5</div>
             <div class="flow-tl-icon"><img src="flow-icon-gift.svg" alt="自宅へ返送"></div>
             <p class="flow-title">自宅へ返送</p>
-            <p class="flow-desc">フレーム到着後、<br>10日前後でご指定の<br>住所へ返送いたします。</p>
+            <p class="flow-desc">完成した商品をご指定の住所へ返送いたします。</p>
           </div>
         </div>
       </div>
@@ -3583,7 +3582,7 @@
           <span class="flow-arrow-band-value">約 10日前後</span>
         </div>
       </div>
-      <p class="flow-note" style="margin-top:16px;">※ Rokid・MiRZAの専用インサートフレームへの度付きレンズ加工に対応しています。<br>※ 処方箋がある場合はフレームと合わせてご郵送ください。<br>※ 郵送の送料はお客様のご負担となります。<br>※ レンズの種類・コーティングによっては10日以上かかる場合があります。完成次第ご連絡いたします。</p>
+      <p class="flow-note" style="margin-top:16px;">※ Rokid（クリップ式フレーム）・MiRZA（専用インサートフレーム）への度付きレンズ加工に対応しています。<br>※ 処方箋がある場合はフレームと合わせてご郵送ください。<br>※ 郵送の送料はお客様のご負担となります。<br>※ レンズの種類・コーティングによっては10日以上かかる場合があります。完成次第ご連絡いたします。<br>※ ご購入の手続き等詳細はアイジャパンオンラインをお確かめください。</p>
     </div>
   </div>
 </section>
@@ -3634,7 +3633,7 @@
     <!-- 検索結果（初期非表示） -->
     <div class="search-results" id="search-results" style="display:none">
       <p class="search-result-label" id="result-label">〒338-0013（埼玉県さいたま市中央区鈴谷）から近い順</p>
-      <p class="search-result-note">※表示される距離は直線距離です。実際の道のりとは異なる場合があります。</p>
+      <p class="search-result-note" style="text-align:center;">※表示される距離は直線距離です。<br>実際の道のりとは異なる場合があります。</p>
 
       <div id="store-results-inner"></div>
       <div class="more-wrap" id="more-wrap">
@@ -4139,6 +4138,33 @@
     return tags || '<span class="store-tag-lens">レンズ交換対応</span>';
   }
 
+  function buildStoreModelDetail(store, brand) {
+    const caps = getStoreCaps(store);
+    const BRAND_DISPLAY = {
+      'MIRZA': 'MiRZA', 'Rokid': 'Rokid',
+      'Even Realities': 'Even Realities G2',
+      'Ray-Ban Meta': 'Ray-Ban Meta', 'VITURE': 'VITURE'
+    };
+    const BRAND_KEYS = ['MIRZA', 'Rokid', 'Even Realities', 'Ray-Ban Meta', 'VITURE'];
+    let bodyBrands = [], lensBrands = [];
+    if (brand) {
+      const c = caps[brand] || caps[brand === 'VITURE' ? 'Viture' : brand];
+      if (c && c.body) bodyBrands.push(BRAND_DISPLAY[brand] || brand);
+      if (c && c.lens) lensBrands.push(BRAND_DISPLAY[brand] || brand);
+    } else {
+      BRAND_KEYS.forEach(function(b) {
+        const c = caps[b];
+        if (c && c.body) bodyBrands.push(BRAND_DISPLAY[b]);
+        if (c && c.lens) lensBrands.push(BRAND_DISPLAY[b]);
+      });
+    }
+    let html = '<div class="store-model-detail">';
+    if (bodyBrands.length) html += '<p class="store-model-row"><span class="store-model-label">本体取扱：</span><span class="store-model-value">' + bodyBrands.map(function(b){ return '<span style="white-space:nowrap">' + b + '</span>'; }).join('・') + '</span></p>';
+    if (lensBrands.length) html += '<p class="store-model-row"><span class="store-model-label">レンズ交換：</span><span class="store-model-value">' + lensBrands.map(function(b){ return '<span style="white-space:nowrap">' + b + '</span>'; }).join('・') + '</span></p>';
+    html += '</div>';
+    return html;
+  }
+
   function haversine(lat1, lon1, lat2, lon2) {
     const R = 6371;
     const dLat = (lat2 - lat1) * Math.PI / 180;
@@ -4163,7 +4189,7 @@
             <p class="store-name">${nearest.name}</p>
             <a href="${nearest.url}" target="_blank" class="btn-store-hp">店舗HPへ →</a>
           </div>
-          <div class="store-tags">${tags}</div>
+          ${buildStoreModelDetail(nearest, brand)}
           ${distLabel}
           <div class="store-actions">
             <a href="${nearest.reserve || nearest.url}" target="_blank" class="btn-store-web">WEB予約</a>
