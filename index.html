@@ -2750,11 +2750,10 @@
     #rayban-card-img { background: #f5f5f5; }
     #rayban-img { object-fit: contain; object-position: center; transform: scale(1.05); }
     .modal-model-list { margin-bottom: 16px; border: 1px solid #e8e8e8; border-radius: 8px; overflow: hidden; }
-    .modal-model-list-ttl { font-size: 12px; font-weight: 700; color: var(--red); letter-spacing: 0.1em; background: #fafafa; padding: 8px 14px; border-bottom: 1px solid #e8e8e8; }
+    .modal-model-list-ttl { font-size: 12px; font-weight: 700; color: var(--navy); letter-spacing: 0.1em; background: #fafafa; padding: 8px 14px; border-bottom: 1px solid #e8e8e8; }
     .modal-model-group { padding: 10px 14px; }
     .modal-model-group + .modal-model-group { border-top: 1px solid #f0f0f0; }
     .modal-model-group-label { font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
-    .modal-model-group--optics .modal-model-group-label { color: var(--red); }
     .modal-model-group-items { font-size: 13px; color: #444; line-height: 1.7; }
     #mirza-card-img { background: #f2f4f8; }
     #mirza-img { object-fit: contain; object-position: center; transform: scale(1.18); }
@@ -4437,13 +4436,13 @@
           <p class="modal-lens-meta">SPH（球面度数）・CYL（乱視度数）・AXIS（乱視軸度）・PD（瞳孔間距離）</p>
         </div>
         <div class="modal-lens-block">
-          <p class="modal-lens-block-ttl">納期</p>
-          <p class="modal-lens-meta">レンズご注文後、2週間程度で購入店舗にて、お渡しとなります。</p>
-        </div>
-        <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">製作範囲</p>
           <p class="modal-lens-meta">球面（SPH）：0〜−10.00 ／ +0.25〜+4.00</p>
           <p class="modal-lens-meta">乱視（CYL）：なし ／ −0.25〜−2.00</p>
+        </div>
+        <div class="modal-lens-block">
+          <p class="modal-lens-block-ttl">納期</p>
+          <p class="modal-lens-meta">レンズご注文後、2週間程度で購入店舗にて、お渡しとなります。</p>
         </div>
         <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">注意事項</p>
@@ -4557,7 +4556,7 @@
       modelListHTML: `<div class="modal-model-list">
         <p class="modal-model-list-ttl">取扱モデル</p>
         <div class="modal-model-group">
-          <p class="modal-model-group-label">Standard（サングラス）</p>
+          <p class="modal-model-group-label">Standard（度付き対応サングラス）</p>
           <p class="modal-model-group-items">Wayfarer &nbsp;／&nbsp; Headliner &nbsp;／&nbsp; Skyler</p>
         </div>
         <div class="modal-model-group modal-model-group--optics">
@@ -4585,16 +4584,28 @@
         <p class="modal-lens-intro">アイメガネはRay-Ban Metaの度付きレンズ交換に対応しています。Optics（Blayzer / Scriber）・Standard（Wayfarer / Headliner / Skyler）のどちらのモデルも、単焦点・累進（遠近両用）レンズに対応しています。</p>
         <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">レンズ仕様</p>
-          <p class="modal-lens-meta"><strong>Optics（メガネタイプ）</strong>　幅広い度数に対応。度数が強い方向けの特殊レンズもご用意できます。</p>
-          <p class="modal-lens-meta" style="margin-top:6px;"><strong>Standard（サングラスタイプ）</strong>　度付き対応。レンズカラーはクリア／調光（トランジションズ）／カラー／グラデーション／ミラー／偏光など豊富に選べます。</p>
+          <ul class="modal-lens-notes">
+            <li><strong>Optics（メガネタイプ）</strong>　幅広い度数に対応。度数が強い方向けの特殊レンズもご用意できます。</li>
+            <li><strong>Standard（サングラスタイプ）</strong>　度付き対応。レンズカラーはクリア／調光（トランジションズ）／カラー／グラデーション／ミラー／偏光など豊富に選べます。</li>
+          </ul>
         </div>
         <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">必要な処方情報</p>
           <p class="modal-lens-meta">SPH（球面度数）・CYL（乱視度数）・AXIS（乱視軸度）・PD（瞳孔間距離）</p>
         </div>
         <div class="modal-lens-block">
+          <p class="modal-lens-block-ttl">製作範囲</p>
+          <p class="modal-lens-meta"><strong>Optics（メガネタイプ）</strong></p>
+          <p class="modal-lens-meta">単焦点　球面（SPH）：+6.00〜−18.00　／　乱視（CYL）：0〜−6.00</p>
+          <p class="modal-lens-meta">累進（遠近両用）　球面（SPH）：+6.00〜−14.00　／　乱視（CYL）：0〜−6.00　／　加入度：+0.75〜+3.50</p>
+          <p class="modal-lens-meta" style="margin-top:10px;"><strong>Standard（サングラスタイプ）</strong></p>
+          <p class="modal-lens-meta">単焦点　球面（SPH）：+6.00〜−6.00　／　乱視（CYL）：0〜−4.00</p>
+          <p class="modal-lens-meta">累進（遠近両用）　球面（SPH）：+5.00〜−6.00　／　乱視（CYL）：0〜−4.00　／　加入度：+0.75〜+3.50</p>
+          <p class="modal-lens-meta" style="font-size:11px;color:#888;margin-top:6px;">※度数が強い場合は薄型レンズのご案内となることがあります。乱視との組み合わせによっては上記範囲内でも作成できない場合があります。</p>
+        </div>
+        <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">納期</p>
-          <p class="modal-lens-meta">ご注文後10日程度でお渡しとなります。<br><small style="color:#888;">※度数やレンズの種類により前後する場合がございます。あらかじめご了承ください。</small></p>
+          <p class="modal-lens-meta">店頭でのお渡しとなり、ご注文後10日〜2週間前後が目安です。<br><small style="color:#888;">※度数やレンズの種類により前後する場合がございます。あらかじめご了承ください。</small></p>
         </div>
         <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">注意事項</p>
