@@ -541,6 +541,13 @@
       margin-top: -24px;
       margin-bottom: 24px;
     }
+    .section-disclaimer-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-top: 20px;
+    }
     .product-filter-tabs {
       display: flex;
       justify-content: center;
@@ -3150,6 +3157,7 @@
         <p class="feature-desc">耳をふさがずに音楽や<br>ポッドキャストを楽しめる。<br>周囲の音も聞こえて安全に使える。</p>
       </div>
     </div>
+    <p class="section-disclaimer-note">※ カメラ・AIアシスタント・翻訳機能など、搭載機能はモデルによって異なります。<br>各モデルの詳細仕様はメーカー公式ページをご確認ください。</p>
     <!-- 度付き訴求バナー -->
     <div class="features-prescription-banner">
       <div class="features-banner-body">
@@ -3198,6 +3206,7 @@
         </div>
       </div>
     </div>
+    <p class="section-disclaimer-note">※ カメラ・AIアシスタント・翻訳機能など、搭載機能はモデルによって異なります。<br>各モデルの詳細仕様はメーカー公式ページをご確認ください。</p>
   </div>
 </section>
 
@@ -3342,7 +3351,7 @@
 <section id="products" class="section">
   <div class="container">
     <h2 class="section-title center">商品ラインナップ</h2>
-    <p class="products-note">※商品によって取り扱い店舗が異なります</p>
+    <p class="products-note">※商品によって取り扱い店舗が異なります。本体の展示・お試しができるのは一部店舗のみです（各カードの「本体取扱」欄でご確認ください）</p>
     <div class="product-filter-tabs">
       <button class="product-filter-btn product-filter-btn--active" data-filter="all" onclick="filterProducts('all')">本体・レンズ取り扱い</button>
       <button class="product-filter-btn" data-filter="lens-only" onclick="filterProducts('lens-only')">レンズのみ取り扱い</button>
@@ -3372,6 +3381,9 @@
             <tr><th>レンズ交換</th><td>全37店舗 / オンライン対応<small class="except-note">※本庄南大通り店を除く</small></td></tr>
           </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('mirza')">詳しく見る ▶</button>
+          <div class="pg-card-sub-btns">
+            <a class="pg-card-sub-btn" href="https://www.xr.docomo.ne.jp/mirza" target="_blank" rel="noopener" onclick="event.stopPropagation();">メーカー公式サイトへ →</a>
+          </div>
         </div>
       </div>
 
@@ -3393,6 +3405,9 @@
             <tr><th>レンズ交換</th><td>全37店舗 / オンライン対応<small class="except-note">※本庄南大通り店を除く</small></td></tr>
           </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('rokid')">詳しく見る ▶</button>
+          <div class="pg-card-sub-btns">
+            <a class="pg-card-sub-btn" href="https://jp.rokid.com/pages/rokid-glasses" target="_blank" rel="noopener" onclick="event.stopPropagation();">メーカー公式サイトへ →</a>
+          </div>
         </div>
       </div>
 
@@ -3421,9 +3436,12 @@
             </div>
           </div>
           <table class="pg-card-store">
-            <tr><th>本体・レンズ</th><td><span class="pg-store-link" onclick="event.stopPropagation();showStoreFromCard('南浦和','even')">南浦和店</span>・<span class="pg-store-link" onclick="event.stopPropagation();showStoreFromCard('宇都宮錦','even')">宇都宮錦店</span>・<span class="pg-store-link" onclick="event.stopPropagation();showStoreFromCard('八千代','even')">八千代店</span></td></tr>
+            <tr><th>本体・レンズ</th><td><span class="pg-store-link" onclick="event.stopPropagation();showStoreFromCard('南浦和','even')">南浦和店</span>・<span class="pg-store-link" onclick="event.stopPropagation();showStoreFromCard('宇都宮錦','even')">宇都宮錦店</span>・<span class="pg-store-link" onclick="event.stopPropagation();showStoreFromCard('八千代','even')">八千代台ユアエルム店</span></td></tr>
           </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('even')">詳しく見る ▶</button>
+          <div class="pg-card-sub-btns">
+            <a class="pg-card-sub-btn" href="https://www.evenrealities.com/ja-JP/smart-glasses" target="_blank" rel="noopener" onclick="event.stopPropagation();">メーカー公式サイトへ →</a>
+          </div>
         </div>
       </div>
 
@@ -3434,8 +3452,9 @@
         </div>
         <div class="pg-card-body">
           <h3 class="pg-card-name">Ray-Ban Meta</h3>
-          <div class="pg-card-swatches">
-            <span class="pg-swatch pg-swatch--active" style="background:#111;" title="ブラック"></span>
+          <div class="pg-card-variant-badges">
+            <span class="pg-variant-badge pg-variant-badge--active" onclick="event.stopPropagation();switchRaybanImg('blayzer',this)">Optics（メガネ）</span>
+            <span class="pg-variant-badge" onclick="event.stopPropagation();switchRaybanImg('wayfarer',this)">Standard（サングラス）</span>
           </div>
           <div class="pg-card-scenes">
             <span class="pg-scene-label">こんなシーンに</span>
@@ -3446,10 +3465,12 @@
             </div>
           </div>
           <table class="pg-card-store">
-            <tr><th>本体取扱</th><td><span class="pg-store-link" onclick="event.stopPropagation();showStoreFromCard('南浦和','rayban')">南浦和店</span></td></tr>
-            <tr><th>レンズ交換</th><td>全37店舗<small class="except-note">※本庄南大通り店を除く</small></td></tr>
+            <tr><th>本体・レンズ交換</th><td><span class="pg-store-link" onclick="event.stopPropagation();showStoreFromCard('南浦和','rayban')">南浦和店</span></td></tr>
           </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('rayban')">詳しく見る ▶</button>
+          <div class="pg-card-sub-btns">
+            <a class="pg-card-sub-btn" href="https://www.ray-ban.com/japan/ray-ban-meta-ai-glasses" target="_blank" rel="noopener" onclick="event.stopPropagation();">メーカー公式サイトへ →</a>
+          </div>
         </div>
       </div>
 
@@ -3477,6 +3498,9 @@
             <tr><th>本体・レンズ</th><td><span class="pg-store-link" onclick="event.stopPropagation();showStoreFromCard('南浦和','viture')">南浦和店</span></td></tr>
           </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('viture')">詳しく見る ▶</button>
+          <div class="pg-card-sub-btns">
+            <a class="pg-card-sub-btn" href="https://www.viture.com/ja-JP/product/viture-luma-xr-glasses" target="_blank" rel="noopener" onclick="event.stopPropagation();">メーカー公式サイトへ →</a>
+          </div>
         </div>
       </div>
 
@@ -3718,7 +3742,7 @@
           <span class="qa-q-text">どの店舗でも全機種に対応していますか？</span>
           <span class="qa-icon">+</span>
         </button>
-        <div class="qa-a">機種によって本体の展示・販売対応店舗が異なります。レンズ交換（度付き加工）は全37店舗で承っております（本庄南大通り店を除く）。ご希望の機種の取扱店舗は、ページ内の「店舗検索」でご確認いただけます。</div>
+        <div class="qa-a">機種によって本体の展示・販売、レンズ交換の対応店舗が異なります。MiRZA・Rokidのレンズ交換は全37店舗で承っております（本庄南大通り店を除く）。Even Realities G2・VITURE・Ray-Ban Metaは対応店舗が限定されますので、ページ内の「店舗検索」で機種を選んでご確認ください。</div>
       </div>
 
       <div class="qa-item">
@@ -3908,7 +3932,7 @@
   function switchRaybanImg(model, el) {
     var img = document.getElementById('rayban-img');
     img.src = 'images/rayban/' + model + '.jpg';
-    img.alt = 'Ray-Ban Meta ' + (model === 'wayfarer' ? 'メガネ' : 'サングラス');
+    img.alt = 'Ray-Ban Meta ' + (model === 'wayfarer' ? 'サングラス' : 'メガネ');
     document.querySelectorAll('.pg-card[data-product="rayban"] .pg-variant-badge').forEach(function(b){ b.classList.remove('pg-variant-badge--active'); });
     el.classList.add('pg-variant-badge--active');
   }
@@ -4082,7 +4106,7 @@
       'MIRZA':          { body: false, lens: true  },
       'Rokid':          { body: false, lens: true  },
       'Even Realities': { body: true,  lens: true  },
-      'Ray-Ban Meta':   { body: false, lens: true  },
+      'Ray-Ban Meta':   { body: false, lens: false },
       'VITURE':         { body: false, lens: false },
       'Viture':         { body: false, lens: false },
     },
@@ -4090,7 +4114,7 @@
       'MIRZA':          { body: false, lens: true  },
       'Rokid':          { body: false, lens: true  },
       'Even Realities': { body: true,  lens: true  },
-      'Ray-Ban Meta':   { body: false, lens: true  },
+      'Ray-Ban Meta':   { body: false, lens: false },
       'VITURE':         { body: false, lens: false },
       'Viture':         { body: false, lens: false },
     },
@@ -4100,7 +4124,7 @@
     'MIRZA':          { body: false, lens: true  },
     'Rokid':          { body: false, lens: true  },
     'Even Realities': { body: false, lens: false },
-    'Ray-Ban Meta':   { body: false, lens: true  },
+    'Ray-Ban Meta':   { body: false, lens: false },
     'VITURE':         { body: false, lens: false },
     'Viture':         { body: false, lens: false },
   };
@@ -4442,7 +4466,7 @@
         </div>
         <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">納期</p>
-          <p class="modal-lens-meta">レンズご注文後、2週間程度で購入店舗にて、お渡しとなります。</p>
+          <p class="modal-lens-meta">レンズご注文後、10日〜2週間程度で購入店舗にて、お渡しとなります。</p>
         </div>
         <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">注意事項</p>
@@ -4453,6 +4477,8 @@
             <li>使用時はクリーニングクロスで軽く拭いてください。</li>
             <li>乾いた布での強い摩擦はお避けください。</li>
             <li>酸性・アルカリ性洗剤のご使用はお控えください。</li>
+            <li>度付きレンズは特注品となるため、ご注文後のキャンセル・返品はお受けできません。</li>
+            <li>ご注文の際は処方箋をご準備ください。度数が分からない方は眼科にて処方箋を発行していただいてからご注文をお願いいたします。</li>
           </ul>
         </div>`,
     },
@@ -4463,7 +4489,7 @@
       tags: ['度付き対応', 'オンライン注文OK'],
       specs: [
         { label: '対応商品', value: 'Rokid スマートAIグラス専用' },
-        { label: '納期', value: 'フレーム到着後10日前後' },
+        { label: '納期', value: 'フレーム到着後10日〜2週間前後' },
         { label: '対応度数', value: 'SPH / CYL / AXIS / PD' },
         { label: 'フレーム送料', value: 'お客様負担' },
       ],
@@ -4488,12 +4514,11 @@
           <p class="modal-lens-block-ttl">製作範囲</p>
           <p class="modal-lens-meta">球面（SPH）：±0.00〜−10.00</p>
           <p class="modal-lens-meta">乱視（CYL）：なし ／ −0.25〜−4.00</p>
-          <p class="modal-lens-meta" style="font-size:11px;color:#888;margin-top:4px;">※ SPH −0.25 / −0.50 / −0.75 は、CYL（乱視度数）製作範囲外となります。</p>
-          <p class="modal-lens-meta" style="font-size:11px;color:#888;">※ SPH −6.25以上の場合、CYL との合算で −10.00 まで。</p>
+          <p class="modal-lens-meta except-note">※度数の組み合わせによっては、上記範囲内でも対応できない場合があります。詳しくは店舗にてご相談ください。</p>
         </div>
         <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">納期</p>
-          <p class="modal-lens-meta">フレーム到着後10日前後</p>
+          <p class="modal-lens-meta">フレーム到着後10日〜2週間前後</p>
         </div>
         <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">注意事項</p>
@@ -4519,7 +4544,7 @@
         { label: '充電ケース', value: '最大7回分充電' },
       ],
       recommend: ['会議・商談が多い人', '外国語を使う仕事や旅行が多い人', 'スマートフォンを見る回数を減らしたい人', 'プライバシーを大切にしたい人'],
-      store: '本体・レンズ取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span>・<span class="store-name-link" onclick="showStoreByName(\'宇都宮錦\')">宇都宮錦店</span>・<span class="store-name-link" onclick="showStoreByName(\'八千代\')">八千代店</span></strong>',
+      store: '本体・レンズ取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span>・<span class="store-name-link" onclick="showStoreByName(\'宇都宮錦\')">宇都宮錦店</span>・<span class="store-name-link" onclick="showStoreByName(\'八千代\')">八千代台ユアエルム店</span></strong>',
       searchBrand: 'Even Realities',
       gallery: 'even',
       hasLens: true,
@@ -4545,7 +4570,7 @@
           <p class="modal-lens-block-ttl">注意事項</p>
           <ul class="modal-lens-notes">
             <li>度付きレンズは特注品となるため、ご注文後のキャンセル・返品はお受けできません。</li>
-            <li>ご注文の際は必ず処方箋をご持参ください。</li>
+            <li>ご来店の際は処方箋をご準備ください。度数が分からない方は眼科にて処方箋を発行していただいてからご来店をお願いいたします。</li>
           </ul>
         </div>`,
     },
@@ -4576,7 +4601,7 @@
         { label: '防水', value: 'IPX4' },
       ],
       recommend: ['メガネをおしゃれに楽しみたい人', '音楽・通話を日常的に使いたい人', 'スマートグラスをはじめて使う人', 'Meta AIを気軽に活用したい人'],
-      store: '本体取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span></strong>　レンズ交換：<strong>全37店舗</strong><small class="except-note">※本庄南大通り店を除く</small>',
+      store: '本体・レンズ交換取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span></strong>',
       searchBrand: 'Ray-Ban Meta',
       gallery: 'rayban',
       hasLens: true,
@@ -4601,11 +4626,11 @@
           <p class="modal-lens-meta" style="margin-top:10px;"><strong>Standard（サングラスタイプ）</strong></p>
           <p class="modal-lens-meta">単焦点　球面（SPH）：+6.00〜−6.00　／　乱視（CYL）：0〜−4.00</p>
           <p class="modal-lens-meta">累進（遠近両用）　球面（SPH）：+5.00〜−6.00　／　乱視（CYL）：0〜−4.00　／　加入度：+0.75〜+3.50</p>
-          <p class="modal-lens-meta" style="font-size:11px;color:#888;margin-top:6px;">※度数が強い場合は薄型レンズのご案内となることがあります。乱視との組み合わせによっては上記範囲内でも作成できない場合があります。</p>
+          <p class="modal-lens-meta except-note" style="margin-top:6px;">※度数が強い場合は薄型レンズのご案内となることがあります。</p>
         </div>
         <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">納期</p>
-          <p class="modal-lens-meta">店頭でのお渡しとなり、ご注文後10日〜2週間前後が目安です。<br><small style="color:#888;">※度数やレンズの種類により前後する場合がございます。あらかじめご了承ください。</small></p>
+          <p class="modal-lens-meta">店頭でのお渡しとなり、ご注文後10日〜2週間前後が目安です。<br><small class="except-note">※度数やレンズの種類により前後する場合がございます。あらかじめご了承ください。</small></p>
         </div>
         <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">注意事項</p>
@@ -4647,7 +4672,7 @@
           <p class="modal-lens-block-ttl">注意事項</p>
           <ul class="modal-lens-notes">
             <li>度付きレンズは特注品となるため、ご注文後のキャンセル・返品はお受けできません。</li>
-            <li>ご注文の際は必ず処方箋をご持参ください。</li>
+            <li>ご来店の際は処方箋をご準備ください。度数が分からない方は眼科にて処方箋を発行していただいてからご来店をお願いいたします。</li>
           </ul>
         </div>`,
     },
