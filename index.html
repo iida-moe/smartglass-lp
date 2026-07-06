@@ -317,7 +317,7 @@
     #features { background: var(--bg-white); }
     .features-intro {
       max-width: 640px;
-      margin-bottom: 48px;
+      margin-bottom: 16px;
     }
     .features-intro p {
       font-size: 15px;
@@ -445,58 +445,6 @@
     }
     .btn-glasses-icon { width: 32px; height: auto; filter: invert(1); }
     .btn-features-banner:hover { opacity: 0.82; }
-
-    /* ===== SECTION 02: スマートグラスとは ===== */
-    #features { background: var(--bg-white); }
-    .features-intro {
-      max-width: 640px;
-      margin-bottom: 48px;
-    }
-    .features-intro p {
-      font-size: 15px;
-      color: var(--text-secondary);
-      line-height: 2.0;
-      margin-bottom: 16px;
-    }
-    .features-intro p:last-child { margin-bottom: 0; }
-    .features-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 32px;
-    }
-    @media (min-width: 768px) {
-      .features-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
-    }
-    .feature-card {
-      background: #fff;
-      border-radius: 14px;
-      padding: 32px 20px 28px;
-      text-align: center;
-      border: 1px solid var(--border);
-    }
-    .feature-icon {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      background: rgba(13,27,42,0.06);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 18px;
-    }
-    .feature-icon img { width: 40px; height: 40px; object-fit: contain; }
-    .feature-title {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--text-primary);
-    }
-    .feature-desc {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.85;
-    }
 
     /* ===== SECTION 03: スマートグラスのある暮らし ===== */
     #lifestyle { padding: 44px 0 80px; }
@@ -2123,7 +2071,7 @@
     /* ===== SP: FEATURES (スマートグラスとは) ===== */
     @media (max-width: 767px) {
       #features { padding-bottom: 8px; }
-      .features-intro { margin-bottom: 20px; }
+      .features-intro { margin-bottom: 16px; }
       .features-intro p { font-size: 13px; line-height: 1.8; }
       .features-intro p br { display: none; }
       .features-grid { grid-template-columns: 1fr; gap: 10px; margin-bottom: 20px; }
@@ -3136,6 +3084,7 @@
     <div class="features-intro">
       <p>声で質問、耳で音楽を楽しむ、両手がふさがっていても大丈夫。<br>スマートフォンを取り出す必要がない。目の前のことに集中できる。</p>
     </div>
+    <p class="section-disclaimer-note" style="margin-top:0; margin-bottom:24px;">※ カメラ・AIアシスタント・翻訳機能など、搭載機能はモデルによって異なります。各モデルの詳細仕様はメーカー公式ページをご確認ください。</p>
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon"><img src="テレオペアイコン (1).svg" alt="AIアシスタント"></div>
@@ -3158,7 +3107,6 @@
         <p class="feature-desc">耳をふさがずに音楽や<br>ポッドキャストを楽しめる。<br>周囲の音も聞こえて安全に使える。</p>
       </div>
     </div>
-    <p class="section-disclaimer-note">※ カメラ・AIアシスタント・翻訳機能など、搭載機能はモデルによって異なります。<br>各モデルの詳細仕様はメーカー公式ページをご確認ください。</p>
     <!-- 度付き訴求バナー -->
     <div class="features-prescription-banner">
       <div class="features-banner-body">
