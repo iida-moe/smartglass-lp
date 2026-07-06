@@ -189,8 +189,16 @@
     .fv-body strong { color: #fff; font-weight: 700; }
     .fv-btns {
       display: flex;
+      flex-wrap: wrap;
       gap: 16px;
     }
+    .fv-cta-note {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.8;
+      margin-top: 10px;
+    }
+    .fv-btns .fv-cta-note { flex-basis: 100%; }
     .fv-brand-label { display: none; }
     .fv-sp-cta { display: none; }
     .fv-sub { display: none; }
@@ -3083,6 +3091,7 @@
       <div class="fv-btns">
         <a href="#search" class="btn-fv-primary">体験・相談を予約する</a>
         <a href="https://www.aijapan-online.com/" target="_blank" class="btn-fv-secondary">オンライン注文<span style="font-size:0.72em; opacity:0.75;">（MIRZA・Rokid対応）</span></a>
+        <p class="fv-cta-note">※本庄南大通り店を除く<br>※オンラインでは本体の新規販売は行っておりません<br>※商品によって取り扱い店舗が異なります。詳しくは商品ページをご覧ください。</p>
       </div>
       <div class="fv-brands-wrap">
         <div class="fv-brands-title"><span class="fv-brands-label">取扱ブランド</span></div>
@@ -3107,6 +3116,7 @@
       <div class="fv-sp-cta">
         <a href="#search" class="fv-sp-btn fv-sp-btn--red">体験・相談を予約する</a>
         <a href="https://www.aijapan-online.com/" target="_blank" class="fv-sp-btn fv-sp-btn--blue">オンライン注文<span style="font-size:0.72em; opacity:0.75;">（MIRZA・Rokid対応）</span></a>
+        <p class="fv-cta-note">※本庄南大通り店を除く<br>※オンラインでは本体の新規販売は行っておりません<br>※商品によって取り扱い店舗が異なります。詳しくは商品ページをご覧ください。</p>
       </div>
     </div>
   </div>
