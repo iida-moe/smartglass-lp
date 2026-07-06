@@ -546,7 +546,7 @@
       font-size: 12px;
       color: var(--text-secondary);
       line-height: 1.7;
-      margin-top: 20px;
+      margin-top: 40px;
     }
     .product-filter-tabs {
       display: flex;
@@ -2770,8 +2770,8 @@
     .pg-img--rokid  { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
     .pg-img--viture { background: #f2f4f8; }
     .pg-card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
-    .pg-card-store { font-size: 11px; border-collapse: collapse; width: 100%; margin-top: 8px; margin-bottom: 10px; padding-top: 8px; border-top: 1px solid #eee; }
-    .pg-card-store th { text-align: left; color: #777; font-weight: 600; padding: 3px 10px 3px 0; white-space: nowrap; vertical-align: top; }
+    .pg-card-store { font-size: 11px; border-collapse: collapse; width: 100%; margin-top: auto; margin-bottom: 10px; padding-top: 8px; border-top: 1px solid #eee; }
+    .pg-card-store th { width: 1%; text-align: left; color: #777; font-weight: 600; padding: 3px 10px 3px 0; white-space: nowrap; vertical-align: top; }
     .pg-card-store td { color: var(--navy); font-weight: 700; padding: 3px 0; vertical-align: top; }
     .except-note { display: block; font-size: 10px; color: #999; font-weight: 400; margin-top: 1px; }
     .pg-card-store tr + tr th, .pg-card-store tr + tr td { border-top: 1px solid #f5f5f5; }
@@ -2798,24 +2798,8 @@
       transition: opacity 0.2s;
     }
     .pg-card-btn:hover { opacity: 0.8; }
-    .pg-card-sub-btns { display: flex; gap: 6px; margin-top: 8px; }
-    .pg-card-sub-btn {
-      flex: 1;
-      padding: 8px 4px;
-      background: #fff;
-      color: var(--navy);
-      border: 1.5px solid var(--navy);
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: inherit;
-      text-align: center;
-      text-decoration: none;
-      display: block;
-      transition: background 0.2s, color 0.2s;
-    }
-    .pg-card-sub-btn:hover { background: var(--navy); color: #fff; }
+    .pg-card-official-link { display: block; text-align: center; margin-top: 8px; font-size: 11px; color: #888; text-decoration: none; }
+    .pg-card-official-link:hover { color: var(--navy); text-decoration: underline; }
     .pg-card-swatches { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
     .pg-card-variant-badges { display: flex; gap: 6px; margin-bottom: 10px; }
     .pg-variant-badge { font-size: 10px; font-weight: 700; color: #444; border: 1.5px solid #aaa; border-radius: 20px; padding: 2px 10px; cursor: pointer; transition: background 0.15s, color 0.15s; }
@@ -3054,6 +3038,8 @@
     <div class="header-right">
       <nav class="header-nav">
         <a href="#products">商品一覧</a>
+        <a href="#flow">購入の流れ</a>
+        <a href="#qa">よくある質問</a>
         <a href="#search">店舗検索</a>
       </nav>
       <div class="header-cta">
@@ -3068,6 +3054,8 @@
 
 <nav id="sp-nav" class="sp-nav" aria-hidden="true">
   <a href="#products" onclick="closeSpNav()">商品一覧</a>
+  <a href="#flow" onclick="closeSpNav()">購入の流れ</a>
+  <a href="#qa" onclick="closeSpNav()">よくある質問</a>
   <a href="#search" onclick="closeSpNav()">店舗検索</a>
   <a href="#search" class="btn btn-red sp-nav-cta" onclick="closeSpNav()">店舗予約する</a>
 </nav>
@@ -3381,9 +3369,7 @@
             <tr><th>レンズ交換</th><td>全37店舗 / オンライン対応<small class="except-note">※本庄南大通り店を除く</small></td></tr>
           </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('mirza')">詳しく見る ▶</button>
-          <div class="pg-card-sub-btns">
-            <a class="pg-card-sub-btn" href="https://www.xr.docomo.ne.jp/mirza" target="_blank" rel="noopener" onclick="event.stopPropagation();">メーカー公式サイトへ →</a>
-          </div>
+          <a class="pg-card-official-link" href="https://www.xr.docomo.ne.jp/mirza" target="_blank" rel="noopener" onclick="event.stopPropagation();">メーカー公式サイトへ →</a>
         </div>
       </div>
 
@@ -3405,9 +3391,7 @@
             <tr><th>レンズ交換</th><td>全37店舗 / オンライン対応<small class="except-note">※本庄南大通り店を除く</small></td></tr>
           </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('rokid')">詳しく見る ▶</button>
-          <div class="pg-card-sub-btns">
-            <a class="pg-card-sub-btn" href="https://jp.rokid.com/pages/rokid-glasses" target="_blank" rel="noopener" onclick="event.stopPropagation();">メーカー公式サイトへ →</a>
-          </div>
+          <a class="pg-card-official-link" href="https://jp.rokid.com/pages/rokid-glasses" target="_blank" rel="noopener" onclick="event.stopPropagation();">メーカー公式サイトへ →</a>
         </div>
       </div>
 
@@ -3439,9 +3423,7 @@
             <tr><th>本体・レンズ</th><td><span class="pg-store-link" onclick="event.stopPropagation();showStoreFromCard('南浦和','even')">南浦和店</span>・<span class="pg-store-link" onclick="event.stopPropagation();showStoreFromCard('宇都宮錦','even')">宇都宮錦店</span>・<span class="pg-store-link" onclick="event.stopPropagation();showStoreFromCard('八千代','even')">八千代台ユアエルム店</span></td></tr>
           </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('even')">詳しく見る ▶</button>
-          <div class="pg-card-sub-btns">
-            <a class="pg-card-sub-btn" href="https://www.evenrealities.com/ja-JP/smart-glasses" target="_blank" rel="noopener" onclick="event.stopPropagation();">メーカー公式サイトへ →</a>
-          </div>
+          <a class="pg-card-official-link" href="https://www.evenrealities.com/ja-JP/smart-glasses" target="_blank" rel="noopener" onclick="event.stopPropagation();">メーカー公式サイトへ →</a>
         </div>
       </div>
 
@@ -3468,9 +3450,7 @@
             <tr><th>本体・レンズ交換</th><td><span class="pg-store-link" onclick="event.stopPropagation();showStoreFromCard('南浦和','rayban')">南浦和店</span></td></tr>
           </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('rayban')">詳しく見る ▶</button>
-          <div class="pg-card-sub-btns">
-            <a class="pg-card-sub-btn" href="https://www.ray-ban.com/japan/ray-ban-meta-ai-glasses" target="_blank" rel="noopener" onclick="event.stopPropagation();">メーカー公式サイトへ →</a>
-          </div>
+          <a class="pg-card-official-link" href="https://www.ray-ban.com/japan/ray-ban-meta-ai-glasses" target="_blank" rel="noopener" onclick="event.stopPropagation();">メーカー公式サイトへ →</a>
         </div>
       </div>
 
@@ -3498,9 +3478,7 @@
             <tr><th>本体・レンズ</th><td><span class="pg-store-link" onclick="event.stopPropagation();showStoreFromCard('南浦和','viture')">南浦和店</span></td></tr>
           </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('viture')">詳しく見る ▶</button>
-          <div class="pg-card-sub-btns">
-            <a class="pg-card-sub-btn" href="https://www.viture.com/ja-JP/product/viture-luma-xr-glasses" target="_blank" rel="noopener" onclick="event.stopPropagation();">メーカー公式サイトへ →</a>
-          </div>
+          <a class="pg-card-official-link" href="https://www.viture.com/ja-JP/product/viture-luma-xr-glasses" target="_blank" rel="noopener" onclick="event.stopPropagation();">メーカー公式サイトへ →</a>
         </div>
       </div>
 
@@ -3553,10 +3531,10 @@
     <div class="flow-arrow-band-wrap">
       <div class="flow-arrow-band">
         <span class="flow-arrow-band-label">ご来店〜お渡しまでの目安</span>
-        <span class="flow-arrow-band-value">約 1〜2週間</span>
+        <span class="flow-arrow-band-value">約 1〜4週間</span>
       </div>
     </div>
-    <p class="flow-note" style="margin-top:16px;">※機種によって設置店が異なります。あらかじめお確かめの上ご来店くださいませ。<br>※処方箋での作成も賜ります。<br>※ご使用方法注意事項等は各製品取扱書をお確かめくださいませ。<br>※レンズの種類・コーティングによっては2〜3週間かかる場合があります。完成次第ご連絡いたします。<br>※遠方のお客様は郵送でのお受け取りもご相談ください（別途送料）。</p>
+    <p class="flow-note" style="margin-top:16px;">※機種によって設置店が異なります。あらかじめお確かめの上ご来店くださいませ。<br>※処方箋での作成も賜ります。<br>※ご使用方法注意事項等は各製品取扱書をお確かめくださいませ。<br>※遠方のお客様は郵送でのお受け取りもご相談ください（別途送料）。</p>
 
     <!-- オンライン購入フロー -->
     <div class="flow-online-block">
