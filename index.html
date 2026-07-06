@@ -4456,10 +4456,6 @@
           <p class="modal-lens-meta">乱視（CYL）：なし ／ −0.25〜−2.00</p>
         </div>
         <div class="modal-lens-block">
-          <p class="modal-lens-block-ttl">納期</p>
-          <p class="modal-lens-meta">レンズご注文後、10日〜2週間程度で購入店舗にて、お渡しとなります。</p>
-        </div>
-        <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">注意事項</p>
           <ul class="modal-lens-notes">
             <li>視力補正レンズを使用しても、通常の見え方とは異なります。また慣れるまで時間がかかることがあります。</li>
@@ -4480,7 +4476,6 @@
       tags: ['度付き対応', 'オンライン注文OK'],
       specs: [
         { label: '対応商品', value: 'Rokid スマートAIグラス専用' },
-        { label: '納期', value: 'フレーム到着後10日〜2週間前後' },
         { label: '対応度数', value: 'SPH / CYL / AXIS / PD' },
         { label: 'フレーム送料', value: 'お客様負担' },
       ],
@@ -4506,10 +4501,6 @@
           <p class="modal-lens-meta">球面（SPH）：±0.00〜−10.00</p>
           <p class="modal-lens-meta">乱視（CYL）：なし ／ −0.25〜−4.00</p>
           <p class="modal-lens-meta except-note">※度数の組み合わせによっては、上記範囲内でも対応できない場合があります。詳しくは店舗にてご相談ください。</p>
-        </div>
-        <div class="modal-lens-block">
-          <p class="modal-lens-block-ttl">納期</p>
-          <p class="modal-lens-meta">フレーム到着後10日〜2週間前後</p>
         </div>
         <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">注意事項</p>
@@ -4554,10 +4545,6 @@
           <p class="modal-lens-meta">SPH（球面度数）・CYL（乱視度数）・AXIS（乱視軸度）・PD（瞳孔間距離）</p>
         </div>
         <div class="modal-lens-block">
-          <p class="modal-lens-block-ttl">納期</p>
-          <p class="modal-lens-meta">ご注文後、10日〜2週間程度でお渡しとなります。</p>
-        </div>
-        <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">注意事項</p>
           <ul class="modal-lens-notes">
             <li>度付きレンズは特注品となるため、ご注文後のキャンセル・返品はお受けできません。</li>
@@ -4586,11 +4573,11 @@
         { label: 'オーディオ', value: 'オープンイヤーオーディオ' },
         { label: 'カメラ', value: '最大3K Ultra HD解像度' },
         { label: '視野角', value: '100°' },
-        { label: '音声', value: '最大5時間（連続音声）/ 5.5時間（通話）' },
         { label: 'バッテリー', value: '最大8時間（1回充電）' },
         { label: 'メモリ', value: '32GB' },
         { label: '防水', value: 'IPX4' },
       ],
+      specsNote: '※記載スペックは代表値です。モデルにより性能が異なる場合があります。',
       recommend: ['メガネをおしゃれに楽しみたい人', '音楽・通話を日常的に使いたい人', 'スマートグラスをはじめて使う人', 'Meta AIを気軽に活用したい人'],
       store: '本体・レンズ交換取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span></strong>',
       searchBrand: 'Ray-Ban Meta',
@@ -4618,10 +4605,6 @@
           <p class="modal-lens-meta">単焦点　球面（SPH）：+6.00〜−6.00　／　乱視（CYL）：0〜−4.00</p>
           <p class="modal-lens-meta">累進（遠近両用）　球面（SPH）：+5.00〜−6.00　／　乱視（CYL）：0〜−4.00　／　加入度：+0.75〜+3.50</p>
           <p class="modal-lens-meta except-note" style="margin-top:6px;">※度数が強い場合は薄型レンズのご案内となることがあります。</p>
-        </div>
-        <div class="modal-lens-block">
-          <p class="modal-lens-block-ttl">納期</p>
-          <p class="modal-lens-meta">店頭でのお渡しとなり、ご注文後10日〜2週間前後が目安です。<br><small class="except-note">※度数やレンズの種類により前後する場合がございます。あらかじめご了承ください。</small></p>
         </div>
         <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">注意事項</p>
@@ -4654,10 +4637,6 @@
         <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">必要な処方情報</p>
           <p class="modal-lens-meta">SPH（球面度数）・CYL（乱視度数）・AXIS（乱視軸度）・PD（瞳孔間距離）</p>
-        </div>
-        <div class="modal-lens-block">
-          <p class="modal-lens-block-ttl">納期</p>
-          <p class="modal-lens-meta">ご注文後、10日〜2週間程度でお渡しとなります。</p>
         </div>
         <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">注意事項</p>
@@ -4828,6 +4807,7 @@
       <p class="prod-modal-desc"${isViture ? ' id="viture-modal-desc"' : ''}>${isViture ? activeData.desc : pd.desc}</p>
       ${pd.modelListHTML || ''}
       ${specsHTML}
+      ${pd.specsNote ? `<p class="except-note" style="margin:-8px 0 12px;">${pd.specsNote}</p>` : ''}
       ${accordionHTML}
       ${recommendHTML}
       <p class="prod-modal-store">${pd.store}</p>
