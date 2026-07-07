@@ -558,6 +558,11 @@
       line-height: 1.7;
       margin-top: 40px;
     }
+    .disclaimer-sp-only { display: none; }
+    @media (max-width: 767px) {
+      .disclaimer-pc-only { display: none; }
+      .disclaimer-sp-only { display: block; margin-top: 24px; }
+    }
     .product-filter-tabs {
       display: flex;
       justify-content: center;
@@ -2787,7 +2792,7 @@
     <div class="features-intro">
       <p>声で質問、耳で音楽を楽しむ、両手がふさがっていても大丈夫。<br>スマートフォンを取り出す必要がない。目の前のことに集中できる。</p>
     </div>
-    <p class="section-disclaimer-note" style="margin-top:0; margin-bottom:24px;">※ カメラ・AIアシスタント・翻訳機能など、搭載機能はモデルによって異なります。各モデルの詳細仕様はメーカー公式ページをご確認ください。</p>
+    <p class="section-disclaimer-note disclaimer-pc-only" style="margin-top:0; margin-bottom:24px;">※ カメラ・AIアシスタント・翻訳機能など、搭載機能はモデルによって異なります。各モデルの詳細仕様はメーカー公式ページをご確認ください。</p>
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon"><img src="テレオペアイコン (1).svg" alt="AIアシスタント"></div>
@@ -2810,6 +2815,7 @@
         <p class="feature-desc">耳をふさがずに音楽や<br>ポッドキャストを楽しめる。<br>周囲の音も聞こえて安全に使える。</p>
       </div>
     </div>
+    <p class="section-disclaimer-note disclaimer-sp-only">※ カメラ・AIアシスタント・翻訳機能など、搭載機能はモデルによって異なります。各モデルの詳細仕様はメーカー公式ページをご確認ください。</p>
     <!-- 度付き訴求バナー -->
     <div class="features-prescription-banner">
       <div class="features-banner-body">
