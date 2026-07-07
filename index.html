@@ -1813,7 +1813,6 @@
     /* SP: オンラインCTA */
     @media (max-width: 767px) {
       .why-num-head--trust { font-size: 32px; line-height: 1.3; margin-bottom: 16px; }
-      .why-sp-cards .why-sp-card:last-child .why-num-head--trust { font-size: 23px; }
       .why-sp-online-arrow { display: none; }
       .why-sp-online-lead { display: none !important; }
       .why-sp-online {
@@ -1892,6 +1891,11 @@
       background: #fff;
       padding: 16px 18px 18px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+      min-height: 220px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .why-num-row {
       display: flex;
@@ -1913,6 +1917,18 @@
       color: var(--red);
       line-height: 1;
       letter-spacing: -0.03em;
+    }
+    .why-sp-cards .why-sp-card:first-child .why-num-head--trust,
+    .why-sp-cards .why-sp-card:last-child .why-num-head--trust {
+      color: var(--red);
+      font-size: 32px;
+      line-height: 1.3;
+      white-space: nowrap;
+    }
+    .why-sp-cards .why-sp-card:first-child .why-check-list li,
+    .why-sp-cards .why-sp-card:last-child .why-check-list li {
+      font-size: 17px;
+      font-weight: 600;
     }
     .why-num-unit {
       font-size: 16px;
@@ -2018,6 +2034,7 @@
       line-height: 1.45;
     }
     .why-num-head--push { margin-top: 14px; }
+    .why-sp-cards .why-sp-card:nth-child(2) .why-num-head--push { font-size: 17px; font-weight: 600; }
     .why-num-desc {
       font-size: 12px;
       color: rgba(13,27,42,0.6);
@@ -2954,9 +2971,9 @@
         <!-- カード①：認定 -->
         <div class="why-sp-card">
           <p class="why-card-pillar">認定</p>
-          <p class="why-num-head why-num-head--trust">各メーカーの正規認定店</p>
+          <p class="why-num-head why-num-head--trust">正規認定販売店</p>
           <ul class="why-check-list">
-            <li class="no-check">取り扱うスマートグラスブランドの正規認定を取得。社内にスマートグラス専門部署を設け、専門スタッフがお客様をサポート。</li>
+            <li class="no-check">アイメガネはメーカーから直接仕入れている商品（正規品）を取り扱っています。</li>
           </ul>
         </div>
 
@@ -2973,9 +2990,9 @@
         <!-- カード③：希少性 -->
         <div class="why-sp-card">
           <p class="why-card-pillar">希少性</p>
-          <p class="why-num-head why-num-head--trust">対応できるお店が、<br>ほとんどない</p>
+          <p class="why-num-head why-num-head--trust"><span style="font-size:30px;">全国でも数少ない対応店</span></p>
           <ul class="why-check-list">
-            <li class="no-check">インサートレンズの加工には専門技術が必要です。「近くの眼鏡店では断られた」というお客様からのご来店も多くいただいています。アイメガネはその数少ない専門店の一つです。</li>
+            <li class="no-check">特殊な加工技術が必要なため、対応可能な眼鏡店は全国でもごく一部。アイメガネはその数少ない一店です。</li>
           </ul>
         </div>
 
@@ -3485,7 +3502,7 @@
   }
 
   const RB_DESC = {
-    optics: 'Ray-Ban史上で最も洗練されたフレーム「Scriber」と「Blayzer」が登場。軽量で快適、そしてスタイリッシュなデザインを採用しています。10度の追加回転が可能なオーバーエクステンションヒンジ、柔軟なノーズパッド、調整可能なテンプルチップにより、これまでで最もカスタマイズ性の高いフィット感を体験してください。度付ユーザー向けに特別にデザインされており、快適なかけ心地を追求した新しいフレームを体験してください。通常のメガネのような見た目と装着感で、広範囲の度数に対応しています。',
+    optics: 'Ray-Ban史上で最も洗練されたフレーム「Scriber」と「Blayzer」が登場。軽量で快適、そしてスタイリッシュなデザインを採用しています。10度の追加回転が可能なオーバーエクステンションヒンジ、柔軟なノーズパッド、調整可能なテンプルチップにより、これまでで最もカスタマイズ性の高いフィット感を体験してください。度付きユーザー向けに特別にデザインされており、通常のメガネのような見た目と装着感で、広範囲の度数に対応しています。',
     sunglass: 'Ray-Ban Meta サングラススタイルは、スタイリッシュでカラフルなAIグラスのラインアップです。Meta AIを使えばスマートフォンに手を伸ばすことなく、カメラ機能で人生の瞬間を記録したり、音楽を操作したり、会話をリアルタイムで翻訳したりできます。アイコンのWayfarerから最新のSkylerまで、日中を通して快適に着用できるスリムで心地よいフィット感を提供します。',
   };
   function modalRBThumb(el, src, alt, bg, style) {
@@ -4166,7 +4183,7 @@
     rayban: {
       name: 'Ray-Ban Meta',
       catch: 'Meta AI搭載スマートグラス / 5モデル取扱',
-      desc: 'Ray-Ban史上で最も洗練されたフレーム「Scriber」と「Blayzer」が登場。軽量で快適、そしてスタイリッシュなデザインを採用しています。10度の追加回転が可能なオーバーエクステンションヒンジ、柔軟なノーズパッド、調整可能なテンプルチップにより、これまでで最もカスタマイズ性の高いフィット感を体験してください。度付ユーザー向けに特別にデザインされており、通常のメガネのような見た目と装着感で、広範囲の度数に対応しています。',
+      desc: 'Ray-Ban史上で最も洗練されたフレーム「Scriber」と「Blayzer」が登場。軽量で快適、そしてスタイリッシュなデザインを採用しています。10度の追加回転が可能なオーバーエクステンションヒンジ、柔軟なノーズパッド、調整可能なテンプルチップにより、これまでで最もカスタマイズ性の高いフィット感を体験してください。度付きユーザー向けに特別にデザインされており、通常のメガネのような見た目と装着感で、広範囲の度数に対応しています。',
       modelListHTML: `<div class="modal-model-list">
         <p class="modal-model-list-ttl">取扱モデル</p>
         <div class="modal-model-group">
