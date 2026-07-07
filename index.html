@@ -1823,7 +1823,7 @@
         gap: 6px;
         padding: 20px 16px !important;
       }
-      .why-sp-online-text { font-size: clamp(18px, 5.5vw, 24px) !important; white-space: normal; margin-bottom: 4px !important; text-align: center; }
+      .why-sp-online-text { font-size: clamp(22px, 5.5vw, 28px) !important; white-space: normal; margin-bottom: 4px !important; text-align: center; }
       .br-sp { display: inline; }
       .why-sp-online-body { margin-bottom: 0 !important; font-size: 13px; text-align: center; }
       .why-sp-online-models { display: block; margin-top: 2px; text-align: center; }
@@ -1891,11 +1891,12 @@
       background: #fff;
       padding: 16px 18px 18px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.10);
-      min-height: 220px;
+      min-height: 230px;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      align-items: flex-start;
     }
     .why-num-row {
       display: flex;
@@ -1903,16 +1904,8 @@
       gap: 6px;
       margin-bottom: 4px;
     }
-    .why-num-prefix {
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--red);
-      line-height: 1;
-      align-self: flex-end;
-      padding-bottom: 12px;
-    }
     .why-num {
-      font-size: 64px;
+      font-size: 48px;
       font-weight: 900;
       color: var(--red);
       line-height: 1;
@@ -1930,6 +1923,8 @@
       font-size: 17px;
       font-weight: 600;
     }
+    .why-sp-cards .why-sp-card:last-child .why-check-list { margin: 8px 0 0; }
+    .why-sp-cards .why-sp-card:last-child .why-num-head--trust { margin-bottom: 8px; }
     .why-num-unit {
       font-size: 16px;
       font-weight: 700;
@@ -1938,14 +1933,12 @@
     .why-num-prefix {
       font-size: 18px;
       font-weight: 700;
-      color: var(--red);
-      align-self: flex-end;
-      padding-bottom: 10px;
+      color: var(--navy);
       letter-spacing: 0;
     }
     @media (max-width: 767px) {
-      .why-num-prefix { font-size: 21px; }
-      .why-num-unit { font-size: 19px; }
+      .why-num-prefix { font-size: 25px; }
+      .why-num-unit { font-size: 25px; }
     }
     .why-card-pillar {
       font-size: 16px;
@@ -2034,7 +2027,9 @@
       line-height: 1.45;
     }
     .why-num-head--push { margin-top: 14px; }
-    .why-sp-cards .why-sp-card:nth-child(2) .why-num-head--push { font-size: 17px; font-weight: 600; }
+    .why-sp-cards .why-sp-card:nth-child(2) .why-num-head--push { font-size: 17px; font-weight: 600; margin-top: 6px; }
+    .why-sp-cards .why-sp-card:nth-child(2) .why-num-row { margin-bottom: 0; }
+    .why-sp-cards .why-sp-card:nth-child(2) .why-num-note { margin-bottom: 0; }
     .why-num-desc {
       font-size: 12px;
       color: rgba(13,27,42,0.6);
@@ -2135,7 +2130,9 @@
       margin-bottom: 12px;
       text-decoration: none;
     }
-    .br-sp { display: none; }
+    @media (min-width: 768px) {
+      .br-sp { display: none; }
+    }
     .why-sp-online-body {
       font-size: 12px;
       color: rgba(255,255,255,0.75);
@@ -2970,10 +2967,10 @@
 
         <!-- カード①：認定 -->
         <div class="why-sp-card">
-          <p class="why-card-pillar">認定</p>
+          <p class="why-card-pillar">信頼</p>
           <p class="why-num-head why-num-head--trust">正規認定販売店</p>
           <ul class="why-check-list">
-            <li class="no-check">アイメガネはメーカーから直接仕入れている商品（正規品）を取り扱っています。</li>
+            <li class="no-check">アイメガネは、メーカー基準をクリアした正規認定販売店。専門スタッフが、お客様に合った最適なフィッティングとサポートを提供します。</li>
           </ul>
         </div>
 
@@ -3221,7 +3218,7 @@
         <span class="flow-arrow-band-value">約 1週間〜</span>
       </div>
     </div>
-    <p class="flow-note" style="margin-top:16px;">※機種によって設置店が異なります。あらかじめお確かめの上ご来店くださいませ。<br>※処方箋での作成も賜ります。<br>※ご使用方法注意事項等は各製品取扱書をお確かめくださいませ。<br>※遠方のお客様は郵送でのお受け取りもご相談ください（別途送料）。</p>
+    <p class="flow-note" style="margin-top:16px;">※機種によって設置店が異なります。あらかじめお確かめの上ご来店くださいませ。<br>※処方箋での作成も賜ります。<br>※ご使用方法注意事項等は各製品取扱書をお確かめくださいませ。<br>※機種によってお渡しまでの納期が異なります。上記はあくまで目安です。出来上がり次第ご連絡させていただきます。</p>
 
     <!-- オンライン購入フロー -->
     <div class="flow-online-block">
