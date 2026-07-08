@@ -3640,16 +3640,26 @@
 
   // 本体をアイメガネで取り扱わないブランド（レンズ交換のみ）
   const LENS_ONLY_BRANDS = ['Rokid'];
+  // 独立したレンズ交換サービスがなく、本体購入時にのみ度付きを選べるブランド
+  const TRIAL_ONLY_BRANDS = ['Ray-Ban Meta'];
 
   function updatePurposeOptions() {
     const brand = document.getElementById('product-select').value;
     const trialLabel = document.getElementById('r-trial').parentElement;
+    const lensLabel = document.getElementById('r-lens').parentElement;
     const isLensOnly = LENS_ONLY_BRANDS.includes(brand);
+    const isTrialOnly = TRIAL_ONLY_BRANDS.includes(brand);
     if (isLensOnly) {
       trialLabel.style.display = 'none';
+      lensLabel.style.display = '';
       document.getElementById('r-lens').checked = true;
+    } else if (isTrialOnly) {
+      lensLabel.style.display = 'none';
+      trialLabel.style.display = '';
+      document.getElementById('r-trial').checked = true;
     } else {
       trialLabel.style.display = '';
+      lensLabel.style.display = '';
     }
     updateSearchBtns();
   }
@@ -3658,8 +3668,9 @@
     if (product) document.getElementById('product-select').value = product;
     updatePurposeOptions();
     const isLensOnly = LENS_ONLY_BRANDS.includes(product);
+    const isTrialOnly = TRIAL_ONLY_BRANDS.includes(product);
     if (purpose === 'trial' && !isLensOnly) document.getElementById('r-trial').checked = true;
-    else if (purpose === 'lens') document.getElementById('r-lens').checked = true;
+    else if (purpose === 'lens' && !isTrialOnly) document.getElementById('r-lens').checked = true;
     updateSearchBtns();
   }
 
@@ -4206,7 +4217,7 @@
       gallery: 'rayban',
       hasLens: true,
       lensTabLabel: 'レンズについて',
-      lensLinkLabel: 'レンズについて相談する',
+      singleCtaLabel: '南浦和店で相談する',
       hideLensActionBtn: true,
       lensHTML: `
         <p class="modal-lens-intro">Ray-Ban Metaの度付きレンズは、<strong>本体のご購入時にお選びいただく形</strong>になります。ご購入後の追加・変更や、他店でご購入いただいたフレームお持ち込みでの度付き加工には対応しておりませんので、ご購入前にご検討ください。取り扱いは南浦和店のみです。</p>
@@ -4428,7 +4439,9 @@
       <p class="prod-modal-store">${pd.store}</p>
       ${rokidBodyHTML}
       <div class="prod-modal-actions">
-        ${pd.onlineStore ? `
+        ${pd.singleCtaLabel ? `
+          <a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">${pd.singleCtaLabel}</a>
+        ` : pd.onlineStore ? `
           <a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a>
           <a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインストアを見る</a>
         ` : `
