@@ -1891,7 +1891,7 @@
       background: #fff;
       padding: 14px 16px 16px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.10);
-      min-height: 230px;
+      min-height: 195px;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
@@ -2027,7 +2027,7 @@
       line-height: 1.45;
     }
     .why-num-head--push { margin-top: 14px; }
-    .why-sp-cards .why-sp-card:nth-child(2) .why-num-head--push { font-size: 17px; font-weight: 600; margin-top: 6px; }
+    .why-sp-cards .why-sp-card:nth-child(2) .why-num-head--push { font-size: 17px; font-weight: 600; margin-top: 6px; line-height: 1.5; }
     .why-sp-cards .why-sp-card:nth-child(2) .why-num-row { margin-bottom: 0; }
     .why-sp-cards .why-sp-card:nth-child(2) .why-num-note { margin-bottom: 0; }
     .why-num-desc {
@@ -3128,7 +3128,7 @@
             </div>
           </div>
           <table class="pg-card-store">
-            <tr><th>本体・レンズ交換</th><td><span class="pg-store-link" onclick="event.stopPropagation();showStoreFromCard('南浦和','rayban')">南浦和店</span></td></tr>
+            <tr><th>本体・レンズ</th><td><span class="pg-store-link" onclick="event.stopPropagation();showStoreFromCard('南浦和','rayban')">南浦和店</span></td></tr>
           </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('rayban')">詳しく見る ▶</button>
           <a class="pg-card-official-link" href="https://www.ray-ban.com/japan/ray-ban-meta-ai-glasses" target="_blank" rel="noopener" onclick="event.stopPropagation();">メーカー公式サイトへ →</a>
@@ -4188,8 +4188,8 @@
           <p class="modal-model-group-label">Optics（度付き対応メガネ）</p>
           <p class="modal-model-group-items">Blayzer Optics &nbsp;／&nbsp; Scriber Optics</p>
         </div>
-        <p style="font-size:12px;color:#666;padding:10px 14px;border-top:1px solid #f0f0f0;margin:0;">各モデルの詳細・お試しは、店頭スタッフにお気軽にご相談ください。</p>
-      </div>`,
+      </div>
+      <p style="font-size:10px;color:#767676;margin:-10px 0 16px;">※各モデルの詳細・お試しは、店頭スタッフにお気軽にご相談ください。</p>`,
       tags: ['メガネユーザー', '日常使い'],
       specs: [
         { label: 'オーディオ', value: 'オープンイヤーオーディオ' },
@@ -4201,39 +4201,30 @@
       ],
       specsNote: '※記載スペックは代表値です。モデルにより性能が異なる場合があります。',
       recommend: ['メガネをおしゃれに楽しみたい人', '音楽・通話を日常的に使いたい人', 'スマートグラスをはじめて使う人', 'Meta AIを気軽に活用したい人'],
-      store: '本体・レンズ交換取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span></strong>',
+      store: '本体・レンズ取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span></strong>',
       searchBrand: 'Ray-Ban Meta',
       gallery: 'rayban',
       hasLens: true,
+      lensTabLabel: 'レンズについて',
+      lensLinkLabel: 'レンズについて相談する',
+      hideLensActionBtn: true,
       lensHTML: `
-        <p class="modal-lens-intro">アイメガネはRay-Ban Metaの度付きレンズ交換に対応しています。Optics（Blayzer / Scriber）・Standard（Wayfarer / Headliner / Skyler）のどちらのモデルも、単焦点・累進（遠近両用）レンズに対応しています。</p>
+        <p class="modal-lens-intro">Ray-Ban Metaの度付きレンズは、<strong>本体のご購入時にお選びいただく形</strong>になります。ご購入後の追加・変更や、他店でご購入いただいたフレームお持ち込みでの度付き加工には対応しておりませんので、ご購入前にご検討ください。取り扱いは南浦和店のみです。</p>
         <div class="modal-lens-block">
-          <p class="modal-lens-block-ttl">レンズ仕様</p>
-          <ul class="modal-lens-notes">
-            <li><strong>Optics（メガネタイプ）</strong>　幅広い度数に対応。度数が強い方向けの特殊レンズもご用意できます。</li>
-            <li><strong>Standard（サングラスタイプ）</strong>　度付き対応。レンズカラーはクリア／調光（トランジションズ）／カラー／グラデーション／ミラー／偏光など豊富に選べます。</li>
-          </ul>
+          <p class="modal-lens-block-ttl">対応レンズ</p>
+          <p class="modal-lens-meta">単焦点・累進（遠近両用）・アシストレンズなど、対応できるレンズの種類や度数の範囲はモデル・フレームによって異なります。詳しくは店舗スタッフにご相談ください。</p>
         </div>
         <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">必要な処方情報</p>
           <p class="modal-lens-meta">SPH（球面度数）・CYL（乱視度数）・AXIS（乱視軸度）・PD（瞳孔間距離）</p>
         </div>
         <div class="modal-lens-block">
-          <p class="modal-lens-block-ttl">製作範囲</p>
-          <p class="modal-lens-meta"><strong>Optics（メガネタイプ）</strong></p>
-          <p class="modal-lens-meta">単焦点　球面（SPH）：+6.00〜−18.00　／　乱視（CYL）：0〜−6.00</p>
-          <p class="modal-lens-meta">累進（遠近両用）　球面（SPH）：+6.00〜−14.00　／　乱視（CYL）：0〜−6.00　／　加入度：+0.75〜+3.50</p>
-          <p class="modal-lens-meta" style="margin-top:10px;"><strong>Standard（サングラスタイプ）</strong></p>
-          <p class="modal-lens-meta">単焦点　球面（SPH）：+6.00〜−6.00　／　乱視（CYL）：0〜−4.00</p>
-          <p class="modal-lens-meta">累進（遠近両用）　球面（SPH）：+5.00〜−6.00　／　乱視（CYL）：0〜−4.00　／　加入度：+0.75〜+3.50</p>
-          <p class="modal-lens-meta except-note" style="margin-top:6px;">※度数が強い場合は薄型レンズのご案内となることがあります。</p>
-        </div>
-        <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">注意事項</p>
           <ul class="modal-lens-notes">
-            <li>度数や乱視の強さ、瞳孔間距離によっては、お作りできない場合があります。詳しくは店舗にてご相談ください。</li>
+            <li>度付きレンズは、本体ご購入時にのみお選びいただけます。ご購入後の追加・変更、フレームお持ち込みでの度付き加工には対応しておりませんので、あらかじめご了承ください。</li>
+            <li>モデル・フレームカラー・レンズカラーの組み合わせにより、対応可否や金額が異なります。詳しくは店舗スタッフにご相談ください。</li>
             <li>度付きレンズは特注品となるため、ご注文後のキャンセル・返品はお受けできません。</li>
-            <li>ご注文の際は処方箋をご準備ください。度数が分からない方は眼科にて処方箋を発行していただいてからご注文をお願いいたします。</li>
+            <li>ご来店の際は処方箋をご準備ください。度数が分からない方は眼科にて処方箋を発行していただいてからご来店をお願いいたします。</li>
           </ul>
         </div>`,
     },
@@ -4288,11 +4279,13 @@
         <p class="modal-lens-block-ttl">注意事項</p>
         <p class="modal-lens-tbd">準備中</p>
       </div>`;
-    const actionBtn = (pd.lensOnly && pd.onlineStore)
-      ? `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a>
-         <a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインで注文する</a>`
-      : `<a href="#search" class="btn btn-blue" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換の店舗を探す</a>`;
-    return `<div>${inner}<div class="prod-modal-actions" style="margin-top:24px;">${actionBtn}</div></div>`;
+    const actionBtn = pd.hideLensActionBtn
+      ? ''
+      : (pd.lensOnly && pd.onlineStore)
+        ? `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a>
+           <a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインで注文する</a>`
+        : `<a href="#search" class="btn btn-blue" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換の店舗を探す</a>`;
+    return `<div>${inner}${actionBtn ? `<div class="prod-modal-actions" style="margin-top:24px;">${actionBtn}</div>` : ''}</div>`;
   }
 
   function buildModalImgHTML(key, pd) {
@@ -4429,7 +4422,7 @@
       <p class="prod-modal-desc"${isViture ? ' id="viture-modal-desc"' : ''}>${isViture ? activeData.desc : pd.desc}</p>
       ${pd.modelListHTML || ''}
       ${specsHTML}
-      ${pd.specsNote ? `<p class="except-note" style="margin:-8px 0 12px;">${pd.specsNote}</p>` : ''}
+      ${pd.specsNote ? `<p class="except-note" style="margin:-8px 0 12px;color:#767676;">${pd.specsNote}</p>` : ''}
       ${accordionHTML}
       ${recommendHTML}
       <p class="prod-modal-store">${pd.store}</p>
@@ -4440,13 +4433,13 @@
           <a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインストアを見る</a>
         ` : `
           ${LENS_ONLY_BRANDS.includes(pd.searchBrand) ? '' : `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">本体購入・体験へ</a>`}
-          <a href="#search" class="btn btn-outline" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換へ</a>
+          <a href="#search" class="btn btn-outline" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">${pd.lensLinkLabel || 'レンズ交換へ'}</a>
         `}
       </div>`;
     const tabsHTML = pd.hasLens ? `
       <div class="modal-content-tabs">
         <button class="modal-content-tab active" onclick="switchModalTab('body',this)">本体について</button>
-        <button class="modal-content-tab" onclick="switchModalTab('lens',this)">レンズ交換について</button>
+        <button class="modal-content-tab" onclick="switchModalTab('lens',this)">${pd.lensTabLabel || 'レンズ交換について'}</button>
       </div>` : '';
     const infoColInner = pd.lensOnly
       ? `<h3 class="prod-modal-name">${pd.name}</h3>${pd.catch ? `<p class="prod-modal-catch">${pd.catch}</p>` : ''}${buildLensTabHTML(pd)}`
