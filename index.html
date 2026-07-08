@@ -3774,11 +3774,12 @@
     let tags = '';
     if (brand) {
       const c = caps[brand] || caps[brand === 'VITURE' ? 'Viture' : brand];
-      if (c && c.body) tags += '<span class="store-tag-product">本体取扱</span>';
-      if (c && c.lens) tags += '<span class="store-tag-lens">レンズ交換対応</span>';
+      const isTrialOnly = TRIAL_ONLY_BRANDS.includes(brand);
+      if (c && c.body) tags += '<span class="store-tag-product">' + (isTrialOnly ? '本体取扱（度付き選択可）' : '本体取扱') + '</span>';
+      if (c && c.lens && !isTrialOnly) tags += '<span class="store-tag-lens">レンズ交換対応</span>';
     } else {
       const hasBody = BRAND_KEYS.some(function(b){ return caps[b] && caps[b].body; });
-      const hasLens = BRAND_KEYS.some(function(b){ return caps[b] && caps[b].lens; });
+      const hasLens = BRAND_KEYS.some(function(b){ return caps[b] && caps[b].lens && !TRIAL_ONLY_BRANDS.includes(b); });
       if (hasBody) tags += '<span class="store-tag-product">本体取扱あり</span>';
       if (hasLens) tags += '<span class="store-tag-lens">レンズ交換対応</span>';
     }
@@ -3794,16 +3795,17 @@
     };
     const BRAND_KEYS = ['MIRZA', 'Rokid', 'Even Realities', 'Ray-Ban Meta', 'VITURE'];
     let bodyBrands = [], lensBrands = [];
+    function classify(b, c) {
+      if (!c) return;
+      const name = BRAND_DISPLAY[b] || b;
+      if (c.body) bodyBrands.push(TRIAL_ONLY_BRANDS.includes(b) ? name + '（度付き選択可）' : name);
+      if (c.lens && !TRIAL_ONLY_BRANDS.includes(b)) lensBrands.push(name);
+    }
     if (brand) {
       const c = caps[brand] || caps[brand === 'VITURE' ? 'Viture' : brand];
-      if (c && c.body) bodyBrands.push(BRAND_DISPLAY[brand] || brand);
-      if (c && c.lens) lensBrands.push(BRAND_DISPLAY[brand] || brand);
+      classify(brand, c);
     } else {
-      BRAND_KEYS.forEach(function(b) {
-        const c = caps[b];
-        if (c && c.body) bodyBrands.push(BRAND_DISPLAY[b]);
-        if (c && c.lens) lensBrands.push(BRAND_DISPLAY[b]);
-      });
+      BRAND_KEYS.forEach(function(b) { classify(b, caps[b]); });
     }
     let html = '<div class="store-model-detail">';
     if (bodyBrands.length) html += '<p class="store-model-row"><span class="store-model-label">本体取扱：</span><span class="store-model-value">' + bodyBrands.map(function(b){ return '<span style="white-space:nowrap">' + b + '</span>'; }).join('・') + '</span></p>';
@@ -4478,7 +4480,7 @@
     'even_南浦和':    { name: 'Even Realities G2', tags: ['本体取扱', 'レンズ交換対応'] },
     'even_宇都宮錦':  { name: 'Even Realities G2', tags: ['本体取扱', 'レンズ交換対応'] },
     'even_八千代':    { name: 'Even Realities G2', tags: ['本体取扱', 'レンズ交換対応'] },
-    'rayban_南浦和':  { name: 'Ray-Ban Meta', tags: ['本体取扱', 'レンズ交換対応'] },
+    'rayban_南浦和':  { name: 'Ray-Ban Meta', tags: ['本体取扱（度付き選択可）'] },
     'viture_南浦和':  { name: 'VITURE Luma シリーズ', tags: ['本体取扱', 'レンズ交換対応'] },
   };
   function showStoreFromCard(storeName, productKey) {
