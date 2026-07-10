@@ -530,7 +530,7 @@
       text-align: left;
     }
     .lifestyle-slide-label {
-      font-size: clamp(15px, 1.7vw, 17px);
+      font-size: clamp(20px, 2.2vw, 24px);
       font-weight: 700;
       letter-spacing: 0.08em;
       color: var(--red);
@@ -750,6 +750,8 @@
       letter-spacing: 0.08em;
       color: var(--text-primary);
     }
+    #zip1 { width: 7.5ch; }
+    #zip2 { width: 9ch; }
     .zip-search-row input:focus { outline: none; border-color: var(--red); }
     .btn-search {
       padding: 12px 22px;
@@ -1807,7 +1809,7 @@
       .lifestyle-heading { font-size: clamp(29px, 3.3vw, 33px); margin-bottom: 24px; }
       .lifestyle-grid { grid-template-columns: 1fr; gap: 20px; }
       .lifestyle-slide-img { height: 260px; border-radius: 12px; object-position: top center; }
-      .lifestyle-slide-label { font-size: clamp(16px, 1.8vw, 18px); }
+      .lifestyle-slide-label { font-size: clamp(22px, 2.4vw, 26px); }
       .lifestyle-slide-text { font-size: clamp(14px, 1.6vw, 16px); }
     }
 
@@ -2453,7 +2455,7 @@
     .except-note { display: block; font-size: clamp(10px, 1.2vw, 12px); color: #999; font-weight: 400; margin-top: 1px; }
     .pg-card-store tr + tr th, .pg-card-store tr + tr td { border-top: 1px solid #f5f5f5; }
     .pg-card-btn { margin-top: auto; }
-    .pg-card-name  { font-size: clamp(18px, 2.1vw, 21px); font-weight: 800; margin-bottom: 4px; color: var(--navy); }
+    .pg-card-name  { font-size: clamp(23px, 2.6vw, 26px); font-weight: 800; margin-bottom: 4px; color: var(--navy); }
     .pg-card-catch { font-size: clamp(11px, 1.3vw, 13px); color: #666; margin-bottom: 10px; line-height: 1.5; }
     .pg-card-scenes { margin-bottom: 10px; }
     .pg-scene-label { font-size: clamp(11px, 1.3vw, 13px); color: #aaa; display: block; margin-bottom: 5px; }
@@ -2565,11 +2567,12 @@
       .prod-modal-layout { flex-direction: column; gap: 20px; }
     }
     .prod-modal-img-col {
-      flex: 0 0 380px;
-      width: 380px;
+      flex: 1 1 clamp(220px, 32vw, 380px);
+      width: auto;
+      max-width: 380px;
     }
     @media (max-width: 767px) {
-      .prod-modal-img-col { flex: none; width: 100%; }
+      .prod-modal-img-col { flex: none; width: 100%; max-width: none; }
     }
     .prod-modal-img-main {
       width: 100%;
@@ -3239,7 +3242,7 @@
             <div class="flow-tl-num">4</div>
             <div class="flow-tl-icon"><img src="flow-icon-lens.svg" alt="レンズ加工"></div>
             <p class="flow-title">レンズ加工</p>
-            <p class="flow-desc">スマートグラス専門のスタッフが、お客様専用のレンズを<br>丁寧に加工いたします。</p>
+            <p class="flow-desc">スマートグラス専門のスタッフが、お客様専用のレンズを丁寧に加工いたします。</p>
           </div>
           <div class="flow-tl-step">
             <div class="flow-tl-num">5</div>
@@ -3293,9 +3296,9 @@
         <div class="search-or-divider"><span>または</span></div>
         <div class="zip-search-row">
           <span class="zip-mark-dark" style="font-size: clamp(16px, 1.8vw, 18px);color:var(--text-primary);font-weight:700;flex-shrink:0;">〒</span>
-          <input type="text" id="zip1" maxlength="3" placeholder="330" style="width:80px">
+          <input type="text" id="zip1" maxlength="3" placeholder="330">
           <span style="color:var(--text-secondary);font-size: clamp(18px, 2.1vw, 21px);font-weight:300;">-</span>
-          <input type="text" id="zip2" maxlength="4" placeholder="0846" style="width:100px">
+          <input type="text" id="zip2" maxlength="4" placeholder="0846">
           <button class="btn-search" id="search-btn" onclick="doSearch()" disabled>検索</button>
         </div>
       </div>
