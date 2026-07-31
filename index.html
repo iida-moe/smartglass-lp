@@ -4072,6 +4072,7 @@
       ],
       recommend: ['業務・法人でスマートグラスを活用したい人', '本格的なXR体験を求める人', '日本製・国内サポートにこだわりたい人', '空間コンピューティングを活用したい人'],
       store: '本体取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span></strong>　レンズ交換：<strong>全37店舗 / オンライン対応</strong><small class="except-note">※本庄南大通り店を除く</small>',
+      trademarkNote: '※MiRZA<sup>®</sup>（ミルザ）は、NTTコノキューデバイスの商標です。',
       searchBrand: 'MIRZA',
       onlineStore: 'https://www.aijapan-online.com/product-page/mirzainsertlens',
       gallery: 'mirza',
@@ -4438,6 +4439,7 @@
       <h3 class="prod-modal-name"${isViture ? ' id="viture-modal-name"' : ''}>${isViture ? activeData.name : pd.name}</h3>
       ${(isViture ? activeData.catch : pd.catch) ? `<p class="prod-modal-catch"${isViture ? ' id="viture-modal-catch"' : ''}>${isViture ? activeData.catch : pd.catch}</p>` : ''}
       <p class="prod-modal-desc"${isViture ? ' id="viture-modal-desc"' : ''}>${isViture ? activeData.desc : pd.desc}</p>
+      ${pd.trademarkNote ? `<p class="except-note" style="margin:-8px 0 12px;color:#767676;">${pd.trademarkNote}</p>` : ''}
       ${pd.modelListHTML || ''}
       ${specsHTML}
       ${pd.specsNote ? `<p class="except-note" style="margin:-8px 0 12px;color:#767676;">${pd.specsNote}</p>` : ''}
