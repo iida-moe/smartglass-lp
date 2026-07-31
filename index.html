@@ -2452,7 +2452,7 @@
     #mirza-card-img { background: #f2f4f8; }
     #mirza-img { object-fit: contain; object-position: center; transform: scale(1.18); }
     .pg-furigana { display: block; font-size: clamp(11px, 1.3vw, 13px); font-weight: 400; color: #888; letter-spacing: 0.08em; margin-top: 1px; }
-    .prod-modal-furigana { display: block; font-size: clamp(14px, 1.6vw, 16px); font-weight: 400; color: #888; letter-spacing: 0.08em; margin-top: 2px; }
+    .prod-modal-furigana { display: block; font-size: clamp(14px, 1.6vw, 16px); font-weight: 400; color: var(--navy); letter-spacing: 0.08em; margin-top: 2px; }
     .pg-img--mirza  { background: linear-gradient(135deg, #0D1B2A 0%, #1a3050 100%); }
     .pg-img--rokid  { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
     .pg-img--viture { background: #f2f4f8; }
@@ -4439,7 +4439,7 @@
       <h3 class="prod-modal-name"${isViture ? ' id="viture-modal-name"' : ''}>${isViture ? activeData.name : pd.name}</h3>
       ${(isViture ? activeData.catch : pd.catch) ? `<p class="prod-modal-catch"${isViture ? ' id="viture-modal-catch"' : ''}>${isViture ? activeData.catch : pd.catch}</p>` : ''}
       <p class="prod-modal-desc"${isViture ? ' id="viture-modal-desc"' : ''}>${isViture ? activeData.desc : pd.desc}</p>
-      ${pd.trademarkNote ? `<p class="except-note" style="margin:-8px 0 12px;color:#767676;">${pd.trademarkNote}</p>` : ''}
+      ${pd.trademarkNote ? `<p class="except-note" style="margin:-8px 0 12px;color:var(--navy);">${pd.trademarkNote}</p>` : ''}
       ${pd.modelListHTML || ''}
       ${specsHTML}
       ${pd.specsNote ? `<p class="except-note" style="margin:-8px 0 12px;color:#767676;">${pd.specsNote}</p>` : ''}
