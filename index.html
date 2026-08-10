@@ -1830,8 +1830,6 @@
     /* SP: オンラインCTA */
     @media (max-width: 767px) {
       .why-num-head--trust { font-size: clamp(32px, 3.7vw, 37px); line-height: 1.3; margin-bottom: 16px; }
-      .why-num-oneline { font-size: clamp(30px, 3.5vw, 35px); }
-      .why-num-oneline-figure { font-size: clamp(40px, 4.6vw, 46px); }
       .why-sp-online-arrow { display: none; }
       .why-sp-online-lead { display: none !important; }
       .why-sp-online {
@@ -1919,34 +1917,15 @@
       justify-content: flex-start;
       align-items: flex-start;
     }
-    .why-num-oneline {
-      font-size: clamp(26px, 3.0vw, 30px);
-      font-weight: 800;
-      color: var(--red);
-      line-height: 1.3;
-      margin-bottom: 8px;
-    }
-    .why-num-oneline-figure {
-      font-size: clamp(34px, 3.9vw, 39px);
-      font-weight: 900;
-      color: var(--red);
-      letter-spacing: -0.02em;
-      margin: 0 1px;
-    }
-    .why-sp-cards .why-sp-card:first-child .why-num-head--trust,
-    .why-sp-cards .why-sp-card:last-child .why-num-head--trust {
+    .why-sp-cards .why-sp-card .why-num-head--trust {
       color: var(--red);
       font-size: clamp(32px, 3.7vw, 37px);
       line-height: 1.3;
-      white-space: nowrap;
     }
-    .why-sp-cards .why-sp-card:first-child .why-check-list li,
-    .why-sp-cards .why-sp-card:last-child .why-check-list li {
+    .why-sp-cards .why-sp-card .why-check-list li {
       font-size: clamp(17px, 2.0vw, 20px);
       font-weight: 600;
     }
-    .why-sp-cards .why-sp-card:last-child .why-check-list { margin: 8px 0 0; }
-    .why-sp-cards .why-sp-card:last-child .why-num-head--trust { margin-bottom: 8px; }
     .why-card-pillar {
       font-size: clamp(16px, 1.8vw, 18px);
       font-weight: 800;
@@ -2028,8 +2007,6 @@
       margin-bottom: 8px;
       line-height: 1.45;
     }
-    .why-num-head--push { margin-top: 14px; }
-    .why-sp-cards .why-sp-card:nth-child(2) .why-num-head--push { font-size: clamp(17px, 2.0vw, 20px); font-weight: 600; margin-top: 12px; line-height: 1.5; }
     .why-num-desc {
       font-size: clamp(12px, 1.4vw, 14px);
       color: #1A1A1A;
@@ -2045,12 +2022,6 @@
       .why-sp-card { flex: 1; display: flex; flex-direction: column; min-height: 0; }
       .why-num-head { font-size: clamp(14px, 1.6vw, 16px); line-height: 1.6; }
       .why-num-head--trust { font-size: clamp(27px, 3.1vw, 31px); line-height: 1.0; margin-top: 8px; }
-      .why-num-oneline { margin-top: 8px; font-size: clamp(22px, 2.5vw, 25px); line-height: 1.3; }
-      .why-num-oneline-figure { font-size: clamp(28px, 3.2vw, 33px); }
-      .why-sp-cards .why-sp-card:first-child { padding-top: 21px; }
-      .why-sp-cards .why-sp-card:first-child .why-check-list { margin-top: 20px; }
-      .why-sp-cards .why-sp-card:last-child .why-num-head--trust { font-size: clamp(22px, 2.5vw, 25px); line-height: 1.3; }
-      .why-num-head--push { margin-top: 12px; }
       .why-check-list li { font-size: clamp(13px, 1.5vw, 15px); }
       .why-check-list { margin-top: 19px; }
     }
@@ -2981,13 +2952,15 @@
 
         <!-- カード②：実績 -->
         <div class="why-sp-card">
-          <p class="why-num-oneline">携わって約<span class="why-num-oneline-figure">7</span>年目</p>
-          <p class="why-num-head why-num-head--push">スマートグラス市場が広がる前から、度付き対応に取り組んできたパイオニア。積み重ねてきた経験と実績が違います。</p>
+          <p class="why-num-head why-num-head--trust">携わって約7年目</p>
+          <ul class="why-check-list">
+            <li class="no-check">スマートグラス市場が広がる前から、度付き対応に取り組んできたパイオニア。積み重ねてきた経験と実績が違います。</li>
+          </ul>
         </div>
 
         <!-- カード③：希少性 -->
         <div class="why-sp-card">
-          <p class="why-num-head why-num-head--trust"><span style="font-size: clamp(30px, 3.5vw, 35px);">全国でも数少ない対応店</span></p>
+          <p class="why-num-head why-num-head--trust">全国でも数少ない対応店</p>
           <ul class="why-check-list">
             <li class="no-check">特殊な加工技術が必要なため、対応可能な眼鏡店は全国でもごく一部。アイメガネはその数少ない一店です。</li>
           </ul>
