@@ -1292,14 +1292,7 @@
     /* === フロー: タイムライン === */
     .flow-tl-wrap { position: relative; }
     .flow-tl-wrap--narrow { max-width: 900px; margin: 0 auto; }
-    .flow-tl-line {
-      position: absolute;
-      top: 24px;
-      left: 12.5%; right: 12.5%;
-      height: 3px;
-      background: var(--red);
-      z-index: 0;
-    }
+    .flow-tl-line { display: none; }
     .flow-tl-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -1308,8 +1301,18 @@
       z-index: 1;
     }
     .flow-tl-step { text-align: center; padding: 0 12px 24px; position: relative; }
+    @media (min-width: 768px) {
+      .flow-tl-step:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: 24px; left: 36px;
+        width: 100%; height: 3px;
+        background: var(--red);
+        z-index: 0;
+      }
+    }
     .flow-tl-step .flow-title { font-size: clamp(19px, 2.2vw, 22px); white-space: nowrap; margin-bottom: 0; }
-    .flow-tl-step-head { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; }
+    .flow-tl-step-head { display: flex; align-items: center; justify-content: flex-start; gap: 8px; margin-bottom: 10px; }
     .flow-tl-icon { margin-bottom: 0; }
     .flow-tl-icon img { width: 32px; height: 32px; object-fit: contain; display: block; margin: 0 auto; }
     .flow-tl-num {
@@ -1318,7 +1321,7 @@
       background: var(--red); color: #fff;
       font-size: clamp(20px, 2.3vw, 23px); font-weight: 700;
       display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 16px;
+      margin: 0 0 16px;
       position: relative; z-index: 2;
     }
     /* 矢印帯 */
@@ -1356,7 +1359,6 @@
     }
     /* オンラインフロー: 5ステップ */
     .flow-tl-grid--5 { grid-template-columns: repeat(5, 1fr); }
-    .flow-online-block .flow-tl-line { left: 10%; right: 10%; }
 
     /* ===== SECTION 08: Q&A ===== */
     #qa { background: #fff; }
