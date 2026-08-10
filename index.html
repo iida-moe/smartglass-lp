@@ -757,6 +757,7 @@
     #zip1 { width: 7.5ch; }
     #zip2 { width: 9ch; }
     .zip-search-row input:focus { outline: none; border-color: var(--red); }
+    .zip-search-row input:disabled { opacity: 0.5; cursor: not-allowed; background: #f2f2f2; }
     .btn-search {
       padding: 12px 22px;
       background: var(--red);
@@ -3307,9 +3308,9 @@
         <div class="search-or-divider"><span>または</span></div>
         <div class="zip-search-row">
           <span class="zip-mark-dark" style="font-size: clamp(16px, 1.8vw, 18px);color:var(--text-primary);font-weight:700;flex-shrink:0;">〒</span>
-          <input type="text" id="zip1" maxlength="3" placeholder="330">
+          <input type="text" id="zip1" maxlength="3" placeholder="330" disabled>
           <span style="color:var(--text-secondary);font-size: clamp(18px, 2.1vw, 21px);font-weight:300;">-</span>
-          <input type="text" id="zip2" maxlength="4" placeholder="0846">
+          <input type="text" id="zip2" maxlength="4" placeholder="0846" disabled>
           <button class="btn-search" id="search-btn" onclick="doSearch()" disabled>検索</button>
         </div>
       </div>
@@ -3994,6 +3995,8 @@
     const ready = productOk && purposeOk;
     document.getElementById('search-btn').disabled = !ready;
     document.getElementById('btn-geolocate').disabled = !ready;
+    document.getElementById('zip1').disabled = !ready;
+    document.getElementById('zip2').disabled = !ready;
   }
   document.getElementById('product-select').addEventListener('change', updatePurposeOptions);
   document.querySelectorAll('input[name="purpose"]').forEach(r => r.addEventListener('change', updateSearchBtns));
