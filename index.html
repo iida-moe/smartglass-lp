@@ -968,6 +968,7 @@
       flex-shrink: 0;
     }
     .more-wrap { text-align: center; margin-top: 24px; }
+    .store-other-item.is-hidden-more { display: none; }
     .store-product-context { background: #F0F3F8; border: 1px solid rgba(13,27,42,0.12); border-radius: 8px; padding: 10px 14px; margin: 12px 0; }
     .store-product-context-title { font-size: clamp(11px, 1.3vw, 13px); font-weight: 700; color: var(--navy); letter-spacing: 0.06em; margin-bottom: 6px; }
     .store-product-context-tags { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -3321,7 +3322,7 @@
 
       <div id="store-results-inner"></div>
       <div class="more-wrap" id="more-wrap">
-        <button class="btn-more">もっと見る ∨</button>
+        <button class="btn-more" onclick="showMoreStores()">もっと見る ∨</button>
       </div>
     </div>
 
@@ -3848,8 +3849,8 @@
           </div>
         </div>
       </div>`;
-    const othersHTML = others.map(s => `
-      <div class="store-other-item">
+    const othersHTML = others.map((s, i) => `
+      <div class="store-other-item${i >= 4 ? ' is-hidden-more' : ''}">
         <div class="store-other-top">
           <p class="store-other-name">${s.name}</p>
           ${s.dist != null ? `<span class="store-other-dist">約 ${s.dist.toFixed(1)} km</span>` : ''}
@@ -3862,6 +3863,13 @@
       </div>`).join('');
     return nearestHTML +
       (othersHTML ? '<p class="store-other-heading" style="margin-top:24px;">その他の対応店舗</p><div class="store-other-grid">' + othersHTML + '</div>' : '');
+  }
+
+  function showMoreStores() {
+    document.querySelectorAll('#store-results-inner .store-other-item.is-hidden-more').forEach(function(el) {
+      el.classList.remove('is-hidden-more');
+    });
+    document.getElementById('more-wrap').style.display = 'none';
   }
 
   function showResultsByCoords(lat, lon, label) {
@@ -3882,9 +3890,9 @@
       .map(s => Object.assign({}, s, { dist: haversine(lat, lon, s.lat, s.lon) }))
       .sort((a, b) => a.dist - b.dist);
     document.getElementById('result-label').textContent = label + ' から近い順';
-    const others = sorted.slice(1, 5);
+    const others = sorted.slice(1);
     document.getElementById('store-results-inner').innerHTML = renderResults(sorted[0], others, brand);
-    document.getElementById('more-wrap').style.display = others.length ? 'block' : 'none';
+    document.getElementById('more-wrap').style.display = others.length > 4 ? 'block' : 'none';
     const results = document.getElementById('search-results');
     results.style.display = 'block';
     setTimeout(() => results.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
@@ -4527,11 +4535,10 @@
     const nearby = STORES
       .filter(function(s) { return s.name !== store.name; })
       .map(function(s) { return Object.assign({}, s, { dist: haversine(store.lat, store.lon, s.lat, s.lon) }); })
-      .sort(function(a, b) { return a.dist - b.dist; })
-      .slice(0, 4);
+      .sort(function(a, b) { return a.dist - b.dist; });
     document.getElementById('result-label').textContent = store.name;
     document.getElementById('store-results-inner').innerHTML = renderResults(store, nearby, brand);
-    document.getElementById('more-wrap').style.display = nearby.length ? 'block' : 'none';
+    document.getElementById('more-wrap').style.display = nearby.length > 4 ? 'block' : 'none';
     document.getElementById('search-results').style.display = 'block';
     setTimeout(function() {
       document.getElementById('search-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
