@@ -1296,13 +1296,9 @@
       top: 24px;
       left: 12.5%; right: 12.5%;
       height: 3px;
-      background: linear-gradient(to right, #1A3A72, #CC0000);
+      background: var(--red);
       z-index: 0;
     }
-    .flow-tl-step:nth-child(1) .flow-tl-num { background: #1A3A72; }
-    .flow-tl-step:nth-child(2) .flow-tl-num { background: #6B2050; }
-    .flow-tl-step:nth-child(3) .flow-tl-num { background: #A80E1C; }
-    .flow-tl-step:nth-child(4) .flow-tl-num { background: #CC0000; }
     .flow-tl-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -1310,10 +1306,11 @@
       position: relative;
       z-index: 1;
     }
-    .flow-tl-step { text-align: center; padding: 0 20px 24px; }
-    .flow-tl-step .flow-title { font-size: clamp(19px, 2.2vw, 22px); white-space: nowrap; }
-    .flow-tl-icon { margin-bottom: 16px; }
-    .flow-tl-icon img { width: 44px; height: 44px; object-fit: contain; display: block; margin: 0 auto; }
+    .flow-tl-step { text-align: center; padding: 0 12px 24px; }
+    .flow-tl-step .flow-title { font-size: clamp(19px, 2.2vw, 22px); white-space: nowrap; margin-bottom: 0; }
+    .flow-tl-step-head { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; }
+    .flow-tl-icon { margin-bottom: 0; }
+    .flow-tl-icon img { width: 32px; height: 32px; object-fit: contain; display: block; margin: 0 auto; }
     .flow-tl-num {
       width: 48px; height: 48px;
       border-radius: 50%;
@@ -1359,11 +1356,6 @@
     /* オンラインフロー: 5ステップ */
     .flow-tl-grid--5 { grid-template-columns: repeat(5, 1fr); }
     .flow-online-block .flow-tl-line { left: 10%; right: 10%; }
-    .flow-online-block .flow-tl-step:nth-child(1) .flow-tl-num { background: #1A3A72; }
-    .flow-online-block .flow-tl-step:nth-child(2) .flow-tl-num { background: #52206B; }
-    .flow-online-block .flow-tl-step:nth-child(3) .flow-tl-num { background: #831240; }
-    .flow-online-block .flow-tl-step:nth-child(4) .flow-tl-num { background: #B00C1C; }
-    .flow-online-block .flow-tl-step:nth-child(5) .flow-tl-num { background: #CC0000; }
 
     /* ===== SECTION 08: Q&A ===== */
     #qa { background: #fff; }
@@ -2249,16 +2241,9 @@
         left: 20px; top: 44px; bottom: 0;
         width: 2px;
         transform: translateX(-50%);
-        background: #ccc;
+        background: var(--red);
         pointer-events: none;
       }
-      .flow-tl-step:nth-child(1)::before { background: linear-gradient(to bottom, #1A3A72, #6B2050); }
-      .flow-tl-step:nth-child(2)::before { background: linear-gradient(to bottom, #6B2050, #A80E1C); }
-      .flow-tl-step:nth-child(3)::before { background: linear-gradient(to bottom, #A80E1C, #CC0000); }
-      .flow-online-block .flow-tl-step:nth-child(1)::before { background: linear-gradient(to bottom, #1A3A72, #52206B); }
-      .flow-online-block .flow-tl-step:nth-child(2)::before { background: linear-gradient(to bottom, #52206B, #831240); }
-      .flow-online-block .flow-tl-step:nth-child(3)::before { background: linear-gradient(to bottom, #831240, #B00C1C); }
-      .flow-online-block .flow-tl-step:nth-child(4)::before { background: linear-gradient(to bottom, #B00C1C, #CC0000); }
       .flow-tl-num {
         grid-column: 1; grid-row: 1;
         width: 40px; height: 40px;
@@ -2268,6 +2253,7 @@
         align-self: start;
       }
       .flow-tl-icon { display: none; }
+      .flow-tl-step-head { display: contents; }
       .flow-tl-step .flow-title {
         grid-column: 2; grid-row: 1;
         margin-bottom: 0; font-size: clamp(23px, 2.6vw, 26px); font-weight: 800;
@@ -3162,26 +3148,34 @@
       <div class="flow-tl-grid">
         <div class="flow-tl-step">
           <div class="flow-tl-num">1</div>
-          <div class="flow-tl-icon"><img src="flow-icon-store.svg" alt="ご来店"></div>
-          <p class="flow-title">ご来店</p>
-          <p class="flow-desc">予約・当日相談もOK。<br>レンズ交換ご希望の場合は、本体をご持参ください。</p>
+          <div class="flow-tl-step-head">
+            <div class="flow-tl-icon"><img src="flow-icon-store.svg" alt="ご来店"></div>
+            <p class="flow-title">ご来店</p>
+          </div>
+          <p class="flow-desc">予約・当日相談もOK。<br>レンズ交換の場合は、本体をご持参ください。</p>
         </div>
         <div class="flow-tl-step">
           <div class="flow-tl-num">2</div>
-          <div class="flow-tl-icon"><img src="flow-icon-eye.svg" alt="測定"></div>
-          <p class="flow-title">測定</p>
-          <p class="flow-desc">専門スタッフがお客様の<br>見え方に合わせた度数を測定。</p>
+          <div class="flow-tl-step-head">
+            <div class="flow-tl-icon"><img src="flow-icon-eye.svg" alt="測定"></div>
+            <p class="flow-title">測定</p>
+          </div>
+          <p class="flow-desc">専門スタッフがお客様の見え方に合わせた度数を測定。</p>
         </div>
         <div class="flow-tl-step">
           <div class="flow-tl-num">3</div>
-          <div class="flow-tl-icon"><img src="flow-icon-lens.svg" alt="レンズ加工"></div>
-          <p class="flow-title">レンズ加工</p>
-          <p class="flow-desc">機種に合わせて<br>専門のスタッフが加工します。</p>
+          <div class="flow-tl-step-head">
+            <div class="flow-tl-icon"><img src="flow-icon-lens.svg" alt="レンズ加工"></div>
+            <p class="flow-title">レンズ加工</p>
+          </div>
+          <p class="flow-desc">機種に合わせて専門のスタッフが加工します。</p>
         </div>
         <div class="flow-tl-step">
           <div class="flow-tl-num">4</div>
-          <div class="flow-tl-icon"><img src="flow-icon-gift.svg" alt="お渡し"></div>
-          <p class="flow-title">お渡し</p>
+          <div class="flow-tl-step-head">
+            <div class="flow-tl-icon"><img src="flow-icon-gift.svg" alt="お渡し"></div>
+            <p class="flow-title">お渡し</p>
+          </div>
           <p class="flow-desc">見え方・使用方法を確認してお渡し。<br>クリアな視界でお使いいただけます。</p>
         </div>
       </div>
@@ -3206,32 +3200,42 @@
         <div class="flow-tl-grid flow-tl-grid--5">
           <div class="flow-tl-step">
             <div class="flow-tl-num">1</div>
-            <div class="flow-tl-icon"><img src="flow-online-icon-frame.svg" alt="インサートフレームを準備"></div>
-            <p class="flow-title">フレームを準備</p>
+            <div class="flow-tl-step-head">
+              <div class="flow-tl-icon"><img src="flow-online-icon-frame.svg" alt="インサートフレームを準備"></div>
+              <p class="flow-title">フレームを準備</p>
+            </div>
             <p class="flow-desc">MiRZA対応の専用インサートフレーム、またはRokid対応のクリップ式フレームを、各ブランドの販売店等で別途ご購入ください。</p>
           </div>
           <div class="flow-tl-step">
             <div class="flow-tl-num">2</div>
-            <div class="flow-tl-icon"><img src="flow-online-icon-order.svg" alt="オンラインで注文"></div>
-            <p class="flow-title">オンラインで注文</p>
+            <div class="flow-tl-step-head">
+              <div class="flow-tl-icon"><img src="flow-online-icon-order.svg" alt="オンラインで注文"></div>
+              <p class="flow-title">オンラインで注文</p>
+            </div>
             <p class="flow-desc">アイジャパンオンラインにて左右の度数（球面・乱視・軸度・PD）を入力してご注文ください。</p>
           </div>
           <div class="flow-tl-step">
             <div class="flow-tl-num">3</div>
-            <div class="flow-tl-icon"><img src="flow-online-icon-truck.svg" alt="フレームを郵送"></div>
-            <p class="flow-title">フレームを郵送</p>
+            <div class="flow-tl-step-head">
+              <div class="flow-tl-icon"><img src="flow-online-icon-truck.svg" alt="フレームを郵送"></div>
+              <p class="flow-title">フレームを郵送</p>
+            </div>
             <p class="flow-desc">配達記録が残る方法で、指定住所（埼玉・さいたま市）へご郵送ください。<br>送料はお客様負担です。</p>
           </div>
           <div class="flow-tl-step">
             <div class="flow-tl-num">4</div>
-            <div class="flow-tl-icon"><img src="flow-icon-lens.svg" alt="レンズ加工"></div>
-            <p class="flow-title">レンズ加工</p>
+            <div class="flow-tl-step-head">
+              <div class="flow-tl-icon"><img src="flow-icon-lens.svg" alt="レンズ加工"></div>
+              <p class="flow-title">レンズ加工</p>
+            </div>
             <p class="flow-desc">スマートグラス専門のスタッフが、お客様専用のレンズを丁寧に加工いたします。</p>
           </div>
           <div class="flow-tl-step">
             <div class="flow-tl-num">5</div>
-            <div class="flow-tl-icon"><img src="flow-icon-gift.svg" alt="自宅へ返送"></div>
-            <p class="flow-title">自宅へ返送</p>
+            <div class="flow-tl-step-head">
+              <div class="flow-tl-icon"><img src="flow-icon-gift.svg" alt="自宅へ返送"></div>
+              <p class="flow-title">自宅へ返送</p>
+            </div>
             <p class="flow-desc">完成した商品をご指定の住所へ返送いたします。</p>
           </div>
         </div>
