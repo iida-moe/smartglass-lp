@@ -3898,7 +3898,19 @@
     setTimeout(() => results.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
   }
 
+  function validateSearchReady() {
+    const productOk = document.getElementById('product-select').value !== '';
+    const purposeOk = document.querySelector('input[name="purpose"]:checked') !== null;
+    if (!productOk || !purposeOk) {
+      alert('商品と、ご希望の内容を選択してから検索してください。');
+      document.getElementById('product-select').focus();
+      return false;
+    }
+    return true;
+  }
+
   async function doSearch() {
+    if (!validateSearchReady()) return;
     const z1 = document.getElementById('zip1').value;
     const z2 = document.getElementById('zip2').value;
     if (z1.length !== 3 || z2.length !== 4) return;
@@ -3935,6 +3947,7 @@
   }
 
   function searchByLocation() {
+    if (!validateSearchReady()) return;
     if (location.protocol === 'file:') {
       alert('現在地から探す機能はHTTPS環境（本番サーバー）でのみ動作します。\n郵便番号での検索をご利用ください。');
       return;
