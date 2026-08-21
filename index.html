@@ -1544,6 +1544,7 @@
       padding-bottom: calc(10px + env(safe-area-inset-bottom));
       display: flex;
       align-items: center;
+      transition: opacity 0.3s ease;
     }
     .fixed-footer .container {
       display: flex;
@@ -3441,7 +3442,7 @@
 </footer>
 
 <!-- FIXED FOOTER CTA -->
-<div class="fixed-footer" id="fixed-footer" style="display:none">
+<div class="fixed-footer" id="fixed-footer" style="opacity:0; pointer-events:none">
   <div class="container">
     <a href="#search" class="btn btn-red">来店予約する</a>
     <a href="https://www.aijapan-online.com/" target="_blank" class="btn btn-outline">オンラインストアを見る</a>
@@ -4043,12 +4044,15 @@
     }, 2800);
   })();
 
-  // FVまたは最終CTAが見えている間はフッターCTAを非表示
+  // FV・店舗検索・最終CTAが見えている間はフッターCTAをふわっと非表示
   const fixedFooter = document.getElementById('fixed-footer');
   let _fvVisible = true;
   let _ctaVisible = false;
+  let _searchVisible = false;
   function updateFixedFooter() {
-    fixedFooter.style.display = (_fvVisible || _ctaVisible) ? 'none' : 'flex';
+    const hide = _fvVisible || _ctaVisible || _searchVisible;
+    fixedFooter.style.opacity = hide ? '0' : '1';
+    fixedFooter.style.pointerEvents = hide ? 'none' : 'auto';
   }
   new IntersectionObserver(function(e) {
     _fvVisible = e[0].isIntersecting;
@@ -4058,6 +4062,10 @@
     _ctaVisible = e[0].isIntersecting;
     updateFixedFooter();
   }, { threshold: 0 }).observe(document.getElementById('final-cta'));
+  new IntersectionObserver(function(e) {
+    _searchVisible = e[0].isIntersecting;
+    updateFixedFooter();
+  }, { threshold: 0 }).observe(document.getElementById('search'));
 
   // === 商品モーダル ===
   const PD = {
