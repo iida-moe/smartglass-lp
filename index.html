@@ -59,7 +59,7 @@
       {
         "@type": "Question",
         "name": "どの店舗でも全機種に対応していますか？",
-        "acceptedAnswer": { "@type": "Answer", "text": "機種によって本体の展示・販売、レンズ交換の対応店舗が異なります。MiRZA・Rokidのレンズ交換は全37店舗で承っております（本庄南大通り店を除く）。Even Realities G2・VITUREは対応店舗が限定されますので、ページ内の「店舗検索」で機種を選んでご確認ください。" }
+        "acceptedAnswer": { "@type": "Answer", "text": "機種によって本体の展示・販売、レンズ交換の対応店舗が異なります。MiRZA・Rokid・SABERAのレンズ交換は全37店舗で承っております（本庄南大通り店を除く）。Even Realities G2・VITUREは対応店舗が限定されますので、ページ内の「店舗検索」で機種を選んでご確認ください。" }
       },
       {
         "@type": "Question",
@@ -3162,7 +3162,8 @@
             </div>
           </div>
           <table class="pg-card-store">
-            <tr><th>本体・レンズ</th><td><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('南浦和','sabera')">南浦和店・</span><wbr><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('宇都宮錦','sabera')">宇都宮錦店・</span><wbr><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('八千代','sabera')">八千代台ユアエルム店</span> / オンライン対応<small class="except-note">※オンラインはデバイス販売・単焦点レンズのみ</small></td></tr>
+            <tr><th>本体取扱</th><td><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('南浦和','sabera')">南浦和店・</span><wbr><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('宇都宮錦','sabera')">宇都宮錦店・</span><wbr><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('八千代','sabera')">八千代台ユアエルム店</span></td></tr>
+            <tr><th>レンズ交換</th><td>全37店舗 / オンライン対応<small class="except-note">※本庄南大通り店を除く。オンラインはデバイス販売・単焦点レンズのみ</small></td></tr>
           </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('sabera')">詳しく見る ▶</button>
           <a class="pg-card-official-link" href="https://sabera.glass/" target="_blank" rel="noopener" onclick="event.stopPropagation();">メーカー公式サイトへ →</a>
@@ -3425,7 +3426,7 @@
           <span class="qa-q-text">どの店舗でも全機種に対応していますか？</span>
           <span class="qa-icon">+</span>
         </button>
-        <div class="qa-a">機種によって本体の展示・販売、レンズ交換の対応店舗が異なります。MiRZA・Rokidのレンズ交換は全37店舗で承っております（本庄南大通り店を除く）。Even Realities G2・VITUREは対応店舗が限定されますので、機種を選んで<a href="#search" class="qa-a-link">店舗検索はこちら →</a>でご確認ください。</div>
+        <div class="qa-a">機種によって本体の展示・販売、レンズ交換の対応店舗が異なります。MiRZA・Rokid・SABERAのレンズ交換は全37店舗で承っております（本庄南大通り店を除く）。Even Realities G2・VITUREは対応店舗が限定されますので、機種を選んで<a href="#search" class="qa-a-link">店舗検索はこちら →</a>でご確認ください。</div>
       </div>
 
       <div class="qa-item">
@@ -3778,7 +3779,7 @@
     'Ray-Ban Meta':   { body: false, lens: false },
     'VITURE':         { body: false, lens: false },
     'Viture':         { body: false, lens: false },
-    'SABERA':         { body: false, lens: false },
+    'SABERA':         { body: false, lens: true  },
   };
   function getStoreCaps(store) {
     return SPECIAL_BRANDS[store.name] || DEFAULT_BRANDS;
@@ -4359,7 +4360,7 @@
           <li><strong>分解・改造の禁止</strong>：本体の分解・改造はしないでください。発煙・異臭・異常発熱・液漏れ・水没・破損などの異常があった場合は、直ちに使用を中止し、本体に触れず店舗までご連絡ください。</li>
         </ul>`,
       recommend: ['会議・打ち合わせが多い人', '外国語を使う仕事や旅行が多い人', 'ハンズフリーで情報を確認したい人', '国産（鯖江）ブランドにこだわりたい人'],
-      store: '本体・レンズ取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span>・<span class="store-name-link" onclick="showStoreByName(\'宇都宮錦\')">宇都宮錦店</span>・<span class="store-name-link" onclick="showStoreByName(\'八千代\')">八千代台ユアエルム店</span> / オンライン対応</strong><small class="except-note">※オンラインはデバイス販売・単焦点レンズのみ</small>',
+      store: '本体取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span>・<span class="store-name-link" onclick="showStoreByName(\'宇都宮錦\')">宇都宮錦店</span>・<span class="store-name-link" onclick="showStoreByName(\'八千代\')">八千代台ユアエルム店</span></strong>　レンズ交換：<strong>全37店舗 / オンライン対応</strong><small class="except-note">※本庄南大通り店を除く。オンラインはデバイス販売・単焦点レンズのみ</small>',
       searchBrand: 'SABERA',
       imgText: '画像準備中',
       hasLens: true,
