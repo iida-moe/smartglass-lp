@@ -2389,6 +2389,7 @@
       background: #fff;
     }
     .pg-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.12); transform: translateY(-2px); }
+    #sabera-teaser-card:hover { box-shadow: none; transform: none; }
     .pg-store-link { color: var(--navy); font-weight: 700; text-decoration: underline; text-decoration-color: rgba(13,27,42,0.35); text-underline-offset: 2px; cursor: pointer; transition: opacity 0.2s; }
     .pg-store-link:hover { opacity: 0.6; }
     .pg-card-img {
@@ -2473,6 +2474,12 @@
       transition: background 0.15s, transform 0.15s;
       z-index: 10;
       flex-shrink: 0;
+    }
+    /* 見た目のサイズは変えずに、タップ判定だけ少し広げて誤タップで閉じないようにする */
+    .modal-nav-btn::after {
+      content: '';
+      position: absolute;
+      inset: -16px;
     }
     .modal-nav-btn:hover { background: #fff; transform: translateY(-50%) scale(1.08); }
     .modal-nav-prev { left: 16px; }
@@ -3132,6 +3139,37 @@
         </div>
       </div>
 
+      <!-- SABERA（2026年9月頃 取り扱い開始予定・画像準備中のためティーザー表示） -->
+      <div class="pg-card" data-product="sabera-teaser" data-ptype="all" id="sabera-teaser-card">
+        <div class="pg-card-img" style="background:#0D1B2A;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;">
+          <span style="color:#fff;font-size:clamp(26px,4vw,32px);font-weight:800;letter-spacing:0.05em;">SABERA</span>
+          <span style="color:rgba(255,255,255,0.75);font-size:clamp(16px,2vw,18px);letter-spacing:0.1em;">Coming Soon…</span>
+        </div>
+      </div>
+
+      <!-- SABERA 詳細版（非公開・保存用／公開日にSABERA_PUBLICをtrueにすると表示される） -->
+      <div class="pg-card" data-product="sabera" data-ptype="all" id="sabera-full-card" style="display:none;">
+        <div class="pg-card-img" id="sabera-card-img" style="background:#0D1B2A;display:flex;align-items:center;justify-content:center;">
+          <span style="color:#fff;font-size:clamp(12px,1.4vw,14px);">画像準備中</span>
+        </div>
+        <div class="pg-card-body">
+          <h3 class="pg-card-name">SABERA<span class="pg-furigana">（サベラ）</span></h3>
+          <div class="pg-card-scenes">
+            <span class="pg-scene-label">こんなシーンに</span>
+            <div class="pg-scene-tags">
+              <span class="pg-scene-tag">ビジネス</span>
+              <span class="pg-scene-tag">日常</span>
+            </div>
+          </div>
+          <table class="pg-card-store">
+            <tr><th>本体・レンズ</th><td><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('南浦和','sabera')">南浦和店・</span><wbr><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('宇都宮錦','sabera')">宇都宮錦店・</span><wbr><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('八千代','sabera')">八千代台ユアエルム店</span></td></tr>
+            <tr><th>オンライン</th><td>アイジャパンオンライン<small class="except-note">※デバイス販売・単焦点レンズのみ</small></td></tr>
+          </table>
+          <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('sabera')">詳しく見る ▶</button>
+          <a class="pg-card-official-link" href="https://sabera.glass/" target="_blank" rel="noopener" onclick="event.stopPropagation();">メーカー公式サイトへ →</a>
+        </div>
+      </div>
+
     </div>
 
 
@@ -3271,6 +3309,7 @@
             <option value="Rokid">Rokid</option>
             <option value="Even Realities">Even Realities</option>
             <option value="Viture">VITURE Luma シリーズ</option>
+            <option value="SABERA" id="sabera-search-option">SABERA</option>
           </select>
         </div>
         <div class="search-form-row">
@@ -3711,6 +3750,7 @@
       'Ray-Ban Meta':   { body: true,  lens: true  },
       'VITURE':         { body: true,  lens: true  },
       'Viture':         { body: true,  lens: true  },
+      'SABERA':         { body: true,  lens: true  },
     },
     'アイメガネ宇都宮錦店': {
       'MIRZA':          { body: false, lens: true  },
@@ -3719,6 +3759,7 @@
       'Ray-Ban Meta':   { body: false, lens: false },
       'VITURE':         { body: false, lens: false },
       'Viture':         { body: false, lens: false },
+      'SABERA':         { body: true,  lens: true  },
     },
     'アイメガネ八千代台ユアエルム店': {
       'MIRZA':          { body: false, lens: true  },
@@ -3727,6 +3768,7 @@
       'Ray-Ban Meta':   { body: false, lens: false },
       'VITURE':         { body: false, lens: false },
       'Viture':         { body: false, lens: false },
+      'SABERA':         { body: true,  lens: true  },
     },
   };
   // その他34店舗のデフォルト（レンズのみ）
@@ -3737,6 +3779,7 @@
     'Ray-Ban Meta':   { body: false, lens: false },
     'VITURE':         { body: false, lens: false },
     'Viture':         { body: false, lens: false },
+    'SABERA':         { body: false, lens: false },
   };
   function getStoreCaps(store) {
     return SPECIAL_BRANDS[store.name] || DEFAULT_BRANDS;
@@ -3756,7 +3799,7 @@
   }
   function buildStoreTags(store, brand) {
     const caps = getStoreCaps(store);
-    const BRAND_KEYS = ['MIRZA', 'Rokid', 'Even Realities', 'VITURE'];
+    const BRAND_KEYS = ['MIRZA', 'Rokid', 'Even Realities', 'VITURE', 'SABERA'];
     let tags = '';
     if (brand) {
       const c = caps[brand] || caps[brand === 'VITURE' ? 'Viture' : brand];
@@ -3777,9 +3820,10 @@
     const BRAND_DISPLAY = {
       'MIRZA': 'MiRZA', 'Rokid': 'Rokid',
       'Even Realities': 'Even Realities G2',
-      'Ray-Ban Meta': 'Ray-Ban Meta', 'VITURE': 'VITURE'
+      'Ray-Ban Meta': 'Ray-Ban Meta', 'VITURE': 'VITURE',
+      'SABERA': 'SABERA'
     };
-    const BRAND_KEYS = ['MIRZA', 'Rokid', 'Even Realities', 'VITURE'];
+    const BRAND_KEYS = ['MIRZA', 'Rokid', 'Even Realities', 'VITURE', 'SABERA'];
     let bodyBrands = [], lensBrands = [];
     function classify(b, c) {
       if (!c) return;
@@ -4008,10 +4052,26 @@
     btn.querySelector('.spec-label-txt').textContent = isOpen ? 'スペックを閉じる' : 'スペックをさらに見る';
   }
 
+  // SABERA公開スイッチ：2026年9月の公開OKのタイミングでtrueに切り替えると、
+  // 詳細カード・モーダル（スペック／安全上の注意／レンズ交換案内／検索連携）が表示される。
+  // falseの間はComing Soonのティーザーカードのみ表示。
+  const SABERA_PUBLIC = true;
+
   // 商品ラインナップ フィルター
-  const PRODUCT_ORDER = ['mirza', 'rokid', 'even', 'rayban', 'viture'];
+  const PRODUCT_ORDER = ['mirza', 'rokid', 'even', 'rayban', 'viture'].concat(SABERA_PUBLIC ? ['sabera'] : []);
   let currentProductKey = null;
   let currentFilter = 'all';
+
+  function applySaberaVisibility() {
+    var full = document.getElementById('sabera-full-card');
+    var teaser = document.getElementById('sabera-teaser-card');
+    if (full) full.style.display = SABERA_PUBLIC ? 'flex' : 'none';
+    if (teaser) teaser.style.display = SABERA_PUBLIC ? 'none' : 'flex';
+    var searchOpt = document.getElementById('sabera-search-option');
+    if (searchOpt && !SABERA_PUBLIC && searchOpt.parentNode) {
+      searchOpt.parentNode.removeChild(searchOpt);
+    }
+  }
 
   function filterProducts(filter) {
     currentFilter = filter;
@@ -4023,6 +4083,7 @@
       const show = filter === 'all' ? ptype === 'all' : ptype === 'lens';
       card.style.display = show ? 'flex' : 'none';
     });
+    applySaberaVisibility();
   }
   // 初期状態: 本体・レンズ取り扱い
   filterProducts('all');
@@ -4273,6 +4334,53 @@
           </ul>
         </div>`,
     },
+    sabera: {
+      name: 'SABERA<span class="prod-modal-furigana">サベラ</span>',
+      catch: '鯖江生まれのスマート眼鏡が、ビジネスや日常を静かに研ぎ澄ます。',
+      desc: '全てハンズフリー。「視界の中」で完結。文字起こし・議事録・AI要約、通知、AIアシスタント、原稿表示・テレプロンプト、リアルタイム翻訳、ナビゲーション機能をお使いいただけます。本体ご購入後も、度付きレンズへの後入れ交換に対応しています。',
+      tags: ['AI翻訳対応', '40言語以上', 'カメラなし', '度付き対応', '国産（鯖江）'],
+      specs: [
+        { label: '重量', value: '約38g（フレーム単体 約37g／レンズ装着時 約40g）' },
+        { label: 'バッテリー', value: '通常使用 約12時間／最大 約14時間（充電ケースで約12回充電可）' },
+        { label: 'ディスプレイ', value: 'Cellid社製プラスチック型ウェーブガイド（片眼・右眼側）。単色（グリーン）表示で、写真や画像は表示されません' },
+        { label: 'カメラ', value: 'なし' },
+        { label: '翻訳', value: '40以上言語' },
+        { label: 'サングラス対応', value: 'クリップオン式サングラス対応' },
+        { label: '防水・防塵', value: '非防水（IP等級の認証なし）。雨・汗・入浴・プール等の水分を避けてご使用ください' },
+      ],
+      specsNote: '※上記以外のスペックは判明次第追加予定です。',
+      accordionLabel: '安全上の注意',
+      accordion: `
+        <ul class="modal-lens-notes">
+          <li><strong>運転中・歩行中の表示使用</strong>：自動車・自転車等の運転中は、ナビゲーション機能を除き表示機能を使用しないでください。階段・踏切・横断歩道など足元に注意が必要な場所でも、表示への注視を避け周囲確認を優先してください。</li>
+          <li><strong>植込み型医療機器をお使いの方</strong>：ペースメーカー等の装着部位からは15cm以上離してご使用ください。医療機器に異常を感じた場合は直ちに使用を中止してください。</li>
+          <li><strong>体調変化時の対応</strong>：めまい・吐き気・目の疲労・頭痛・平衡感覚の違和感等を感じた場合は、表示機能の利用を中止し休憩してください。症状が続く場合は医師にご相談ください。</li>
+          <li><strong>13歳未満のお子様の使用</strong>：保護者がご自身のアカウントで操作し、その監督のもとで使用させてください。</li>
+          <li><strong>防水性能について</strong>：本体・充電ケースともに非防水です。雨・汗・入浴・プール等の水分を避けてご使用ください。</li>
+          <li><strong>分解・改造の禁止</strong>：本体の分解・改造はしないでください。発煙・異臭・異常発熱・液漏れ・水没・破損などの異常があった場合は、直ちに使用を中止し、本体に触れず店舗までご連絡ください。</li>
+        </ul>`,
+      recommend: ['会議・打ち合わせが多い人', '外国語を使う仕事や旅行が多い人', 'ハンズフリーで情報を確認したい人', '国産（鯖江）ブランドにこだわりたい人'],
+      store: '本体・レンズ取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span>・<span class="store-name-link" onclick="showStoreByName(\'宇都宮錦\')">宇都宮錦店</span>・<span class="store-name-link" onclick="showStoreByName(\'八千代\')">八千代台ユアエルム店</span></strong><br>オンライン：<strong>アイジャパンオンライン</strong><small class="except-note">※デバイス販売・単焦点レンズのみ</small>',
+      searchBrand: 'SABERA',
+      imgText: '画像準備中',
+      hasLens: true,
+      lensHTML: `
+        <p class="modal-lens-intro">SABERA本体ご購入後も、度付きレンズへの後入れ交換に対応しています。南浦和店・宇都宮錦店・八千代台ユアエルム店では単焦点・累進（遠近両用）レンズどちらにも対応し、アイジャパンオンラインでは単焦点レンズのみのお取り扱いです。</p>
+        <div class="modal-lens-block">
+          <p class="modal-lens-block-ttl">レンズ仕様</p>
+          <p class="modal-lens-meta">単焦点／累進（遠近両用）<small class="except-note">※オンラインは単焦点のみ</small></p>
+        </div>
+        <div class="modal-lens-block">
+          <p class="modal-lens-block-ttl">製作範囲</p>
+          <p class="modal-lens-meta">対応できる度数には幅があります。詳しくは店舗にてご相談ください。</p>
+        </div>
+        <div class="modal-lens-block">
+          <p class="modal-lens-block-ttl">注意事項</p>
+          <ul class="modal-lens-notes">
+            <li>度付きレンズは特注品となるため、ご注文後のキャンセル・返品はお受けできません。</li>
+          </ul>
+        </div>`,
+    },
   };
 
   function switchModalTab(tab, el) {
@@ -4407,7 +4515,7 @@
     const specsHTML = activeData.specs ? buildSpecTableHTML(activeData.specs, isViture ? 'viture-modal-specs' : null) : '';
     const accordionHTML = pd.accordion ? `
       <div class="modal-accordion">
-        <button class="modal-accordion-btn" onclick="toggleModalAccordion(this)">詳しい注文ガイド・製作範囲 <span class="modal-accordion-arrow">▼</span></button>
+        <button class="modal-accordion-btn" onclick="toggleModalAccordion(this)">${pd.accordionLabel || '詳しい注文ガイド・製作範囲'} <span class="modal-accordion-arrow">▼</span></button>
         <div class="modal-accordion-body">${pd.accordion}</div>
       </div>` : '';
     const recommendHTML = activeData.recommend ? `
@@ -4443,7 +4551,7 @@
       <p class="prod-modal-store">${pd.store}</p>
       ${rokidBodyHTML}
       <div class="prod-modal-actions">
-        ${pd.singleCtaLabel ? `
+        ${pd.hideBodyActionBtn ? (pd.bodyActionNote ? `<p class="except-note" style="margin:0;">${pd.bodyActionNote}</p>` : '') : pd.singleCtaLabel ? `
           <a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">${pd.singleCtaLabel}</a>
         ` : pd.onlineStore ? `
           <a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a>
