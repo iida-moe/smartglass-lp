@@ -39,7 +39,7 @@
       {
         "@type": "Question",
         "name": "持ち込みの際に必要なものは？",
-        "acceptedAnswer": { "@type": "Answer", "text": "本体（と付属のインサートフレーム等）をお持ちください。お手元に度数のわかるもの（処方箋・現在のメガネ等）があるとより正確にご案内できます。" }
+        "acceptedAnswer": { "@type": "Answer", "text": "本体（と付属のインサートフレーム等）をお持ちください。度数は店頭で測定いたしますので、処方箋のご準備は不要です。" }
       },
       {
         "@type": "Question",
@@ -2533,6 +2533,7 @@
     .prod-modal-body {
       flex: 1;
       overflow-y: auto;
+      overscroll-behavior: contain;
       padding: 8px 48px 48px;
     }
     @media (max-width: 767px) {
@@ -3390,7 +3391,7 @@
           <span class="qa-q-text">持ち込みの際に必要なものは？</span>
           <span class="qa-icon">+</span>
         </button>
-        <div class="qa-a">本体（と付属のインサートフレーム等）をお持ちください。お手元に度数のわかるもの（処方箋・現在のメガネ等）があるとより正確にご案内できます。</div>
+        <div class="qa-a">本体（と付属のインサートフレーム等）をお持ちください。度数は店頭で測定いたしますので、処方箋のご準備は不要です。</div>
       </div>
 
       <div class="qa-item">
@@ -4645,7 +4646,6 @@
     document.body.style.overflow = '';
   }
   document.getElementById('prod-modal-close').addEventListener('click', function(){ document.getElementById('product-modal').classList.remove('open'); document.body.style.overflow=''; });
-  document.getElementById('product-modal').addEventListener('click', function(e){ if(e.target===this){ document.getElementById('product-modal').classList.remove('open'); document.body.style.overflow=''; } });
   // SP ナビ
   function toggleSpNav() {
     var nav = document.getElementById('sp-nav');
