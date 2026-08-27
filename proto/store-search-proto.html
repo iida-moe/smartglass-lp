@@ -53,9 +53,22 @@
     font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer; white-space: nowrap;
   }
 
+  /* ---- スクロール追従の絞り込みバー ---- */
+  .sticky-filter-bar {
+    position: sticky; top: 0; z-index: 20; background: var(--navy);
+    padding-top: 10px; margin: 0 -20px; padding-left: 20px; padding-right: 20px;
+  }
+  .pref-tabs-row { display: flex; align-items: center; gap: 12px; }
+  .btn-back-to-search {
+    flex-shrink: 0; display: flex; align-items: center; gap: 4px;
+    background: none; border: none; color: rgba(255,255,255,0.75); font-family: inherit;
+    font-size: 13px; font-weight: 700; cursor: pointer; padding: 8px 2px; white-space: nowrap;
+  }
+  .btn-back-to-search:hover { color: #fff; }
+
   /* ---- 都道府県タブ ---- */
   .pref-tabs {
-    display: flex; gap: 8px; overflow-x: auto; padding: 4px 0 16px;
+    display: flex; gap: 8px; overflow-x: auto; padding: 4px 0 16px; flex: 1; min-width: 0;
     scrollbar-width: none;
   }
   .pref-tabs::-webkit-scrollbar { display: none; }
@@ -78,7 +91,6 @@
     background: none; border: none; cursor: pointer; font-family: inherit;
     font-size: 16px; font-weight: 700; color: var(--text-primary); text-align: left;
   }
-  .filter-accordion-head .tag-icon { color: var(--red); font-size: 18px; flex-shrink: 0; }
   .filter-accordion-head .chevron { margin-left: auto; color: #999; transition: transform 0.2s; font-size: 13px; }
   .filter-accordion.open .chevron { transform: rotate(180deg); }
   .filter-accordion-body {
@@ -160,7 +172,7 @@
     <h2 class="section-title">お近くの店舗を探す</h2>
     <p class="search-lead">現在地、または郵便番号(上3桁)でお近くの店舗を絞り込めます</p>
 
-    <div class="locate-card">
+    <div class="locate-card" id="locate-card">
       <p class="locate-note">現在地からの検索は本番サーバーでのみ動作します（プロトタイプでは無効）</p>
       <button class="btn-geolocate" onclick="fakeGeolocate()">📍 現在地から探す</button>
       <div class="or-divider"><span>または</span></div>
@@ -173,37 +185,42 @@
       </div>
     </div>
 
-    <div class="pref-tabs" id="pref-tabs"></div>
+    <div class="sticky-filter-bar">
+      <div class="pref-tabs-row">
+        <div class="pref-tabs" id="pref-tabs"></div>
+        <button class="btn-back-to-search" onclick="scrollToSearch()">▲ 検索へ戻る</button>
+      </div>
 
-    <div class="filter-accordion" id="filter-accordion">
-      <button class="filter-accordion-head" onclick="toggleAccordion()">
-        <span class="tag-icon">🏷</span> 取扱商品・ご希望内容で絞り込む
-        <span class="chevron">▼</span>
-      </button>
-      <div class="filter-accordion-body">
-        <div class="filter-accordion-inner">
-          <div class="cond-row">
-            <label class="cond-label">商品を選ぶ</label>
-            <select class="cond-select" id="cond-product">
-              <option value="">指定しない</option>
-              <option value="MIRZA">MiRZA</option>
-              <option value="Rokid">Rokid</option>
-              <option value="Even Realities">Even Realities</option>
-              <option value="Viture">VITURE Luma シリーズ</option>
-              <option value="SABERA">SABERA</option>
-            </select>
-          </div>
-          <div class="cond-row">
-            <label class="cond-label">ご希望の内容</label>
-            <div class="cond-radio-group">
-              <label><input type="radio" name="cond-purpose" value=""> 指定しない</label>
-              <label><input type="radio" name="cond-purpose" value="trial"> 本体購入・試着</label>
-              <label><input type="radio" name="cond-purpose" value="lens"> レンズ交換</label>
+      <div class="filter-accordion" id="filter-accordion">
+        <button class="filter-accordion-head" onclick="toggleAccordion()">
+          取扱商品・ご希望内容で絞り込む
+          <span class="chevron">▼</span>
+        </button>
+        <div class="filter-accordion-body">
+          <div class="filter-accordion-inner">
+            <div class="cond-row">
+              <label class="cond-label">商品を選ぶ</label>
+              <select class="cond-select" id="cond-product">
+                <option value="">指定しない</option>
+                <option value="MIRZA">MiRZA</option>
+                <option value="Rokid">Rokid</option>
+                <option value="Even Realities">Even Realities</option>
+                <option value="Viture">VITURE Luma シリーズ</option>
+                <option value="SABERA">SABERA</option>
+              </select>
             </div>
-          </div>
-          <div class="cond-panel-actions">
-            <button class="btn-cond-clear" onclick="clearCond()">条件をクリア</button>
-            <button class="btn-cond-apply" onclick="applyCond()">この条件で絞り込む</button>
+            <div class="cond-row">
+              <label class="cond-label">ご希望の内容</label>
+              <div class="cond-radio-group">
+                <label><input type="radio" name="cond-purpose" value=""> 指定しない</label>
+                <label><input type="radio" name="cond-purpose" value="trial"> 本体購入・試着</label>
+                <label><input type="radio" name="cond-purpose" value="lens"> レンズ交換</label>
+              </div>
+            </div>
+            <div class="cond-panel-actions">
+              <button class="btn-cond-clear" onclick="clearCond()">条件をクリア</button>
+              <button class="btn-cond-apply" onclick="applyCond()">この条件で絞り込む</button>
+            </div>
           </div>
         </div>
       </div>
@@ -379,6 +396,10 @@
   function clearBrand() { state.brand = ''; document.getElementById('cond-product').value=''; renderAll(); }
   function clearPurpose() { state.purpose = ''; document.querySelectorAll('input[name="cond-purpose"]').forEach(r=>r.checked=(r.value==='')); renderAll(); }
   function clearOrigin() { state.originLabel = null; renderAll(); }
+
+  function scrollToSearch() {
+    document.getElementById('locate-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 
   function toggleAccordion() {
     document.getElementById('filter-accordion').classList.toggle('open');
