@@ -789,9 +789,9 @@
       width: 18px; height: 18px;
       accent-color: var(--red);
     }
-    .cond-panel-actions { margin-top: 6px; }
+    .cond-purpose-line { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
     .btn-cond-apply {
-      padding: 10px 32px; background: var(--red); color: #fff; border: none; border-radius: 8px;
+      flex-shrink: 0; padding: 10px 32px; background: var(--red); color: #fff; border: none; border-radius: 8px;
       font-size: clamp(13px, 1.5vw, 14px); font-weight: 700; font-family: inherit; cursor: pointer;
     }
 
@@ -3205,16 +3205,16 @@
                   <option value="SABERA" id="sabera-search-option">SABERA</option>
                 </select>
               </div>
-              <div class="cond-row">
+              <div class="cond-row cond-row-purpose">
                 <label class="cond-label">ご希望の内容</label>
-                <div class="radio-group">
-                  <label class="radio-label"><input type="radio" name="purpose" id="r-any" value="" checked> 指定しない</label>
-                  <label class="radio-label"><input type="radio" name="purpose" id="r-trial" value="trial"> 本体購入・試着</label>
-                  <label class="radio-label"><input type="radio" name="purpose" id="r-lens" value="lens"> レンズ交換</label>
+                <div class="cond-purpose-line">
+                  <div class="radio-group">
+                    <label class="radio-label"><input type="radio" name="purpose" id="r-any" value="" checked> 指定しない</label>
+                    <label class="radio-label"><input type="radio" name="purpose" id="r-trial" value="trial"> 本体購入・試着</label>
+                    <label class="radio-label"><input type="radio" name="purpose" id="r-lens" value="lens"> レンズ交換</label>
+                  </div>
+                  <button class="btn-cond-apply" type="button" onclick="closeAccordion()">検索</button>
                 </div>
-              </div>
-              <div class="cond-panel-actions">
-                <button class="btn-cond-apply" type="button" onclick="closeAccordion()">検索</button>
               </div>
             </div>
           </div>
