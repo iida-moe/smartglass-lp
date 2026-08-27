@@ -115,23 +115,38 @@
     font-size: 14px; font-weight: 700; font-family: inherit; cursor: pointer;
   }
 
-  /* ---- 適用中の条件チップ + 件数 ---- */
-  .result-meta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin: 0 0 16px; }
-  .result-count { color: #fff; font-size: 14px; }
-  .result-count b { color: var(--red); font-size: 18px; margin: 0 2px; }
-  .active-filters { display: flex; flex-wrap: wrap; gap: 8px; }
-  .filter-chip {
-    display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.08);
-    color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 999px; padding: 5px 6px 5px 12px;
-    font-size: 12px;
+  /* ---- 画面下固定の「まとめバー」 ---- */
+  .sticky-bottom-bar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; background: #fff;
+    box-shadow: 0 -2px 14px rgba(0,0,0,0.14); padding: 14px 20px;
   }
-  .filter-chip button {
-    background: rgba(255,255,255,0.2); border: none; color: #fff; width: 16px; height: 16px; border-radius: 50%;
+  .sbb-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .sbb-count { font-size: 13px; color: #333; white-space: nowrap; }
+  .sbb-count b { color: var(--red); font-size: 19px; margin-right: 2px; }
+  .sbb-divider { width: 1px; align-self: stretch; background: var(--border); flex-shrink: 0; }
+  .sbb-filters { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; min-width: 0; }
+  .sbb-filters-label { font-size: 12px; color: #999; flex-shrink: 0; }
+  .sbb-chip {
+    display: flex; align-items: center; gap: 6px; background: var(--bg-gray);
+    color: #333; border: 1px solid var(--border); border-radius: 999px; padding: 5px 6px 5px 12px;
+    font-size: 12px; white-space: nowrap;
+  }
+  .sbb-chip button {
+    background: #ddd; border: none; color: #555; width: 16px; height: 16px; border-radius: 50%;
     cursor: pointer; font-size: 11px; line-height: 1; display: flex; align-items: center; justify-content: center;
+  }
+  .sbb-actions { display: flex; align-items: center; gap: 16px; margin-left: auto; flex-shrink: 0; }
+  .btn-sbb-add {
+    background: #fff; color: var(--red); border: 2px solid var(--red); border-radius: 999px;
+    padding: 9px 18px; font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer; white-space: nowrap;
+  }
+  .btn-sbb-clear {
+    background: none; border: none; color: #888; font-size: 12px; font-family: inherit;
+    text-decoration: underline; cursor: pointer; white-space: nowrap;
   }
 
   /* ---- 店舗カード（2列グリッド） ---- */
-  .store-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
+  .store-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 90px; }
   .store-card {
     background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px;
     display: flex; flex-direction: column; gap: 8px;
@@ -226,14 +241,21 @@
       </div>
     </div>
 
-    <div class="result-meta">
-      <div class="result-count" id="result-count"></div>
-      <div class="active-filters" id="active-filters"></div>
-    </div>
-
     <div class="store-grid" id="store-grid"></div>
   </div>
 </section>
+
+<div class="sticky-bottom-bar">
+  <div class="sbb-inner">
+    <div class="sbb-count" id="sbb-count"></div>
+    <div class="sbb-divider" id="sbb-divider" style="display:none"></div>
+    <div class="sbb-filters" id="sbb-filters"></div>
+    <div class="sbb-actions">
+      <button class="btn-sbb-clear" id="btn-sbb-clear" onclick="clearAllFilters()" style="display:none">すべて解除</button>
+      <button class="btn-sbb-add" onclick="jumpToAccordion()">条件を追加</button>
+    </div>
+  </div>
+</div>
 
 <script>
   const STORES = [
@@ -346,19 +368,22 @@
   }
 
   function renderChips() {
-    const wrap = document.getElementById('active-filters');
+    const wrap = document.getElementById('sbb-filters');
     let chips = '';
     if (state.brand) {
       const label = state.brand === 'Viture' ? 'VITURE' : state.brand;
-      chips += `<span class="filter-chip">${label}<button onclick="event.stopPropagation();clearBrand()">×</button></span>`;
+      chips += `<span class="sbb-chip">${label}<button onclick="clearBrand()">×</button></span>`;
     }
     if (state.purpose) {
-      chips += `<span class="filter-chip">${state.purpose==='trial'?'本体購入・試着':'レンズ交換'}<button onclick="event.stopPropagation();clearPurpose()">×</button></span>`;
+      chips += `<span class="sbb-chip">${state.purpose==='trial'?'本体購入・試着':'レンズ交換'}<button onclick="clearPurpose()">×</button></span>`;
     }
     if (state.originLabel) {
-      chips += `<span class="filter-chip">${state.originLabel}から近い順<button onclick="event.stopPropagation();clearOrigin()">×</button></span>`;
+      chips += `<span class="sbb-chip">${state.originLabel}から近い順<button onclick="clearOrigin()">×</button></span>`;
     }
-    wrap.innerHTML = chips;
+    wrap.innerHTML = chips || '<span class="sbb-filters-label">絞り込み条件なし</span>';
+    const hasFilter = !!(state.brand || state.purpose || state.originLabel);
+    document.getElementById('btn-sbb-clear').style.display = hasFilter ? '' : 'none';
+    document.getElementById('sbb-divider').style.display = hasFilter ? '' : 'none';
   }
 
   function renderList() {
@@ -387,7 +412,7 @@
       `).join('');
     }
 
-    document.getElementById('result-count').innerHTML = `<b>${list.length}</b>店舗 / 全${STORES.length}店舗中`;
+    document.getElementById('sbb-count').innerHTML = `<b>${list.length}</b>店舗該当 / 全${STORES.length}店舗`;
   }
 
   function renderAll() { renderPrefTabs(); renderChips(); renderList(); }
@@ -399,6 +424,19 @@
 
   function scrollToSearch() {
     document.getElementById('locate-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function jumpToAccordion() {
+    const acc = document.getElementById('filter-accordion');
+    acc.classList.add('open');
+    acc.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function clearAllFilters() {
+    state.brand = ''; state.purpose = ''; state.originLabel = null; state.pref = 'すべて';
+    document.getElementById('cond-product').value = '';
+    document.querySelectorAll('input[name="cond-purpose"]').forEach(r => r.checked = (r.value===''));
+    renderAll();
   }
 
   function toggleAccordion() {
