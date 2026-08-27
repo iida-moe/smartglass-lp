@@ -58,17 +58,9 @@
     position: sticky; top: 0; z-index: 20; background: var(--navy);
     padding-top: 10px; margin: 0 -20px; padding-left: 20px; padding-right: 20px;
   }
-  .pref-tabs-row { display: flex; align-items: center; gap: 12px; }
-  .btn-back-to-search {
-    flex-shrink: 0; display: flex; align-items: center; gap: 4px;
-    background: none; border: none; color: rgba(255,255,255,0.75); font-family: inherit;
-    font-size: 13px; font-weight: 700; cursor: pointer; padding: 8px 2px; white-space: nowrap;
-  }
-  .btn-back-to-search:hover { color: #fff; }
-
   /* ---- 都道府県タブ ---- */
   .pref-tabs {
-    display: flex; gap: 8px; overflow-x: auto; padding: 4px 0 16px; flex: 1; min-width: 0;
+    display: flex; gap: 8px; overflow-x: auto; padding: 4px 0 16px;
     scrollbar-width: none;
   }
   .pref-tabs::-webkit-scrollbar { display: none; }
@@ -144,6 +136,11 @@
     background: none; border: none; color: #888; font-size: 12px; font-family: inherit;
     text-decoration: underline; cursor: pointer; white-space: nowrap;
   }
+  .btn-sbb-top {
+    background: none; border: none; color: #666; font-size: 12px; font-weight: 700; font-family: inherit;
+    cursor: pointer; white-space: nowrap;
+  }
+  .btn-sbb-top:hover { color: #333; }
 
   /* ---- 店舗カード（2列グリッド） ---- */
   .store-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 90px; }
@@ -201,10 +198,7 @@
     </div>
 
     <div class="sticky-filter-bar">
-      <div class="pref-tabs-row">
-        <div class="pref-tabs" id="pref-tabs"></div>
-        <button class="btn-back-to-search" onclick="scrollToSearch()">▲ 検索へ戻る</button>
-      </div>
+      <div class="pref-tabs" id="pref-tabs"></div>
 
       <div class="filter-accordion" id="filter-accordion">
         <button class="filter-accordion-head" onclick="toggleAccordion()">
@@ -251,6 +245,7 @@
     <div class="sbb-divider" id="sbb-divider" style="display:none"></div>
     <div class="sbb-filters" id="sbb-filters"></div>
     <div class="sbb-actions">
+      <button class="btn-sbb-top" onclick="scrollToSearch()">▲ TOPへ</button>
       <button class="btn-sbb-clear" id="btn-sbb-clear" onclick="clearAllFilters()" style="display:none">すべて解除</button>
       <button class="btn-sbb-add" onclick="jumpToAccordion()">条件を追加</button>
     </div>
