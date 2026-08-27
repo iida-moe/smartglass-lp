@@ -132,10 +132,10 @@
   .store-tags { display: flex; gap: 6px; flex-wrap: wrap; }
   .store-tag-product { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 4px; background: #EAF2FB; color: #1A5276; }
   .store-tag-lens { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 4px; background: #EAFAF1; color: #1E8449; }
-  .store-model-detail { display: flex; flex-direction: column; gap: 4px; }
-  .store-model-row { display: flex; align-items: flex-start; font-size: 13px; color: #1A1A1A; line-height: 1.5; }
-  .store-model-label { font-weight: 700; color: var(--navy); flex-shrink: 0; white-space: nowrap; width: 6.5em; }
-  .store-model-value { flex: 1; }
+  .store-model-detail { display: flex; flex-direction: column; gap: 8px; }
+  .store-model-row { font-size: 13px; color: #1A1A1A; line-height: 1.5; }
+  .store-model-label { display: block; font-size: 11px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+  .store-model-value { display: block; }
   .store-card-actions { display: flex; gap: 10px; margin-top: 4px; }
   .btn-store-web, .btn-store-tel {
     flex: 1; text-align: center; padding: 11px 8px; font-size: 13px; font-weight: 700;
@@ -287,8 +287,8 @@
       BRAND_KEYS.forEach(b => classify(b, caps[b]));
     }
     let html = '<div class="store-model-detail">';
-    if (bodyBrands.length) html += `<p class="store-model-row"><span class="store-model-label">本体取扱：</span><span class="store-model-value">${bodyBrands.join('・')}</span></p>`;
-    if (lensBrands.length) html += `<p class="store-model-row"><span class="store-model-label">レンズ交換：</span><span class="store-model-value">${lensBrands.join('・')}</span></p>`;
+    if (bodyBrands.length) html += `<p class="store-model-row"><span class="store-model-label">本体取扱</span><span class="store-model-value">${bodyBrands.join('・')}</span></p>`;
+    if (lensBrands.length) html += `<p class="store-model-row"><span class="store-model-label">レンズ交換</span><span class="store-model-value">${lensBrands.join('・')}</span></p>`;
     html += '</div>';
     return html;
   }
