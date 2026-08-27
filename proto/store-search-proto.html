@@ -132,6 +132,10 @@
   .store-tags { display: flex; gap: 6px; flex-wrap: wrap; }
   .store-tag-product { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 4px; background: #EAF2FB; color: #1A5276; }
   .store-tag-lens { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 4px; background: #EAFAF1; color: #1E8449; }
+  .store-model-detail { display: flex; flex-direction: column; gap: 4px; }
+  .store-model-row { display: flex; align-items: flex-start; font-size: 13px; color: #1A1A1A; line-height: 1.5; }
+  .store-model-label { font-weight: 700; color: var(--navy); flex-shrink: 0; white-space: nowrap; width: 6.5em; }
+  .store-model-value { flex: 1; }
   .store-card-actions { display: flex; gap: 10px; margin-top: 4px; }
   .btn-store-web, .btn-store-tel {
     flex: 1; text-align: center; padding: 11px 8px; font-size: 13px; font-weight: 700;
@@ -265,20 +269,28 @@
 
   function getStoreCaps(store) { return SPECIAL_BRANDS[store.name] || DEFAULT_BRANDS; }
 
-  function buildStoreTags(store, brand) {
+  const BRAND_DISPLAY = { MIRZA: 'MiRZA', Rokid: 'Rokid', 'Even Realities': 'Even Realities G2', VITURE: 'VITURE', SABERA: 'SABERA' };
+
+  function buildStoreModelDetail(store, brand) {
     const caps = getStoreCaps(store);
-    let tags = '';
+    let bodyBrands = [], lensBrands = [];
+    function classify(b, c) {
+      if (!c) return;
+      const name = BRAND_DISPLAY[b] || b;
+      if (c.body) bodyBrands.push(name);
+      if (c.lens) lensBrands.push(name);
+    }
     if (brand) {
       const c = caps[brand] || caps[brand === 'VITURE' ? 'Viture' : brand];
-      if (c && c.body) tags += '<span class="store-tag-product">本体取扱</span>';
-      if (c && c.lens) tags += '<span class="store-tag-lens">レンズ交換対応</span>';
+      classify(brand, c);
     } else {
-      const hasBody = BRAND_KEYS.some(b => caps[b] && caps[b].body);
-      const hasLens = BRAND_KEYS.some(b => caps[b] && caps[b].lens);
-      if (hasBody) tags += '<span class="store-tag-product">本体取扱あり</span>';
-      if (hasLens) tags += '<span class="store-tag-lens">レンズ交換対応</span>';
+      BRAND_KEYS.forEach(b => classify(b, caps[b]));
     }
-    return tags || '<span class="store-tag-lens">レンズ交換対応</span>';
+    let html = '<div class="store-model-detail">';
+    if (bodyBrands.length) html += `<p class="store-model-row"><span class="store-model-label">本体取扱：</span><span class="store-model-value">${bodyBrands.join('・')}</span></p>`;
+    if (lensBrands.length) html += `<p class="store-model-row"><span class="store-model-label">レンズ交換：</span><span class="store-model-value">${lensBrands.join('・')}</span></p>`;
+    html += '</div>';
+    return html;
   }
 
   function storeMatches(store, brand, purpose) {
@@ -349,7 +361,7 @@
           ${(state.originLabel && i===0) ? '<span class="nearest-badge">お客様に最も近い店舗</span>' : ''}
           <p class="store-card-name">${s.name}${s.dist!=null ? `<span class="store-card-dist">約 ${s.dist.toFixed(1)} km</span>` : ''}</p>
           <p class="store-card-addr">${s.address}</p>
-          <div class="store-tags">${buildStoreTags(s, state.brand)}</div>
+          ${buildStoreModelDetail(s, state.brand)}
           <div class="store-card-actions">
             <a href="${s.reserve}" class="btn-store-web">WEB予約</a>
             <a href="tel:${s.tel}" class="btn-store-tel">${s.tel}</a>
