@@ -40,7 +40,7 @@
   .btn-geolocate:hover { opacity: 0.88; }
   .or-divider { display: flex; align-items: center; gap: 12px; margin: 18px 0; color: #999; font-size: 13px; }
   .or-divider::before, .or-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-  .zip-row { display: flex; align-items: center; gap: 8px; }
+  .zip-row { display: flex; align-items: center; justify-content: center; gap: 8px; }
   .zip-mark { font-weight: 700; flex-shrink: 0; }
   .zip-row input[type="text"] {
     padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px;
@@ -50,7 +50,7 @@
   .zip-sep { color: #999; }
   .btn-zip-search {
     padding: 12px 22px; background: var(--red); color: #fff; border: none; border-radius: 8px;
-    font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer; white-space: nowrap; margin-left: auto;
+    font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer; white-space: nowrap;
   }
 
   /* ---- 都道府県タブ ---- */
@@ -148,7 +148,7 @@
   @media (max-width: 767px) {
     .store-grid { grid-template-columns: 1fr; }
     .zip-row { flex-wrap: wrap; }
-    .btn-zip-search { margin-left: 0; width: 100%; }
+    .btn-zip-search { width: 100%; }
     .cond-radio-group { gap: 14px; }
   }
 </style>
