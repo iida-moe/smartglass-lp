@@ -209,7 +209,7 @@
           <div class="filter-accordion-inner">
             <div class="cond-row">
               <label class="cond-label">商品を選ぶ</label>
-              <select class="cond-select" id="cond-product">
+              <select class="cond-select" id="cond-product" onchange="applyCondLive()">
                 <option value="">指定しない</option>
                 <option value="MIRZA">MiRZA</option>
                 <option value="Rokid">Rokid</option>
@@ -221,14 +221,14 @@
             <div class="cond-row">
               <label class="cond-label">ご希望の内容</label>
               <div class="cond-radio-group">
-                <label><input type="radio" name="cond-purpose" value=""> 指定しない</label>
-                <label><input type="radio" name="cond-purpose" value="trial"> 本体購入・試着</label>
-                <label><input type="radio" name="cond-purpose" value="lens"> レンズ交換</label>
+                <label><input type="radio" name="cond-purpose" value="" onchange="applyCondLive()"> 指定しない</label>
+                <label><input type="radio" name="cond-purpose" value="trial" onchange="applyCondLive()"> 本体購入・試着</label>
+                <label><input type="radio" name="cond-purpose" value="lens" onchange="applyCondLive()"> レンズ交換</label>
               </div>
             </div>
             <div class="cond-panel-actions">
               <button class="btn-cond-clear" onclick="clearCond()">条件をクリア</button>
-              <button class="btn-cond-apply" onclick="applyCond()">この条件で絞り込む</button>
+              <button class="btn-cond-apply" onclick="closeAccordion()">閉じる</button>
             </div>
           </div>
         </div>
@@ -443,11 +443,13 @@
     state.brand = ''; state.purpose = '';
     renderAll();
   }
-  function applyCond() {
+  function applyCondLive() {
     state.brand = document.getElementById('cond-product').value;
     state.purpose = (document.querySelector('input[name="cond-purpose"]:checked')||{}).value || '';
-    document.getElementById('filter-accordion').classList.remove('open');
     renderAll();
+  }
+  function closeAccordion() {
+    document.getElementById('filter-accordion').classList.remove('open');
   }
 
   function fakeGeolocate() {
