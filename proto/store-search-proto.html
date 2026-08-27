@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>店舗検索プロトタイプ</title>
+<title>店舗検索プロトタイプ v2</title>
 <style>
   * { box-sizing: border-box; }
   body {
@@ -19,7 +19,7 @@
     --border: #E0E0E0;
   }
   .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
-  section#search { background: var(--navy); padding: 60px 0 40px; }
+  section#search { background: var(--navy); padding: 60px 0 50px; }
   .section-title {
     text-align: center; color: #fff; font-size: 30px; font-weight: 700; margin: 0 0 8px;
   }
@@ -71,79 +71,29 @@
   .pref-tab.active { background: var(--red); border-color: var(--red); }
   .pref-tab.active .count { background: rgba(255,255,255,0.28); }
 
-  /* ---- 適用中の条件チップ ---- */
-  .active-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
-  .filter-chip {
-    display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.08);
-    color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 999px; padding: 6px 8px 6px 14px;
-    font-size: 13px;
+  /* ---- 絞り込みアコーディオン ---- */
+  .filter-accordion { background: #fff; border-radius: 12px; margin-bottom: 20px; overflow: hidden; }
+  .filter-accordion-head {
+    width: 100%; display: flex; align-items: center; gap: 10px; padding: 18px 24px;
+    background: none; border: none; cursor: pointer; font-family: inherit;
+    font-size: 16px; font-weight: 700; color: var(--text-primary); text-align: left;
   }
-  .filter-chip button {
-    background: rgba(255,255,255,0.2); border: none; color: #fff; width: 18px; height: 18px; border-radius: 50%;
-    cursor: pointer; font-size: 12px; line-height: 1; display: flex; align-items: center; justify-content: center;
+  .filter-accordion-head .tag-icon { color: var(--red); font-size: 18px; flex-shrink: 0; }
+  .filter-accordion-head .chevron { margin-left: auto; color: #999; transition: transform 0.2s; font-size: 13px; }
+  .filter-accordion.open .chevron { transform: rotate(180deg); }
+  .filter-accordion-body {
+    max-height: 0; overflow: hidden; transition: max-height 0.25s ease;
   }
-
-  /* ---- 店舗リスト ---- */
-  .store-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 90px; }
-  .store-list.is-sorted .store-item:first-child { border-color: var(--red); border-width: 2px; }
-  .store-item {
-    background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 18px 22px;
-    display: flex; align-items: center; gap: 18px;
-  }
-  .store-item-photo {
-    width: 84px; height: 84px; border-radius: 8px; overflow: hidden; flex-shrink: 0; background: var(--bg-gray);
-  }
-  .store-item-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .store-item-body { flex: 1; min-width: 0; }
-  .nearest-badge {
-    display: inline-block; font-size: 11px; font-weight: 700; color: var(--red); margin-bottom: 4px;
-  }
-  .store-item-name { font-size: 17px; font-weight: 700; margin: 0 0 4px; }
-  .store-item-addr { font-size: 13px; color: #666; margin: 0 0 8px; }
-  .store-item-dist { font-size: 13px; font-weight: 700; color: var(--red); margin-left: 8px; }
-  .store-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-  .store-tag-product { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 4px; background: #EAF2FB; color: #1A5276; }
-  .store-tag-lens { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 4px; background: #EAFAF1; color: #1E8449; }
-  .store-item-actions { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
-  .btn-store-web, .btn-store-tel {
-    display: block; text-align: center; padding: 10px 16px; font-size: 13px; font-weight: 700;
-    font-family: inherit; border-radius: 6px; text-decoration: none; white-space: nowrap;
-  }
-  .btn-store-web { background: var(--red); color: #fff; }
-  .btn-store-tel { background: transparent; color: var(--red); border: 1.5px solid var(--red); }
-  .empty-msg { color: #fff; text-align: center; padding: 40px 0; opacity: 0.7; }
-
-  /* ---- 追従の下部バー ---- */
-  .sticky-bar {
-    position: fixed; left: 0; right: 0; bottom: 0; background: #fff; border-top: 1px solid var(--border);
-    box-shadow: 0 -2px 12px rgba(0,0,0,0.08); padding: 14px 20px; z-index: 50;
-    display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  }
-  .sticky-bar-count { font-size: 14px; color: #333; }
-  .sticky-bar-count b { color: var(--red); font-size: 20px; margin-right: 4px; }
-  .btn-add-condition {
-    display: flex; align-items: center; gap: 6px; background: #fff; color: var(--red);
-    border: 2px solid var(--red); border-radius: 999px; padding: 10px 20px; font-size: 14px; font-weight: 700;
-    font-family: inherit; cursor: pointer; white-space: nowrap;
-  }
-
-  /* ---- 条件パネル（モーダル） ---- */
-  .cond-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; align-items: flex-end; justify-content: center; z-index: 100;
-  }
-  .cond-overlay.open { display: flex; }
-  .cond-panel {
-    background: #fff; border-radius: 16px 16px 0 0; width: 100%; max-width: 480px; padding: 24px 24px 20px;
-  }
-  .cond-panel-title { font-size: 17px; font-weight: 700; margin: 0 0 18px; }
-  .cond-row { margin-bottom: 18px; }
+  .filter-accordion.open .filter-accordion-body { max-height: 400px; }
+  .filter-accordion-inner { padding: 4px 24px 24px; border-top: 1px solid var(--border); }
+  .cond-row { margin: 18px 0; }
   .cond-label { font-size: 13px; font-weight: 700; margin-bottom: 8px; display: block; }
   .cond-select {
     width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 15px; font-family: inherit;
   }
-  .cond-radio-group { display: flex; gap: 20px; }
+  .cond-radio-group { display: flex; gap: 20px; flex-wrap: wrap; }
   .cond-radio-group label { display: flex; align-items: center; gap: 6px; font-size: 14px; }
-  .cond-panel-actions { display: flex; gap: 10px; margin-top: 22px; }
+  .cond-panel-actions { display: flex; gap: 10px; margin-top: 6px; }
   .btn-cond-clear {
     flex: 1; padding: 13px; background: #fff; color: #666; border: 1px solid var(--border); border-radius: 8px;
     font-size: 14px; font-weight: 700; font-family: inherit; cursor: pointer;
@@ -153,12 +103,49 @@
     font-size: 14px; font-weight: 700; font-family: inherit; cursor: pointer;
   }
 
+  /* ---- 適用中の条件チップ + 件数 ---- */
+  .result-meta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin: 0 0 16px; }
+  .result-count { color: #fff; font-size: 14px; }
+  .result-count b { color: var(--red); font-size: 18px; margin: 0 2px; }
+  .active-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+  .filter-chip {
+    display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.08);
+    color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 999px; padding: 5px 6px 5px 12px;
+    font-size: 12px;
+  }
+  .filter-chip button {
+    background: rgba(255,255,255,0.2); border: none; color: #fff; width: 16px; height: 16px; border-radius: 50%;
+    cursor: pointer; font-size: 11px; line-height: 1; display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ---- 店舗カード（2列グリッド） ---- */
+  .store-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 20px; }
+  .store-card {
+    background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .store-card.is-nearest { border: 2px solid var(--red); }
+  .nearest-badge { font-size: 11px; font-weight: 700; color: var(--red); }
+  .store-card-name { font-size: 18px; font-weight: 700; margin: 0; }
+  .store-card-dist { font-size: 13px; font-weight: 700; color: var(--red); margin-left: 6px; }
+  .store-card-addr { font-size: 13px; color: #666; margin: -4px 0 0; }
+  .store-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .store-tag-product { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 4px; background: #EAF2FB; color: #1A5276; }
+  .store-tag-lens { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 4px; background: #EAFAF1; color: #1E8449; }
+  .store-card-actions { display: flex; gap: 10px; margin-top: 4px; }
+  .btn-store-web, .btn-store-tel {
+    flex: 1; text-align: center; padding: 11px 8px; font-size: 13px; font-weight: 700;
+    font-family: inherit; border-radius: 6px; text-decoration: none; white-space: nowrap;
+  }
+  .btn-store-web { background: var(--red); color: #fff; }
+  .btn-store-tel { background: transparent; color: var(--red); border: 1.5px solid var(--red); }
+  .empty-msg { color: #fff; text-align: center; padding: 40px 0; opacity: 0.7; grid-column: 1 / -1; }
+
   @media (max-width: 767px) {
-    .store-item { flex-wrap: wrap; }
-    .store-item-actions { flex-direction: row; width: 100%; }
-    .btn-store-web, .btn-store-tel { flex: 1; }
+    .store-grid { grid-template-columns: 1fr; }
     .zip-row { flex-wrap: wrap; }
     .btn-zip-search { margin-left: 0; width: 100%; }
+    .cond-radio-group { gap: 14px; }
   }
 </style>
 </head>
@@ -183,44 +170,49 @@
     </div>
 
     <div class="pref-tabs" id="pref-tabs"></div>
-    <div class="active-filters" id="active-filters"></div>
-    <div class="store-list" id="store-list"></div>
-  </div>
-</section>
 
-<div class="sticky-bar">
-  <div class="sticky-bar-count" id="sticky-count"></div>
-  <button class="btn-add-condition" onclick="openCond()">条件を追加</button>
-</div>
-
-<div class="cond-overlay" id="cond-overlay" onclick="if(event.target===this) closeCond()">
-  <div class="cond-panel">
-    <p class="cond-panel-title">商品・ご希望内容で絞り込む</p>
-    <div class="cond-row">
-      <label class="cond-label">商品を選ぶ</label>
-      <select class="cond-select" id="cond-product">
-        <option value="">指定しない</option>
-        <option value="MIRZA">MiRZA</option>
-        <option value="Rokid">Rokid</option>
-        <option value="Even Realities">Even Realities</option>
-        <option value="Viture">VITURE Luma シリーズ</option>
-        <option value="SABERA">SABERA</option>
-      </select>
-    </div>
-    <div class="cond-row">
-      <label class="cond-label">ご希望の内容</label>
-      <div class="cond-radio-group">
-        <label><input type="radio" name="cond-purpose" value=""> 指定しない</label>
-        <label><input type="radio" name="cond-purpose" value="trial"> 本体購入・試着</label>
-        <label><input type="radio" name="cond-purpose" value="lens"> レンズ交換</label>
+    <div class="filter-accordion" id="filter-accordion">
+      <button class="filter-accordion-head" onclick="toggleAccordion()">
+        <span class="tag-icon">🏷</span> 取扱商品・ご希望内容で絞り込む
+        <span class="chevron">▼</span>
+      </button>
+      <div class="filter-accordion-body">
+        <div class="filter-accordion-inner">
+          <div class="cond-row">
+            <label class="cond-label">商品を選ぶ</label>
+            <select class="cond-select" id="cond-product">
+              <option value="">指定しない</option>
+              <option value="MIRZA">MiRZA</option>
+              <option value="Rokid">Rokid</option>
+              <option value="Even Realities">Even Realities</option>
+              <option value="Viture">VITURE Luma シリーズ</option>
+              <option value="SABERA">SABERA</option>
+            </select>
+          </div>
+          <div class="cond-row">
+            <label class="cond-label">ご希望の内容</label>
+            <div class="cond-radio-group">
+              <label><input type="radio" name="cond-purpose" value=""> 指定しない</label>
+              <label><input type="radio" name="cond-purpose" value="trial"> 本体購入・試着</label>
+              <label><input type="radio" name="cond-purpose" value="lens"> レンズ交換</label>
+            </div>
+          </div>
+          <div class="cond-panel-actions">
+            <button class="btn-cond-clear" onclick="clearCond()">条件をクリア</button>
+            <button class="btn-cond-apply" onclick="applyCond()">この条件で絞り込む</button>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="cond-panel-actions">
-      <button class="btn-cond-clear" onclick="clearCond()">条件をクリア</button>
-      <button class="btn-cond-apply" onclick="applyCond()">この条件で絞り込む</button>
+
+    <div class="result-meta">
+      <div class="result-count" id="result-count"></div>
+      <div class="active-filters" id="active-filters"></div>
     </div>
+
+    <div class="store-grid" id="store-grid"></div>
   </div>
-</div>
+</section>
 
 <script>
   const STORES = [
@@ -261,7 +253,7 @@
     { name: 'アイメガネ町田木曽店', pref: '東京都', lat: 35.540, lon: 139.441 },
     { name: 'アイメガネ八千代台ユアエルム店', pref: '千葉県', lat: 35.723, lon: 140.102 },
     { name: 'アイメガネ焼津石津店', pref: '静岡県', lat: 34.865, lon: 138.323 },
-  ].map(s => Object.assign(s, { img: '', url: '#', reserve: '#', tel: '048-000-0000', address: s.pref + '〇〇市〇〇1-2-3' }));
+  ].map(s => Object.assign(s, { url: '#', reserve: '#', tel: '048-000-0000', address: s.pref + '〇〇市〇〇1-2-3' }));
 
   const SPECIAL_BRANDS = {
     'アイメガネ南浦和店': { MIRZA:{body:true,lens:true}, Rokid:{body:false,lens:true}, 'Even Realities':{body:true,lens:true}, VITURE:{body:true,lens:true}, Viture:{body:true,lens:true}, SABERA:{body:true,lens:true} },
@@ -312,7 +304,6 @@
   }
 
   const state = { pref: 'すべて', brand: '', purpose: '', originLabel: null, originLat: null, originLon: null };
-
   const PREF_ORDER = ['すべて', '埼玉県', '東京都', '栃木県', '千葉県', '茨城県', '群馬県', '静岡県'];
 
   function renderPrefTabs() {
@@ -330,21 +321,20 @@
     let chips = '';
     if (state.brand) {
       const label = state.brand === 'Viture' ? 'VITURE' : state.brand;
-      chips += `<span class="filter-chip">商品：${label}<button onclick="clearBrand()">×</button></span>`;
+      chips += `<span class="filter-chip">${label}<button onclick="event.stopPropagation();clearBrand()">×</button></span>`;
     }
     if (state.purpose) {
-      chips += `<span class="filter-chip">${state.purpose==='trial'?'本体購入・試着':'レンズ交換'}<button onclick="clearPurpose()">×</button></span>`;
+      chips += `<span class="filter-chip">${state.purpose==='trial'?'本体購入・試着':'レンズ交換'}<button onclick="event.stopPropagation();clearPurpose()">×</button></span>`;
     }
     if (state.originLabel) {
-      chips += `<span class="filter-chip">${state.originLabel}から近い順<button onclick="clearOrigin()">×</button></span>`;
+      chips += `<span class="filter-chip">${state.originLabel}から近い順<button onclick="event.stopPropagation();clearOrigin()">×</button></span>`;
     }
     wrap.innerHTML = chips;
   }
 
   function renderList() {
     let list = STORES.filter(s => storeMatches(s, state.brand, state.purpose) && (state.pref === 'すべて' || s.pref === state.pref));
-    const listEl = document.getElementById('store-list');
-    listEl.classList.toggle('is-sorted', !!state.originLabel);
+    const gridEl = document.getElementById('store-grid');
 
     if (state.originLabel) {
       list = list.map(s => Object.assign({}, s, { dist: haversine(state.originLat, state.originLon, s.lat, s.lon) }))
@@ -352,18 +342,15 @@
     }
 
     if (list.length === 0) {
-      listEl.innerHTML = '<p class="empty-msg">条件に合う店舗が見つかりませんでした。条件を変えてお試しください。</p>';
+      gridEl.innerHTML = '<p class="empty-msg">条件に合う店舗が見つかりませんでした。条件を変えてお試しください。</p>';
     } else {
-      listEl.innerHTML = list.map((s, i) => `
-        <div class="store-item">
-          <div class="store-item-photo"></div>
-          <div class="store-item-body">
-            ${(state.originLabel && i===0) ? '<span class="nearest-badge">お客様に最も近い店舗</span><br>' : ''}
-            <p class="store-item-name">${s.name}${s.dist!=null ? `<span class="store-item-dist">約 ${s.dist.toFixed(1)} km</span>` : ''}</p>
-            <p class="store-item-addr">${s.address}</p>
-            <div class="store-tags">${buildStoreTags(s, state.brand)}</div>
-          </div>
-          <div class="store-item-actions">
+      gridEl.innerHTML = list.map((s, i) => `
+        <div class="store-card${(state.originLabel && i===0) ? ' is-nearest' : ''}">
+          ${(state.originLabel && i===0) ? '<span class="nearest-badge">お客様に最も近い店舗</span>' : ''}
+          <p class="store-card-name">${s.name}${s.dist!=null ? `<span class="store-card-dist">約 ${s.dist.toFixed(1)} km</span>` : ''}</p>
+          <p class="store-card-addr">${s.address}</p>
+          <div class="store-tags">${buildStoreTags(s, state.brand)}</div>
+          <div class="store-card-actions">
             <a href="${s.reserve}" class="btn-store-web">WEB予約</a>
             <a href="tel:${s.tel}" class="btn-store-tel">${s.tel}</a>
           </div>
@@ -371,30 +358,29 @@
       `).join('');
     }
 
-    document.getElementById('sticky-count').innerHTML = `<b>${list.length}</b>店舗 全${STORES.length}店舗中`;
+    document.getElementById('result-count').innerHTML = `<b>${list.length}</b>店舗 / 全${STORES.length}店舗中`;
   }
 
   function renderAll() { renderPrefTabs(); renderChips(); renderList(); }
 
   function setPref(p) { state.pref = p; renderAll(); }
-  function clearBrand() { state.brand = ''; renderAll(); }
-  function clearPurpose() { state.purpose = ''; renderAll(); }
+  function clearBrand() { state.brand = ''; document.getElementById('cond-product').value=''; renderAll(); }
+  function clearPurpose() { state.purpose = ''; document.querySelectorAll('input[name="cond-purpose"]').forEach(r=>r.checked=(r.value==='')); renderAll(); }
   function clearOrigin() { state.originLabel = null; renderAll(); }
 
-  function openCond() {
-    document.getElementById('cond-product').value = state.brand;
-    document.querySelectorAll('input[name="cond-purpose"]').forEach(r => r.checked = (r.value === state.purpose));
-    document.getElementById('cond-overlay').classList.add('open');
+  function toggleAccordion() {
+    document.getElementById('filter-accordion').classList.toggle('open');
   }
-  function closeCond() { document.getElementById('cond-overlay').classList.remove('open'); }
   function clearCond() {
     document.getElementById('cond-product').value = '';
     document.querySelectorAll('input[name="cond-purpose"]').forEach(r => r.checked = (r.value===''));
+    state.brand = ''; state.purpose = '';
+    renderAll();
   }
   function applyCond() {
     state.brand = document.getElementById('cond-product').value;
     state.purpose = (document.querySelector('input[name="cond-purpose"]:checked')||{}).value || '';
-    closeCond();
+    document.getElementById('filter-accordion').classList.remove('open');
     renderAll();
   }
 
