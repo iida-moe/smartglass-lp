@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>店舗検索プロトタイプ</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    background: #0D1B2A;
+    color: #1A1A1A;
+  }
+  :root {
+    --red: #CC0000;
+    --navy: #0D1B2A;
+    --bg-gray: #F2F2F0;
+    --text-primary: #1A1A1A;
+    --border: #E0E0E0;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+  section#search { background: var(--navy); padding: 60px 0 40px; }
+  .section-title {
+    text-align: center; color: #fff; font-size: 30px; font-weight: 700; margin: 0 0 8px;
+  }
+  .search-lead {
+    text-align: center; color: rgba(255,255,255,0.65); font-size: 14px; margin: 0 0 28px;
+  }
+
+  /* ---- 探し方カード ---- */
+  .locate-card {
+    background: #fff; border-radius: 16px; padding: 28px 32px; max-width: 600px; margin: 0 auto 28px;
+  }
+  .locate-note { font-size: 13px; color: #666; text-align: center; margin: 0 0 18px; }
+  .btn-geolocate {
+    display: block; width: 100%; padding: 16px; background: var(--navy); color: #fff;
+    border: none; border-radius: 10px; font-size: 16px; font-weight: 700; font-family: inherit;
+    cursor: pointer; letter-spacing: 0.02em;
+  }
+  .btn-geolocate:hover { opacity: 0.88; }
+  .or-divider { display: flex; align-items: center; gap: 12px; margin: 18px 0; color: #999; font-size: 13px; }
+  .or-divider::before, .or-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .zip-row { display: flex; align-items: center; gap: 8px; }
+  .zip-mark { font-weight: 700; flex-shrink: 0; }
+  .zip-row input[type="text"] {
+    padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px;
+    font-size: 16px; font-family: inherit; text-align: center; letter-spacing: 0.05em;
+  }
+  #zip1 { width: 5.5em; } #zip2 { width: 6.5em; }
+  .zip-sep { color: #999; }
+  .btn-zip-search {
+    padding: 12px 22px; background: var(--red); color: #fff; border: none; border-radius: 8px;
+    font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer; white-space: nowrap; margin-left: auto;
+  }
+
+  /* ---- 都道府県タブ ---- */
+  .pref-tabs {
+    display: flex; gap: 8px; overflow-x: auto; padding: 4px 0 16px;
+    scrollbar-width: none;
+  }
+  .pref-tabs::-webkit-scrollbar { display: none; }
+  .pref-tab {
+    flex-shrink: 0; display: flex; align-items: center; gap: 6px;
+    padding: 9px 16px; border-radius: 999px; border: 1.5px solid rgba(255,255,255,0.25);
+    background: transparent; color: #fff; font-size: 14px; font-weight: 700; font-family: inherit;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .pref-tab .count {
+    background: rgba(255,255,255,0.18); border-radius: 999px; padding: 1px 8px; font-size: 12px; font-weight: 700;
+  }
+  .pref-tab.active { background: var(--red); border-color: var(--red); }
+  .pref-tab.active .count { background: rgba(255,255,255,0.28); }
+
+  /* ---- 適用中の条件チップ ---- */
+  .active-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
+  .filter-chip {
+    display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.08);
+    color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 999px; padding: 6px 8px 6px 14px;
+    font-size: 13px;
+  }
+  .filter-chip button {
+    background: rgba(255,255,255,0.2); border: none; color: #fff; width: 18px; height: 18px; border-radius: 50%;
+    cursor: pointer; font-size: 12px; line-height: 1; display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ---- 店舗リスト ---- */
+  .store-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 90px; }
+  .store-list.is-sorted .store-item:first-child { border-color: var(--red); border-width: 2px; }
+  .store-item {
+    background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 18px 22px;
+    display: flex; align-items: center; gap: 18px;
+  }
+  .store-item-photo {
+    width: 84px; height: 84px; border-radius: 8px; overflow: hidden; flex-shrink: 0; background: var(--bg-gray);
+  }
+  .store-item-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .store-item-body { flex: 1; min-width: 0; }
+  .nearest-badge {
+    display: inline-block; font-size: 11px; font-weight: 700; color: var(--red); margin-bottom: 4px;
+  }
+  .store-item-name { font-size: 17px; font-weight: 700; margin: 0 0 4px; }
+  .store-item-addr { font-size: 13px; color: #666; margin: 0 0 8px; }
+  .store-item-dist { font-size: 13px; font-weight: 700; color: var(--red); margin-left: 8px; }
+  .store-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .store-tag-product { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 4px; background: #EAF2FB; color: #1A5276; }
+  .store-tag-lens { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 4px; background: #EAFAF1; color: #1E8449; }
+  .store-item-actions { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+  .btn-store-web, .btn-store-tel {
+    display: block; text-align: center; padding: 10px 16px; font-size: 13px; font-weight: 700;
+    font-family: inherit; border-radius: 6px; text-decoration: none; white-space: nowrap;
+  }
+  .btn-store-web { background: var(--red); color: #fff; }
+  .btn-store-tel { background: transparent; color: var(--red); border: 1.5px solid var(--red); }
+  .empty-msg { color: #fff; text-align: center; padding: 40px 0; opacity: 0.7; }
+
+  /* ---- 追従の下部バー ---- */
+  .sticky-bar {
+    position: fixed; left: 0; right: 0; bottom: 0; background: #fff; border-top: 1px solid var(--border);
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.08); padding: 14px 20px; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .sticky-bar-count { font-size: 14px; color: #333; }
+  .sticky-bar-count b { color: var(--red); font-size: 20px; margin-right: 4px; }
+  .btn-add-condition {
+    display: flex; align-items: center; gap: 6px; background: #fff; color: var(--red);
+    border: 2px solid var(--red); border-radius: 999px; padding: 10px 20px; font-size: 14px; font-weight: 700;
+    font-family: inherit; cursor: pointer; white-space: nowrap;
+  }
+
+  /* ---- 条件パネル（モーダル） ---- */
+  .cond-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; align-items: flex-end; justify-content: center; z-index: 100;
+  }
+  .cond-overlay.open { display: flex; }
+  .cond-panel {
+    background: #fff; border-radius: 16px 16px 0 0; width: 100%; max-width: 480px; padding: 24px 24px 20px;
+  }
+  .cond-panel-title { font-size: 17px; font-weight: 700; margin: 0 0 18px; }
+  .cond-row { margin-bottom: 18px; }
+  .cond-label { font-size: 13px; font-weight: 700; margin-bottom: 8px; display: block; }
+  .cond-select {
+    width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 15px; font-family: inherit;
+  }
+  .cond-radio-group { display: flex; gap: 20px; }
+  .cond-radio-group label { display: flex; align-items: center; gap: 6px; font-size: 14px; }
+  .cond-panel-actions { display: flex; gap: 10px; margin-top: 22px; }
+  .btn-cond-clear {
+    flex: 1; padding: 13px; background: #fff; color: #666; border: 1px solid var(--border); border-radius: 8px;
+    font-size: 14px; font-weight: 700; font-family: inherit; cursor: pointer;
+  }
+  .btn-cond-apply {
+    flex: 2; padding: 13px; background: var(--red); color: #fff; border: none; border-radius: 8px;
+    font-size: 14px; font-weight: 700; font-family: inherit; cursor: pointer;
+  }
+
+  @media (max-width: 767px) {
+    .store-item { flex-wrap: wrap; }
+    .store-item-actions { flex-direction: row; width: 100%; }
+    .btn-store-web, .btn-store-tel { flex: 1; }
+    .zip-row { flex-wrap: wrap; }
+    .btn-zip-search { margin-left: 0; width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<section id="search">
+  <div class="container">
+    <h2 class="section-title">お近くの店舗を探す</h2>
+    <p class="search-lead">現在地、または郵便番号(上3桁)でお近くの店舗を絞り込めます</p>
+
+    <div class="locate-card">
+      <p class="locate-note">現在地からの検索は本番サーバーでのみ動作します（プロトタイプでは無効）</p>
+      <button class="btn-geolocate" onclick="fakeGeolocate()">📍 現在地から探す</button>
+      <div class="or-divider"><span>または</span></div>
+      <div class="zip-row">
+        <span class="zip-mark">〒</span>
+        <input type="text" id="zip1" maxlength="3" placeholder="330">
+        <span class="zip-sep">-</span>
+        <input type="text" id="zip2" maxlength="4" placeholder="0846">
+        <button class="btn-zip-search" onclick="fakeZipSearch()">検索</button>
+      </div>
+    </div>
+
+    <div class="pref-tabs" id="pref-tabs"></div>
+    <div class="active-filters" id="active-filters"></div>
+    <div class="store-list" id="store-list"></div>
+  </div>
+</section>
+
+<div class="sticky-bar">
+  <div class="sticky-bar-count" id="sticky-count"></div>
+  <button class="btn-add-condition" onclick="openCond()">条件を追加</button>
+</div>
+
+<div class="cond-overlay" id="cond-overlay" onclick="if(event.target===this) closeCond()">
+  <div class="cond-panel">
+    <p class="cond-panel-title">商品・ご希望内容で絞り込む</p>
+    <div class="cond-row">
+      <label class="cond-label">商品を選ぶ</label>
+      <select class="cond-select" id="cond-product">
+        <option value="">指定しない</option>
+        <option value="MIRZA">MiRZA</option>
+        <option value="Rokid">Rokid</option>
+        <option value="Even Realities">Even Realities</option>
+        <option value="Viture">VITURE Luma シリーズ</option>
+        <option value="SABERA">SABERA</option>
+      </select>
+    </div>
+    <div class="cond-row">
+      <label class="cond-label">ご希望の内容</label>
+      <div class="cond-radio-group">
+        <label><input type="radio" name="cond-purpose" value=""> 指定しない</label>
+        <label><input type="radio" name="cond-purpose" value="trial"> 本体購入・試着</label>
+        <label><input type="radio" name="cond-purpose" value="lens"> レンズ交換</label>
+      </div>
+    </div>
+    <div class="cond-panel-actions">
+      <button class="btn-cond-clear" onclick="clearCond()">条件をクリア</button>
+      <button class="btn-cond-apply" onclick="applyCond()">この条件で絞り込む</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const STORES = [
+    { name: 'アイメガネ本店', pref: '埼玉県', lat: 35.902, lon: 139.623 },
+    { name: 'アイメガネ与野イオン店', pref: '埼玉県', lat: 35.896, lon: 139.625 },
+    { name: 'アイメガネ与野本町店', pref: '埼玉県', lat: 35.894, lon: 139.622 },
+    { name: 'アイメガネ南浦和店', pref: '埼玉県', lat: 35.847, lon: 139.656 },
+    { name: 'アイメガネ岩槻駅前通り店', pref: '埼玉県', lat: 35.951, lon: 139.706 },
+    { name: 'アイメガネ上尾東口駅前店', pref: '埼玉県', lat: 35.977, lon: 139.593 },
+    { name: 'アイメガネ鴻巣東駅通り店', pref: '埼玉県', lat: 36.067, lon: 139.489 },
+    { name: 'アイメガネ鴻巣ウニクス店', pref: '埼玉県', lat: 36.058, lon: 139.503 },
+    { name: 'アイメガネ熊谷ティアラ店', pref: '埼玉県', lat: 36.147, lon: 139.389 },
+    { name: 'アイメガネ深谷上柴西店', pref: '埼玉県', lat: 36.196, lon: 139.281 },
+    { name: 'アイメガネ富士見鶴馬店', pref: '埼玉県', lat: 35.858, lon: 139.550 },
+    { name: 'アイメガネ川越的場店', pref: '埼玉県', lat: 35.925, lon: 139.486 },
+    { name: 'アイメガネ坂戸にっさい店', pref: '埼玉県', lat: 35.957, lon: 139.401 },
+    { name: 'アイメガネ東松山松本町店', pref: '埼玉県', lat: 36.043, lon: 139.399 },
+    { name: 'アイメガネ嵐山バイパス店', pref: '埼玉県', lat: 36.059, lon: 139.325 },
+    { name: 'アイメガネ小川大塚店', pref: '埼玉県', lat: 36.055, lon: 139.263 },
+    { name: 'アイメガネ寄居店', pref: '埼玉県', lat: 36.115, lon: 139.183 },
+    { name: 'アイメガネ日高店', pref: '埼玉県', lat: 35.905, lon: 139.340 },
+    { name: 'アイメガネイオンタウン毛呂山店', pref: '埼玉県', lat: 35.928, lon: 139.319 },
+    { name: 'アイメガネ秩父中宮地店', pref: '埼玉県', lat: 35.993, lon: 139.086 },
+    { name: 'アイメガネ川口赤井店', pref: '埼玉県', lat: 35.807, lon: 139.724 },
+    { name: 'アイメガネエキア谷塚店', pref: '埼玉県', lat: 35.822, lon: 139.801 },
+    { name: 'アイメガネ三郷南口駅前通り店', pref: '埼玉県', lat: 35.832, lon: 139.871 },
+    { name: 'アイメガネ新越谷店', pref: '埼玉県', lat: 35.888, lon: 139.791 },
+    { name: 'アイメガネ蓮田関山店', pref: '埼玉県', lat: 35.985, lon: 139.663 },
+    { name: 'アイメガネ幸手エムズタウン店', pref: '埼玉県', lat: 36.082, lon: 139.725 },
+    { name: 'アイメガネ羽生店', pref: '埼玉県', lat: 36.174, lon: 139.548 },
+    { name: 'アイメガネ古河イオン店', pref: '茨城県', lat: 36.193, lon: 139.706 },
+    { name: 'アイメガネおもちゃのまち西口店', pref: '栃木県', lat: 36.376, lon: 139.810 },
+    { name: 'アイメガネ宇都宮錦店', pref: '栃木県', lat: 36.558, lon: 139.883 },
+    { name: 'アイメガネ今市センショープラザ店', pref: '栃木県', lat: 36.720, lon: 139.699 },
+    { name: 'アイメガネ藤岡店', pref: '群馬県', lat: 36.255, lon: 139.074 },
+    { name: 'アイメガネ小平小川町店', pref: '東京都', lat: 35.728, lon: 139.477 },
+    { name: 'アイメガネザ・マーケットプレイス東大和店', pref: '東京都', lat: 35.740, lon: 139.428 },
+    { name: 'アイメガネ町田木曽店', pref: '東京都', lat: 35.540, lon: 139.441 },
+    { name: 'アイメガネ八千代台ユアエルム店', pref: '千葉県', lat: 35.723, lon: 140.102 },
+    { name: 'アイメガネ焼津石津店', pref: '静岡県', lat: 34.865, lon: 138.323 },
+  ].map(s => Object.assign(s, { img: '', url: '#', reserve: '#', tel: '048-000-0000', address: s.pref + '〇〇市〇〇1-2-3' }));
+
+  const SPECIAL_BRANDS = {
+    'アイメガネ南浦和店': { MIRZA:{body:true,lens:true}, Rokid:{body:false,lens:true}, 'Even Realities':{body:true,lens:true}, VITURE:{body:true,lens:true}, Viture:{body:true,lens:true}, SABERA:{body:true,lens:true} },
+    'アイメガネ宇都宮錦店': { MIRZA:{body:false,lens:true}, Rokid:{body:false,lens:true}, 'Even Realities':{body:true,lens:true}, VITURE:{body:false,lens:false}, Viture:{body:false,lens:false}, SABERA:{body:true,lens:true} },
+    'アイメガネ八千代台ユアエルム店': { MIRZA:{body:false,lens:true}, Rokid:{body:false,lens:true}, 'Even Realities':{body:true,lens:true}, VITURE:{body:false,lens:false}, Viture:{body:false,lens:false}, SABERA:{body:true,lens:true} },
+  };
+  const DEFAULT_BRANDS = { MIRZA:{body:false,lens:true}, Rokid:{body:false,lens:true}, 'Even Realities':{body:false,lens:false}, VITURE:{body:false,lens:false}, Viture:{body:false,lens:false}, SABERA:{body:false,lens:true} };
+  const BRAND_KEYS = ['MIRZA', 'Rokid', 'Even Realities', 'VITURE', 'SABERA'];
+
+  function getStoreCaps(store) { return SPECIAL_BRANDS[store.name] || DEFAULT_BRANDS; }
+
+  function buildStoreTags(store, brand) {
+    const caps = getStoreCaps(store);
+    let tags = '';
+    if (brand) {
+      const c = caps[brand] || caps[brand === 'VITURE' ? 'Viture' : brand];
+      if (c && c.body) tags += '<span class="store-tag-product">本体取扱</span>';
+      if (c && c.lens) tags += '<span class="store-tag-lens">レンズ交換対応</span>';
+    } else {
+      const hasBody = BRAND_KEYS.some(b => caps[b] && caps[b].body);
+      const hasLens = BRAND_KEYS.some(b => caps[b] && caps[b].lens);
+      if (hasBody) tags += '<span class="store-tag-product">本体取扱あり</span>';
+      if (hasLens) tags += '<span class="store-tag-lens">レンズ交換対応</span>';
+    }
+    return tags || '<span class="store-tag-lens">レンズ交換対応</span>';
+  }
+
+  function storeMatches(store, brand, purpose) {
+    const caps = getStoreCaps(store);
+    if (brand) {
+      const cap = caps[brand];
+      if (!cap) return false;
+      if (purpose === 'trial') return cap.body;
+      if (purpose === 'lens') return cap.lens;
+      return cap.body || cap.lens;
+    }
+    if (purpose === 'trial') return Object.values(caps).some(c => c.body);
+    if (purpose === 'lens') return Object.values(caps).some(c => c.lens);
+    return true;
+  }
+
+  function haversine(lat1, lon1, lat2, lon2) {
+    const R = 6371;
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2;
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  }
+
+  const state = { pref: 'すべて', brand: '', purpose: '', originLabel: null, originLat: null, originLon: null };
+
+  const PREF_ORDER = ['すべて', '埼玉県', '東京都', '栃木県', '千葉県', '茨城県', '群馬県', '静岡県'];
+
+  function renderPrefTabs() {
+    const wrap = document.getElementById('pref-tabs');
+    const baseFiltered = STORES.filter(s => storeMatches(s, state.brand, state.purpose));
+    wrap.innerHTML = PREF_ORDER.map(p => {
+      const count = p === 'すべて' ? baseFiltered.length : baseFiltered.filter(s => s.pref === p).length;
+      if (count === 0 && p !== 'すべて') return '';
+      return `<button class="pref-tab${state.pref===p?' active':''}" onclick="setPref('${p}')">${p}<span class="count">${count}</span></button>`;
+    }).join('');
+  }
+
+  function renderChips() {
+    const wrap = document.getElementById('active-filters');
+    let chips = '';
+    if (state.brand) {
+      const label = state.brand === 'Viture' ? 'VITURE' : state.brand;
+      chips += `<span class="filter-chip">商品：${label}<button onclick="clearBrand()">×</button></span>`;
+    }
+    if (state.purpose) {
+      chips += `<span class="filter-chip">${state.purpose==='trial'?'本体購入・試着':'レンズ交換'}<button onclick="clearPurpose()">×</button></span>`;
+    }
+    if (state.originLabel) {
+      chips += `<span class="filter-chip">${state.originLabel}から近い順<button onclick="clearOrigin()">×</button></span>`;
+    }
+    wrap.innerHTML = chips;
+  }
+
+  function renderList() {
+    let list = STORES.filter(s => storeMatches(s, state.brand, state.purpose) && (state.pref === 'すべて' || s.pref === state.pref));
+    const listEl = document.getElementById('store-list');
+    listEl.classList.toggle('is-sorted', !!state.originLabel);
+
+    if (state.originLabel) {
+      list = list.map(s => Object.assign({}, s, { dist: haversine(state.originLat, state.originLon, s.lat, s.lon) }))
+                 .sort((a,b) => a.dist - b.dist);
+    }
+
+    if (list.length === 0) {
+      listEl.innerHTML = '<p class="empty-msg">条件に合う店舗が見つかりませんでした。条件を変えてお試しください。</p>';
+    } else {
+      listEl.innerHTML = list.map((s, i) => `
+        <div class="store-item">
+          <div class="store-item-photo"></div>
+          <div class="store-item-body">
+            ${(state.originLabel && i===0) ? '<span class="nearest-badge">お客様に最も近い店舗</span><br>' : ''}
+            <p class="store-item-name">${s.name}${s.dist!=null ? `<span class="store-item-dist">約 ${s.dist.toFixed(1)} km</span>` : ''}</p>
+            <p class="store-item-addr">${s.address}</p>
+            <div class="store-tags">${buildStoreTags(s, state.brand)}</div>
+          </div>
+          <div class="store-item-actions">
+            <a href="${s.reserve}" class="btn-store-web">WEB予約</a>
+            <a href="tel:${s.tel}" class="btn-store-tel">${s.tel}</a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.getElementById('sticky-count').innerHTML = `<b>${list.length}</b>店舗 全${STORES.length}店舗中`;
+  }
+
+  function renderAll() { renderPrefTabs(); renderChips(); renderList(); }
+
+  function setPref(p) { state.pref = p; renderAll(); }
+  function clearBrand() { state.brand = ''; renderAll(); }
+  function clearPurpose() { state.purpose = ''; renderAll(); }
+  function clearOrigin() { state.originLabel = null; renderAll(); }
+
+  function openCond() {
+    document.getElementById('cond-product').value = state.brand;
+    document.querySelectorAll('input[name="cond-purpose"]').forEach(r => r.checked = (r.value === state.purpose));
+    document.getElementById('cond-overlay').classList.add('open');
+  }
+  function closeCond() { document.getElementById('cond-overlay').classList.remove('open'); }
+  function clearCond() {
+    document.getElementById('cond-product').value = '';
+    document.querySelectorAll('input[name="cond-purpose"]').forEach(r => r.checked = (r.value===''));
+  }
+  function applyCond() {
+    state.brand = document.getElementById('cond-product').value;
+    state.purpose = (document.querySelector('input[name="cond-purpose"]:checked')||{}).value || '';
+    closeCond();
+    renderAll();
+  }
+
+  function fakeGeolocate() {
+    state.originLabel = '現在地';
+    state.originLat = 35.90; state.originLon = 139.62;
+    renderAll();
+  }
+  function fakeZipSearch() {
+    const z1 = document.getElementById('zip1').value, z2 = document.getElementById('zip2').value;
+    if (!z1 || !z2) return;
+    state.originLabel = `〒${z1}-${z2}`;
+    state.originLat = 35.90; state.originLon = 139.62;
+    renderAll();
+  }
+
+  renderAll();
+</script>
+
+</body>
+</html>
