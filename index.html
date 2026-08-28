@@ -3846,6 +3846,7 @@
         const isNearest = !!(searchState.originLabel && i === 0);
         const isFeatured = hasSearch && i === 0;
         return renderStoreCard(s, { brand: searchState.brand, isNearest: isNearest, dist: s.dist,
+          showDistLine: searchState.originType === 'zip',
           badgeLabel: searchState.originType === 'store' ? '注目の店舗' : 'お客様に最も近い店舗', showImage: isFeatured, featured: isFeatured });
       }).join('');
     }
@@ -3863,7 +3864,7 @@
 
     if (opts.featured) {
       const badge = opts.isNearest ? '<p class="nearest-badge">' + (opts.badgeLabel || 'お客様に最も近い店舗') + '</p>' : '';
-      const distLine = opts.dist != null ? '<p class="store-card-dist-line">お住まいから約 ' + opts.dist.toFixed(1) + ' km</p>' : '';
+      const distLine = (opts.showDistLine && opts.dist != null) ? '<p class="store-card-dist-line">お住まいから約 ' + opts.dist.toFixed(1) + ' km</p>' : '';
       const imgHTML = s.img ? '<img class="store-card-img" src="' + s.img + '" alt="' + s.name + '" loading="lazy">' : '';
       return '' +
         '<div class="store-card is-featured' + (opts.isNearest ? ' is-nearest' : '') + '">' +
