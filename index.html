@@ -815,7 +815,7 @@
     }
     .store-card-body { flex: 1; min-width: 0; padding: 26px 30px; display: flex; flex-direction: column; gap: 10px; justify-content: center; }
     .store-card-body .store-card-name { font-size: clamp(22px, 2.6vw, 28px); }
-    .store-card-hp-link { font-size: clamp(13px, 1.5vw, 14px); font-weight: 700; color: var(--navy); margin-left: 10px; text-decoration: none; white-space: nowrap; }
+    .store-card-hp-link { font-size: clamp(13px, 1.5vw, 14px); font-weight: 700; color: var(--navy); text-decoration: none; white-space: nowrap; display: block; margin: 4px 0 0; }
     .store-model-plain { font-size: clamp(14px, 1.6vw, 16px); color: var(--text-primary); margin: 0; }
     .store-model-plain .store-model-label { margin-right: 4px; }
     .store-card-dist-line { font-size: clamp(15px, 1.7vw, 17px); font-weight: 700; color: var(--red); margin: 0; }
@@ -825,6 +825,7 @@
       .store-card.is-featured { flex-direction: column; }
       .store-card.is-featured .store-card-img { width: 100%; height: 200px; }
       .store-card-body { padding: 18px 20px; }
+      .store-card-body .store-card-name { font-size: clamp(18px, 5.5vw, 22px); }
     }
     .store-card-name { font-size: clamp(16px, 1.8vw, 18px); font-weight: 700; margin: 0; color: var(--text-primary); }
     .store-card-dist { font-size: clamp(12px, 1.4vw, 13px); font-weight: 700; color: var(--red); margin-left: 6px; }
@@ -2187,7 +2188,7 @@
       .flow-arrow-band-value { font-size: clamp(19px, 2.2vw, 22px); }
       .flow-note { text-align: left; }
       .flow-online-block { margin-top: 36px; padding-top: 32px; }
-      .flow-online-title { font-size: clamp(15px, 4.4vw, 18px); white-space: nowrap; }
+      .flow-online-title { font-size: clamp(29px, 4vw, 39px); white-space: normal; }
     }
 
     /* ===== SP: STORE SEARCH ===== */
@@ -3133,13 +3134,13 @@
         <span class="flow-arrow-band-value">約 1週間〜</span>
       </div>
     </div>
-    <p class="flow-note" style="margin-top:16px;">※機種によって設置店が異なります。あらかじめお確かめの上ご来店くださいませ。<br>※処方箋での作成も賜ります。<br>※ご使用方法注意事項等は各製品取扱書をお確かめくださいませ。<br>※機種によってお渡しまでの納期が異なります。上記はあくまで目安です。出来上がり次第ご連絡させていただきます。</p>
+    <p class="flow-note" style="margin-top:16px;">※機種によって設置店が異なります。あらかじめお確かめの上ご来店くださいませ。<br>※処方箋での作成も賜ります。<br>※ご使用方法注意事項等は各製品取扱書をお確かめくださいませ。<br>※機種によってお渡しまでの納期が異なります。上記は目安です。出来上がり次第ご連絡いたします。</p>
 
     <!-- オンライン購入フロー -->
     <div class="flow-online-block">
       <div class="flow-online-head">
         <h3 class="flow-online-title">オンラインでのレンズ購入の流れ</h3>
-        <p class="flow-online-sub">Rokid・MiRZA対応。専用インサートフレームをご郵送いただくと、レンズを加工してご自宅へ返送いたします。</p>
+        <p class="flow-online-sub">Rokid・MiRZA・SABERA対応。度付きレンズへの交換の場合は専用インサートフレームをご郵送ください。レンズを加工し、ご自宅へ返送いたします。<br>SABERAは本体もオンラインでご購入いただけます。</p>
       </div>
       <div class="flow-tl-wrap">
         <div class="flow-tl-line" aria-hidden="true"></div>
@@ -3192,7 +3193,7 @@
           <span class="flow-arrow-band-value">約 10日前後</span>
         </div>
       </div>
-      <p class="flow-note" style="margin-top:16px;">※ Rokid（クリップ式フレーム）・MiRZA（専用インサートフレーム）への度付きレンズ加工に対応しています。<br>※ 処方箋がある場合はフレームと合わせてご郵送ください。<br>※ 郵送の送料はお客様のご負担となります。<br>※ レンズの種類・コーティングによっては10日以上かかる場合があります。完成次第ご連絡いたします。<br>※ ご購入の手続き等詳細はアイジャパンオンラインをお確かめください。</p>
+      <p class="flow-note" style="margin-top:16px;">※ Rokid・MiRZA・SABERAの度付きレンズ加工に対応。<br>※ 処方箋がある場合はフレームと合わせてご郵送ください。<br>※ 郵送の送料はお客様のご負担となります。<br>※ レンズの種類・コーティングによっては10日以上かかる場合があります。完成次第ご連絡いたします。<br>※ ご購入の手続き等詳細はアイジャパンオンラインをお確かめください。</p>
     </div>
   </div>
 </section>
@@ -3409,14 +3410,14 @@
 
 <!-- 商品詳細モーダル -->
 <div id="product-modal" class="prod-modal-overlay">
-  <button class="modal-nav-btn modal-nav-prev" id="modal-nav-prev">&#8249;</button>
+  <button class="modal-nav-btn modal-nav-prev" id="modal-nav-prev"><svg width="40%" height="40%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
   <div class="prod-modal-inner">
     <button class="prod-modal-close" id="prod-modal-close">✕</button>
     <div class="prod-modal-body">
       <div class="prod-modal-content" id="prod-modal-content"></div>
     </div>
   </div>
-  <button class="modal-nav-btn modal-nav-next" id="modal-nav-next">&#8250;</button>
+  <button class="modal-nav-btn modal-nav-next" id="modal-nav-next"><svg width="40%" height="40%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
 </div>
 
 <script>
@@ -4167,7 +4168,8 @@
         { label: 'カメラ', value: '正面RGBカメラ×1、側面モノクロカメラ×2' },
       ],
       recommend: ['業務・法人でスマートグラスを活用したい人', '本格的なXR体験を求める人', '日本製・国内サポートにこだわりたい人', '空間コンピューティングを活用したい人'],
-      store: '本体取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span></strong>　レンズ交換：<strong>全37店舗 / オンライン対応</strong><small class="except-note">※本庄南大通り店を除く</small>',
+      store: '本体取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span></strong>',
+      lensStore: 'レンズ交換：<strong>全37店舗 / オンライン対応</strong><small class="except-note">※本庄南大通り店を除く</small>',
       trademarkNote: '※MiRZA<sup>®</sup>（ミルザ）は、NTTコノキューデバイスの商標です。',
       searchBrand: 'MIRZA',
       onlineStore: 'https://www.aijapan-online.com/product-page/mirzainsertlens',
@@ -4361,7 +4363,7 @@
       desc: '全てハンズフリー。「視界の中」で完結。文字起こし・議事録・AI要約、通知、AIアシスタント、原稿表示・テレプロンプト、リアルタイム翻訳、ナビゲーション機能をお使いいただけます。本体ご購入後も、度付きレンズへの後入れ交換に対応しています。',
       tags: ['AI翻訳対応', '40言語以上', 'カメラなし', '度付き対応', '国産（鯖江）'],
       specs: [
-        { label: '重量', value: '約38g（フレーム単体 約37g／レンズ装着時 約40g）' },
+        { label: '重量', value: '約38g' },
         { label: 'バッテリー', value: '通常使用 約12時間／最大 約14時間（充電ケースで約12回充電可）' },
         { label: 'ディスプレイ', value: 'Cellid社製プラスチック型ウェーブガイド（片眼・右眼側）。単色（グリーン）表示で、写真や画像は表示されません' },
         { label: 'カメラ', value: 'なし' },
@@ -4380,8 +4382,9 @@
           <li><strong>防水性能について</strong>：本体・充電ケースともに非防水です。雨・汗・入浴・プール等の水分を避けてご使用ください。</li>
           <li><strong>分解・改造の禁止</strong>：本体の分解・改造はしないでください。発煙・異臭・異常発熱・液漏れ・水没・破損などの異常があった場合は、直ちに使用を中止し、本体に触れず店舗までご連絡ください。</li>
         </ul>`,
-      recommend: ['会議・打ち合わせが多い人', '外国語を使う仕事や旅行が多い人', 'ハンズフリーで情報を確認したい人', '国産（鯖江）ブランドにこだわりたい人'],
-      store: '本体取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span>・<span class="store-name-link" onclick="showStoreByName(\'宇都宮錦\')">宇都宮錦店</span>・<span class="store-name-link" onclick="showStoreByName(\'八千代\')">八千代台ユアエルム店</span> / オンライン</strong><br>レンズ交換：<strong>全37店舗 / オンライン</strong><small class="except-note">※本庄南大通り店を除く</small><small class="except-note">※オンラインでの交換は単焦点レンズのみ</small>',
+      recommend: ['会議・打ち合わせが多い人', '外国語を使う仕事や旅行が多い人', 'ハンズフリーで情報を確認したい人', '鯖江ブランドにこだわりたい人'],
+      store: '本体取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span>・<span class="store-name-link" onclick="showStoreByName(\'宇都宮錦\')">宇都宮錦店</span>・<span class="store-name-link" onclick="showStoreByName(\'八千代\')">八千代台ユアエルム店</span> / オンライン</strong>',
+      lensStore: 'レンズ交換：<strong>全37店舗 / オンライン</strong><small class="except-note">※本庄南大通り店を除く</small><small class="except-note">※オンラインでの交換は単焦点レンズのみ</small>',
       searchBrand: 'SABERA',
       gallery: 'sabera',
       hasLens: true,
@@ -4418,13 +4421,14 @@
         <p class="modal-lens-block-ttl">注意事項</p>
         <p class="modal-lens-tbd">準備中</p>
       </div>`;
+    const storeHTML = pd.hasLens && (pd.lensStore || pd.store) ? `<p class="prod-modal-store">${pd.lensStore || pd.store}</p>` : '';
     const actionBtn = pd.hideLensActionBtn
       ? ''
       : (pd.lensOnly && pd.onlineStore)
         ? `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a>
            <a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインで注文する</a>`
         : `<a href="#search" class="btn btn-blue" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換の店舗を探す</a>`;
-    return `<div>${inner}${actionBtn ? `<div class="prod-modal-actions" style="margin-top:24px;">${actionBtn}</div>` : ''}</div>`;
+    return `<div>${inner}${storeHTML}${actionBtn ? `<div class="prod-modal-actions" style="margin-top:24px;">${actionBtn}</div>` : ''}</div>`;
   }
 
   function buildModalImgHTML(key, pd) {
