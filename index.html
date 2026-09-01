@@ -4082,8 +4082,9 @@
   function applySaberaVisibility() {
     var full = document.getElementById('sabera-full-card');
     var teaser = document.getElementById('sabera-teaser-card');
-    if (full) full.style.display = SABERA_PUBLIC ? 'flex' : 'none';
-    if (teaser) teaser.style.display = SABERA_PUBLIC ? 'none' : 'flex';
+    var inFilter = currentFilter === 'all';
+    if (full) full.style.display = (SABERA_PUBLIC && inFilter) ? 'flex' : 'none';
+    if (teaser) teaser.style.display = (!SABERA_PUBLIC && inFilter) ? 'flex' : 'none';
     var searchOpt = document.getElementById('sabera-search-option');
     if (searchOpt && !SABERA_PUBLIC && searchOpt.parentNode) {
       searchOpt.parentNode.removeChild(searchOpt);
@@ -4371,7 +4372,6 @@
         { label: 'サングラス対応', value: 'クリップオン式サングラス対応' },
         { label: '防水・防塵', value: '非防水（IP等級の認証なし）' },
       ],
-      specsNote: '※上記以外のスペックは判明次第追加予定です。',
       accordionLabel: '安全上の注意',
       accordion: `
         <ul class="modal-lens-notes">
