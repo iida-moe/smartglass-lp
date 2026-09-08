@@ -3049,15 +3049,12 @@
       </div>
 
       <!-- SABERA 詳細版（非公開・保存用／公開日にSABERA_PUBLICをtrueにすると表示される） -->
-      <div class="pg-card" data-product="sabera" data-ptype="all" id="sabera-full-card" style="display:none;">
+      <div class="pg-card" data-product="sabera" data-ptype="lens" id="sabera-full-card" style="display:none;">
         <div class="pg-card-img" id="sabera-card-img" style="background:#fff;">
           <img src="images/sabera/front.jpg" alt="SABERA スマートグラス" id="sabera-img" style="width:100%;height:100%;object-fit:contain;object-position:center;transform:none;">
         </div>
         <div class="pg-card-body">
           <h3 class="pg-card-name">SABERA<span class="pg-furigana">（サベラ）</span></h3>
-          <div class="pg-card-swatches">
-            <span class="pg-swatch pg-swatch--active" style="background:#1A1A1A;" title="ブラック"></span>
-          </div>
           <div class="pg-card-scenes">
             <span class="pg-scene-label">こんなシーンに</span>
             <div class="pg-scene-tags">
@@ -3066,7 +3063,6 @@
             </div>
           </div>
           <table class="pg-card-store">
-            <tr><th>本体取扱</th><td><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('南浦和','sabera')">南浦和店・</span><wbr><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('宇都宮錦','sabera')">宇都宮錦店・</span><wbr><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('八千代','sabera')">八千代台ユアエルム店</span> / オンライン</td></tr>
             <tr><th>レンズ交換</th><td>全37店舗 / オンライン<small class="except-note">※本庄南大通り店を除く</small><small class="except-note">※オンラインでの交換は単焦点レンズのみ</small></td></tr>
           </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('sabera')">詳しく見る ▶</button>
@@ -3140,7 +3136,7 @@
     <div class="flow-online-block">
       <div class="flow-online-head">
         <h3 class="flow-online-title">オンラインでのレンズ購入の流れ</h3>
-        <p class="flow-online-sub">Rokid・MiRZA・SABERA対応。度付きレンズへの交換の場合は専用インサートフレームをご郵送ください。レンズを加工し、ご自宅へ返送いたします。<br>SABERAは本体もオンラインでご購入いただけます。</p>
+        <p class="flow-online-sub">Rokid・MiRZA・SABERA対応。度付きレンズへの交換の場合は専用インサートフレームをご郵送ください。レンズを加工し、ご自宅へ返送いたします。</p>
       </div>
       <div class="flow-tl-wrap">
         <div class="flow-tl-line" aria-hidden="true"></div>
@@ -3590,7 +3586,7 @@
   }
 
   // 本体をアイメガネで取り扱わないブランド（レンズ交換のみ）
-  const LENS_ONLY_BRANDS = ['Rokid'];
+  const LENS_ONLY_BRANDS = ['Rokid', 'SABERA'];
   // 独立したレンズ交換サービスがなく、本体購入時にのみ度付きを選べるブランド
   const TRIAL_ONLY_BRANDS = ['Ray-Ban Meta'];
 
@@ -3677,7 +3673,7 @@
       'Ray-Ban Meta':   { body: true,  lens: true  },
       'VITURE':         { body: true,  lens: true  },
       'Viture':         { body: true,  lens: true  },
-      'SABERA':         { body: true,  lens: true  },
+      'SABERA':         { body: false, lens: true  },
     },
     'アイメガネ宇都宮錦店': {
       'MIRZA':          { body: false, lens: true  },
@@ -3686,7 +3682,7 @@
       'Ray-Ban Meta':   { body: false, lens: false },
       'VITURE':         { body: false, lens: false },
       'Viture':         { body: false, lens: false },
-      'SABERA':         { body: true,  lens: true  },
+      'SABERA':         { body: false, lens: true  },
     },
     'アイメガネ八千代台ユアエルム店': {
       'MIRZA':          { body: false, lens: true  },
@@ -3695,7 +3691,7 @@
       'Ray-Ban Meta':   { body: false, lens: false },
       'VITURE':         { body: false, lens: false },
       'Viture':         { body: false, lens: false },
-      'SABERA':         { body: true,  lens: true  },
+      'SABERA':         { body: false, lens: true  },
     },
   };
   // その他34店舗のデフォルト（レンズのみ）
@@ -4082,7 +4078,7 @@
   function applySaberaVisibility() {
     var full = document.getElementById('sabera-full-card');
     var teaser = document.getElementById('sabera-teaser-card');
-    var inFilter = currentFilter === 'all';
+    var inFilter = currentFilter === 'lens-only';
     if (full) full.style.display = (SABERA_PUBLIC && inFilter) ? 'flex' : 'none';
     if (teaser) teaser.style.display = (!SABERA_PUBLIC && inFilter) ? 'flex' : 'none';
     var searchOpt = document.getElementById('sabera-search-option');
@@ -4203,7 +4199,7 @@
     rokid: {
       name: 'Rokid スマートAIグラス',
       catch: 'Rokidに、あなたの視力を。',
-      desc: 'Rokid スマートAIグラス専用クリップオン式フレームに取り付ける度付きレンズです。本体・クリップオン式フレームはRokid販売店にてご購入のうえ、フレームをアイジャパンオンラインへご郵送ください。',
+      desc: 'Rokid スマートAIグラス専用クリップオン式フレームに取り付ける度付きレンズです。全37店舗での交換に加え、フレームをご郵送いただくオンライン注文にも対応しています。',
       tags: ['度付き対応', 'オンライン注文OK'],
       specs: [
         { label: '対応商品', value: 'Rokid スマートAIグラス専用' },
@@ -4217,9 +4213,13 @@
       gallery: 'rokid',
       lensOnly: true,
       lensHTML: `
-        <p class="modal-lens-intro">Rokid スマートAIグラス専用のクリップオン式フレームに取り付ける度付きレンズです。事前にRokid販売店にてクリップオン式フレームをご用意のうえ、フレームをアイジャパンオンラインへご郵送ください。</p>
+        <p class="modal-lens-intro">Rokid スマートAIグラス専用のクリップオン式フレームに取り付ける度付きレンズです。事前にRokid販売店にてクリップオン式フレームをご用意のうえ、店舗またはオンラインでレンズ交換をご注文ください。</p>
         <div class="modal-lens-block">
-          <p class="modal-lens-block-ttl">ご注文の流れ</p>
+          <p class="modal-lens-block-ttl">店舗でレンズ交換する</p>
+          <p class="modal-lens-meta">クリップオン式フレームをお持ちのうえ、お近くのアイメガネ店舗へお越しください。全37店舗で承っております。<small class="except-note">※本庄南大通り店を除く</small></p>
+        </div>
+        <div class="modal-lens-block">
+          <p class="modal-lens-block-ttl">オンライン注文の流れ</p>
           <p class="modal-lens-meta"><strong>STEP 1</strong>　Rokid公式サイトにてクリップオン式フレームをご購入ください。<br><a href="https://jp.rokid.com/pages/rokid-glasses" target="_blank" style="color:var(--navy);">Rokid公式ホームページ →</a></p>
           <p class="modal-lens-meta" style="margin-top:8px;"><strong>STEP 2</strong>　度数（球面・乱視・軸度・PD）を入力してオンラインでご注文後、フレームをご郵送ください。</p>
         </div>
@@ -4361,7 +4361,7 @@
     sabera: {
       name: 'SABERA<span class="prod-modal-furigana">サベラ</span>',
       catch: '鯖江生まれのスマート眼鏡が、ビジネスや日常を静かに研ぎ澄ます。',
-      desc: '全てハンズフリー。「視界の中」で完結。文字起こし・議事録・AI要約、通知、AIアシスタント、原稿表示・テレプロンプト、リアルタイム翻訳、ナビゲーション機能をお使いいただけます。本体ご購入後も、度付きレンズへの後入れ交換に対応しています。',
+      desc: '全てハンズフリー。「視界の中」で完結。文字起こし・議事録・AI要約、通知、AIアシスタント、原稿表示・テレプロンプト、リアルタイム翻訳、ナビゲーション機能をお使いいただけます。',
       tags: ['AI翻訳対応', '40言語以上', 'カメラなし', '度付き対応', '国産（鯖江）'],
       specs: [
         { label: '重量', value: '約38g' },
@@ -4383,13 +4383,12 @@
           <li><strong>分解・改造の禁止</strong>：本体の分解・改造はしないでください。発煙・異臭・異常発熱・液漏れ・水没・破損などの異常があった場合は、直ちに使用を中止し、本体に触れず店舗までご連絡ください。</li>
         </ul>`,
       recommend: ['会議・打ち合わせが多い人', '外国語を使う仕事や旅行が多い人', 'ハンズフリーで情報を確認したい人', '鯖江ブランドにこだわりたい人'],
-      store: '本体取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span>・<span class="store-name-link" onclick="showStoreByName(\'宇都宮錦\')">宇都宮錦店</span>・<span class="store-name-link" onclick="showStoreByName(\'八千代\')">八千代台ユアエルム店</span> / オンライン</strong>',
       lensStore: 'レンズ交換：<strong>全37店舗 / オンライン</strong><small class="except-note">※本庄南大通り店を除く</small><small class="except-note">※オンラインでの交換は単焦点レンズのみ</small>',
       searchBrand: 'SABERA',
       gallery: 'sabera',
-      hasLens: true,
+      lensOnly: true,
       lensHTML: `
-        <p class="modal-lens-intro">SABERA本体ご購入後も、度付きレンズへの後入れ交換に対応しています。店頭では単焦点・累進（遠近両用）レンズどちらにも対応し、アイジャパンオンラインでは単焦点レンズのみのお取り扱いです。</p>
+        <p class="modal-lens-intro">SABERAの度付きレンズへの交換に対応しています。店頭では単焦点・累進（遠近両用）レンズどちらにも対応し、アイジャパンオンラインでは単焦点レンズのみのお取り扱いです。</p>
         <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">レンズ仕様</p>
           <p class="modal-lens-meta">単焦点／累進（遠近両用）<small class="except-note">※オンラインは単焦点のみ</small></p>
@@ -4421,14 +4420,19 @@
         <p class="modal-lens-block-ttl">注意事項</p>
         <p class="modal-lens-tbd">準備中</p>
       </div>`;
-    const storeHTML = pd.hasLens && (pd.lensStore || pd.store) ? `<p class="prod-modal-store">${pd.lensStore || pd.store}</p>` : '';
+    const accordionHTML = pd.accordion ? `
+      <div class="modal-accordion">
+        <button class="modal-accordion-btn" onclick="toggleModalAccordion(this)">${pd.accordionLabel || '詳しい注文ガイド・製作範囲'} <span class="modal-accordion-arrow">▼</span></button>
+        <div class="modal-accordion-body">${pd.accordion}</div>
+      </div>` : '';
+    const storeHTML = (pd.hasLens || pd.lensOnly) && (pd.lensStore || pd.store) ? `<p class="prod-modal-store">${pd.lensStore || pd.store}</p>` : '';
     const actionBtn = pd.hideLensActionBtn
       ? ''
       : (pd.lensOnly && pd.onlineStore)
         ? `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a>
            <a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインで注文する</a>`
         : `<a href="#search" class="btn btn-blue" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換の店舗を探す</a>`;
-    return `<div>${inner}${storeHTML}${actionBtn ? `<div class="prod-modal-actions" style="margin-top:24px;">${actionBtn}</div>` : ''}</div>`;
+    return `<div>${inner}${accordionHTML}${storeHTML}${actionBtn ? `<div class="prod-modal-actions" style="margin-top:24px;">${actionBtn}</div>` : ''}</div>`;
   }
 
   function buildModalImgHTML(key, pd) {
@@ -4600,7 +4604,7 @@
         <button class="modal-content-tab" onclick="switchModalTab('lens',this)">${pd.lensTabLabel || 'レンズ交換について'}</button>
       </div>` : '';
     const infoColInner = pd.lensOnly
-      ? `<h3 class="prod-modal-name">${pd.name}</h3>${pd.catch ? `<p class="prod-modal-catch">${pd.catch}</p>` : ''}${buildLensTabHTML(pd)}`
+      ? `<h3 class="prod-modal-name">${pd.name}</h3>${pd.catch ? `<p class="prod-modal-catch">${pd.catch}</p>` : ''}${pd.desc ? `<p class="prod-modal-desc">${pd.desc}</p>` : ''}${recommendHTML}${buildLensTabHTML(pd)}`
       : pd.hasLens
         ? `${tabsHTML}<div id="modal-tab-body">${bodyInner}</div><div id="modal-tab-lens" style="display:none">${buildLensTabHTML(pd)}</div>`
         : bodyInner;
@@ -4610,7 +4614,7 @@
         <div class="prod-modal-img-col">${imgHTML}</div>
         <div class="prod-modal-info-col">${infoColInner}</div>
       </div>`;
-    var navDisplay = pd.lensOnly ? 'none' : '';
+    var navDisplay = '';
     document.getElementById('modal-nav-prev').style.display = navDisplay;
     document.getElementById('modal-nav-next').style.display = navDisplay;
     document.getElementById('product-modal').classList.add('open');
