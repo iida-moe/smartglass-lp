@@ -59,7 +59,7 @@
       {
         "@type": "Question",
         "name": "どの店舗でも全機種に対応していますか？",
-        "acceptedAnswer": { "@type": "Answer", "text": "機種によって本体の展示・販売、レンズ交換の対応店舗が異なります。MiRZA・Rokid・SABERAのレンズ交換は全37店舗で承っております（本庄南大通り店を除く）。Even Realities G2・VITUREは対応店舗が限定されますので、ページ内の「店舗検索」で機種を選んでご確認ください。" }
+        "acceptedAnswer": { "@type": "Answer", "text": "機種によって本体の展示・販売、レンズ交換の対応店舗が異なります。MiRZA・Rokid・SABERAのレンズ交換は全37店舗で承っております（本庄南大通り店を除く）。Even Realities G2・VITURE・Ray-Ban Metaは対応店舗が限定されますので、ページ内の「店舗検索」で機種を選んでご確認ください。" }
       },
       {
         "@type": "Question",
@@ -2652,6 +2652,8 @@
           <span class="brand-tag">VITURE</span>
           <span class="brand-sep"></span>
           <span class="brand-tag">SABERA</span>
+          <span class="brand-sep"></span>
+          <span class="brand-tag">Ray-Ban Meta</span>
         </div>
       </div>
       <!-- SP専用ブランドティッカー -->
@@ -2870,13 +2872,13 @@
       <!-- オンラインCTA -->
       <div class="why-sp-online-lead">
         <p class="why-sp-online-badge">すでに本体をお持ちの方へ</p>
-        <p class="why-sp-online-badge-note">※MiRZA・Rokidのみ対応</p>
+        <p class="why-sp-online-badge-note">※MiRZA・Rokid・SABERAのみ対応</p>
         <p class="why-sp-online-arrow">▼</p>
       </div>
       <div class="why-sp-online">
         <div class="why-sp-online-inner">
           <p class="why-sp-online-text">度付きレンズ交換、<br class="br-sp">全国どこからでも対応。</p>
-          <p class="why-sp-online-body">お持ちの本体を送るだけで、度付きレンズに交換してお届け。<span class="why-sp-online-models">※対応機種：MiRZA・Rokid</span></p>
+          <p class="why-sp-online-body">お持ちの本体を送るだけで、度付きレンズに交換してお届け。<span class="why-sp-online-models">※対応機種：MiRZA・Rokid・SABERA</span></p>
         </div>
         <div class="why-sp-online-action">
           <a href="https://www.aijapan-online.com/" target="_blank" class="btn-why-online">
@@ -2983,8 +2985,7 @@
         </div>
       </div>
 
-      <!-- Ray-Ban Meta（一旦非表示・要望により復活予定あり） -->
-      <!--
+      <!-- Ray-Ban Meta -->
       <div class="pg-card" data-product="rayban" data-ptype="all">
         <div class="pg-card-img" id="rayban-card-img">
           <img src="images/rayban/RW_BLAYZER_Product_Black_4x5.jpg" alt="Ray-Ban Meta Blayzer Optics" id="rayban-img">
@@ -3010,7 +3011,6 @@
           <a class="pg-card-official-link" href="https://www.ray-ban.com/japan/ray-ban-meta-ai-glasses" target="_blank" rel="noopener" onclick="event.stopPropagation();">メーカー公式サイトへ →</a>
         </div>
       </div>
-      -->
 
       <!-- VITURE Luma / Luma Ultra -->
       <div class="pg-card" data-product="viture" data-ptype="all">
@@ -3232,6 +3232,7 @@
                   <option value="Even Realities">Even Realities</option>
                   <option value="Viture">VITURE Luma シリーズ</option>
                   <option value="SABERA" id="sabera-search-option">SABERA</option>
+                  <option value="Ray-Ban Meta">Ray-Ban Meta</option>
                 </select>
               </div>
               <div class="cond-row cond-row-purpose">
@@ -3342,7 +3343,7 @@
           <span class="qa-q-text">どの店舗でも全機種に対応していますか？</span>
           <span class="qa-icon">+</span>
         </button>
-        <div class="qa-a">機種によって本体の展示・販売、レンズ交換の対応店舗が異なります。MiRZA・Rokid・SABERAのレンズ交換は全37店舗で承っております（本庄南大通り店を除く）。Even Realities G2・VITUREは対応店舗が限定されますので、機種を選んで<a href="#search" class="qa-a-link">店舗検索はこちら →</a>でご確認ください。</div>
+        <div class="qa-a">機種によって本体の展示・販売、レンズ交換の対応店舗が異なります。MiRZA・Rokid・SABERAのレンズ交換は全37店舗で承っております（本庄南大通り店を除く）。Even Realities G2・VITURE・Ray-Ban Metaは対応店舗が限定されますので、機種を選んで<a href="#search" class="qa-a-link">店舗検索はこちら →</a>でご確認ください。</div>
       </div>
 
       <div class="qa-item">
@@ -3721,7 +3722,7 @@
     return true;
   }
 
-  const BRAND_KEYS = ['MIRZA', 'Rokid', 'Even Realities', 'VITURE', 'SABERA'];
+  const BRAND_KEYS = ['MIRZA', 'Rokid', 'Even Realities', 'VITURE', 'SABERA', 'Ray-Ban Meta'];
   const BRAND_DISPLAY = {
     'MIRZA': 'MiRZA', 'Rokid': 'Rokid',
     'Even Realities': 'Even Realities G2',
@@ -4106,7 +4107,7 @@
   (function() {
     const ticker = document.getElementById('fv-ticker-name');
     if (!ticker) return;
-    const brands = ['Rokid', 'MiRZA', 'Even Realities', 'VITURE', 'SABERA'];
+    const brands = ['Rokid', 'MiRZA', 'Even Realities', 'VITURE', 'SABERA', 'Ray-Ban Meta'];
     let idx = Math.floor(Math.random() * brands.length);
     ticker.textContent = brands[idx];
     setInterval(function() {
