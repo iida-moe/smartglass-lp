@@ -2978,7 +2978,7 @@
             </div>
           </div>
           <table class="pg-card-store">
-            <tr><th>本体・レンズ</th><td><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('南浦和','even')">南浦和店・</span><wbr><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('宇都宮錦','even')">宇都宮錦店・</span><wbr><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('八千代','even')">八千代台ユアエルム店</span></td></tr>
+            <tr><th>本体・レンズ</th><td><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('南浦和','even')">南浦和店・</span><wbr><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('宇都宮錦','even')">宇都宮錦店・</span><wbr><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('八千代','even')">八千代台ユアエルム店・</span><wbr><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('深谷上柴','even')">深谷上柴西店・</span><wbr><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('新越谷','even')">新越谷店</span></td></tr>
           </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('even')">詳しく見る ▶</button>
           <a class="pg-card-official-link" href="https://www.evenrealities.com/ja-JP/smart-glasses" target="_blank" rel="noopener" onclick="event.stopPropagation();">メーカー公式サイトへ →</a>
@@ -3694,6 +3694,24 @@
       'Viture':         { body: false, lens: false },
       'SABERA':         { body: false, lens: true  },
     },
+    'アイメガネ深谷上柴西店': {
+      'MIRZA':          { body: false, lens: true  },
+      'Rokid':          { body: false, lens: true  },
+      'Even Realities': { body: true,  lens: true  },
+      'Ray-Ban Meta':   { body: false, lens: false },
+      'VITURE':         { body: false, lens: false },
+      'Viture':         { body: false, lens: false },
+      'SABERA':         { body: false, lens: true  },
+    },
+    'アイメガネ新越谷店': {
+      'MIRZA':          { body: false, lens: true  },
+      'Rokid':          { body: false, lens: true  },
+      'Even Realities': { body: true,  lens: true  },
+      'Ray-Ban Meta':   { body: false, lens: false },
+      'VITURE':         { body: false, lens: false },
+      'Viture':         { body: false, lens: false },
+      'SABERA':         { body: false, lens: true  },
+    },
   };
   // その他34店舗のデフォルト（レンズのみ）
   const DEFAULT_BRANDS = {
@@ -4258,7 +4276,7 @@
         { label: '充電ケース', value: '最大7回分充電' },
       ],
       recommend: ['会議・商談が多い人', '外国語を使う仕事や旅行が多い人', 'スマートフォンを見る回数を減らしたい人', 'プライバシーを大切にしたい人'],
-      store: '本体・レンズ取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span>・<span class="store-name-link" onclick="showStoreByName(\'宇都宮錦\')">宇都宮錦店</span>・<span class="store-name-link" onclick="showStoreByName(\'八千代\')">八千代台ユアエルム店</span></strong>',
+      store: '本体・レンズ取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span>・<span class="store-name-link" onclick="showStoreByName(\'宇都宮錦\')">宇都宮錦店</span>・<span class="store-name-link" onclick="showStoreByName(\'八千代\')">八千代台ユアエルム店</span>・<span class="store-name-link" onclick="showStoreByName(\'深谷上柴\')">深谷上柴西店</span>・<span class="store-name-link" onclick="showStoreByName(\'新越谷\')">新越谷店</span></strong>',
       searchBrand: 'Even Realities',
       gallery: 'even',
       hasLens: true,
@@ -4623,6 +4641,8 @@
     'even_南浦和':    { name: 'Even Realities G2', tags: ['本体取扱', 'レンズ交換対応'] },
     'even_宇都宮錦':  { name: 'Even Realities G2', tags: ['本体取扱', 'レンズ交換対応'] },
     'even_八千代':    { name: 'Even Realities G2', tags: ['本体取扱', 'レンズ交換対応'] },
+    'even_深谷上柴':  { name: 'Even Realities G2', tags: ['本体取扱', 'レンズ交換対応'] },
+    'even_新越谷':    { name: 'Even Realities G2', tags: ['本体取扱', 'レンズ交換対応'] },
     'rayban_南浦和':  { name: 'Ray-Ban Meta', tags: ['本体取扱（度付きレンズ選択可）'] },
     'viture_南浦和':  { name: 'VITURE Luma シリーズ', tags: ['本体取扱', 'レンズ交換対応'] },
   };
