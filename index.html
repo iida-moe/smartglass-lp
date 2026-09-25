@@ -817,7 +817,7 @@
     .store-card-body .store-card-name { font-size: clamp(22px, 2.6vw, 28px); }
     .store-card-hp-link { font-size: clamp(13px, 1.5vw, 14px); font-weight: 700; color: var(--navy); text-decoration: none; white-space: nowrap; display: block; margin: 4px 0 0; }
     .store-model-plain { font-size: clamp(14px, 1.6vw, 16px); color: var(--text-primary); margin: 0; }
-    .store-model-plain .store-model-label { margin-right: 4px; }
+    .store-model-plain .store-model-label { margin-right: 4px; font-size: 12px; }
     .store-card-dist-line { font-size: clamp(15px, 1.7vw, 17px); font-weight: 700; color: var(--red); margin: 0; }
     .store-card-body .store-card-actions { margin-top: 6px; padding-top: 0; }
     .store-card-body .btn-store-web, .store-card-body .btn-store-tel { padding: 14px 8px; font-size: clamp(14px, 1.6vw, 16px); }
@@ -841,7 +841,7 @@
     .store-product-context { background: #F0F3F8; border: 1px solid rgba(13,27,42,0.12); border-radius: 8px; padding: 10px 14px; }
     .store-product-context-title { font-size: clamp(11px, 1.3vw, 13px); font-weight: 700; color: var(--navy); letter-spacing: 0.06em; margin-bottom: 6px; }
     .store-product-context-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-    .store-product-context-tag { font-size: clamp(11px, 1.3vw, 13px); background: var(--navy); color: #fff; padding: 3px 10px; border-radius: 12px; font-weight: 600; }
+    .store-product-context-tag { font-size: 12px; background: #fff; color: var(--navy); border: 1px solid rgba(13,27,42,0.12); padding: 2px 8px; border-radius: 4px; font-weight: 700; }
     .store-card-actions { display: flex; gap: 8px; margin-top: auto; padding-top: 8px; }
     .btn-store-web, .btn-store-tel {
       flex: 1; text-align: center; padding: 9px 8px; font-size: clamp(12px, 1.4vw, 13px); font-weight: 700;
@@ -3785,8 +3785,8 @@
   function buildStoreModelPlain(store, brand) {
     const c = classifyStoreBrands(store, brand);
     let html = '';
-    if (c.bodyBrands.length) html += '<p class="store-model-plain"><span class="store-model-label">本体取扱</span> ' + c.bodyBrands.join('・') + '</p>';
-    if (c.lensBrands.length) html += '<p class="store-model-plain"><span class="store-model-label">レンズ交換</span> ' + c.lensBrands.join('・') + '</p>';
+    if (c.bodyBrands.length) html += '<p class="store-model-plain"><span class="store-model-label">本体取扱</span> ' + c.bodyBrands.map(function(b){ return '<span style="white-space:nowrap">' + b + '</span>'; }).join('・') + '</p>';
+    if (c.lensBrands.length) html += '<p class="store-model-plain"><span class="store-model-label">レンズ交換</span> ' + c.lensBrands.map(function(b){ return '<span style="white-space:nowrap">' + b + '</span>'; }).join('・') + '</p>';
     return html;
   }
 
@@ -3804,7 +3804,7 @@
   const searchState = {
     pref: 'すべて', brand: '', purpose: '',
     originLabel: null, originLat: null, originLon: null, originType: null,
-    soloStore: null, soloCtx: null
+    soloStore: null, soloCtx: null, soloName: null
   };
   const PREF_ORDER = ['すべて', '埼玉県', '東京都', '栃木県', '千葉県', '茨城県', '群馬県', '静岡県'];
 
@@ -3832,6 +3832,9 @@
     }
     if (searchState.originLabel) {
       chips += '<span class="sbb-chip">' + searchState.originLabel + 'から近い順<button onclick="clearOrigin()">×</button></span>';
+    }
+    if (searchState.soloStore) {
+      chips = searchState.soloName ? '<span class="sbb-filters-label">' + searchState.soloName + ' の取扱店舗を表示中</span>' : '';
     }
     wrap.innerHTML = chips || '<span class="sbb-filters-label">絞り込み条件なし</span>';
     const hasFilter = !!(searchState.brand || searchState.purpose || searchState.originLabel);
@@ -3942,7 +3945,7 @@
     searchState.originLabel = null; searchState.originType = null;
     renderSearchAll();
   }
-  function clearSolo() { searchState.soloStore = null; searchState.soloCtx = null; }
+  function clearSolo() { searchState.soloStore = null; searchState.soloCtx = null; searchState.soloName = null; }
 
   function syncCondState() {
     searchState.brand = document.getElementById('product-select').value;
@@ -4666,6 +4669,8 @@
         + ctx.tags.map(function(t){ return '<span class="store-product-context-tag">' + t + '</span>'; }).join('')
         + '</div></div>'
       : '';
+    searchState.soloName = ctx ? ctx.name : null;
+    renderSbbFilters();
     renderStoreGrid();
     setTimeout(function() {
       document.getElementById('store-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
