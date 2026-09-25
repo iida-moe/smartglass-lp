@@ -3492,7 +3492,11 @@
 
   function switchRaybanImg(model, el) {
     var img = document.getElementById('rayban-img');
-    img.src = 'images/rayban/' + model + '.jpg';
+    var files = {
+      blayzer: 'images/rayban/RW_BLAYZER_Product_Black_1x1.jpg',
+      wayfarer: 'images/rayban/RW4012_D_NEW__JA_1x1.jpg'
+    };
+    img.src = files[model];
     img.alt = 'Ray-Ban Meta ' + (model === 'wayfarer' ? 'サングラス' : 'メガネ');
     document.querySelectorAll('.pg-card[data-product="rayban"] .pg-variant-badge').forEach(function(b){ b.classList.remove('pg-variant-badge--active'); });
     el.classList.add('pg-variant-badge--active');
