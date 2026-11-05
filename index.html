@@ -1489,9 +1489,20 @@
     }
     .fixed-footer .btn {
       flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: 13px 8px;
-      font-size: clamp(13px, 1.5vw, 15px);
+      padding: 11px 4px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 0;
+      white-space: nowrap;
+      border-radius: 8px;
+    }
+    @media (max-width: 359px) {
+      .fixed-footer .btn { font-size: 12px; }
     }
     .btn-outline {
       background: #fff;
