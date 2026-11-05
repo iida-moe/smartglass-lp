@@ -858,6 +858,10 @@
     .trial-guide-lead { color: #fff; font-size: clamp(14px, 1.6vw, 16px); line-height: 1.6; margin: 0; }
     .trial-guide-lead span { white-space: nowrap; }
     .trial-guide .store-card { max-width: 480px; }
+    /* 地図・営業時間リンク */
+    .store-card-map { display: inline-flex; align-items: center; gap: 6px; font-size: clamp(13px, 1.5vw, 15px); color: var(--text-primary); text-decoration: underline; text-underline-offset: 3px; margin: 0; width: fit-content; }
+    .store-card-map svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .search-title-bar, .search-catch { display: none; }
 
     /* ---- 画面下固定の「まとめバー」 ---- */
     .sticky-bottom-bar {
@@ -2209,6 +2213,41 @@
       .radio-label { font-size: clamp(17px, 2.0vw, 20px); }
       .radio-label input[type="radio"] { width: 20px; height: 20px; }
       .store-grid { grid-template-columns: 1fr; }
+
+      /* --- SP店舗検索：白背景・1列の見やすいレイアウト --- */
+      #search { background: #fff; color: var(--text-primary); }
+      #search .section-title { color: var(--text-primary); margin-bottom: 0; }
+      .search-title-bar { display: block; width: 40px; height: 3px; background: var(--red); margin: 18px auto 24px; }
+      .search-catch { display: block; text-align: center; font-size: 18px; font-weight: 700; color: var(--text-primary); margin: 0 0 18px; letter-spacing: 0.02em; }
+      .search-lead { display: none; }
+      .locate-card { background: transparent; padding: 0; border-radius: 0; margin-bottom: 24px; }
+      .btn-geolocate { background: #111; border-radius: 10px; font-size: 18px; padding: 18px 16px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+      .btn-geolocate svg { width: 18px; height: 18px; flex-shrink: 0; }
+      .or-divider { font-size: 14px; color: #777; margin: 20px 0 16px; }
+      .zip-row { flex-wrap: nowrap; gap: 6px; }
+      .zip-row input[type="text"] { flex: 1; width: auto; min-width: 0; font-size: 18px; padding: 13px 8px; border: 1.5px solid #bbb; border-radius: 10px; }
+      #zip1, #zip2 { width: auto; }
+      .btn-search { width: auto; flex-shrink: 0; font-size: 17px; padding: 14px 20px; border-radius: 10px; }
+      .sticky-filter-bar { background: #fff; position: static; padding-top: 0; }
+      .pref-tabs { flex-wrap: wrap; overflow: visible; padding: 0 0 16px; gap: 8px 6px; }
+      .pref-tab { background: #fff; color: var(--text-primary); border: 1px solid #ccc; padding: 9px 16px; font-size: 16px; font-weight: 500; }
+      .pref-tab .count { background: none; padding: 0; color: #777; font-size: 13px; font-weight: 500; }
+      .pref-tab.active { background: #111; border-color: #111; color: #fff; }
+      .pref-tab.active .count { background: none; color: rgba(255,255,255,0.75); }
+      .filter-accordion { border: 1px solid var(--border); border-radius: 10px; }
+      .filter-accordion-head { padding: 18px 18px; font-size: 16px; }
+      .filter-accordion-head .chevron { color: #111; }
+      .store-grid { gap: 14px; }
+      .store-card { border: 1px solid var(--border); border-radius: 12px; padding: 22px 20px; gap: 10px; }
+      .store-card.is-nearest { border: 2px solid var(--red); }
+      .store-card-name { font-size: 20px; }
+      .store-card-addr { font-size: 14px; margin: 0; }
+      .store-model-row { font-size: 14px; }
+      .store-card-actions { flex-direction: column; gap: 10px; padding-top: 6px; }
+      .btn-store-web, .store-card-body .btn-store-web { padding: 17px 8px; font-size: 18px; border-radius: 10px; }
+      .btn-store-tel, .store-card-body .btn-store-tel { padding: 12px 8px; font-size: 16px; border-radius: 10px; }
+      .empty-msg { color: var(--text-secondary); opacity: 1; }
+      .trial-guide-lead { color: var(--text-primary); }
       .sbb-actions { gap: 12px; }
       .sbb-divider { display: none; }
       .sbb-filters { flex-basis: 100%; order: 3; }
@@ -3207,11 +3246,13 @@
 <section id="search" class="section section-dark">
   <div class="container">
     <h2 class="section-title center">お近くの店舗を探す</h2>
+    <span class="search-title-bar" aria-hidden="true"></span>
+    <p class="search-catch">＼ご予約ならスムーズにご案内／</p>
     <p class="search-lead">現在地、または郵便番号(上3桁)でお近くの店舗を絞り込めます</p>
 
     <div class="locate-card" id="locate-card">
       <button class="btn-geolocate" id="btn-geolocate" onclick="searchByLocation()">📍 現在地から探す</button>
-      <div class="or-divider"><span>または</span></div>
+      <div class="or-divider"><span>または郵便番号で</span></div>
       <div class="zip-row">
         <span class="zip-mark">〒</span>
         <input type="text" id="zip1" maxlength="3" placeholder="330">
@@ -3922,6 +3963,9 @@
   function renderStoreCard(s, opts) {
     opts = opts || {};
     const from = opts.from || (opts.featured ? 'featured' : 'list');
+    const mapLinkHTML = '<a class="store-card-map" href="' + s.url + '" target="_blank">' +
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>' +
+      '地図・営業時間を見る →</a>';
     const noteHTML = (opts.featured || opts.note) ? '<p class="store-card-note">予約無料・ご相談だけでもOK</p>' : '';
     const actionsHTML =
       noteHTML +
@@ -3939,7 +3983,8 @@
           imgHTML +
           '<div class="store-card-body">' +
             badge +
-            '<p class="store-card-name">' + s.name + ' <a href="' + s.url + '" target="_blank" class="store-card-hp-link">店舗HPへ →</a></p>' +
+            '<p class="store-card-name">' + s.name + '</p>' +
+            mapLinkHTML +
             buildStoreModelPlain(s, opts.brand || '') +
             (opts.ctxHTML || '') +
             distLine +
@@ -3955,6 +4000,7 @@
         badge +
         '<p class="store-card-name">' + s.name + distLabel + '</p>' +
         '<p class="store-card-addr">' + s.address + '</p>' +
+        mapLinkHTML +
         buildStoreModelDetail(s, opts.brand || '') +
         (opts.ctxHTML || '') +
         actionsHTML +
