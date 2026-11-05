@@ -1257,7 +1257,7 @@
     .flow-illust img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .flow-illust.is-empty { display: flex; align-items: center; justify-content: center; background: #fff; border: 1.5px dashed #c8c8c8; }
     .flow-illust.is-empty::after { content: 'イラスト準備中'; font-size: 12px; color: #999; letter-spacing: 0.05em; }
-    .flow-online-block .flow-tl-icon { display: none; }
+    #flow .flow-tl-icon { display: none; }
     .flow-tl-num {
       width: 40px; height: 40px;
       border-radius: 50%;
@@ -2222,8 +2222,8 @@
       }
       .flow-tl-icon img { width: 30px; height: 30px; }
       .flow-tl-step-head { display: contents; }
-      .flow-online-block .flow-tl-step { grid-template-columns: 44px 1fr; }
-      .flow-online-block .flow-tl-icon { display: none; }
+      #flow .flow-tl-step { grid-template-columns: 44px 1fr; }
+      #flow .flow-tl-icon { display: none; }
       .flow-tl-step .flow-illust { grid-column: 1 / -1; grid-row: 2; width: auto; margin: 12px 0 0 56px; }
       .flow-tl-step .flow-title {
         grid-column: 2; grid-row: 1;
@@ -3203,6 +3203,7 @@
             <div class="flow-tl-icon"><img src="flow-icon-store.svg" alt="ご来店"></div>
             <p class="flow-title">ご来店</p>
           </div>
+          <figure class="flow-illust"><img src="images/flow/smartglass_flow-store1_1200_800.png" alt="ご来店のイラスト" loading="lazy" onerror="this.parentNode.classList.add('is-empty');this.remove()"></figure>
           <p class="flow-desc">予約・当日相談もOK。<br>レンズ交換の場合は、本体をご持参ください。</p>
         </div>
         <div class="flow-tl-step">
@@ -3211,6 +3212,7 @@
             <div class="flow-tl-icon"><img src="flow-icon-eye.svg" alt="測定"></div>
             <p class="flow-title">測定</p>
           </div>
+          <figure class="flow-illust"><img src="images/flow/smartglass_flow-store2_1200_800.png" alt="測定のイラスト" loading="lazy" onerror="this.parentNode.classList.add('is-empty');this.remove()"></figure>
           <p class="flow-desc">専門スタッフがお客様の見え方に合わせた度数を測定。</p>
         </div>
         <div class="flow-tl-step">
@@ -3219,6 +3221,7 @@
             <div class="flow-tl-icon"><img src="flow-icon-lens.svg" alt="レンズ加工"></div>
             <p class="flow-title">レンズ加工</p>
           </div>
+          <figure class="flow-illust"><img src="images/flow/smartglass_flow-store3_1200_800.png" alt="レンズ加工のイラスト" loading="lazy" onerror="this.parentNode.classList.add('is-empty');this.remove()"></figure>
           <p class="flow-desc">機種に合わせて専門のスタッフが加工します。</p>
         </div>
         <div class="flow-tl-step">
@@ -3227,6 +3230,7 @@
             <div class="flow-tl-icon"><img src="flow-icon-gift.svg" alt="お渡し"></div>
             <p class="flow-title">お渡し</p>
           </div>
+          <figure class="flow-illust"><img src="images/flow/smartglass_flow-store4_1200_800.png" alt="お渡しのイラスト" loading="lazy" onerror="this.parentNode.classList.add('is-empty');this.remove()"></figure>
           <p class="flow-desc">使用方法を確認しお渡し。<br>快適にお使いいただけます。</p>
         </div>
       </div>
