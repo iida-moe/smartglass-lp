@@ -3963,9 +3963,12 @@
     // 条件が変わったら「すべて見る」を閉じる
     const stateKey = [searchState.pref, searchState.brand, searchState.purpose, searchState.originLabel, searchState.originLat, searchState.originLon].join('|');
     if (stateKey !== searchState.listKey) { searchState.listKey = stateKey; searchState.expanded = false; }
-    const hiddenCount = searchState.expanded ? 0 : Math.max(0, list.length - STORE_LIST_LIMIT);
+    // スマホは5店舗、PC（2列）は空きが出ないよう6店舗（検索後は横長の1枚目＋6店舗）
+    const isPC = window.matchMedia('(min-width: 768px)').matches;
+    const limit = isPC ? (hasSearch ? 7 : 6) : STORE_LIST_LIMIT;
+    const hiddenCount = searchState.expanded ? 0 : Math.max(0, list.length - limit);
     const fullCount = list.length;
-    if (hiddenCount > 0) list = list.slice(0, STORE_LIST_LIMIT);
+    if (hiddenCount > 0) list = list.slice(0, limit);
 
     if (list.length === 0) {
       gridEl.innerHTML = '<p class="empty-msg">条件に合う店舗が見つかりませんでした。条件を変えてお試しください。</p>';
@@ -3973,7 +3976,7 @@
       const trialGuide = buildTrialGuide(list[0]);
       const moreBtn = hiddenCount > 0
         ? '<button type="button" class="store-more-btn" onclick="expandStoreList()">残り' + hiddenCount + '店舗を見る（全' + fullCount + '店舗）<span aria-hidden="true">▼</span></button>'
-        : (searchState.expanded && fullCount > STORE_LIST_LIMIT
+        : (searchState.expanded && fullCount > limit
           ? '<button type="button" class="store-more-btn" onclick="collapseStoreList()">閉じる<span aria-hidden="true">▲</span></button>'
           : '');
       gridEl.innerHTML = list.map((s, i) => {
