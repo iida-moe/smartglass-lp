@@ -851,6 +851,13 @@
     .btn-store-tel { background: transparent; color: var(--red); border: 1.5px solid var(--red); }
     .btn-store-web:hover, .btn-store-tel:hover { opacity: 0.8; }
     .empty-msg { color: #fff; text-align: center; padding: 40px 0; opacity: 0.7; grid-column: 1 / -1; }
+    /* 予約ボタン上のひとこと */
+    .store-card-note { font-size: clamp(12px, 1.4vw, 13px); color: var(--text-secondary); text-align: center; margin: 4px 0 -2px; }
+    /* 近くの店で本体を試せないときの案内 */
+    .trial-guide { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 10px; margin: 8px 0 12px; }
+    .trial-guide-lead { color: #fff; font-size: clamp(14px, 1.6vw, 16px); line-height: 1.6; margin: 0; }
+    .trial-guide-lead span { white-space: nowrap; }
+    .trial-guide .store-card { max-width: 480px; }
 
     /* ---- 画面下固定の「まとめバー」 ---- */
     .sticky-bottom-bar {
@@ -3872,24 +3879,55 @@
     if (list.length === 0) {
       gridEl.innerHTML = '<p class="empty-msg">条件に合う店舗が見つかりませんでした。条件を変えてお試しください。</p>';
     } else {
+      const trialGuide = buildTrialGuide(list[0]);
       gridEl.innerHTML = list.map((s, i) => {
         const isNearest = !!(searchState.originLabel && i === 0);
         const isFeatured = hasSearch && i === 0;
         return renderStoreCard(s, { brand: searchState.brand, isNearest: isNearest, dist: s.dist,
           showDistLine: searchState.originType === 'zip',
-          badgeLabel: searchState.originType === 'store' ? '注目の店舗' : 'お客様に最も近い店舗', showImage: isFeatured, featured: isFeatured });
+          badgeLabel: searchState.originType === 'store' ? '注目の店舗' : 'お客様に最も近い店舗', showImage: isFeatured, featured: isFeatured }) +
+          (i === 0 ? trialGuide : '');
       }).join('');
     }
 
     document.getElementById('sbb-count').innerHTML = '<b>' + list.length + '</b>店舗該当 / 全' + STORES.length + '店舗';
   }
 
+  // 近い店で本体を試せないとき、本体を試着できるいちばん近い店舗を案内する
+  function storeHasBody(store, brand) {
+    const caps = getStoreCaps(store);
+    if (brand) return !!(caps[brand] && caps[brand].body);
+    return Object.values(caps).some(function(c){ return c.body; });
+  }
+  function buildTrialGuide(nearest) {
+    if (!nearest || !searchState.originLabel || searchState.originType === 'store') return '';
+    if (searchState.purpose === 'lens') return '';
+    const brand = searchState.brand;
+    if (storeHasBody(nearest, brand)) return '';
+    let alt = null;
+    STORES.forEach(function(s) {
+      if (!storeHasBody(s, brand)) return;
+      const d = haversine(searchState.originLat, searchState.originLon, s.lat, s.lon);
+      if (!alt || d < alt.dist) alt = Object.assign({}, s, { dist: d });
+    });
+    if (!alt) return '';
+    const brandName = brand ? (BRAND_DISPLAY[brand] || (brand === 'Viture' ? 'VITURE' : brand)) + 'の' : '';
+    return '' +
+      '<div class="trial-guide">' +
+        '<p class="trial-guide-lead"><span>' + nearest.name + 'では、</span><span>' + brandName + '本体のお試しはできません。</span></p>' +
+        renderStoreCard(alt, { brand: brand, isNearest: true, dist: alt.dist, badgeLabel: '本体を試着できるいちばん近い店舗', note: true, from: 'trial_guide' }) +
+      '</div>';
+  }
+
   function renderStoreCard(s, opts) {
     opts = opts || {};
+    const from = opts.from || (opts.featured ? 'featured' : 'list');
+    const noteHTML = (opts.featured || opts.note) ? '<p class="store-card-note">予約無料・ご相談だけでもOK</p>' : '';
     const actionsHTML =
+      noteHTML +
       '<div class="store-card-actions">' +
-        '<a href="' + (s.reserve || s.url) + '" target="_blank" class="btn-store-web">WEB予約</a>' +
-        '<a href="tel:' + s.tel + '" class="btn-store-tel">' + s.tel + '</a>' +
+        '<a href="' + (s.reserve || s.url) + '" target="_blank" class="btn-store-web" data-store="' + s.name + '" data-from="' + from + '">WEB予約</a>' +
+        '<a href="tel:' + s.tel + '" class="btn-store-tel" data-store="' + s.name + '" data-from="' + from + '">' + s.tel + '</a>' +
       '</div>';
 
     if (opts.featured) {
@@ -3928,6 +3966,22 @@
     renderSbbFilters();
     renderStoreGrid();
   }
+
+  // 予約ボタンのクリックで、店舗名・商品名などをGTMへ送る（GTM側でGA4イベントに設定して使う）
+  document.addEventListener('click', function(e) {
+    const btn = e.target.closest && e.target.closest('.btn-store-web, .btn-store-tel');
+    if (!btn) return;
+    const brand = searchState.brand;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'lp_reserve_detail',
+      reserve_method: btn.classList.contains('btn-store-web') ? 'web' : 'tel',
+      reserve_store: btn.getAttribute('data-store') || '',
+      reserve_brand: brand ? (BRAND_DISPLAY[brand] || (brand === 'Viture' ? 'VITURE' : brand)) : '指定なし',
+      reserve_purpose: searchState.purpose === 'trial' ? '本体購入・試着' : (searchState.purpose === 'lens' ? 'レンズ交換' : '指定なし'),
+      reserve_from: btn.getAttribute('data-from') || 'list'
+    });
+  });
 
   function setPref(p) { searchState.pref = p; renderSearchAll(); }
   function clearBrand() {
