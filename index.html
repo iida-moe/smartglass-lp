@@ -862,6 +862,7 @@
     .store-card-map { display: inline-flex; align-items: center; gap: 6px; font-size: clamp(13px, 1.5vw, 15px); color: var(--text-primary); text-decoration: underline; text-underline-offset: 3px; margin: 0; width: fit-content; }
     .store-card-map svg { width: 14px; height: 14px; flex-shrink: 0; }
     .search-title-bar, .search-catch { display: none; }
+    .nw { white-space: nowrap; }
     .btn-store-web, .btn-store-tel { display: flex; align-items: center; justify-content: center; }
     /* 店舗一覧の「残りを見る」 */
     .store-more-btn {
@@ -2224,41 +2225,53 @@
       .radio-label input[type="radio"] { width: 20px; height: 20px; }
       .store-grid { grid-template-columns: 1fr; }
 
-      /* --- SP店舗検索：白背景・1列の見やすいレイアウト --- */
+      /* --- SP店舗検索：白背景・BF LPと同じサイズ感 --- */
       #search { background: #fff; color: var(--text-primary); }
       #search .section-title { color: var(--text-primary); margin-bottom: 0; }
-      .search-title-bar { display: block; width: 40px; height: 3px; background: var(--red); margin: 18px auto 24px; }
-      .search-catch { display: block; text-align: center; font-size: 18px; font-weight: 700; color: var(--text-primary); margin: 0 0 18px; letter-spacing: 0.02em; }
+      .search-title-bar { display: block; width: 40px; height: 3px; background: var(--red); margin: 16px auto 20px; }
+      .search-catch { display: block; text-align: center; font-size: 16px; font-weight: 900; color: var(--text-primary); margin: 0 0 16px; }
       .search-lead { display: none; }
-      .locate-card { background: transparent; padding: 0; border-radius: 0; margin-bottom: 24px; }
-      .btn-geolocate { background: #111; border-radius: 10px; font-size: 18px; padding: 18px 16px; display: flex; align-items: center; justify-content: center; gap: 8px; }
-      .btn-geolocate svg { width: 18px; height: 18px; flex-shrink: 0; }
-      .or-divider { font-size: 14px; color: #777; margin: 20px 0 16px; }
+      .locate-card { background: transparent; padding: 0; border-radius: 0; margin-bottom: 16px; }
+      .btn-geolocate { background: #111; border-radius: 10px; font-size: 16px; padding: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+      .or-divider { font-size: 12px; color: #777; margin: 12px 0; gap: 10px; }
       .zip-row { flex-wrap: nowrap; gap: 6px; }
-      .zip-row input[type="text"] { flex: 1; width: auto; min-width: 0; font-size: 18px; padding: 13px 8px; border: 1.5px solid #bbb; border-radius: 10px; }
-      #zip1, #zip2 { width: auto; }
-      .btn-search { width: auto; flex-shrink: 0; font-size: 17px; padding: 14px 20px; border-radius: 10px; }
+      .zip-mark { font-size: 16px; }
+      .zip-row input[type="text"] { flex: 1; width: 64px; min-width: 0; font-size: 16px; padding: 10px 8px; border: 1.5px solid #bbb; border-radius: 8px; letter-spacing: 0; }
+      #zip1 { width: 64px; }
+      #zip2 { width: 64px; flex: 1.3; }
+      .btn-search { width: 84px; flex: none; margin-left: 4px; font-size: 15px; padding: 10px 0; border-radius: 8px; }
       .sticky-filter-bar { background: #fff; position: static; padding-top: 0; }
-      .pref-tabs { flex-wrap: wrap; overflow: visible; padding: 0 0 16px; gap: 8px 6px; }
-      .pref-tab { background: #fff; color: var(--text-primary); border: 1px solid #ccc; padding: 9px 16px; font-size: 16px; font-weight: 500; }
-      .pref-tab .count { background: none; padding: 0; color: #777; font-size: 13px; font-weight: 500; }
+      .pref-tabs { flex-wrap: wrap; overflow: visible; padding: 0 0 12px; gap: 6px; }
+      .pref-tab { background: #fff; color: var(--text-primary); border: 1px solid #bbb; padding: 6px 12px; font-size: 13px; font-weight: 400; gap: 4px; border-radius: 20px; }
+      .pref-tab .count { background: none; padding: 0; color: inherit; opacity: .7; font-size: 11px; font-weight: 400; }
       .pref-tab.active { background: #111; border-color: #111; color: #fff; }
-      .pref-tab.active .count { background: none; color: rgba(255,255,255,0.75); }
-      .filter-accordion { border: 1px solid var(--border); border-radius: 10px; }
-      .filter-accordion-head { padding: 18px 18px; font-size: 16px; }
-      .filter-accordion-head .chevron { color: #111; }
-      .store-grid { gap: 14px; }
-      .store-card { border: 1px solid var(--border); border-radius: 12px; padding: 22px 20px; gap: 10px; }
+      .pref-tab.active .count { background: none; }
+      .filter-accordion { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 12px; }
+      .filter-accordion-head { padding: 12px; font-size: 14px; }
+      .filter-accordion-head .chevron { color: #111; font-size: 10px; }
+      .store-grid { gap: 12px; }
+      .store-card { border: 1px solid var(--border); border-radius: 12px; padding: 14px; gap: 4px; }
       .store-card.is-nearest { border: 2px solid var(--red); }
-      .store-card-name { font-size: 20px; }
-      .store-card-addr { font-size: 14px; margin: 0; }
-      .store-model-row { font-size: 14px; }
-      .store-card-actions { gap: 12px; padding-top: 6px; }
-      .btn-store-web, .store-card-body .btn-store-web { padding: 14px 6px; font-size: 20px; border-radius: 10px; }
-      .btn-store-tel, .store-card-body .btn-store-tel { padding: 14px 6px; font-size: 17px; border-radius: 10px; color: #111; border: 2px solid #111; background: #fff; }
-      .empty-msg { color: var(--text-secondary); opacity: 1; }
-      .trial-guide-lead { color: var(--text-primary); }
-      .store-more-btn { color: #111; border: 2px solid #111; font-size: 16px; }
+      .store-card.is-featured .store-card-img { height: 160px; }
+      .store-card-body { padding: 14px; gap: 4px; }
+      .store-card-name, .store-card-body .store-card-name { font-size: 16px; margin-top: 4px; }
+      .store-card-dist { font-size: 12px; }
+      .store-card-dist-line { font-size: 13px; }
+      .nearest-badge { font-size: 11px; }
+      .store-card-addr { font-size: 12px; margin: 0; }
+      .store-card-map { font-size: 12px; gap: 4px; margin-top: 2px; }
+      .store-card-map svg { width: 11px; height: 13px; }
+      .store-model-detail { gap: 2px; margin-top: 4px; }
+      .store-model-row, .store-model-plain { font-size: 12px; }
+      .store-model-label, .store-model-plain .store-model-label { margin-bottom: 2px; font-size: 10px; }
+      .store-card-note { font-size: 11px; margin: 6px 0 0; }
+      .store-card-actions, .store-card-body .store-card-actions { gap: 8px; margin-top: 10px; padding-top: 0; }
+      .btn-store-web, .store-card-body .btn-store-web { padding: 10px 4px; font-size: 16px; font-weight: 900; border-radius: 8px; line-height: 1.3; }
+      .btn-store-tel, .store-card-body .btn-store-tel { padding: 10px 4px; font-size: 13px; font-weight: 700; border-radius: 8px; line-height: 1.3; color: #111; border: 1.5px solid #111; background: #fff; }
+      .empty-msg { color: var(--text-secondary); opacity: 1; font-size: 14px; }
+      .trial-guide { gap: 8px; margin: 4px 0; }
+      .trial-guide-lead { color: var(--text-primary); font-size: 14px; }
+      .store-more-btn { color: #111; background: #fff; border: 1.5px solid #111; font-size: 14px; padding: 12px; border-radius: 30px; margin-top: 4px; }
       .sbb-actions { gap: 12px; }
       .sbb-divider { display: none; }
       .sbb-filters { flex-basis: 100%; order: 3; }
@@ -3961,7 +3974,7 @@
       }).join('') + moreBtn;
     }
 
-    document.getElementById('sbb-count').innerHTML = '<b>' + list.length + '</b>店舗該当 / 全' + STORES.length + '店舗';
+    document.getElementById('sbb-count').innerHTML = '<b>' + fullCount + '</b>店舗該当 / 全' + STORES.length + '店舗';
   }
 
   // 近い店で本体を試せないとき、本体を試着できるいちばん近い店舗を案内する
@@ -3990,6 +4003,12 @@
       '</div>';
   }
 
+  // 店舗名は「アイメガネ」と「〇〇店」の間でだけ改行する
+  function storeNameHTML(name) {
+    const m = name.match(/^(アイメガネ)(.+)$/);
+    return m ? '<span class="nw">' + m[1] + '</span><wbr><span class="nw">' + m[2] + '</span>' : name;
+  }
+
   function renderStoreCard(s, opts) {
     opts = opts || {};
     const from = opts.from || (opts.featured ? 'featured' : 'list');
@@ -4013,7 +4032,7 @@
           imgHTML +
           '<div class="store-card-body">' +
             badge +
-            '<p class="store-card-name">' + s.name + '</p>' +
+            '<p class="store-card-name">' + storeNameHTML(s.name) + '</p>' +
             mapLinkHTML +
             buildStoreModelPlain(s, opts.brand || '') +
             (opts.ctxHTML || '') +
@@ -4028,7 +4047,7 @@
     return '' +
       '<div class="store-card' + (opts.isNearest ? ' is-nearest' : '') + '">' +
         badge +
-        '<p class="store-card-name">' + s.name + distLabel + '</p>' +
+        '<p class="store-card-name">' + storeNameHTML(s.name) + distLabel + '</p>' +
         '<p class="store-card-addr">' + s.address + '</p>' +
         mapLinkHTML +
         buildStoreModelDetail(s, opts.brand || '') +
@@ -4932,6 +4951,44 @@
       if (e.key === 'Enter') check();
     });
   })();
+</script>
+
+<!-- 日本語の改行を文節単位にそろえる（BudouX）。読み込めなくても表示は崩れない -->
+<script type="module">
+  try {
+    const { loadDefaultJapaneseParser } = await import('https://cdn.jsdelivr.net/npm/budoux@0.6.2/+esm');
+    const parser = loadDefaultJapaneseParser();
+    const SEL = 'h1, h2, h3, h4, p, li, td, th, dd, .qa-q-text, .qa-a, .store-model-value, .flow-title';
+    const SKIP = 'a.btn, .btn-store-web, .btn-store-tel, .store-card-name, .fv-main, input, select, script, style';
+    // BudouXが区切ってしまう単語は、区切りを消す
+    const KEEP = ['処方箋', '方法', 'お確かめ', '度付き', '眼鏡'];
+    const fixWords = function(el) {
+      const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+      let n;
+      while ((n = w.nextNode())) {
+        let t = n.textContent;
+        if (t.indexOf('​') < 0) continue;
+        KEEP.forEach(function(k) {
+          const re = new RegExp(k.split('').join('​?'), 'g');
+          t = t.replace(re, k);
+        });
+        n.textContent = t;
+      }
+    };
+    const apply = function() {
+      document.querySelectorAll(SEL).forEach(function(el) {
+        if (el.dataset.bdx || el.closest(SKIP) || !/[぀-ヿ一-鿿]/.test(el.textContent)) return;
+        el.dataset.bdx = '1';
+        try { parser.applyToElement(el); fixWords(el); } catch (e) {}
+      });
+    };
+    apply();
+    let timer = null;
+    new MutationObserver(function() {
+      clearTimeout(timer);
+      timer = setTimeout(apply, 50);
+    }).observe(document.body, { childList: true, subtree: true });
+  } catch (e) {}
 </script>
 
 </body>
