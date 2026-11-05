@@ -863,6 +863,8 @@
     .store-card-map svg { width: 14px; height: 14px; flex-shrink: 0; }
     .search-title-bar, .search-catch { display: none; }
     .nw { white-space: nowrap; }
+    .btn-geolocate { display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .btn-geolocate .geo-pin { width: 18px; height: 18px; flex-shrink: 0; }
     .btn-store-web, .btn-store-tel { display: flex; align-items: center; justify-content: center; }
     /* 店舗一覧の「残りを見る」 */
     .store-more-btn {
@@ -3275,7 +3277,7 @@
     <p class="search-lead">現在地、または郵便番号(上3桁)でお近くの店舗を絞り込めます</p>
 
     <div class="locate-card" id="locate-card">
-      <button class="btn-geolocate" id="btn-geolocate" onclick="searchByLocation()">📍 現在地から探す</button>
+      <button class="btn-geolocate" id="btn-geolocate" onclick="searchByLocation()"><svg class="geo-pin" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>現在地から探す</button>
       <div class="or-divider"><span>または郵便番号で</span></div>
       <div class="zip-row">
         <span class="zip-mark">〒</span>
@@ -4182,6 +4184,7 @@
     }
   }
 
+  const GEO_BTN_HTML = document.getElementById('btn-geolocate').innerHTML;
   function searchByLocation() {
     if (location.protocol === 'file:') {
       alert('現在地から探す機能はHTTPS環境（本番サーバー）でのみ動作します。\n郵便番号での検索をご利用ください。');
@@ -4196,12 +4199,12 @@
     btn.disabled = true;
     navigator.geolocation.getCurrentPosition(
       function(pos) {
-        btn.textContent = '📍 現在地から探す';
+        btn.innerHTML = GEO_BTN_HTML;
         btn.disabled = false;
         showResultsByCoords(pos.coords.latitude, pos.coords.longitude, '現在地', 'geo');
       },
       function(err) {
-        btn.textContent = '📍 現在地から探す';
+        btn.innerHTML = GEO_BTN_HTML;
         btn.disabled = false;
         if (err.code === 1) {
           alert('位置情報の利用が許可されていません。\nブラウザのアドレスバーから許可してください。');
