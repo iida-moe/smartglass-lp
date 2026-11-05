@@ -865,6 +865,15 @@
     .nw { white-space: nowrap; }
     .btn-geolocate { display: flex; align-items: center; justify-content: center; gap: 8px; }
     .btn-geolocate .geo-pin { width: 18px; height: 18px; flex-shrink: 0; }
+    /* 店舗カードの読みやすさ調整（ラベルと商品名を横並び・区切り線・電話は黒枠） */
+    .store-card-addr { color: var(--text-secondary); }
+    .store-card-map { font-size: clamp(12px, 1.4vw, 13px); }
+    .store-model-detail { display: grid; grid-template-columns: auto 1fr; gap: 6px 10px; align-items: baseline; margin-top: 6px; padding-top: 12px; border-top: 1px solid var(--border); }
+    .store-model-row { display: contents; }
+    .store-model-detail .store-model-label { margin: 0; text-align: center; white-space: nowrap; }
+    .store-model-value { line-height: 1.5; }
+    .btn-store-web { font-weight: 900; font-size: 15px; padding: 11px 8px; }
+    .btn-store-tel { color: #111; border-color: #111; font-size: 14px; padding: 11px 8px; }
     .btn-store-web, .btn-store-tel { display: flex; align-items: center; justify-content: center; }
     /* 店舗一覧の「残りを見る」 */
     .store-more-btn {
@@ -2263,7 +2272,7 @@
       .store-card-addr { font-size: 12px; margin: 0; }
       .store-card-map { font-size: 12px; gap: 4px; margin-top: 2px; }
       .store-card-map svg { width: 11px; height: 13px; }
-      .store-model-detail { gap: 2px; margin-top: 4px; }
+      .store-model-detail { gap: 6px 8px; margin-top: 6px; padding-top: 10px; }
       .store-model-row, .store-model-plain { font-size: 12px; }
       .store-model-label, .store-model-plain .store-model-label { margin-bottom: 2px; font-size: 10px; }
       .store-card-note { font-size: 11px; margin: 6px 0 0; }
