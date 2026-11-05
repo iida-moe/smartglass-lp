@@ -1304,6 +1304,8 @@
     }
     /* オンラインフロー: 5ステップ */
     .flow-tl-grid--5 { grid-template-columns: repeat(5, 1fr); }
+    .flow-tl-grid--3 { grid-template-columns: repeat(3, 1fr); }
+    .flow-tl-wrap--narrow:has(.flow-tl-grid--3) { max-width: 700px; }
 
     /* ===== SECTION 08: Q&A ===== */
     #qa { background: #fff; }
@@ -3191,12 +3193,12 @@
   <div class="container">
     <p class="section-label" style="text-align:center;">FLOW</p>
     <h2 class="section-title center">来店時 商品購入の流れ</h2>
-    <p style="text-align:center;font-size: clamp(15px, 1.7vw, 17px);color:var(--text-secondary);margin-top:8px;margin-bottom:28px;line-height:1.6;">本体購入・度付きレンズ交換、どちらにも対応。<br class="sp-br">シンプルな4ステップです。</p>
+    <p style="text-align:center;font-size: clamp(15px, 1.7vw, 17px);color:var(--text-secondary);margin-top:8px;margin-bottom:28px;line-height:1.6;">本体購入・度付きレンズ交換、どちらにも対応。<br class="sp-br">シンプルな3ステップです。</p>
 
     <!-- 来店フロー -->
     <div class="flow-tl-wrap flow-tl-wrap--narrow">
       <div class="flow-tl-line" aria-hidden="true"></div>
-      <div class="flow-tl-grid">
+      <div class="flow-tl-grid flow-tl-grid--3">
         <div class="flow-tl-step">
           <div class="flow-tl-num">1</div>
           <div class="flow-tl-step-head">
@@ -3218,20 +3220,11 @@
         <div class="flow-tl-step">
           <div class="flow-tl-num">3</div>
           <div class="flow-tl-step-head">
-            <div class="flow-tl-icon"><img src="flow-icon-lens.svg" alt="レンズ加工"></div>
-            <p class="flow-title">レンズ加工</p>
-          </div>
-          <figure class="flow-illust"><img src="images/flow/smartglass_flow-store3_1200_800.png" alt="レンズ加工のイラスト" loading="lazy" onerror="this.parentNode.classList.add('is-empty');this.remove()"></figure>
-          <p class="flow-desc">機種に合わせて専門のスタッフが加工します。</p>
-        </div>
-        <div class="flow-tl-step">
-          <div class="flow-tl-num">4</div>
-          <div class="flow-tl-step-head">
             <div class="flow-tl-icon"><img src="flow-icon-gift.svg" alt="お渡し"></div>
-            <p class="flow-title">お渡し</p>
+            <p class="flow-title">加工してお渡し</p>
           </div>
-          <figure class="flow-illust"><img src="images/flow/smartglass_flow-store4_1200_800.png" alt="お渡しのイラスト" loading="lazy" onerror="this.parentNode.classList.add('is-empty');this.remove()"></figure>
-          <p class="flow-desc">使用方法を確認しお渡し。<br>快適にお使いいただけます。</p>
+          <figure class="flow-illust"><img src="images/flow/smartglass_flow-store3_1200_800.png" alt="加工してお渡しのイラスト" loading="lazy" onerror="this.parentNode.classList.add('is-empty');this.remove()"></figure>
+          <p class="flow-desc">機種に合わせて専門のスタッフが加工し、使用方法をご説明してお渡しします。</p>
         </div>
       </div>
     </div>
