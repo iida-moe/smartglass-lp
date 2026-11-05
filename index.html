@@ -4037,7 +4037,9 @@
   function renderStoreCard(s, opts) {
     opts = opts || {};
     const from = opts.from || (opts.featured ? 'featured' : 'list');
-    const mapLinkHTML = '<a class="store-card-map" href="' + s.url + '" target="_blank">' +
+    // 地図・営業時間はGoogleマップ（GBP）へ。BF LPと同じく「店名＋住所」で開く
+    const mapQuery = encodeURIComponent(s.name + ' ' + s.address.replace(/〒\d{3}-\d{4}\s*/, ''));
+    const mapLinkHTML = '<a class="store-card-map" href="https://www.google.com/maps/search/?api=1&query=' + mapQuery + '" target="_blank" rel="noopener" data-store="' + s.name + '">' +
       '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>' +
       '地図・営業時間を見る ↗</a>';
     const noteHTML = (opts.featured || opts.note) ? '<p class="store-card-note">予約無料・ご相談だけでもOK</p>' : '';
