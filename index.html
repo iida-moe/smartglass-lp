@@ -863,6 +863,15 @@
     .store-card-map svg { width: 14px; height: 14px; flex-shrink: 0; }
     .search-title-bar, .search-catch { display: none; }
     .btn-store-web, .btn-store-tel { display: flex; align-items: center; justify-content: center; }
+    /* 店舗一覧の「残りを見る」 */
+    .store-more-btn {
+      grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; max-width: 480px; margin: 8px auto 0; padding: 16px; border-radius: 10px;
+      background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.6);
+      font-family: inherit; font-size: clamp(15px, 1.7vw, 17px); font-weight: 700; cursor: pointer;
+    }
+    .store-more-btn span { font-size: 12px; }
+    .store-more-btn:hover { opacity: 0.85; }
 
     /* ---- 画面下固定の「まとめバー」 ---- */
     .sticky-bottom-bar {
@@ -2249,6 +2258,7 @@
       .btn-store-tel, .store-card-body .btn-store-tel { padding: 14px 6px; font-size: 17px; border-radius: 10px; color: #111; border: 2px solid #111; background: #fff; }
       .empty-msg { color: var(--text-secondary); opacity: 1; }
       .trial-guide-lead { color: var(--text-primary); }
+      .store-more-btn { color: #111; border: 2px solid #111; font-size: 16px; }
       .sbb-actions { gap: 12px; }
       .sbb-divider { display: none; }
       .sbb-filters { flex-basis: 100%; order: 3; }
@@ -3894,6 +3904,12 @@
     return !!(searchState.brand || searchState.purpose || searchState.originLabel);
   }
 
+  const STORE_LIST_LIMIT = 5;
+  function expandStoreList() {
+    searchState.expanded = true;
+    renderStoreGrid();
+  }
+
   function renderStoreGrid() {
     const gridEl = document.getElementById('store-grid');
     if (!gridEl) return;
@@ -3916,12 +3932,25 @@
       list = list
         .map(s => Object.assign({}, s, { dist: haversine(searchState.originLat, searchState.originLon, s.lat, s.lon) }))
         .sort((a, b) => a.dist - b.dist);
+    } else if (!hasSearch && searchState.pref === 'すべて') {
+      // 検索前は、本体を試着できる店舗を先頭に
+      list = list.filter(s => storeHasBody(s, '')).concat(list.filter(s => !storeHasBody(s, '')));
     }
+
+    // 条件が変わったら「すべて見る」を閉じる
+    const stateKey = [searchState.pref, searchState.brand, searchState.purpose, searchState.originLabel, searchState.originLat, searchState.originLon].join('|');
+    if (stateKey !== searchState.listKey) { searchState.listKey = stateKey; searchState.expanded = false; }
+    const hiddenCount = searchState.expanded ? 0 : Math.max(0, list.length - STORE_LIST_LIMIT);
+    const fullCount = list.length;
+    if (hiddenCount > 0) list = list.slice(0, STORE_LIST_LIMIT);
 
     if (list.length === 0) {
       gridEl.innerHTML = '<p class="empty-msg">条件に合う店舗が見つかりませんでした。条件を変えてお試しください。</p>';
     } else {
       const trialGuide = buildTrialGuide(list[0]);
+      const moreBtn = hiddenCount > 0
+        ? '<button type="button" class="store-more-btn" onclick="expandStoreList()">残り' + hiddenCount + '店舗を見る（全' + fullCount + '店舗）<span aria-hidden="true">▼</span></button>'
+        : '';
       gridEl.innerHTML = list.map((s, i) => {
         const isNearest = !!(searchState.originLabel && i === 0);
         const isFeatured = hasSearch && i === 0;
@@ -3929,7 +3958,7 @@
           showDistLine: searchState.originType === 'zip',
           badgeLabel: searchState.originType === 'store' ? '注目の店舗' : 'お客様に最も近い店舗', showImage: isFeatured, featured: isFeatured }) +
           (i === 0 ? trialGuide : '');
-      }).join('');
+      }).join('') + moreBtn;
     }
 
     document.getElementById('sbb-count').innerHTML = '<b>' + list.length + '</b>店舗該当 / 全' + STORES.length + '店舗';
