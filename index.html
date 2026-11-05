@@ -3687,6 +3687,9 @@
     const lensLabel = document.getElementById('r-lens').parentElement;
     const isLensOnly = LENS_ONLY_BRANDS.includes(brand);
     const isTrialOnly = TRIAL_ONLY_BRANDS.includes(brand);
+    // 選べる内容が1つしかない商品は「ご希望の内容」ごと隠して自動で選ぶ
+    const purposeRow = document.querySelector('.cond-row-purpose');
+    if (purposeRow) purposeRow.style.display = (isLensOnly || isTrialOnly) ? 'none' : '';
     if (isLensOnly) {
       trialLabel.style.display = 'none';
       lensLabel.style.display = '';
@@ -3707,8 +3710,10 @@
     updatePurposeOptions();
     const isLensOnly = LENS_ONLY_BRANDS.includes(product);
     const isTrialOnly = TRIAL_ONLY_BRANDS.includes(product);
-    if (purpose === 'trial' && !isLensOnly) document.getElementById('r-trial').checked = true;
-    else if (purpose === 'lens' && !isTrialOnly) document.getElementById('r-lens').checked = true;
+    if (isLensOnly) document.getElementById('r-lens').checked = true;
+    else if (isTrialOnly) document.getElementById('r-trial').checked = true;
+    else if (purpose === 'trial') document.getElementById('r-trial').checked = true;
+    else if (purpose === 'lens') document.getElementById('r-lens').checked = true;
     else document.getElementById('r-any').checked = true;
     syncCondState();
   }
@@ -3910,7 +3915,7 @@
       const label = searchState.brand === 'Viture' ? 'VITURE' : searchState.brand;
       chips += '<span class="sbb-chip">' + label + '<button onclick="clearBrand()">×</button></span>';
     }
-    if (searchState.purpose) {
+    if (searchState.purpose && !LENS_ONLY_BRANDS.includes(searchState.brand) && !TRIAL_ONLY_BRANDS.includes(searchState.brand)) {
       chips += '<span class="sbb-chip">' + (searchState.purpose === 'trial' ? '本体購入・試着' : 'レンズ交換') + '<button onclick="clearPurpose()">×</button></span>';
     }
     if (searchState.originLabel) {
@@ -4042,7 +4047,7 @@
     const mapLinkHTML = '<a class="store-card-map" href="https://www.google.com/maps/search/?api=1&query=' + mapQuery + '" target="_blank" rel="noopener" data-store="' + s.name + '">' +
       '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>' +
       '地図・営業時間を見る ↗</a>';
-    const noteHTML = (opts.featured || opts.note) ? '<p class="store-card-note">予約無料・ご相談だけでもOK</p>' : '';
+    const noteHTML = (opts.featured || opts.note) ? '<p class="store-card-note">＼予約無料・ご相談だけでもOK／</p>' : '';
     const actionsHTML =
       noteHTML +
       '<div class="store-card-actions">' +
