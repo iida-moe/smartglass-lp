@@ -862,6 +862,10 @@
     .store-card-map { display: inline-flex; align-items: center; gap: 6px; font-size: clamp(13px, 1.5vw, 15px); color: var(--text-primary); text-decoration: underline; text-underline-offset: 3px; margin: 0; width: fit-content; }
     .store-card-map svg { width: 14px; height: 14px; flex-shrink: 0; }
     .search-title-bar, .search-catch { display: none; }
+    /* 電話予約ボタン：ラベル＋番号の2段 */
+    .btn-store-web { display: flex; align-items: center; justify-content: center; }
+    .btn-store-tel { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; line-height: 1.25; }
+    .btn-store-tel .tel-num { font-size: 0.82em; font-weight: 500; }
 
     /* ---- 画面下固定の「まとめバー」 ---- */
     .sticky-bottom-bar {
@@ -2243,9 +2247,10 @@
       .store-card-name { font-size: 20px; }
       .store-card-addr { font-size: 14px; margin: 0; }
       .store-model-row { font-size: 14px; }
-      .store-card-actions { flex-direction: column; gap: 10px; padding-top: 6px; }
-      .btn-store-web, .store-card-body .btn-store-web { padding: 17px 8px; font-size: 18px; border-radius: 10px; }
-      .btn-store-tel, .store-card-body .btn-store-tel { padding: 12px 8px; font-size: 16px; border-radius: 10px; }
+      .store-card-actions { gap: 12px; padding-top: 6px; }
+      .btn-store-web, .store-card-body .btn-store-web { padding: 14px 6px; font-size: 20px; border-radius: 10px; }
+      .btn-store-tel, .store-card-body .btn-store-tel { padding: 10px 6px; font-size: 17px; border-radius: 10px; color: #111; border: 2px solid #111; background: #fff; }
+      .btn-store-tel .tel-num { font-size: 14px; }
       .empty-msg { color: var(--text-secondary); opacity: 1; }
       .trial-guide-lead { color: var(--text-primary); }
       .sbb-actions { gap: 12px; }
@@ -3965,13 +3970,13 @@
     const from = opts.from || (opts.featured ? 'featured' : 'list');
     const mapLinkHTML = '<a class="store-card-map" href="' + s.url + '" target="_blank">' +
       '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>' +
-      '地図・営業時間を見る →</a>';
+      '地図・営業時間を見る ↗</a>';
     const noteHTML = (opts.featured || opts.note) ? '<p class="store-card-note">予約無料・ご相談だけでもOK</p>' : '';
     const actionsHTML =
       noteHTML +
       '<div class="store-card-actions">' +
         '<a href="' + (s.reserve || s.url) + '" target="_blank" class="btn-store-web" data-store="' + s.name + '" data-from="' + from + '">WEB予約</a>' +
-        '<a href="tel:' + s.tel + '" class="btn-store-tel" data-store="' + s.name + '" data-from="' + from + '">' + s.tel + '</a>' +
+        '<a href="tel:' + s.tel + '" class="btn-store-tel" data-store="' + s.name + '" data-from="' + from + '"><span class="tel-label">電話予約</span><span class="tel-num">' + s.tel + '</span></a>' +
       '</div>';
 
     if (opts.featured) {
