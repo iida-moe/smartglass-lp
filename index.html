@@ -3922,6 +3922,14 @@
     searchState.expanded = true;
     renderStoreGrid();
   }
+  function collapseStoreList() {
+    searchState.expanded = false;
+    renderStoreGrid();
+    const grid = document.getElementById('store-grid');
+    const header = document.querySelector('header');
+    const offset = (header ? header.offsetHeight : 80) + 16;
+    window.scrollTo({ top: grid.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
+  }
 
   function renderStoreGrid() {
     const gridEl = document.getElementById('store-grid');
@@ -3963,7 +3971,9 @@
       const trialGuide = buildTrialGuide(list[0]);
       const moreBtn = hiddenCount > 0
         ? '<button type="button" class="store-more-btn" onclick="expandStoreList()">残り' + hiddenCount + '店舗を見る（全' + fullCount + '店舗）<span aria-hidden="true">▼</span></button>'
-        : '';
+        : (searchState.expanded && fullCount > STORE_LIST_LIMIT
+          ? '<button type="button" class="store-more-btn" onclick="collapseStoreList()">閉じる<span aria-hidden="true">▲</span></button>'
+          : '');
       gridEl.innerHTML = list.map((s, i) => {
         const isNearest = !!(searchState.originLabel && i === 0);
         const isFeatured = hasSearch && i === 0;
