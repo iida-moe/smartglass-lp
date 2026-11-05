@@ -1269,19 +1269,21 @@
     }
     /* 矢印帯 */
     /* 矢印帯：赤ラッパー(border代わり) + 白内側 */
+    /* 目安の帯：ふつうの赤い四角枠 */
     .flow-arrow-band-wrap {
-      margin-top: 32px;
-      background: var(--red);
-      clip-path: polygon(0 0, calc(100% - 40px) 0%, 100% 50%, calc(100% - 40px) 100%, 0 100%);
-      padding: 2px;
+      margin: 32px auto 0;
+      max-width: 900px;
+      background: #fff;
+      border: 2px solid var(--red);
     }
     .flow-arrow-band {
-      background: #fff;
       color: var(--red);
-      clip-path: polygon(0 0, calc(100% - 40px) 0%, 100% 50%, calc(100% - 40px) 100%, 0 100%);
-      padding: 11px 72px 11px 48px;
+      padding: 12px 24px;
       display: flex; align-items: center; justify-content: center; gap: 20px;
     }
+    .flow-arrow-band-wrap + .flow-note { max-width: 900px; margin-left: auto; margin-right: auto; }
+    /* オンラインの流れの最後のボタン */
+    .flow-online-cta { max-width: 420px; margin: 28px auto 0; display: flex; justify-content: center; }
     .flow-arrow-band-label { font-size: clamp(13px, 1.5vw, 15px); font-weight: 600; opacity: 0.9; white-space: nowrap; }
     .flow-arrow-band-value { font-size: clamp(22px, 2.5vw, 25px); font-weight: 800; white-space: nowrap; }
     .flow-note {
@@ -2235,18 +2237,12 @@
         margin-top: 8px; font-size: clamp(13px, 1.5vw, 15px);
         color: var(--text-secondary); line-height: 1.75; text-align: left;
       }
-      .flow-arrow-band-wrap {
-        clip-path: none;
-        border: 2px solid var(--red);
-        border-radius: 8px;
-        padding: 0;
-        margin-top: 16px;
-      }
+      .flow-arrow-band-wrap { margin-top: 16px; }
       .flow-arrow-band {
-        clip-path: none;
         flex-direction: column; gap: 1px;
-        padding: 6px 16px; text-align: center;
+        padding: 8px 16px; text-align: center;
       }
+      .flow-online-cta { margin-top: 20px; }
       .flow-arrow-band-value { font-size: clamp(19px, 2.2vw, 22px); }
       .flow-note { text-align: left; }
       .flow-online-block { margin-top: 36px; padding-top: 32px; }
@@ -3298,6 +3294,12 @@
         </div>
       </div>
       <p class="flow-note" style="margin-top:16px;">※ Rokid・MiRZA・SABERAの度付きレンズ加工に対応。<br>※ 処方箋がある場合はフレームと合わせてご郵送ください。<br>※ 郵送の送料はお客様のご負担となります。<br>※ レンズの種類・コーティングによっては10日以上かかる場合があります。完成次第ご連絡いたします。<br>※ ご購入の手続き等詳細はアイジャパンオンラインをお確かめください。</p>
+      <div class="flow-online-cta">
+        <a href="https://www.aijapan-online.com/" target="_blank" class="btn-why-online">
+          <img src="logo_aijapanonline02.png" alt="Ai Japan Online" class="btn-why-online-logo">
+          <span>オンラインで注文する▶</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
