@@ -2204,7 +2204,15 @@
         flex-shrink: 0; position: relative; z-index: 1;
         align-self: start;
       }
-      .flow-tl-icon { display: none; }
+      /* アイコンは見出しの右に白い丸で表示 */
+      .flow-tl-step { grid-template-columns: 44px 1fr 52px; }
+      .flow-tl-icon {
+        display: flex; align-items: center; justify-content: center;
+        grid-column: 3; grid-row: 1; align-self: center;
+        width: 52px; height: 52px; border-radius: 50%; background: #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      }
+      .flow-tl-icon img { width: 30px; height: 30px; }
       .flow-tl-step-head { display: contents; }
       .flow-tl-step .flow-title {
         grid-column: 2; grid-row: 1;
