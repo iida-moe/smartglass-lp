@@ -4880,11 +4880,11 @@
         },
         lens: {
           label: '度付きレンズ',
-          desc: 'SABERAは度付きレンズでお使いいただけます。',
-          points: ['近視のみ対応', '遠近両用もOK（店頭のみ）', '全37店舗・オンラインで注文できる'],
+          desc: 'SABERAは度付きレンズに交換してお使いいただけます。本体と一緒のご注文もできます。',
+          infoTable: [['対応', '近視のみ（遠視は対応しておりません）'], ['レンズの種類', '単焦点：店頭・オンライン<br>遠近両用：店頭のみ'], ['ご注文', '全37店舗・オンライン<br><span class="pm2-note">※本庄南大通り店を除く</span>']],
           range: {
             nums: [['単焦点', '−10.00まで'], ['遠近両用', '−1.25から']],
-            notes: ['※遠視は対応しておりません。', '※遠近両用は店頭のみ。近視が−1.25より強い方が対象です。', '※乱視や度数の組み合わせによっては、対応できない場合があります。'],
+            notes: ['※遠近両用は、近視が−1.25より強い方が対象です。', '※乱視や度数の組み合わせによっては、対応できない場合があります。'],
           },
           storeWay: '本体と一緒に度付きレンズでご購入いただけます。お持ちのSABERAのレンズ交換も承ります。単焦点・遠近両用どちらも対応しています。<br><span class="pm2-note">※本庄南大通り店を除く全37店舗</span>',
           onlineWay: 'アイジャパンオンラインで、本体と一緒に、またはレンズのみご注文いただけます。<br><span class="pm2-note">※オンラインは単焦点のみ</span>',
@@ -5095,6 +5095,7 @@
       ${p.descNote ? `<p class="pm2-note">${p.descNote}</p>` : ''}
       ${points}
       ${p.specsTop ? `<div style="margin-top:20px;">${buildSpecTableHTML(p.specsList || pd.specs)}</div>` : ''}
+      ${p.infoTable ? `<div class="prod-modal-spec-table pm2-info-table" style="margin-top:20px;">${p.infoTable.map(r => `<div class="prod-modal-spec-row"><div class="prod-modal-spec-key">${r[0]}</div><div class="prod-modal-spec-val">${r[1]}</div></div>`).join('')}</div>` : ''}
       ${p.official ? `<a class="pm2-official" href="${p.official}" target="_blank" rel="noopener">詳細はメーカー公式サイトへ →</a>` : ''}`;
   }
   // 本体タブのボタン（今までと同じ動き）
