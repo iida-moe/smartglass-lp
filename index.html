@@ -2654,6 +2654,8 @@
     /* 取扱店のリンクは紺色・細い下線でなじませる */
     .pm2 .store-name-link { color: var(--navy); text-decoration-thickness: 1px; text-decoration-color: rgba(13,27,42,0.4); text-underline-offset: 3px; }
     .pm2 .prod-modal-info-col .prod-modal-spec-table { margin-bottom: 0; }
+    .pm2-more { text-align: right; margin-top: 10px; }
+    .pm2-more a { font-size: 13px; color: var(--navy); text-decoration: underline; text-underline-offset: 3px; }
     .pm2-official { display: inline-block; margin-top: 12px; font-size: 13px; color: var(--navy); text-decoration: underline; text-underline-offset: 3px; }
     .pm2-acc + .pm2-acc { margin-top: 10px; }
     .pm2-ways > .pm2-way:only-child { grid-column: 1 / -1; }
@@ -4873,7 +4875,8 @@
           label: '本体・レンズ取り扱い',
           desc: '全てハンズフリー。必要な情報を「視界の中」で。',
           specsTop: true,
-          recommendTtl: 'できること',
+          recommendTtl: '主な機能',
+          officialAfterRec: true,
           recommend: [['mic', '文字起こし', '議事録・AI要約も'], ['translate', 'リアルタイム翻訳', '40言語以上に対応'], ['bubble', '通知・AIアシスタント', '視界でさっと確認'], ['nav', 'ナビ・テレプロンプト', '道案内や原稿を表示']],
           accordion: true,
           store: '本体・レンズ取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span>・<span class="store-name-link" onclick="showStoreByName(\'宇都宮錦\')">宇都宮錦店</span>・<span class="store-name-link" onclick="showStoreByName(\'八千代\')">八千代台ユアエルム店</span>／オンライン</strong>',
@@ -5097,7 +5100,7 @@
       ${points}
       ${p.specsTop ? `<div style="margin-top:20px;">${buildSpecTableHTML(p.specsList || pd.specs)}</div>` : ''}
       ${p.infoTable ? `<div class="prod-modal-spec-table pm2-info-table" style="margin-top:20px;">${p.infoTable.map(r => `<div class="prod-modal-spec-row"><div class="prod-modal-spec-key">${r[0]}</div><div class="prod-modal-spec-val"><div>${r[1]}</div></div></div>`).join('')}</div>` : ''}
-      ${p.official ? `<a class="pm2-official" href="${p.official}" target="_blank" rel="noopener">詳細はメーカー公式サイトへ →</a>` : ''}`;
+      ${(p.official && !p.officialAfterRec) ? `<a class="pm2-official" href="${p.official}" target="_blank" rel="noopener">詳細はメーカー公式サイトへ →</a>` : ''}`;
   }
   // 本体タブのボタン（今までと同じ動き）
   function pm2BodyBtns(pd) {
@@ -5114,6 +5117,7 @@
       <div class="pm2-sec">
         <p class="pm2-ttl">${p.recommendTtl || 'こんな方におすすめ'}</p>
         <div class="pm2-rec">${p.recommend.map(r => `<div class="pm2-rec-item"><span class="pm2-rec-icon">${pm2Icon(r[0])}</span>${r[2] ? `<p class="pm2-rec-ttl">${r[1]}</p><p class="pm2-rec-sub">${r[2]}</p>` : `<p>${r[1]}</p>`}</div>`).join('')}</div>
+        ${(p.official && p.officialAfterRec) ? `<p class="pm2-more"><a href="${p.official}" target="_blank" rel="noopener">ほかの機能や詳しいスペックはメーカー公式サイトへ →</a></p>` : ''}
       </div>` : '';
     // スペック表は上の右列ではなく、ここに横いっぱいで（左右の高さをそろえるため）
     const specList = p.specsTop ? null : (p.specsList || (p.specs ? pd.specs : null));
