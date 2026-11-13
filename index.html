@@ -4954,7 +4954,7 @@
     const online = p.onlineSteps ? `<ol class="pm2-steps">${p.onlineSteps.map(x => `<li>${x}</li>`).join('')}</ol>` : (p.onlineWay ? `<p>${p.onlineWay}</p>` : '');
     // 注文方法の枠の中にもボタン（読んで決めたその場で押せるように）
     const onlineUrl = pd.onlineStore || pd.bodyOnlineStore || '';
-    const storeBtn = `<a href="#search" class="btn btn-red pm2-way-btn" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a>`;
+    const storeBtn = `<a href="#search" class="btn btn-red pm2-way-btn" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">近くの店舗を探す</a>`;
     const onlineBtn = onlineUrl ? `<a href="${onlineUrl}" target="_blank" rel="noopener" class="btn btn-outline pm2-way-btn">オンラインで注文する</a>` : '';
     const ways = (p.storeWay || online) ? `
       <div class="pm2-sec">
