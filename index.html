@@ -2628,6 +2628,8 @@
     .pm2-rec-icon { display: inline-flex; align-items: center; justify-content: center; width: 68px; height: 68px; border-radius: 50%; background: #EEF2F7; color: var(--navy); margin-bottom: 12px; }
     .pm2-rec-icon svg { width: 36px; height: 36px; stroke-width: 1.7; }
     .pm2-rec-item p { font-size: 15px; color: #333; line-height: 1.6; }
+    .pm2-rec-item p.pm2-rec-ttl { font-size: 15px; font-weight: 700; color: var(--navy); line-height: 1.4; }
+    .pm2-rec-item p.pm2-rec-sub { font-size: 13px; color: #666; line-height: 1.5; margin-top: 4px; }
     .pm2-note { font-size: 13px; color: #333; line-height: 1.7; }
     .pm2-note + .pm2-note { margin-top: 2px; }
     .pm2-details { margin-top: 6px; }
@@ -2704,6 +2706,9 @@
       .pm2-rec-icon { width: 56px; height: 56px; margin-bottom: 8px; }
       .pm2-rec-icon svg { width: 30px; height: 30px; }
       .pm2-rec-item p { font-size: 13px; }
+      .pm2-rec-item p.pm2-rec-ttl { font-size: 13px; word-break: keep-all; overflow-wrap: anywhere; }
+      .pm2-rec-item p.pm2-rec-sub { font-size: 12px; }
+      .pm2-tabs .modal-content-tab { font-size: 13px; padding: 10px 4px; white-space: nowrap; }
       .pm2-ways { grid-template-columns: 1fr; gap: 12px; }
       .pm2-way { padding: 16px; }
       .pm2-actions { flex-direction: column; gap: 10px; margin-top: 24px; }
@@ -4872,11 +4877,9 @@
         body: {
           label: '本体・レンズ取り扱い',
           desc: '全てハンズフリー。必要な情報を「視界の中」で。',
-          points: ['約38gの軽さ', 'カメラなしでプライバシーに配慮', '鯖江生まれの国産フレーム'],
-          specs: true,
-          specsAccordion: true,
+          specsTop: true,
           recommendTtl: 'できること',
-          recommend: [['mic', '文字起こし・<br>議事録・AI要約'], ['translate', '40言語以上の<br>リアルタイム翻訳'], ['bubble', '通知・<br>AIアシスタント'], ['nav', 'ナビゲーション・<br>テレプロンプト']],
+          recommend: [['mic', '文字起こし', '議事録・AI要約も'], ['translate', 'リアルタイム翻訳', '40言語以上に対応'], ['bubble', '通知・AIアシスタント', '視界でさっと確認'], ['nav', 'ナビ・テレプロンプト', '道案内や原稿を表示']],
           accordion: true,
           store: '本体・レンズ取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span>・<span class="store-name-link" onclick="showStoreByName(\'宇都宮錦\')">宇都宮錦店</span>・<span class="store-name-link" onclick="showStoreByName(\'八千代\')">八千代台ユアエルム店</span>／オンライン</strong>',
         },
@@ -5096,8 +5099,8 @@
       ${p.desc ? `<p class="pm2-desc">${p.desc}</p>` : ''}
       ${p.descNote ? `<p class="pm2-note">${p.descNote}</p>` : ''}
       ${points}
-      ${p.official ? `<a class="pm2-official" href="${p.official}" target="_blank" rel="noopener">詳細はメーカー公式サイトへ →</a>` : ''}
-      ${p.specsTop ? `<div style="margin-top:20px;">${buildSpecTableHTML(p.specsList || pd.specs)}</div>` : ''}`;
+      ${p.specsTop ? `<div style="margin-top:20px;">${buildSpecTableHTML(p.specsList || pd.specs)}</div>` : ''}
+      ${p.official ? `<a class="pm2-official" href="${p.official}" target="_blank" rel="noopener">詳細はメーカー公式サイトへ →</a>` : ''}`;
   }
   // 本体タブのボタン（今までと同じ動き）
   function pm2BodyBtns(pd) {
@@ -5113,7 +5116,7 @@
     const rec = p.recommend ? `
       <div class="pm2-sec">
         <p class="pm2-ttl">${p.recommendTtl || 'こんな方におすすめ'}</p>
-        <div class="pm2-rec">${p.recommend.map(r => `<div class="pm2-rec-item"><span class="pm2-rec-icon">${pm2Icon(r[0])}</span><p>${r[1]}</p></div>`).join('')}</div>
+        <div class="pm2-rec">${p.recommend.map(r => `<div class="pm2-rec-item"><span class="pm2-rec-icon">${pm2Icon(r[0])}</span>${r[2] ? `<p class="pm2-rec-ttl">${r[1]}</p><p class="pm2-rec-sub">${r[2]}</p>` : `<p>${r[1]}</p>`}</div>`).join('')}</div>
       </div>` : '';
     // スペック表は上の右列ではなく、ここに横いっぱいで（左右の高さをそろえるため）
     const specList = p.specsTop ? null : (p.specsList || (p.specs ? pd.specs : null));
