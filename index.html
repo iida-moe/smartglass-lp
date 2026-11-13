@@ -2637,6 +2637,7 @@
     .pm2-way { border: 1px solid #E0E4EA; border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; }
     .pm2-way .pm2-way-btn { margin-top: auto; display: block; width: 100%; text-align: center; box-sizing: border-box; padding-top: 12px; padding-bottom: 12px; font-size: 15px; }
     .pm2-way > :nth-last-child(2) { margin-bottom: 18px; }
+    .pm2-way-notes { margin-top: 12px; }
     /* ボタン右端に「丸の中に▶」 */
     .pm2-way .pm2-way-btn { position: relative; padding-left: 44px; padding-right: 44px; }
     .pm2-way .pm2-way-btn::after { content: ''; position: absolute; right: 16px; top: 50%; width: 20px; height: 20px; margin-top: -10px; border-radius: 50%; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M8 6l5 4-5 4z' fill='%23CC0000'/%3E%3C/svg%3E") center/20px no-repeat; }
@@ -4549,11 +4550,11 @@
           nums: [['近視', '−10.00まで'], ['乱視', '−4.00まで']],
           notes: ['※遠視・遠近両用は対応しておりません。', '※度数の組み合わせによっては、対応できない場合があります。'],
           details: ['近視と乱視を合わせて−10.00までとなります。', '近視が−0.75までの方は、乱視入りのレンズは作れません。'],
-          help: '自分の度数がわからなくても大丈夫。お店で測ります。',
         },
         storeWay: 'クリップオン式フレームをお持ちのうえ、お近くのアイメガネ店舗へお越しください。レンズの度数は店頭で測定します。お使いのメガネに合わせて作ることもできます。<br><span class="pm2-note">※本庄南大通り店を除く全37店舗</span>',
         onlineSteps: ['Rokid公式サイトでクリップオン式フレームを購入<br><a href="https://jp.rokid.com/pages/rokid-glasses" target="_blank" rel="noopener">Rokid公式ホームページ →</a>', '度数（球面・乱視・軸度・PD）を入力してオンラインで注文', 'クリップオン式フレームのみをご郵送。レンズを入れてご自宅へ返送します'],
-        cautions: ['フレームの送料はお客様負担となります。', '度付きレンズは特注品となるため、ご注文後のキャンセル・返品はお受けできません。', 'オンラインでご注文の際は、処方箋などで度数をご確認ください。度数が分からない方は、店舗で測定してお作りできます。'],
+        onlineNotes: ['※フレームの送料はお客様負担となります。', '※度数は処方箋などでご確認ください。'],
+        waysNote: '※度付きレンズは特注品のため、ご注文後のキャンセル・返品はお受けできません。',
       },
       lensHTML: `
         <p class="modal-lens-intro">Rokid スマートAIグラス専用のクリップオン式フレームに入れる度付きレンズです。<small class="except-note">※本サービスはレンズ交換のみです。Rokid本体・クリップオン式フレームはRokid公式サイトにてご購入ください。<br><a href="https://jp.rokid.com/pages/rokid-glasses" target="_blank" style="color:var(--navy);">Rokid公式ホームページ →</a></small></p>
@@ -4737,11 +4738,10 @@
           range: {
             nums: [['単焦点', '−10.00まで'], ['遠近両用', '−1.25から']],
             notes: ['※遠視は対応しておりません。', '※遠近両用は店頭のみ。近視が−1.25より強い方が対象です。', '※乱視や度数の組み合わせによっては、対応できない場合があります。'],
-            help: '自分の度数がわからなくても大丈夫。お店で測ります。',
           },
           storeWay: 'SABERA本体をお持ちのうえ、お近くのアイメガネ店舗へお越しください。単焦点・遠近両用どちらも承ります。<br><span class="pm2-note">※本庄南大通り店を除く全37店舗</span>',
           onlineWay: 'アイジャパンオンラインでご注文いただけます。<br><span class="pm2-note">※オンラインは単焦点のみ</span>',
-          cautions: ['度付きレンズは特注品となるため、ご注文後のキャンセル・返品はお受けできません。'],
+          waysNote: '※度付きレンズは特注品のため、ご注文後のキャンセル・返品はお受けできません。',
         },
       },
       lensHTML: `
@@ -4961,8 +4961,9 @@
         <p class="pm2-ttl">ご注文方法</p>
         <div class="pm2-ways">
           ${p.storeWay ? `<div class="pm2-way"><p class="pm2-way-ttl">店舗で注文する</p><p>${p.storeWay}</p>${storeBtn}</div>` : ''}
-          ${online ? `<div class="pm2-way"><p class="pm2-way-ttl">オンラインで注文する</p>${online}${onlineBtn}</div>` : ''}
+          ${online ? `<div class="pm2-way"><p class="pm2-way-ttl">オンラインで注文する</p>${online}${p.onlineNotes ? `<div class="pm2-way-notes">${p.onlineNotes.map(n => `<p class="pm2-note">${n}</p>`).join('')}</div>` : ''}${onlineBtn}</div>` : ''}
         </div>
+        ${p.waysNote ? `<p class="pm2-note" style="margin-top:12px;">${p.waysNote}</p>` : ''}
       </div>` : '';
     const cautions = p.cautions ? `
       <div class="pm2-sec">
@@ -4988,7 +4989,9 @@
     } else {
       btns = `<a href="#search" class="btn btn-blue" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換の店舗を探す</a>`;
     }
-    return `${rec}${range}${ways}${cautions}${accordion}${store}<div class="pm2-actions"${store ? ' style="margin-top:12px;"' : ''}>${btns}</div>`;
+    // ご注文方法の枠にボタンがあるときは、注意事項を先に出して、最後をご注文方法で終える（同じボタンを2回出さない）
+    if (ways) return `${rec}${range}${cautions}${accordion}${store}${ways}`;
+    return `${rec}${range}${cautions}${accordion}${store}<div class="pm2-actions"${store ? ' style="margin-top:12px;"' : ''}>${btns}</div>`;
   }
   function pm2SwitchTab(btn, tab) {
     const root = btn.closest('.pm2');
