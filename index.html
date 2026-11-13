@@ -59,7 +59,7 @@
       {
         "@type": "Question",
         "name": "どの店舗でも全機種に対応していますか？",
-        "acceptedAnswer": { "@type": "Answer", "text": "機種によって本体の展示・販売、レンズ交換の対応店舗が異なります。MiRZA・Rokid・SABERAのレンズ交換は全37店舗で承っております（本庄南大通り店を除く）。Even Realities G2・VITURE・Ray-Ban Metaは対応店舗が限定されますので、ページ内の「店舗検索」で機種を選んでご確認ください。" }
+        "acceptedAnswer": { "@type": "Answer", "text": "機種によって本体の展示・販売、レンズ交換の対応店舗が異なります。MiRZA・Rokid・SABERAのレンズ交換は全37店舗で承っております（本庄南大通り店を除く）。Even Realities G2・VITURE・Ray-Ban Meta、およびSABERAの本体は対応店舗が限定されますので、ページ内の「店舗検索」で機種を選んでご確認ください。" }
       },
       {
         "@type": "Question",
@@ -3162,7 +3162,7 @@
       </div>
 
       <!-- SABERA 詳細版（非公開・保存用／公開日にSABERA_PUBLICをtrueにすると表示される） -->
-      <div class="pg-card" data-product="sabera" data-ptype="lens" id="sabera-full-card" style="display:none;">
+      <div class="pg-card" data-product="sabera" data-ptype="all" id="sabera-full-card" style="display:none;">
         <div class="pg-card-img" id="sabera-card-img" style="background:#fff;">
           <img src="images/sabera/front.jpg" alt="SABERA スマートグラス" id="sabera-img" style="width:100%;height:100%;object-fit:contain;object-position:center;transform:none;">
         </div>
@@ -3176,6 +3176,7 @@
             </div>
           </div>
           <table class="pg-card-store">
+            <tr><th>本体・レンズ</th><td><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('南浦和','sabera')">南浦和店・</span><wbr><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('宇都宮錦','sabera')">宇都宮錦店・</span><wbr><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('八千代','sabera')">八千代台ユアエルム店</span><span style="white-space:nowrap"> / オンライン</span><small class="except-note">※11/18（水）本体取扱い開始</small></td></tr>
             <tr><th>レンズ交換</th><td>全37店舗 / オンライン<small class="except-note">※本庄南大通り店を除く</small><small class="except-note">※レンズは近視のみの対応となります</small></td></tr>
           </table>
           <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('sabera')">詳しく見る ▶</button>
@@ -3454,7 +3455,7 @@
           <span class="qa-q-text">どの店舗でも全機種に対応していますか？</span>
           <span class="qa-icon">+</span>
         </button>
-        <div class="qa-a">機種によって本体の展示・販売、レンズ交換の対応店舗が異なります。MiRZA・Rokid・SABERAのレンズ交換は全37店舗で承っております（本庄南大通り店を除く）。Even Realities G2・VITURE・Ray-Ban Metaは対応店舗が限定されますので、機種を選んで<a href="#search" class="qa-a-link">店舗検索はこちら →</a>でご確認ください。</div>
+        <div class="qa-a">機種によって本体の展示・販売、レンズ交換の対応店舗が異なります。MiRZA・Rokid・SABERAのレンズ交換は全37店舗で承っております（本庄南大通り店を除く）。Even Realities G2・VITURE・Ray-Ban Meta、およびSABERAの本体は対応店舗が限定されますので、機種を選んで<a href="#search" class="qa-a-link">店舗検索はこちら →</a>でご確認ください。</div>
       </div>
 
       <div class="qa-item">
@@ -3702,7 +3703,7 @@
   }
 
   // 本体をアイメガネで取り扱わないブランド（レンズ交換のみ）
-  const LENS_ONLY_BRANDS = ['Rokid', 'SABERA'];
+  const LENS_ONLY_BRANDS = ['Rokid'];
   // 独立したレンズ交換サービスがなく、本体購入時にのみ度付きを選べるブランド
   const TRIAL_ONLY_BRANDS = ['Ray-Ban Meta'];
 
@@ -3794,7 +3795,7 @@
       'Ray-Ban Meta':   { body: true,  lens: true  },
       'VITURE':         { body: true,  lens: true  },
       'Viture':         { body: true,  lens: true  },
-      'SABERA':         { body: false, lens: true  },
+      'SABERA':         { body: true,  lens: true  },
     },
     'アイメガネ宇都宮錦店': {
       'MIRZA':          { body: false, lens: true  },
@@ -3803,7 +3804,7 @@
       'Ray-Ban Meta':   { body: false, lens: false },
       'VITURE':         { body: false, lens: false },
       'Viture':         { body: false, lens: false },
-      'SABERA':         { body: false, lens: true  },
+      'SABERA':         { body: true,  lens: true  },
     },
     'アイメガネ八千代台ユアエルム店': {
       'MIRZA':          { body: false, lens: true  },
@@ -3812,7 +3813,7 @@
       'Ray-Ban Meta':   { body: false, lens: false },
       'VITURE':         { body: false, lens: false },
       'Viture':         { body: false, lens: false },
-      'SABERA':         { body: false, lens: true  },
+      'SABERA':         { body: true,  lens: true  },
     },
     'アイメガネ深谷上柴西店': {
       'MIRZA':          { body: false, lens: true  },
@@ -4314,7 +4315,8 @@
     var full = document.getElementById('sabera-full-card');
     var teaser = document.getElementById('sabera-teaser-card');
     var inFilter = currentFilter === 'lens-only';
-    if (full) full.style.display = (SABERA_PUBLIC && inFilter) ? 'flex' : 'none';
+    // 11/18〜 SABERAは本体も取り扱うので「本体・レンズ取り扱い」側に出す
+    if (full) full.style.display = (SABERA_PUBLIC && currentFilter === 'all') ? 'flex' : 'none';
     if (teaser) teaser.style.display = (!SABERA_PUBLIC && inFilter) ? 'flex' : 'none';
     var searchOpt = document.getElementById('sabera-search-option');
     if (searchOpt && !SABERA_PUBLIC && searchOpt.parentNode) {
@@ -4605,10 +4607,12 @@
           <li><strong>分解・改造の禁止</strong>：本体の分解・改造はしないでください。発煙・異臭・異常発熱・液漏れ・水没・破損などの異常があった場合は、直ちに使用を中止し、本体に触れず店舗までご連絡ください。</li>
         </ul>`,
       recommend: ['会議・打ち合わせが多い人', '外国語を使う仕事や旅行が多い人', 'ハンズフリーで情報を確認したい人', '鯖江ブランドにこだわりたい人'],
+      store: '本体・レンズ取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span>・<span class="store-name-link" onclick="showStoreByName(\'宇都宮錦\')">宇都宮錦店</span>・<span class="store-name-link" onclick="showStoreByName(\'八千代\')">八千代台ユアエルム店</span>／オンライン</strong><small class="except-note">※11/18（水）本体取扱い開始</small>',
       lensStore: 'レンズ交換：<strong>全37店舗 / オンライン</strong><small class="except-note">※本庄南大通り店を除く</small><small class="except-note">※レンズは近視のみの対応となります</small>',
       searchBrand: 'SABERA',
       gallery: 'sabera',
-      lensOnly: true,
+      hasLens: true,
+      bodyOnlineStore: 'https://www.aijapan-online.com/',
       lensHTML: `
         <p class="modal-lens-intro">SABERAの度付きレンズへの交換に対応しています。<small class="except-note">※レンズは近視のみの対応となります。</small></p>
         <div class="modal-lens-block">
@@ -4821,6 +4825,9 @@
       <div class="prod-modal-actions">
         ${pd.hideBodyActionBtn ? (pd.bodyActionNote ? `<p class="except-note" style="margin:0;">${pd.bodyActionNote}</p>` : '') : pd.singleCtaLabel ? `
           <a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">${pd.singleCtaLabel}</a>
+        ` : pd.bodyOnlineStore ? `
+          <a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">本体購入・体験へ</a>
+          <a href="${pd.bodyOnlineStore}" target="_blank" class="btn btn-outline">オンラインストアを見る</a>
         ` : pd.onlineStore ? `
           <a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a>
           <a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインストアを見る</a>
@@ -4862,6 +4869,9 @@
     'even_新越谷':    { name: 'Even Realities G2', tags: ['本体取扱', 'レンズ交換対応'] },
     'rayban_南浦和':  { name: 'Ray-Ban Meta', tags: ['本体取扱（度付きレンズ選択可）'] },
     'viture_南浦和':  { name: 'VITURE Luma シリーズ', tags: ['本体取扱', 'レンズ交換対応'] },
+    'sabera_南浦和':  { name: 'SABERA', tags: ['本体取扱', 'レンズ交換対応'] },
+    'sabera_宇都宮錦': { name: 'SABERA', tags: ['本体取扱', 'レンズ交換対応'] },
+    'sabera_八千代':  { name: 'SABERA', tags: ['本体取扱', 'レンズ交換対応'] },
   };
   function showStoreFromCard(storeName, productKey) {
     var store = STORES.find(function(s) { return s.name.indexOf(storeName) !== -1; });
