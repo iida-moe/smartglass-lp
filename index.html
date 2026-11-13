@@ -2640,6 +2640,8 @@
     .pm2-way .pm2-way-btn { margin-top: auto; display: block; width: 100%; text-align: center; box-sizing: border-box; padding-top: 12px; padding-bottom: 12px; font-size: 15px; }
     .pm2-way > :nth-last-child(2) { margin-bottom: 18px; }
     .pm2-way-notes { margin-top: 12px; }
+    .pm2-acc .modal-accordion { margin-bottom: 0; }
+    .pm2-acc + .pm2-acc { margin-top: 10px; }
     .pm2-ways > .pm2-way:only-child { grid-column: 1 / -1; }
     .pm2-range-text { font-size: 15px; color: #333; line-height: 1.75; margin-bottom: 8px; }
     .pm2-lineup { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
@@ -4855,7 +4857,8 @@
           label: '本体・レンズ取り扱い',
           desc: '全てハンズフリー。必要な情報を「視界の中」で。',
           points: ['約38gの軽さ', 'カメラなしでプライバシーに配慮', '鯖江生まれの国産フレーム'],
-          specsTop: true,
+          specs: true,
+          specsAccordion: true,
           recommendTtl: 'できること',
           recommend: [['mic', '文字起こし・<br>議事録・AI要約'], ['translate', '40言語以上の<br>リアルタイム翻訳'], ['bubble', '通知・<br>AIアシスタント'], ['nav', 'ナビゲーション・<br>テレプロンプト']],
           accordion: true,
@@ -5097,7 +5100,14 @@
       </div>` : '';
     // スペック表は上の右列ではなく、ここに横いっぱいで（左右の高さをそろえるため）
     const specList = p.specsTop ? null : (p.specsList || (p.specs ? pd.specs : null));
-    const specs = specList ? `
+    const specRows = specList ? specList.map(s => `<div class="prod-modal-spec-row"><div class="prod-modal-spec-key">${s.label}</div><div class="prod-modal-spec-val">${s.value}</div></div>`).join('') : '';
+    const specs = (specList && p.specsAccordion) ? `
+      <div class="pm2-sec pm2-acc">
+        <div class="modal-accordion">
+          <button class="modal-accordion-btn" onclick="toggleModalAccordion(this)">スペック一覧 <span class="modal-accordion-arrow">▼</span></button>
+          <div class="modal-accordion-body"><div class="prod-modal-spec-table" style="margin:0;">${specRows}</div>${p.specsNote ? `<p class="pm2-note" style="margin-top:6px;">${p.specsNote}</p>` : ''}</div>
+        </div>
+      </div>` : specList ? `
       <div class="pm2-sec">
         <p class="pm2-ttl">スペック</p>
         ${buildSpecTableHTML(specList)}
@@ -5134,7 +5144,7 @@
         ${waysNotes.map((n, i) => `<p class="pm2-note" style="margin-top:${i ? 2 : 12}px;">${n}</p>`).join('')}
       </div>` : '';
     const accordion = (p.accordion && pd.accordion) ? `
-      <div class="pm2-sec">
+      <div class="pm2-sec pm2-acc">
         <div class="modal-accordion">
           <button class="modal-accordion-btn" onclick="toggleModalAccordion(this)">${pd.accordionLabel || '詳しく見る'} <span class="modal-accordion-arrow">▼</span></button>
           <div class="modal-accordion-body">${pd.accordion}</div>
