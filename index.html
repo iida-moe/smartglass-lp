@@ -2602,6 +2602,9 @@
     .pm2-range-num span { display: block; font-size: 13px; color: #555; margin-bottom: 2px; }
     .pm2-range-num strong { font-size: clamp(20px, 2.4vw, 24px); font-weight: 800; color: var(--navy); letter-spacing: 0.02em; white-space: nowrap; }
     .pm2-name { word-break: keep-all; overflow-wrap: anywhere; }
+    /* 写真は横長（3:2）の枠にして、小さい写真をすぐ下に寄せる */
+    .pm2 .prod-modal-img-main { aspect-ratio: 3 / 2; margin-bottom: 8px; }
+    .pm2 .prod-modal-img-main img { padding: 4px !important; }
     .pm2[data-tab="body"] .pm2-pane-lens, .pm2[data-tab="lens"] .pm2-pane-body { display: none; }
     .pm2-tabs { max-width: 420px; margin: 0 auto 24px; border-radius: 999px; }
     .pm2-tabs .modal-content-tab { padding: 10px; font-size: 14px; }
@@ -4517,7 +4520,7 @@
         label: 'レンズのみ取り扱い',
         desc: 'Rokid スマートAIグラス専用のクリップオン式フレームに入れる度付きレンズです。',
         descNote: '※本サービスはレンズ交換のみです。Rokid本体・クリップオン式フレームはRokid公式サイトにてご購入ください。',
-        points: ['Rokid専用クリップオン式フレーム（別売）に入れるレンズ', '全37店舗でレンズ交換OK（本庄南大通り店を除く）', 'オンライン注文にも対応（クリップオン式フレームのみ郵送）'],
+        points: ['近視のみ対応（−10.00まで）', '全37店舗でレンズ交換OK（本庄南大通り店を除く）', 'オンライン注文にも対応（クリップオン式フレームのみ郵送）'],
         recommend: [['cart', 'Rokidを持っている・<br>購入予定の方'], ['glasses', 'ふだんメガネや<br>コンタクトを使う方'], ['spark', 'スマートグラスを<br>度付きで使いたい方']],
         range: {
           nums: [['近視', '−10.00まで'], ['乱視', '−4.00まで']],
@@ -4705,11 +4708,10 @@
         lens: {
           label: 'レンズ交換',
           desc: 'SABERAの度付きレンズへの交換に対応しています。',
-          descNote: '※レンズは近視のみの対応となります。',
-          points: ['単焦点・遠近両用に対応（遠近両用は店頭のみ）', '全37店舗でレンズ交換OK（本庄南大通り店を除く）', '単焦点はオンラインでも注文OK'],
+          points: ['近視のみ対応（単焦点は−10.00まで）', '遠近両用は店頭で対応・単焦点はオンラインでもOK', '全37店舗でレンズ交換OK（本庄南大通り店を除く）'],
           range: {
-            nums: [['単焦点', '−10.00まで'], ['遠近両用（店頭のみ）', '−1.25から']],
-            notes: ['※遠近両用は、近視が−1.25より強い方が対象です。', '※遠視には対応しておりません。', '※乱視や度数の組み合わせによっては、対応できない場合があります。', '※詳しくは店舗にてご相談ください。'],
+            nums: [['単焦点', '−10.00まで'], ['遠近両用', '−1.25から']],
+            notes: ['※遠近両用は店頭のみ。近視が−1.25より強い方が対象です。', '※遠視には対応しておりません。', '※乱視や度数の組み合わせによっては、対応できない場合があります。', '※詳しくは店舗にてご相談ください。'],
           },
           storeWay: 'SABERA本体をお持ちのうえ、お近くのアイメガネ店舗へお越しください。単焦点・遠近両用どちらも承ります。<br><span class="pm2-note">※本庄南大通り店を除く全37店舗</span>',
           onlineWay: 'アイジャパンオンラインでご注文いただけます。<br><span class="pm2-note">※オンラインは単焦点のみ</span>',
