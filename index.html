@@ -2625,7 +2625,9 @@
     .pm2-note { font-size: 13px; color: #333; line-height: 1.7; }
     .pm2-note + .pm2-note { margin-top: 2px; }
     .pm2-ways { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .pm2-way { border: 1px solid #E0E4EA; border-radius: 12px; padding: 18px 20px; }
+    .pm2-way { border: 1px solid #E0E4EA; border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; }
+    .pm2-way .pm2-way-btn { margin-top: auto; display: block; width: 100%; text-align: center; box-sizing: border-box; padding-top: 12px; padding-bottom: 12px; font-size: 15px; }
+    .pm2-way > :nth-last-child(2) { margin-bottom: 18px; }
     .pm2-way-ttl { font-size: clamp(15px, 1.7vw, 16px); font-weight: 700; color: var(--navy); margin-bottom: 10px; }
     .pm2-way p { font-size: 14px; color: #333; line-height: 1.75; }
     .pm2-steps { list-style: none; padding: 0; margin: 0; counter-reset: pm2; }
@@ -2633,7 +2635,7 @@
     .pm2-steps li:last-child { padding-bottom: 0; }
     .pm2-steps li::before { content: counter(pm2); position: absolute; left: 0; top: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--navy); color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
     .pm2-steps li:not(:last-child)::after { content: ''; position: absolute; left: 10.5px; top: 25px; bottom: 3px; width: 1px; background: #C9D1DC; }
-    .pm2-way a { color: var(--navy); font-size: 13px; }
+    .pm2-way a:not(.btn) { color: var(--navy); font-size: 13px; }
     .pm2-cautions { list-style: none; padding: 0; margin: 0; }
     .pm2-cautions li { font-size: 13px; color: #444; line-height: 1.7; padding-left: 1em; text-indent: -1em; }
     .pm2-cautions li::before { content: '・'; }
@@ -4932,12 +4934,16 @@
         </div>
       </div>` : '';
     const online = p.onlineSteps ? `<ol class="pm2-steps">${p.onlineSteps.map(x => `<li>${x}</li>`).join('')}</ol>` : (p.onlineWay ? `<p>${p.onlineWay}</p>` : '');
+    // 注文方法の枠の中にもボタン（読んで決めたその場で押せるように）
+    const onlineUrl = pd.onlineStore || pd.bodyOnlineStore || '';
+    const storeBtn = `<a href="#search" class="btn btn-red pm2-way-btn" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a>`;
+    const onlineBtn = onlineUrl ? `<a href="${onlineUrl}" target="_blank" rel="noopener" class="btn btn-outline pm2-way-btn">オンラインで注文する</a>` : '';
     const ways = (p.storeWay || online) ? `
       <div class="pm2-sec">
         <p class="pm2-ttl">ご注文方法</p>
         <div class="pm2-ways">
-          ${p.storeWay ? `<div class="pm2-way"><p class="pm2-way-ttl">店舗で注文する</p><p>${p.storeWay}</p></div>` : ''}
-          ${online ? `<div class="pm2-way"><p class="pm2-way-ttl">オンラインで注文する</p>${online}</div>` : ''}
+          ${p.storeWay ? `<div class="pm2-way"><p class="pm2-way-ttl">店舗で注文する</p><p>${p.storeWay}</p>${storeBtn}</div>` : ''}
+          ${online ? `<div class="pm2-way"><p class="pm2-way-ttl">オンラインで注文する</p>${online}${onlineBtn}</div>` : ''}
         </div>
       </div>` : '';
     const cautions = p.cautions ? `
