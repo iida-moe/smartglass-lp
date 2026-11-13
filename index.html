@@ -3076,6 +3076,29 @@
         </div>
       </div>
 
+      <!-- SABERA 詳細版（非公開・保存用／公開日にSABERA_PUBLICをtrueにすると表示される） -->
+      <div class="pg-card" data-product="sabera" data-ptype="all" id="sabera-full-card" style="display:none;">
+        <div class="pg-card-img" id="sabera-card-img" style="background:#fff;">
+          <img src="images/sabera/front.jpg" alt="SABERA スマートグラス" id="sabera-img" style="width:100%;height:100%;object-fit:contain;object-position:center;transform:none;">
+        </div>
+        <div class="pg-card-body">
+          <h3 class="pg-card-name">SABERA<span class="pg-furigana">（サベラ）</span></h3>
+          <div class="pg-card-scenes">
+            <span class="pg-scene-label">こんなシーンに</span>
+            <div class="pg-scene-tags">
+              <span class="pg-scene-tag">ビジネス</span>
+              <span class="pg-scene-tag">日常</span>
+            </div>
+          </div>
+          <table class="pg-card-store">
+            <tr><th>本体・レンズ</th><td><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('南浦和','sabera')">南浦和店・</span><wbr><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('宇都宮錦','sabera')">宇都宮錦店・</span><wbr><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('八千代','sabera')">八千代台ユアエルム店</span><span style="white-space:nowrap"> / オンライン</span><small class="except-note">※11/18（水）本体取扱い開始</small></td></tr>
+            <tr><th>レンズ交換</th><td>全37店舗 / オンライン<small class="except-note">※本庄南大通り店を除く</small><small class="except-note">※レンズは近視のみの対応となります</small></td></tr>
+          </table>
+          <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('sabera')">詳しく見る ▶</button>
+          <a class="pg-card-official-link" href="https://sabera.glass/" target="_blank" rel="noopener" onclick="event.stopPropagation();">メーカー公式サイトへ →</a>
+        </div>
+      </div>
+
       <!-- VITURE Luma / Luma Ultra -->
       <div class="pg-card" data-product="viture" data-ptype="all">
         <div class="pg-card-img pg-img--viture"><img src="viture/luma/01.avif" alt="VITURE Luma" id="viture-card-img" style="width:100%;height:100%;object-fit:contain;transform:scale(1.18);"></div>
@@ -3158,29 +3181,6 @@
         <div class="pg-card-img" style="background:#0D1B2A;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;">
           <span style="color:#fff;font-size:clamp(26px,4vw,32px);font-weight:800;letter-spacing:0.05em;">SABERA</span>
           <span style="color:rgba(255,255,255,0.75);font-size:clamp(16px,2vw,18px);letter-spacing:0.1em;">Coming Soon…</span>
-        </div>
-      </div>
-
-      <!-- SABERA 詳細版（非公開・保存用／公開日にSABERA_PUBLICをtrueにすると表示される） -->
-      <div class="pg-card" data-product="sabera" data-ptype="all" id="sabera-full-card" style="display:none;">
-        <div class="pg-card-img" id="sabera-card-img" style="background:#fff;">
-          <img src="images/sabera/front.jpg" alt="SABERA スマートグラス" id="sabera-img" style="width:100%;height:100%;object-fit:contain;object-position:center;transform:none;">
-        </div>
-        <div class="pg-card-body">
-          <h3 class="pg-card-name">SABERA<span class="pg-furigana">（サベラ）</span></h3>
-          <div class="pg-card-scenes">
-            <span class="pg-scene-label">こんなシーンに</span>
-            <div class="pg-scene-tags">
-              <span class="pg-scene-tag">ビジネス</span>
-              <span class="pg-scene-tag">日常</span>
-            </div>
-          </div>
-          <table class="pg-card-store">
-            <tr><th>本体・レンズ</th><td><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('南浦和','sabera')">南浦和店・</span><wbr><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('宇都宮錦','sabera')">宇都宮錦店・</span><wbr><span class="pg-store-link" style="white-space:nowrap" onclick="event.stopPropagation();showStoreFromCard('八千代','sabera')">八千代台ユアエルム店</span><span style="white-space:nowrap"> / オンライン</span><small class="except-note">※11/18（水）本体取扱い開始</small></td></tr>
-            <tr><th>レンズ交換</th><td>全37店舗 / オンライン<small class="except-note">※本庄南大通り店を除く</small><small class="except-note">※レンズは近視のみの対応となります</small></td></tr>
-          </table>
-          <button class="pg-card-btn" onclick="event.stopPropagation();openProductModal('sabera')">詳しく見る ▶</button>
-          <a class="pg-card-official-link" href="https://sabera.glass/" target="_blank" rel="noopener" onclick="event.stopPropagation();">メーカー公式サイトへ →</a>
         </div>
       </div>
     </div>
@@ -4307,7 +4307,7 @@
   const SABERA_PUBLIC = true;
 
   // 商品ラインナップ フィルター
-  const PRODUCT_ORDER = ['rayban', 'even', 'viture', 'mirza', 'rokid'].concat(SABERA_PUBLIC ? ['sabera'] : []);
+  const PRODUCT_ORDER = ['rayban', 'even'].concat(SABERA_PUBLIC ? ['sabera'] : []).concat(['viture', 'mirza', 'rokid']);
   let currentProductKey = null;
   let currentFilter = 'all';
 
