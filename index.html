@@ -5181,8 +5181,8 @@
     }
     if (kind === 'body') {
       const bb = pm2BodyBtns(pd);
-      // 安全上の注意は読まれるようにボタンの上、スペック一覧はボタンの下
-      return `${models}${rec}${range}${lineup}${accordion}${store}${bb ? `<div class="pm2-actions pm2-body-actions"${store ? ' style="margin-top:12px;"' : ''}>${bb}</div>` : ''}${specs}`;
+      // たたんだ2つ（スペック一覧・安全上の注意）のあとに、取扱店とボタンで終える
+      return `${models}${rec}${range}${lineup}${specs}${accordion}${store}${bb ? `<div class="pm2-actions pm2-body-actions"${store ? ' style="margin-top:12px;"' : ''}>${bb}</div>` : ''}`;
     }
     const head = `${models}${rec}${specs}${range}${lineup}${accordion}${store}`;
     // ご注文方法の枠にボタンがあるときは、そこで終える（同じボタンを2回出さない）
