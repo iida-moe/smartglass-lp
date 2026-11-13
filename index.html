@@ -2653,6 +2653,7 @@
     .pm2-body-actions + .pm2-acc { margin-top: 28px; }
     /* 取扱店のリンクは紺色・細い下線でなじませる */
     .pm2 .store-name-link { color: var(--navy); text-decoration-thickness: 1px; text-decoration-color: rgba(13,27,42,0.4); text-underline-offset: 3px; }
+    .pm2 .prod-modal-info-col .prod-modal-spec-table { margin-bottom: 0; }
     .pm2-official { display: inline-block; margin-top: 12px; font-size: 13px; color: var(--navy); text-decoration: underline; text-underline-offset: 3px; }
     .pm2-acc + .pm2-acc { margin-top: 10px; }
     .pm2-ways > .pm2-way:only-child { grid-column: 1 / -1; }
@@ -2665,12 +2666,6 @@
     .pm2-models .modal-model-list + p { margin: 8px 0 0 !important; font-size: 13px !important; color: #333 !important; }
     /* 正方形の画像（Ray-Ban・Even G2）は枠も正方形にして小さくならないように */
     .pm2.pm2-sq .prod-modal-img-main { aspect-ratio: 1; }
-    /* スペック表を右に入れる形（試作：SABERA）：写真の枠を右の列の高さまでのばし、小さい写真の下はしをそろえる */
-    @media (min-width: 768px) {
-      .pm2-spectop .prod-modal-layout { align-items: stretch; }
-      .pm2-spectop .prod-modal-img-col { display: flex; flex-direction: column; }
-      .pm2-spectop .prod-modal-img-main { flex: 1; aspect-ratio: auto; min-height: 280px; }
-    }
     /* ボタン右端に「丸の中に▶」 */
     .pm2-way .pm2-way-btn { position: relative; padding-left: 44px; padding-right: 44px; }
     .pm2-way .pm2-way-btn::after { content: ''; position: absolute; right: 16px; top: 50%; width: 20px; height: 20px; margin-top: -10px; border-radius: 50%; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M8 6l5 4-5 4z' fill='%23CC0000'/%3E%3C/svg%3E") center/20px no-repeat; }
