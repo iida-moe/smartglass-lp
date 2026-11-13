@@ -4943,7 +4943,7 @@
         <div class="pm2-range">
           <div class="pm2-range-nums">${p.range.nums.map(n => `<div class="pm2-range-num"><span>${n[0]}</span><strong>${n[1]}</strong></div>`).join('')}</div>
           ${p.range.notes.map(n => `<p class="pm2-note">${n}</p>`).join('')}
-          ${p.range.details ? `<details class="pm2-details"><summary>くわしい条件を見る</summary><ul>${p.range.details.map(d => `<li>${d}</li>`).join('')}</ul></details>` : ''}
+          ${p.range.details ? `<details class="pm2-details"><summary>レンズ詳細注意点</summary><ul>${p.range.details.map(d => `<li>${d}</li>`).join('')}</ul></details>` : ''}
         </div>
         ${p.range.help ? `<p class="pm2-help">${p.range.help}</p>` : ''}
       </div>` : '';
