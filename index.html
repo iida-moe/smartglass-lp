@@ -5068,9 +5068,7 @@
       ${ctch ? `<p class="prod-modal-catch">${ctch}</p>` : ''}
       ${p.desc ? `<p class="pm2-desc">${p.desc}</p>` : ''}
       ${p.descNote ? `<p class="pm2-note">${p.descNote}</p>` : ''}
-      ${points}
-      ${specs ? `<div style="margin-top:20px;">${buildSpecTableHTML(specs)}</div>` : ''}
-      ${(specs && p.specsNote) ? `<p class="pm2-note" style="margin-top:6px;">${p.specsNote}</p>` : ''}`;
+      ${points}`;
   }
   // 本体タブのボタン（今までと同じ動き）
   function pm2BodyBtns(pd) {
@@ -5087,6 +5085,14 @@
       <div class="pm2-sec">
         <p class="pm2-ttl">${p.recommendTtl || 'こんな方におすすめ'}</p>
         <div class="pm2-rec">${p.recommend.map(r => `<div class="pm2-rec-item"><span class="pm2-rec-icon">${pm2Icon(r[0])}</span><p>${r[1]}</p></div>`).join('')}</div>
+      </div>` : '';
+    // スペック表は上の右列ではなく、ここに横いっぱいで（左右の高さをそろえるため）
+    const specList = p.specsList || (p.specs ? pd.specs : null);
+    const specs = specList ? `
+      <div class="pm2-sec">
+        <p class="pm2-ttl">スペック</p>
+        ${buildSpecTableHTML(specList)}
+        ${p.specsNote ? `<p class="pm2-note" style="margin-top:6px;">${p.specsNote}</p>` : ''}
       </div>` : '';
     const range = p.range ? `
       <div class="pm2-sec">
@@ -5126,7 +5132,7 @@
         </div>
       </div>` : '';
     const store = p.store ? `<p class="prod-modal-store" style="margin-top:28px;">${p.store}</p>` : '';
-    const head = `${models}${rec}${range}${lineup}${accordion}${store}`;
+    const head = `${models}${rec}${specs}${range}${lineup}${accordion}${store}`;
     // ご注文方法の枠にボタンがあるときは、そこで終える（同じボタンを2回出さない）
     if (ways) return head + ways;
     let btns;
