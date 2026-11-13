@@ -5065,14 +5065,13 @@
 </script>
 
 <script>
-  // 商品カードのどこを押しても「詳しく見る」と同じモーダルを開く（中のボタン・リンクはそれぞれの動きのまま）
+  // 商品カードの写真・商品名を押すと「詳しく見る」と同じモーダルを開く（カードのほかの部分は今までどおり）
   document.querySelectorAll('.pg-card[data-product]').forEach(function (card) {
     var key = card.getAttribute('data-product');
     if (key === 'sabera-teaser') return;
-    card.style.cursor = 'pointer';
-    card.addEventListener('click', function (e) {
-      if (e.target.closest('a, button, .pg-store-link, .pg-variant-badge, .pg-swatch')) return;
-      openProductModal(key);
+    card.querySelectorAll('.pg-card-img, .pg-card-name').forEach(function (el) {
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', function () { openProductModal(key); });
     });
   });
 </script>
