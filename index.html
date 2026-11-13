@@ -2602,6 +2602,12 @@
     .pm2-range-num span { display: block; font-size: 13px; color: #555; margin-bottom: 2px; }
     .pm2-range-num strong { font-size: clamp(20px, 2.4vw, 24px); font-weight: 800; color: var(--navy); letter-spacing: 0.02em; white-space: nowrap; }
     .pm2-name { word-break: keep-all; overflow-wrap: anywhere; }
+    /* 上のブロックは写真｜文の半分ずつの2カラム（写真を大きく・チェックの線を短く） */
+    .pm2 .prod-modal-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .pm2 .prod-modal-img-col { max-width: none; width: auto; }
+    @media (max-width: 767px) {
+      .pm2 .prod-modal-layout { grid-template-columns: 1fr; gap: 20px; }
+    }
     /* 写真は横長（3:2）の枠にして、小さい写真をすぐ下に寄せる */
     .pm2 .prod-modal-img-main { aspect-ratio: 3 / 2; margin-bottom: 8px; }
     .pm2 .prod-modal-img-main img { padding: 4px !important; }
@@ -4522,7 +4528,7 @@
         label: 'レンズのみ取り扱い',
         desc: 'Rokid スマートAIグラス専用のクリップオン式フレームに入れる度付きレンズです。',
         descNote: '※本サービスはレンズ交換のみです。Rokid本体・クリップオン式フレームはRokid公式サイトにてご購入ください。',
-        points: ['近視のみ対応（−10.00まで）', '全37店舗でレンズ交換OK（本庄南大通り店を除く）', 'オンライン注文にも対応（クリップオン式フレームのみ郵送）'],
+        points: ['近視のみ対応（−10.00まで）', '全37店舗でレンズ交換OK（本庄南大通り店を除く）', 'オンライン注文OK（フレームのみ郵送）'],
         recommend: [['translate', '外国語の会話を<br>その場で翻訳したい方'], ['camera', '両手をあけたまま<br>写真や動画を撮りたい方'], ['mic', '会議や講義を<br>文字起こししたい方'], ['search', 'スマホを出さずに<br>調べ物や道案内を見たい方']],
         range: {
           nums: [['近視', '−10.00まで'], ['乱視', '−4.00まで']],
@@ -4710,7 +4716,7 @@
         lens: {
           label: 'レンズ交換',
           desc: 'SABERAの度付きレンズへの交換に対応しています。',
-          points: ['近視のみ対応（単焦点は−10.00まで）', '遠近両用は店頭で対応・単焦点はオンラインでもOK', '全37店舗でレンズ交換OK（本庄南大通り店を除く）'],
+          points: ['近視のみ対応（単焦点は−10.00まで）', '遠近両用は店頭・単焦点はオンラインもOK', '全37店舗でレンズ交換OK（本庄南大通り店を除く）'],
           range: {
             nums: [['単焦点', '−10.00まで'], ['遠近両用', '−1.25から']],
             notes: ['※遠近両用は店頭のみ。近視が−1.25より強い方が対象です。', '※遠視には対応しておりません。', '※乱視や度数の組み合わせによっては、対応できない場合があります。', '※詳しくは店舗にてご相談ください。'],
