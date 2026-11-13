@@ -2624,8 +2624,8 @@
     .pm2-rec-item p { font-size: 15px; color: #333; line-height: 1.6; }
     .pm2-note { font-size: 13px; color: #333; line-height: 1.7; }
     .pm2-note + .pm2-note { margin-top: 2px; }
-    .pm2-details { margin-top: 10px; }
-    .pm2-details summary { display: inline-block; cursor: pointer; font-size: 13px; font-weight: 700; color: var(--navy); list-style: none; }
+    .pm2-details { margin-top: 6px; }
+    .pm2-details summary { display: inline-block; cursor: pointer; font-size: 13px; font-weight: 400; color: #333; list-style: none; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #999; }
     .pm2-details summary::-webkit-details-marker { display: none; }
     .pm2-details summary::after { content: ' ▼'; font-size: 10px; }
     .pm2-details[open] summary::after { content: ' ▲'; }
@@ -4943,7 +4943,7 @@
         <div class="pm2-range">
           <div class="pm2-range-nums">${p.range.nums.map(n => `<div class="pm2-range-num"><span>${n[0]}</span><strong>${n[1]}</strong></div>`).join('')}</div>
           ${p.range.notes.map(n => `<p class="pm2-note">${n}</p>`).join('')}
-          ${p.range.details ? `<details class="pm2-details"><summary>レンズ詳細注意点</summary><ul>${p.range.details.map(d => `<li>${d}</li>`).join('')}</ul></details>` : ''}
+          ${p.range.details ? `<details class="pm2-details"><summary>レンズの詳しい注意点</summary><ul>${p.range.details.map(d => `<li>${d}</li>`).join('')}</ul></details>` : ''}
         </div>
         ${p.range.help ? `<p class="pm2-help">${p.range.help}</p>` : ''}
       </div>` : '';
