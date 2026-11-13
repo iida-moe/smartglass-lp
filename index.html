@@ -4865,6 +4865,8 @@
           points: ['約38gの軽さ', 'カメラなしでプライバシーに配慮', '鯖江生まれの国産フレーム'],
           specs: true,
           specsAccordion: true,
+          buyStore: '取扱店で本体をご購入いただけます。度付きレンズと一緒にご注文いただけます。<br><span class="pm2-note">※南浦和店・宇都宮錦店・八千代台ユアエルム店</span>',
+          buyOnline: 'アイジャパンオンラインでご購入いただけます。度付きレンズ（単焦点）と一緒のご注文もできます。',
           recommendTtl: 'できること',
           recommend: [['mic', '文字起こし・<br>議事録・AI要約'], ['translate', '40言語以上の<br>リアルタイム翻訳'], ['bubble', '通知・<br>AIアシスタント'], ['nav', 'ナビゲーション・<br>テレプロンプト']],
           accordion: true,
@@ -5158,6 +5160,21 @@
         </div>
       </div>` : '';
     const store = p.store ? `<p class="prod-modal-store" style="margin-top:28px;">${p.store}</p>` : '';
+    // 本体タブの「ご購入方法」（度付きレンズタブの「ご注文方法」と同じ2枠の形）
+    if (kind === 'body' && (p.buyStore || p.buyOnline)) {
+      const buyStoreBtn = `<a href="#search" class="btn btn-red pm2-way-btn" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">${p.buyStoreBtnLabel || '近くの店舗を探す'}</a>`;
+      const buyOnlineBtn = pd.bodyOnlineStore ? `<a href="${pd.bodyOnlineStore}" target="_blank" rel="noopener" class="btn btn-outline pm2-way-btn">オンラインストアを見る</a>` : '';
+      const buy = `
+      <div class="pm2-sec">
+        <p class="pm2-ttl">ご購入方法</p>
+        <div class="pm2-ways">
+          ${p.buyStore ? `<div class="pm2-way"><p class="pm2-way-ttl">店舗で購入する</p><p>${p.buyStore}</p>${buyStoreBtn}</div>` : ''}
+          ${p.buyOnline ? `<div class="pm2-way"><p class="pm2-way-ttl">オンラインで購入する</p><p>${p.buyOnline}</p>${buyOnlineBtn}</div>` : ''}
+        </div>
+      </div>`;
+      // できること→ご購入方法→（たたんだ）スペック一覧・安全上の注意
+      return `${models}${rec}${buy}${specs}${range}${lineup}${accordion}`;
+    }
     const head = `${models}${rec}${specs}${range}${lineup}${accordion}${store}`;
     // ご注文方法の枠にボタンがあるときは、そこで終える（同じボタンを2回出さない）
     if (ways) return head + ways;
