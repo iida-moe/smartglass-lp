@@ -4546,7 +4546,7 @@
           store: '本体取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span></strong>',
         },
         lens: {
-          label: 'レンズ交換',
+          label: '度付きレンズ',
           desc: 'MiRZA専用の度付きインサートレンズです。',
           descNote: '※ご使用にはインサートレンズ用フレーム（別売）が必要です。',
           points: ['近視・遠視に対応（単焦点のみ）', '全37店舗でレンズ交換OK（本庄南大通り店を除く）', 'オンライン注文OK（フレームのみ郵送）'],
@@ -4672,7 +4672,7 @@
           store: '本体・レンズ取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span>・<span class="store-name-link" onclick="showStoreByName(\'深谷上柴\')">深谷上柴西店</span>・<span class="store-name-link" onclick="showStoreByName(\'新越谷\')">新越谷店</span>・<span class="store-name-link" onclick="showStoreByName(\'宇都宮錦\')">宇都宮錦店</span>・<span class="store-name-link" onclick="showStoreByName(\'八千代\')">八千代台ユアエルム店</span></strong>',
         },
         lens: {
-          label: 'レンズ交換',
+          label: '度付きレンズ',
           desc: 'アイメガネはEven Realitiesのメーカー公認店です。Even G2専用のUltraFitレンズで、度付きレンズへの交換を店頭で承ります。',
           points: ['単焦点・遠近両用に対応', 'メーカー公認店で店頭交換', '納期はご注文後4週間程度'],
           lineup: {
@@ -4799,7 +4799,7 @@
           store: '本体・レンズ取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span></strong>',
         },
         lens: {
-          label: 'レンズ交換',
+          label: '度付きレンズ',
           name: 'VITURE Luma シリーズ',
           desc: 'フレームの視度調整ダイヤルで、軽い近視ならレンズなしでそのまま使えます。ダイヤルをこえる度数や乱視がある方は、専用レンズフレーム（別売）に度付きレンズを入れてお使いいただけます。',
           points: ['ダイヤルで近視を調整（レンズなし）', 'こえる度数・乱視は度付きレンズで対応', '度付きレンズは単焦点のみ'],
@@ -4871,15 +4871,15 @@
           store: '本体・レンズ取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span>・<span class="store-name-link" onclick="showStoreByName(\'宇都宮錦\')">宇都宮錦店</span>・<span class="store-name-link" onclick="showStoreByName(\'八千代\')">八千代台ユアエルム店</span>／オンライン</strong>',
         },
         lens: {
-          label: 'レンズ交換',
+          label: '度付きレンズ',
           desc: 'SABERAの度付きレンズへの交換に対応しています。',
           points: ['近視のみ対応（単焦点は−10.00まで）', '遠近両用は店頭・単焦点はオンラインもOK', '全37店舗でレンズ交換OK（本庄南大通り店を除く）'],
           range: {
             nums: [['単焦点', '−10.00まで'], ['遠近両用', '−1.25から']],
             notes: ['※遠視は対応しておりません。', '※遠近両用は店頭のみ。近視が−1.25より強い方が対象です。', '※乱視や度数の組み合わせによっては、対応できない場合があります。'],
           },
-          storeWay: 'SABERA本体をお持ちのうえ、お近くのアイメガネ店舗へお越しください。単焦点・遠近両用どちらも承ります。<br><span class="pm2-note">※本庄南大通り店を除く全37店舗</span>',
-          onlineWay: 'アイジャパンオンラインでご注文いただけます。<br><span class="pm2-note">※オンラインは単焦点のみ</span>',
+          storeWay: '本体と一緒に度付きレンズでご購入いただけます。お持ちのSABERAのレンズ交換も承ります。単焦点・遠近両用どちらも対応しています。<br><span class="pm2-note">※本庄南大通り店を除く全37店舗</span>',
+          onlineWay: 'アイジャパンオンラインで、本体と一緒に、またはレンズのみご注文いただけます。<br><span class="pm2-note">※オンラインは単焦点のみ</span>',
           waysNote: '※度付きレンズは特注品のため、ご注文後のキャンセル・返品はお受けできません。',
         },
       },
@@ -5195,7 +5195,7 @@
         <div class="pm2${v.imgSquare ? ' pm2-sq' : ''}${(v.body && v.body.specsTop) ? ' pm2-spectop' : ''}" data-tab="body">
           <div class="modal-content-tabs pm2-tabs">
             <button class="modal-content-tab active" onclick="pm2SwitchTab(this,'body')">本体について</button>
-            <button class="modal-content-tab" onclick="pm2SwitchTab(this,'lens')">${pd.lensTabLabel || 'レンズ交換について'}</button>
+            <button class="modal-content-tab" onclick="pm2SwitchTab(this,'lens')">度付きレンズについて</button>
           </div>
           <div class="prod-modal-layout">
             <div class="prod-modal-img-col">${imgHTML}</div>
