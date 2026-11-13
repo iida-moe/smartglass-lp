@@ -2602,6 +2602,15 @@
     .pm2-range-num span { display: block; font-size: 13px; color: #555; margin-bottom: 2px; }
     .pm2-range-num strong { font-size: clamp(20px, 2.4vw, 24px); font-weight: 800; color: var(--navy); letter-spacing: 0.02em; white-space: nowrap; }
     .pm2-name { word-break: keep-all; overflow-wrap: anywhere; }
+    .pm2[data-tab="body"] .pm2-pane-lens, .pm2[data-tab="lens"] .pm2-pane-body { display: none; }
+    .pm2-tabs { max-width: 420px; margin: 0 auto 24px; border-radius: 999px; }
+    .pm2-tabs .modal-content-tab { padding: 10px; font-size: 14px; }
+    .pm2-rec { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0; border-top: 1px solid #E6E9EE; border-bottom: 1px solid #E6E9EE; }
+    .pm2-rec-item { text-align: center; padding: 18px 10px; }
+    .pm2-rec-item + .pm2-rec-item { border-left: 1px solid #E6E9EE; }
+    .pm2-rec-icon { display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 50%; background: #EEF2F7; color: var(--navy); margin-bottom: 10px; }
+    .pm2-rec-icon svg { width: 28px; height: 28px; }
+    .pm2-rec-item p { font-size: 14px; color: #333; line-height: 1.6; }
     .pm2-note { font-size: 13px; color: #333; line-height: 1.7; }
     .pm2-note + .pm2-note { margin-top: 2px; }
     .pm2-ways { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -2625,6 +2634,15 @@
       .pm2-range-nums { gap: 8px; }
       .pm2-range-num { padding: 12px 8px; }
       .pm2-range-num strong { font-size: 18px; }
+      .pm2-tabs { margin-bottom: 16px; }
+      .pm2-rec { grid-template-columns: 1fr 1fr; }
+      .pm2-rec-item { padding: 14px 8px; }
+      .pm2-rec-item + .pm2-rec-item { border-left: none; }
+      .pm2-rec-item:nth-child(even) { border-left: 1px solid #E6E9EE; }
+      .pm2-rec-item:nth-child(n+3) { border-top: 1px solid #E6E9EE; }
+      .pm2-rec-icon { width: 44px; height: 44px; margin-bottom: 8px; }
+      .pm2-rec-icon svg { width: 24px; height: 24px; }
+      .pm2-rec-item p { font-size: 13px; }
       .pm2-ways { grid-template-columns: 1fr; gap: 12px; }
       .pm2-way { padding: 16px; }
       .pm2-actions { flex-direction: column; gap: 10px; margin-top: 24px; }
@@ -4500,6 +4518,7 @@
         desc: 'Rokid スマートAIグラス専用のクリップオン式フレームに入れる度付きレンズです。',
         descNote: '※本サービスはレンズ交換のみです。Rokid本体・クリップオン式フレームはRokid公式サイトにてご購入ください。',
         points: ['Rokid専用クリップオン式フレームに対応', '全37店舗でレンズ交換OK（本庄南大通り店を除く）', 'フレームを送るだけのオンライン注文にも対応'],
+        recommend: [['cart', 'Rokidを持っている・<br>購入予定の方'], ['glasses', 'ふだんメガネや<br>コンタクトを使う方'], ['spark', 'スマートグラスを<br>度付きで使いたい方']],
         range: {
           nums: [['近視', '−10.00まで'], ['乱視', '−4.00まで']],
           notes: ['※近視と乱視を合わせて−10.00までとなります。', '※近視が−0.75より弱い方は、乱視入りのレンズは作れません。', '※遠視・遠近両用には対応しておりません。', '※詳しくは店舗にてご相談ください。'],
@@ -4672,6 +4691,31 @@
       gallery: 'sabera',
       hasLens: true,
       bodyOnlineStore: 'https://www.aijapan-online.com/',
+      // 新レイアウト（v2）：本体タブ＋レンズタブ
+      v2: {
+        body: {
+          label: '本体・レンズ取り扱い',
+          desc: '全てハンズフリー。文字起こし・議事録・AI要約、通知、AIアシスタント、テレプロンプト、リアルタイム翻訳、ナビゲーションを「視界の中」で使えます。',
+          points: ['40言語以上のリアルタイム翻訳', '約38gの軽さ・カメラなし', '度付きレンズに交換できる（近視のみ）'],
+          specs: true,
+          recommend: [['people', '会議・打ち合わせが<br>多い方'], ['globe', '外国語を使う仕事や<br>旅行が多い方'], ['bubble', 'ハンズフリーで<br>情報を見たい方'], ['pin', '鯖江ブランドに<br>こだわりたい方']],
+          accordion: true,
+          store: '本体・レンズ取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span>・<span class="store-name-link" onclick="showStoreByName(\'宇都宮錦\')">宇都宮錦店</span>・<span class="store-name-link" onclick="showStoreByName(\'八千代\')">八千代台ユアエルム店</span>／オンライン</strong>',
+        },
+        lens: {
+          label: 'レンズ交換',
+          desc: 'SABERAの度付きレンズへの交換に対応しています。',
+          descNote: '※レンズは近視のみの対応となります。',
+          points: ['単焦点・遠近両用に対応（遠近両用は店頭のみ）', '全37店舗でレンズ交換OK（本庄南大通り店を除く）', '単焦点はオンラインでも注文OK'],
+          range: {
+            nums: [['単焦点', '−10.00まで'], ['遠近両用（店頭のみ）', '−1.25から']],
+            notes: ['※遠近両用は、近視が−1.25より強い方が対象です。', '※遠視には対応しておりません。', '※乱視や度数の組み合わせによっては、対応できない場合があります。', '※詳しくは店舗にてご相談ください。'],
+          },
+          storeWay: 'SABERA本体をお持ちのうえ、お近くのアイメガネ店舗へお越しください。単焦点・遠近両用どちらも承ります。<br><span class="pm2-note">※本庄南大通り店を除く全37店舗</span>',
+          onlineWay: 'アイジャパンオンラインでご注文いただけます。<br><span class="pm2-note">※オンラインは単焦点のみ</span>',
+          cautions: ['度付きレンズは特注品となるため、ご注文後のキャンセル・返品はお受けできません。'],
+        },
+      },
       lensHTML: `
         <p class="modal-lens-intro">SABERAの度付きレンズへの交換に対応しています。<small class="except-note">※レンズは近視のみの対応となります。</small></p>
         <div class="modal-lens-block">
@@ -4833,49 +4877,116 @@
     });
   }
 
-  // 新レイアウト（v2）：上＝写真＋名前＋要点、下＝対応できる度数→ご注文方法→注意事項→ボタン
-  function buildModalV2(pd, imgHTML) {
-    const v = pd.v2;
-    const points = v.points ? `<ul class="pm2-points">${v.points.map(p => `<li>${p}</li>`).join('')}</ul>` : '';
-    const range = v.range ? `
+  // 新レイアウト（v2）
+  // 本体＋レンズの商品：上にタブ（本体について／レンズ交換について）、写真は共通
+  // 各タブ：上＝ラベル・名前・説明・チェック（本体はスペック表も）、下＝おすすめ（アイコン）→度数→注文方法→注意→ボタン
+  const PM2_ICONS = {
+    people: '<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><path d="M15.5 14c2.8 0 5.5 1.6 5.5 5"/>',
+    globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/>',
+    bubble: '<path d="M4 5h16v11H9.5L5 19.5V16H4z"/><path d="M8 9h8M8 12h5"/>',
+    pin: '<path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>',
+    cart: '<path d="M3 4h2.2l2 11h10.6l2-8H6.2"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/>',
+    glasses: '<circle cx="6.5" cy="14" r="3.5"/><circle cx="17.5" cy="14" r="3.5"/><path d="M10 14h4M3 14L4.8 7.5M21 14l-1.8-6.5"/>',
+    spark: '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M18.5 16v4M16.5 18h4"/>',
+  };
+  function pm2Icon(name) {
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (PM2_ICONS[name] || '') + '</svg>';
+  }
+  function pm2Top(pd, p) {
+    const points = p.points ? `<ul class="pm2-points">${p.points.map(x => `<li>${x}</li>`).join('')}</ul>` : '';
+    return `
+      ${p.label ? `<span class="pm2-label">${p.label}</span>` : ''}
+      <h3 class="prod-modal-name pm2-name">${pd.name}</h3>
+      ${pd.catch ? `<p class="prod-modal-catch">${pd.catch}</p>` : ''}
+      ${p.desc ? `<p class="pm2-desc">${p.desc}</p>` : ''}
+      ${p.descNote ? `<p class="pm2-note">${p.descNote}</p>` : ''}
+      ${points}
+      ${p.specs ? `<div style="margin-top:20px;">${buildSpecTableHTML(pd.specs)}</div>` : ''}`;
+  }
+  function pm2Bottom(pd, p, kind) {
+    const rec = p.recommend ? `
+      <div class="pm2-sec">
+        <p class="pm2-ttl">こんな方におすすめ</p>
+        <div class="pm2-rec">${p.recommend.map(r => `<div class="pm2-rec-item"><span class="pm2-rec-icon">${pm2Icon(r[0])}</span><p>${r[1]}</p></div>`).join('')}</div>
+      </div>` : '';
+    const range = p.range ? `
       <div class="pm2-sec">
         <p class="pm2-ttl">対応できる度数</p>
         <div class="pm2-range">
-          <div class="pm2-range-nums">${v.range.nums.map(n => `<div class="pm2-range-num"><span>${n[0]}</span><strong>${n[1]}</strong></div>`).join('')}</div>
-          ${v.range.notes.map(n => `<p class="pm2-note">${n}</p>`).join('')}
+          <div class="pm2-range-nums">${p.range.nums.map(n => `<div class="pm2-range-num"><span>${n[0]}</span><strong>${n[1]}</strong></div>`).join('')}</div>
+          ${p.range.notes.map(n => `<p class="pm2-note">${n}</p>`).join('')}
         </div>
       </div>` : '';
-    const ways = (v.storeWay || v.onlineSteps) ? `
+    const online = p.onlineSteps ? `<ol class="pm2-steps">${p.onlineSteps.map(x => `<li>${x}</li>`).join('')}</ol>` : (p.onlineWay ? `<p>${p.onlineWay}</p>` : '');
+    const ways = (p.storeWay || online) ? `
       <div class="pm2-sec">
         <p class="pm2-ttl">ご注文方法</p>
         <div class="pm2-ways">
-          ${v.storeWay ? `<div class="pm2-way"><p class="pm2-way-ttl">店舗で注文する</p><p>${v.storeWay}</p></div>` : ''}
-          ${v.onlineSteps ? `<div class="pm2-way"><p class="pm2-way-ttl">オンラインで注文する</p><ol class="pm2-steps">${v.onlineSteps.map(s => `<li>${s}</li>`).join('')}</ol></div>` : ''}
+          ${p.storeWay ? `<div class="pm2-way"><p class="pm2-way-ttl">店舗で注文する</p><p>${p.storeWay}</p></div>` : ''}
+          ${online ? `<div class="pm2-way"><p class="pm2-way-ttl">オンラインで注文する</p>${online}</div>` : ''}
         </div>
       </div>` : '';
-    const cautions = v.cautions ? `
+    const cautions = p.cautions ? `
       <div class="pm2-sec">
         <p class="pm2-ttl">注意事項</p>
-        <ul class="pm2-cautions">${v.cautions.map(c => `<li>${c}</li>`).join('')}</ul>
+        <ul class="pm2-cautions">${p.cautions.map(c => `<li>${c}</li>`).join('')}</ul>
       </div>` : '';
-    const actions = `
-      <div class="pm2-actions">
-        <a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a>
-        ${pd.onlineStore ? `<a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインで注文する</a>` : ''}
-      </div>`;
-    return `
-      <div class="prod-modal-layout">
-        <div class="prod-modal-img-col">${imgHTML}</div>
-        <div class="prod-modal-info-col">
-          ${v.label ? `<span class="pm2-label">${v.label}</span>` : ''}
-          <h3 class="prod-modal-name pm2-name">${pd.name}</h3>
-          ${pd.catch ? `<p class="prod-modal-catch">${pd.catch}</p>` : ''}
-          <p class="pm2-desc">${v.desc}</p>
-          ${v.descNote ? `<p class="pm2-note">${v.descNote}</p>` : ''}
-          ${points}
+    const accordion = (p.accordion && pd.accordion) ? `
+      <div class="pm2-sec">
+        <div class="modal-accordion">
+          <button class="modal-accordion-btn" onclick="toggleModalAccordion(this)">${pd.accordionLabel || '詳しく見る'} <span class="modal-accordion-arrow">▼</span></button>
+          <div class="modal-accordion-body">${pd.accordion}</div>
         </div>
-      </div>
-      ${range}${ways}${cautions}${actions}`;
+      </div>` : '';
+    const store = p.store ? `<p class="prod-modal-store" style="margin-top:28px;">${p.store}</p>` : '';
+    // ボタン（今までと同じ動き）
+    let btns;
+    if (kind === 'body') {
+      btns = `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">本体購入・体験へ</a>`
+        + (pd.bodyOnlineStore ? `<a href="${pd.bodyOnlineStore}" target="_blank" class="btn btn-outline">オンラインストアを見る</a>` : '');
+    } else if (pd.lensOnly) {
+      btns = `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a>`
+        + (pd.onlineStore ? `<a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインで注文する</a>` : '');
+    } else {
+      btns = `<a href="#search" class="btn btn-blue" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換の店舗を探す</a>`;
+    }
+    return `${rec}${range}${ways}${cautions}${accordion}${store}<div class="pm2-actions"${store ? ' style="margin-top:12px;"' : ''}>${btns}</div>`;
+  }
+  function pm2SwitchTab(btn, tab) {
+    const root = btn.closest('.pm2');
+    root.dataset.tab = tab;
+    root.querySelectorAll('.modal-content-tab').forEach(b => b.classList.toggle('active', b === btn));
+    const body = document.querySelector('.prod-modal-body');
+    if (body) body.scrollTop = 0;
+  }
+  function buildModalV2(pd, imgHTML) {
+    const v = pd.v2;
+    if (v.body && v.lens) {
+      return `
+        <div class="pm2" data-tab="body">
+          <div class="modal-content-tabs pm2-tabs">
+            <button class="modal-content-tab active" onclick="pm2SwitchTab(this,'body')">本体について</button>
+            <button class="modal-content-tab" onclick="pm2SwitchTab(this,'lens')">レンズ交換について</button>
+          </div>
+          <div class="prod-modal-layout">
+            <div class="prod-modal-img-col">${imgHTML}</div>
+            <div class="prod-modal-info-col">
+              <div class="pm2-pane-body">${pm2Top(pd, v.body)}</div>
+              <div class="pm2-pane-lens">${pm2Top(pd, v.lens)}</div>
+            </div>
+          </div>
+          <div class="pm2-pane-body">${pm2Bottom(pd, v.body, 'body')}</div>
+          <div class="pm2-pane-lens">${pm2Bottom(pd, v.lens, 'lens')}</div>
+        </div>`;
+    }
+    return `
+      <div class="pm2">
+        <div class="prod-modal-layout">
+          <div class="prod-modal-img-col">${imgHTML}</div>
+          <div class="prod-modal-info-col">${pm2Top(pd, v)}</div>
+        </div>
+        ${pm2Bottom(pd, v, 'lens')}
+      </div>`;
   }
 
   function openProductModal(key) {
