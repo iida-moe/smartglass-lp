@@ -2668,6 +2668,10 @@
     .pm2-models .modal-model-list + p { margin: 8px 0 0 !important; font-size: 13px !important; color: #333 !important; }
     /* 正方形の画像（Ray-Ban・Even G2）は枠も正方形にして小さくならないように */
     .pm2.pm2-sq .prod-modal-img-main { aspect-ratio: 1; }
+    @media (min-width: 768px) {
+      /* 正方形の写真は右の列とバランスが合うよう少し小さめに */
+      .pm2.pm2-sq .prod-modal-img-col { max-width: 380px; width: 100%; justify-self: center; }
+    }
     /* ボタン右端に「丸の中に▶」 */
     .pm2-way .pm2-way-btn { position: relative; padding-left: 44px; padding-right: 44px; }
     .pm2-way .pm2-way-btn::after { content: ''; position: absolute; right: 16px; top: 50%; width: 20px; height: 20px; margin-top: -10px; border-radius: 50%; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M8 6l5 4-5 4z' fill='%23CC0000'/%3E%3C/svg%3E") center/20px no-repeat; }
@@ -3765,9 +3769,8 @@
       scenes: ['ゲーム', '映画', 'エンタメ'],
       images: ['viture/luma/01.avif', 'viture/luma/02.avif', 'viture/luma/03.avif'],
       v2: {
-        desc: '146インチ相当の大画面で、映画・ゲーム・動画を楽しめるXRグラス。USB-C接続で、いろいろな機器につながります。',
-        points: ['146インチ相当・視野角50°の大画面', '近視−6.0Dまでダイヤルで調整', '度付きレンズも組み合わせOK'],
-        recommend: [['film', '映画・ゲームを<br>大画面で楽しみたい方'], ['game', 'Switchなど携帯ゲーム機を<br>使っている方'], ['tv', 'テレビなしで<br>大画面を楽しみたい方'], ['glasses', '強めの近視<br>（−6.0Dまで）の方']],
+        desc: '映画・ゲーム・動画を大画面で楽しめるXRグラスです。',
+        recommend: [['film', '映画・ゲームを大画面で楽しみたい方', '146インチ相当・視野角50°'], ['game', '携帯ゲーム機を使っている方', 'Switchなどにつなげる'], ['tv', 'テレビなしで大画面がほしい方', 'USB-Cでいろいろな機器に'], ['glasses', '強めの近視の方', 'ダイヤルで−6.0Dまで調整']],
       },
     },
     ultra: {
@@ -3793,9 +3796,8 @@
       scenes: ['ビジネス', 'AR', 'ゲーム', '映画'],
       images: ['viture/ultra/01.avif', 'viture/ultra/02.avif', 'viture/ultra/03.avif'],
       v2: {
-        desc: 'ソニー製Micro OLED・1,500ニトの高輝度モデル。6DoFの空間コンピューティングとARで、映画・ゲーム・ビジネスを1台でこなせます。',
-        points: ['1,500ニトの高輝度・視野角52°', '6DoF・ハンドジェスチャーでAR操作', '近視−4.0Dまでダイヤルで調整'],
-        recommend: [['cube', '本格的なAR体験を<br>したい方'], ['layers', '空間コンピューティングに<br>興味がある方'], ['briefcase', '映画・ゲーム・ビジネスを<br>1台でこなしたい方'], ['spark', '最高スペックに<br>こだわりたい方']],
+        desc: 'ソニー製Micro OLEDを採用した、AR機能つきの最上位モデルです。',
+        recommend: [['cube', '本格的なARを体験したい方', '6DoF・ハンドジェスチャー対応'], ['film', '映画もゲームも1台で楽しみたい方', '1,500ニトの高輝度'], ['briefcase', 'ビジネスにも使いたい方', '空間コンピューティング対応'], ['spark', '最高スペックにこだわりたい方', 'ダイヤルで−4.0Dまで調整']],
       },
     },
   };
@@ -4552,9 +4554,9 @@
           label: '本体・レンズ取り扱い',
           desc: '「見る」をあたらしく。働くヒトに変革を。',
           descNote: '※MiRZA<sup>®</sup>（ミルザ）は、NTTコノキューデバイスの商標です。',
-          points: ['Snapdragon® AR2 Gen1搭載の本格XRグラス', '視野角45°・フルHDの高精細表示', '度付きインサートレンズで視力補正OK'],
-          specs: true,
-          recommend: [['briefcase', '業務・法人で<br>活用したい方'], ['cube', '本格的なXRを<br>体験したい方'], ['shield', '日本製・国内サポートに<br>こだわりたい方'], ['layers', '空間コンピューティングを<br>活用したい方']],
+          specsTop: true,
+          officialAfterRec: true,
+          recommend: [['briefcase', '業務・法人で使いたい方', '現場作業や法人利用に'], ['cube', '本格的なXRを体験したい方', 'フルHD・視野角45°'], ['shield', '国内サポート重視の方', 'NTTコノキューデバイス製'], ['layers', '空間コンピューティングを使いたい方', 'Snapdragon® AR2 Gen1搭載']],
           store: '本体取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span></strong>',
         },
         lens: {
@@ -4677,10 +4679,11 @@
         imgSquare: true,
         body: {
           label: '本体・レンズ取り扱い',
-          desc: '会話・会議の要点をAIがリアルタイムで整理。翻訳やカレンダー・通知も視界に表示します。Even R1リング（別売）なら、手元のタップだけで操作できます。',
-          points: ['35言語のリアルタイム翻訳', '約36gの軽さ・カメラなし', '遠近両用にも対応した度付きレンズ'],
-          specs: true,
-          recommend: [['people', '会議・商談が<br>多い方'], ['translate', '外国語を使う仕事や<br>旅行が多い方'], ['phone', 'スマホを見る回数を<br>減らしたい方'], ['lock', 'プライバシーを<br>大切にしたい方']],
+          desc: '会話・会議の要点をAIが整理して、視界に表示します。',
+          specsTop: true,
+          officialAfterRec: true,
+          recommendTtl: '主な機能',
+          recommend: [['mic', 'AIで会話を整理', '会議の要点をリアルタイムで'], ['translate', 'リアルタイム翻訳', '35言語に対応'], ['bubble', 'カレンダー・通知', '視界でさっと確認'], ['ring', 'R1リングで操作', '手元のタップだけ（別売）']],
           store: '本体・レンズ取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span>・<span class="store-name-link" onclick="showStoreByName(\'深谷上柴\')">深谷上柴西店</span>・<span class="store-name-link" onclick="showStoreByName(\'新越谷\')">新越谷店</span>・<span class="store-name-link" onclick="showStoreByName(\'宇都宮錦\')">宇都宮錦店</span>・<span class="store-name-link" onclick="showStoreByName(\'八千代\')">八千代台ユアエルム店</span></strong>',
         },
         lens: {
@@ -4757,11 +4760,12 @@
         body: {
           label: '本体取り扱い（度付きレンズ選択可）',
           desc: '普通のメガネに見えて、ぜんぜん普通じゃない。「Hey Meta」の声だけで、AI・音楽・撮影が楽しめます。',
-          points: ['「Hey Meta」の声でAI・音楽・通話', '12MPカメラで写真・3K動画', '度付きレンズは本体購入時に選べる'],
-          specs: true,
+          specsTop: true,
+          officialAfterRec: true,
+          recommendTtl: '主な機能',
           specsNote: '※記載スペックは代表値です。モデルにより性能が異なる場合があります。',
           modelList: true,
-          recommend: [['glasses', 'メガネをおしゃれに<br>楽しみたい方'], ['music', '音楽・通話を<br>日常的に使いたい方'], ['spark', 'スマートグラスを<br>はじめて使う方'], ['bubble', 'Meta AIを<br>気軽に使いたい方']],
+          recommend: [['bubble', 'Meta AI', '「Hey Meta」の声で操作'], ['camera', '写真・動画', '12MP・3K動画'], ['music', '音楽・通話', 'オープンイヤーで周りも聞こえる'], ['glasses', 'メガネの見た目', '普段使いしやすいデザイン']],
           store: '本体（度付きレンズ選択可）：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span></strong>',
         },
         lens: {
@@ -4807,7 +4811,8 @@
         // 名前・キャッチ・説明・チェック・スペック・おすすめは VITURE_MODELS の各モデルの v2 から入る
         body: {
           label: '本体・レンズ取り扱い',
-          specs: true,
+          specsTop: true,
+          officialAfterRec: true,
           store: '本体・レンズ取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span></strong>',
         },
         lens: {
@@ -5082,6 +5087,7 @@
     game: '<rect x="2.5" y="7" width="19" height="10" rx="5"/><path d="M7.5 10v4M5.5 12h4"/><circle cx="16" cy="11" r=".9"/><circle cx="18" cy="13" r=".9"/>',
     tv: '<rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8.5 20.5h7M12 17v3.5"/>',
     nav: '<path d="M20.5 3.5L3.5 10.5l7 2.5 2.5 7z"/>',
+    ring: '<circle cx="12" cy="13" r="7"/><circle cx="12" cy="13" r="4"/><path d="M9.5 6.5l2.5-3 2.5 3"/>',
   };
   function pm2Icon(name) {
     return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (PM2_ICONS[name] || '') + '</svg>';
@@ -5098,7 +5104,7 @@
       ${p.desc ? `<p class="pm2-desc">${p.desc}</p>` : ''}
       ${p.descNote ? `<p class="pm2-note">${p.descNote}</p>` : ''}
       ${points}
-      ${p.specsTop ? `<div style="margin-top:20px;">${buildSpecTableHTML(p.specsList || pd.specs)}</div>` : ''}
+      ${p.specsTop ? `<div style="margin-top:20px;">${buildSpecTableHTML(p.specsList || pd.specs)}</div>${p.specsNote ? `<p class="pm2-note" style="margin-top:6px;">${p.specsNote}</p>` : ''}` : ''}
       ${p.infoTable ? `<div class="prod-modal-spec-table pm2-info-table" style="margin-top:20px;">${p.infoTable.map(r => `<div class="prod-modal-spec-row"><div class="prod-modal-spec-key">${r[0]}</div><div class="prod-modal-spec-val"><div>${r[1]}</div></div></div>`).join('')}</div>` : ''}
       ${(p.official && !p.officialAfterRec) ? `<a class="pm2-official" href="${p.official}" target="_blank" rel="noopener">詳細はメーカー公式サイトへ →</a>` : ''}`;
   }
@@ -5107,8 +5113,8 @@
     if (pd.hideBodyActionBtn) return pd.bodyActionNote ? `<p class="pm2-note">${pd.bodyActionNote}</p>` : '';
     if (pd.singleCtaLabel) return `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">${pd.singleCtaLabel}</a>`;
     if (pd.bodyOnlineStore) return `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">店舗で体験・相談する</a><a href="${pd.bodyOnlineStore}" target="_blank" class="btn btn-outline">オンラインストアを見る</a>`;
-    if (pd.onlineStore) return `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">近くの店舗を探す</a><a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインストアを見る</a>`;
-    return `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">本体購入・体験へ</a><a href="#search" class="btn btn-outline" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">${pd.lensLinkLabel || 'レンズ交換へ'}</a>`;
+    // 本体のオンライン販売がない商品は「店舗で体験・相談する」だけ（度付きレンズはもう1つのタブで案内）
+    return `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">店舗で体験・相談する</a>`;
   }
   // 下：取扱モデル→おすすめ→度数（または対応レンズ・レンズの種類）→安全上の注意→取扱店→ご注文方法 or ボタン
   function pm2Bottom(pd, p, kind) {
