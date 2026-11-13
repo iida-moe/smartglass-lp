@@ -3582,7 +3582,7 @@
     </p>
     <p class="final-trust-line">予約無料 · 当日相談OK · 眼鏡作製技能士が在籍</p>
     <div class="final-btns">
-      <a href="#search" class="btn btn-red final-btn">来店予約する ▶</a>
+      <a href="#search" class="btn btn-red final-btn">近くの店舗を探す ▶</a>
       <a href="https://www.aijapan-online.com/" target="_blank" class="btn btn-outline final-btn">オンラインで注文する ▶</a>
     </div>
   </div>
@@ -3615,7 +3615,7 @@
 <!-- FIXED FOOTER CTA -->
 <div class="fixed-footer" id="fixed-footer" style="opacity:0; pointer-events:none">
   <div class="container">
-    <a href="#search" class="btn btn-red">来店予約する</a>
+    <a href="#search" class="btn btn-red">近くの店舗を探す</a>
     <a href="https://www.aijapan-online.com/" target="_blank" class="btn btn-outline">オンラインストアを見る</a>
   </div>
 </div>
@@ -4916,7 +4916,7 @@
     const actionBtn = pd.hideLensActionBtn
       ? ''
       : (pd.lensOnly && pd.onlineStore)
-        ? `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a>
+        ? `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">近くの店舗を探す</a>
            <a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインで注文する</a>`
         : `<a href="#search" class="btn btn-blue" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換の店舗を探す</a>`;
     return `<div>${inner}${accordionHTML}${storeHTML}${actionBtn ? `<div class="prod-modal-actions" style="margin-top:24px;">${actionBtn}</div>` : ''}</div>`;
@@ -5075,7 +5075,7 @@
     if (pd.hideBodyActionBtn) return pd.bodyActionNote ? `<p class="pm2-note">${pd.bodyActionNote}</p>` : '';
     if (pd.singleCtaLabel) return `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">${pd.singleCtaLabel}</a>`;
     if (pd.bodyOnlineStore) return `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">本体購入・体験へ</a><a href="${pd.bodyOnlineStore}" target="_blank" class="btn btn-outline">オンラインストアを見る</a>`;
-    if (pd.onlineStore) return `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a><a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインストアを見る</a>`;
+    if (pd.onlineStore) return `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">近くの店舗を探す</a><a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインストアを見る</a>`;
     return `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">本体購入・体験へ</a><a href="#search" class="btn btn-outline" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">${pd.lensLinkLabel || 'レンズ交換へ'}</a>`;
   }
   // 下：取扱モデル→おすすめ→度数（または対応レンズ・レンズの種類）→安全上の注意→取扱店→ご注文方法 or ボタン
@@ -5129,7 +5129,7 @@
     if (ways) return head + ways;
     let btns;
     if (kind === 'body') btns = pm2BodyBtns(pd);
-    else if (pd.lensOnly) btns = `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a>` + (pd.onlineStore ? `<a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインで注文する</a>` : '');
+    else if (pd.lensOnly) btns = `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">近くの店舗を探す</a>` + (pd.onlineStore ? `<a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインで注文する</a>` : '');
     else btns = `<a href="#search" class="btn btn-blue" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換の店舗を探す</a>`;
     return head + (btns ? `<div class="pm2-actions"${store ? ' style="margin-top:12px;"' : ''}>${btns}</div>` : '');
   }
@@ -5239,7 +5239,7 @@
           <a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">本体購入・体験へ</a>
           <a href="${pd.bodyOnlineStore}" target="_blank" class="btn btn-outline">オンラインストアを見る</a>
         ` : pd.onlineStore ? `
-          <a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a>
+          <a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">近くの店舗を探す</a>
           <a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインストアを見る</a>
         ` : `
           ${LENS_ONLY_BRANDS.includes(pd.searchBrand) ? '' : `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">本体購入・体験へ</a>`}
