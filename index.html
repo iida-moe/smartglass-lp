@@ -2611,6 +2611,8 @@
     /* 写真は横長（3:2）の枠にして、小さい写真をすぐ下に寄せる */
     .pm2 .prod-modal-img-main { aspect-ratio: 3 / 2; margin-bottom: 8px; }
     .pm2 .prod-modal-img-main img { padding: 4px !important; }
+    /* 写真の枠の背景は白に（グレーだと写真のまわりに囲いが見えるため） */
+    .pm2 .prod-modal-img-main { background: #fff !important; }
     /* Rokidの正方形PNGはまわりが透明の余白なので、横長枠いっぱいに（本体は切れない） */
     .pm2 .prod-modal-img-main img[src$="rokid/glasses.png"] { object-fit: cover !important; padding: 0 !important; }
     .pm2[data-tab="body"] .pm2-pane-lens, .pm2[data-tab="lens"] .pm2-pane-body { display: none; }
