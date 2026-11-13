@@ -2624,6 +2624,15 @@
     .pm2-rec-item p { font-size: 15px; color: #333; line-height: 1.6; }
     .pm2-note { font-size: 13px; color: #333; line-height: 1.7; }
     .pm2-note + .pm2-note { margin-top: 2px; }
+    .pm2-details { margin-top: 10px; }
+    .pm2-details summary { display: inline-block; cursor: pointer; font-size: 13px; font-weight: 700; color: var(--navy); list-style: none; }
+    .pm2-details summary::-webkit-details-marker { display: none; }
+    .pm2-details summary::after { content: ' ▼'; font-size: 10px; }
+    .pm2-details[open] summary::after { content: ' ▲'; }
+    .pm2-details ul { list-style: none; padding: 10px 14px; margin: 8px 0 0; background: #fff; border-radius: 8px; }
+    .pm2-details li { font-size: 13px; color: #333; line-height: 1.7; padding-left: 1em; text-indent: -1em; }
+    .pm2-details li::before { content: '・'; }
+    .pm2-help { margin-top: 12px; font-size: 15px; font-weight: 700; color: var(--navy); }
     .pm2-ways { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .pm2-way { border: 1px solid #E0E4EA; border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; }
     .pm2-way .pm2-way-btn { margin-top: auto; display: block; width: 100%; text-align: center; box-sizing: border-box; padding-top: 12px; padding-bottom: 12px; font-size: 15px; }
@@ -4534,7 +4543,9 @@
         recommend: [['translate', '外国語の会話を<br>その場で翻訳したい方'], ['camera', '両手をあけたまま<br>写真や動画を撮りたい方'], ['mic', '会議や講義を<br>文字起こししたい方'], ['search', 'スマホを出さずに<br>調べ物や道案内を見たい方']],
         range: {
           nums: [['近視', '−10.00まで'], ['乱視', '−4.00まで']],
-          notes: ['※近視と乱視を合わせて−10.00までとなります。', '※近視が−0.75より弱い方は、乱視入りのレンズは作れません。', '※遠視・遠近両用には対応しておりません。', '※詳しくは店舗にてご相談ください。'],
+          notes: ['※遠視・遠近両用は対応しておりません。', '※度数の組み合わせによっては、対応できない場合があります。'],
+          details: ['近視と乱視を合わせて−10.00までとなります。', '近視が−0.75までの方は、乱視入りのレンズは作れません。'],
+          help: '自分の度数がわからなくても大丈夫。お店で測ります。',
         },
         storeWay: 'クリップオン式フレームをお持ちのうえ、お近くのアイメガネ店舗へお越しください。レンズの度数は店頭で測定します。お使いのメガネに合わせて作ることもできます。<br><span class="pm2-note">※本庄南大通り店を除く全37店舗</span>',
         onlineSteps: ['Rokid公式サイトでクリップオン式フレームを購入<br><a href="https://jp.rokid.com/pages/rokid-glasses" target="_blank" rel="noopener">Rokid公式ホームページ →</a>', '度数（球面・乱視・軸度・PD）を入力してオンラインで注文', 'クリップオン式フレームのみをご郵送。レンズを入れてご自宅へ返送します'],
@@ -4721,7 +4732,8 @@
           points: ['近視のみ対応（単焦点は−10.00まで）', '遠近両用は店頭・単焦点はオンラインもOK', '全37店舗でレンズ交換OK（本庄南大通り店を除く）'],
           range: {
             nums: [['単焦点', '−10.00まで'], ['遠近両用', '−1.25から']],
-            notes: ['※遠近両用は店頭のみ。近視が−1.25より強い方が対象です。', '※遠視には対応しておりません。', '※乱視や度数の組み合わせによっては、対応できない場合があります。', '※詳しくは店舗にてご相談ください。'],
+            notes: ['※遠視は対応しておりません。', '※遠近両用は店頭のみ。近視が−1.25より強い方が対象です。', '※乱視や度数の組み合わせによっては、対応できない場合があります。'],
+            help: '自分の度数がわからなくても大丈夫。お店で測ります。',
           },
           storeWay: 'SABERA本体をお持ちのうえ、お近くのアイメガネ店舗へお越しください。単焦点・遠近両用どちらも承ります。<br><span class="pm2-note">※本庄南大通り店を除く全37店舗</span>',
           onlineWay: 'アイジャパンオンラインでご注文いただけます。<br><span class="pm2-note">※オンラインは単焦点のみ</span>',
@@ -4931,7 +4943,9 @@
         <div class="pm2-range">
           <div class="pm2-range-nums">${p.range.nums.map(n => `<div class="pm2-range-num"><span>${n[0]}</span><strong>${n[1]}</strong></div>`).join('')}</div>
           ${p.range.notes.map(n => `<p class="pm2-note">${n}</p>`).join('')}
+          ${p.range.details ? `<details class="pm2-details"><summary>くわしい条件を見る</summary><ul>${p.range.details.map(d => `<li>${d}</li>`).join('')}</ul></details>` : ''}
         </div>
+        ${p.range.help ? `<p class="pm2-help">${p.range.help}</p>` : ''}
       </div>` : '';
     const online = p.onlineSteps ? `<ol class="pm2-steps">${p.onlineSteps.map(x => `<li>${x}</li>`).join('')}</ol>` : (p.onlineWay ? `<p>${p.onlineWay}</p>` : '');
     // 注文方法の枠の中にもボタン（読んで決めたその場で押せるように）
