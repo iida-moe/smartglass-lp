@@ -2638,6 +2638,16 @@
     .pm2-way .pm2-way-btn { margin-top: auto; display: block; width: 100%; text-align: center; box-sizing: border-box; padding-top: 12px; padding-bottom: 12px; font-size: 15px; }
     .pm2-way > :nth-last-child(2) { margin-bottom: 18px; }
     .pm2-way-notes { margin-top: 12px; }
+    .pm2-ways > .pm2-way:only-child { grid-column: 1 / -1; }
+    .pm2-range-text { font-size: 15px; color: #333; line-height: 1.75; margin-bottom: 8px; }
+    .pm2-lineup { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .pm2-lineup-item { background: #F5F7FA; border-radius: 10px; padding: 14px 16px; }
+    .pm2-lineup-item strong { display: block; font-size: 15px; color: var(--navy); line-height: 1.5; margin-bottom: 4px; }
+    .pm2-lineup-item span { font-size: 13px; color: #555; }
+    .pm2-models .modal-model-list { margin-bottom: 0; }
+    .pm2-models .modal-model-list + p { margin: 8px 0 0 !important; font-size: 13px !important; color: #333 !important; }
+    /* 正方形の画像（Ray-Ban・Even G2）は枠も正方形にして小さくならないように */
+    .pm2.pm2-sq .prod-modal-img-main { aspect-ratio: 1; }
     /* ボタン右端に「丸の中に▶」 */
     .pm2-way .pm2-way-btn { position: relative; padding-left: 44px; padding-right: 44px; }
     .pm2-way .pm2-way-btn::after { content: ''; position: absolute; right: 16px; top: 50%; width: 20px; height: 20px; margin-top: -10px; border-radius: 50%; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M8 6l5 4-5 4z' fill='%23CC0000'/%3E%3C/svg%3E") center/20px no-repeat; }
@@ -2661,6 +2671,9 @@
       .pm2-range-nums { gap: 8px; }
       .pm2-range-num { padding: 12px 8px; }
       .pm2-range-num strong { font-size: 18px; }
+      .pm2-range-nums { flex-wrap: wrap; }
+      .pm2-range-num { flex: 1 1 40%; }
+      .pm2-lineup { grid-template-columns: 1fr; gap: 8px; }
       .pm2-tabs { margin-bottom: 16px; }
       .pm2-rec { grid-template-columns: 1fr 1fr; }
       .pm2-rec-item { padding: 14px 8px; }
@@ -3728,6 +3741,11 @@
       imgText: 'Luma',
       scenes: ['ゲーム', '映画', 'エンタメ'],
       images: ['viture/luma/01.avif', 'viture/luma/02.avif', 'viture/luma/03.avif'],
+      v2: {
+        desc: '146インチ相当の大画面で、映画・ゲーム・動画を楽しめるXRグラス。USB-C接続で、いろいろな機器につながります。',
+        points: ['146インチ相当・視野角50°の大画面', '近視−6.0Dまでダイヤルで調整', '度付きレンズも組み合わせOK'],
+        recommend: [['film', '映画・ゲームを<br>大画面で楽しみたい方'], ['game', 'Switchなど携帯ゲーム機を<br>使っている方'], ['tv', 'テレビなしで<br>大画面を楽しみたい方'], ['glasses', '強めの近視<br>（−6.0Dまで）の方']],
+      },
     },
     ultra: {
       label: 'Luma Ultra XR/AR',
@@ -3751,6 +3769,11 @@
       imgText: 'Luma Ultra',
       scenes: ['ビジネス', 'AR', 'ゲーム', '映画'],
       images: ['viture/ultra/01.avif', 'viture/ultra/02.avif', 'viture/ultra/03.avif'],
+      v2: {
+        desc: 'ソニー製Micro OLED・1,500ニトの高輝度モデル。6DoFの空間コンピューティングとARで、映画・ゲーム・ビジネスを1台でこなせます。',
+        points: ['1,500ニトの高輝度・視野角52°', '6DoF・ハンドジェスチャーでAR操作', '近視−4.0Dまでダイヤルで調整'],
+        recommend: [['cube', '本格的なAR体験を<br>したい方'], ['layers', '空間コンピューティングに<br>興味がある方'], ['briefcase', '映画・ゲーム・ビジネスを<br>1台でこなしたい方'], ['spark', '最高スペックに<br>こだわりたい方']],
+      },
     },
   };
 
@@ -3790,6 +3813,7 @@
     }
     const recEl = document.getElementById('viture-modal-recommend-list');
     if (recEl) recEl.innerHTML = vm.recommend.map(r => `<li>${r}</li>`).join('');
+    if (document.getElementById('pm2-body-top')) pm2RenderVitureBody(model);
   }
 
   // 本体をアイメガネで取り扱わないブランド（レンズ交換のみ）
@@ -4499,6 +4523,32 @@
       onlineStore: 'https://www.aijapan-online.com/product-page/mirzainsertlens',
       gallery: 'mirza',
       hasLens: true,
+      v2: {
+        body: {
+          label: '本体・レンズ取り扱い',
+          desc: '「見る」をあたらしく。働くヒトに変革を。',
+          descNote: '※MiRZA<sup>®</sup>（ミルザ）は、NTTコノキューデバイスの商標です。',
+          points: ['Snapdragon® AR2 Gen1搭載の本格XRグラス', '視野角45°・フルHDの高精細表示', '度付きインサートレンズで視力補正OK'],
+          specs: true,
+          recommend: [['briefcase', '業務・法人で<br>活用したい方'], ['cube', '本格的なXRを<br>体験したい方'], ['shield', '日本製・国内サポートに<br>こだわりたい方'], ['layers', '空間コンピューティングを<br>活用したい方']],
+          store: '本体取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span></strong>',
+        },
+        lens: {
+          label: 'レンズ交換',
+          desc: 'MiRZA専用の度付きインサートレンズです。',
+          descNote: '※ご使用にはインサートレンズ用フレーム（別売）が必要です。',
+          points: ['近視・遠視に対応（単焦点のみ）', '全37店舗でレンズ交換OK（本庄南大通り店を除く）', 'オンライン注文OK（フレームのみ郵送）'],
+          range: {
+            nums: [['近視', '−10.00まで'], ['遠視', '＋4.00まで'], ['乱視', '−2.00まで']],
+            notes: ['※遠近両用は対応しておりません。', '※度数の組み合わせによっては、対応できない場合があります。'],
+            details: ['度付きレンズを使っても、ふだんの見え方とは異なります。慣れるまで時間がかかることがあります。', '度付きインサートレンズを使った状態で、運転や操縦はしないでください。', '日常用のメガネとしてはご使用できません。', 'お手入れはクリーニングクロスで軽く拭いてください。乾いた布での強い摩擦、酸性・アルカリ性洗剤はお控えください。'],
+          },
+          storeWay: 'インサートレンズ用フレームをお持ちのうえ、お近くのアイメガネ店舗へお越しください。レンズの度数は店頭で測定します。お使いのメガネに合わせて作ることもできます。<br><span class="pm2-note">※本庄南大通り店を除く全37店舗</span>',
+          onlineSteps: ['インサートレンズ用フレームを購入（別売）', '度数（球面・乱視・軸度・PD）を入力してオンラインで注文', 'インサートレンズ用フレームのみをご郵送。レンズを入れてご自宅へ返送します'],
+          onlineNotes: ['※フレームの送料はお客様負担となります。', '※度数は処方箋などでご確認ください。'],
+          waysNote: '※度付きレンズは特注品のため、ご注文後のキャンセル・返品はお受けできません。',
+        },
+      },
       lensHTML: `
         <p class="modal-lens-intro">MiRZA専用の視力補正度付きインサートレンズです。メガネ装用者がMiRZAをより快適に使用できるよう設計されています。ご使用には<strong>インサートレンズ用フレーム（別途購入）</strong>が必要です。</p>
         <div class="modal-lens-block">
@@ -4598,6 +4648,29 @@
       searchBrand: 'Even Realities',
       gallery: 'even',
       hasLens: true,
+      v2: {
+        imgSquare: true,
+        body: {
+          label: '本体・レンズ取り扱い',
+          desc: '会話・会議の要点をAIがリアルタイムで整理。翻訳やカレンダー・通知も視界に表示します。Even R1リング（別売）なら、手元のタップだけで操作できます。',
+          points: ['35言語のリアルタイム翻訳', '約36gの軽さ・カメラなし', '遠近両用にも対応した度付きレンズ'],
+          specs: true,
+          recommend: [['people', '会議・商談が<br>多い方'], ['translate', '外国語を使う仕事や<br>旅行が多い方'], ['phone', 'スマホを見る回数を<br>減らしたい方'], ['lock', 'プライバシーを<br>大切にしたい方']],
+          store: '本体・レンズ取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span>・<span class="store-name-link" onclick="showStoreByName(\'深谷上柴\')">深谷上柴西店</span>・<span class="store-name-link" onclick="showStoreByName(\'新越谷\')">新越谷店</span>・<span class="store-name-link" onclick="showStoreByName(\'宇都宮錦\')">宇都宮錦店</span>・<span class="store-name-link" onclick="showStoreByName(\'八千代\')">八千代台ユアエルム店</span></strong>',
+        },
+        lens: {
+          label: 'レンズ交換',
+          desc: 'アイメガネはEven Realitiesのメーカー公認店です。Even G2専用のUltraFitレンズで、度付きレンズへの交換を店頭で承ります。',
+          points: ['単焦点・遠近両用に対応', 'メーカー公認店で店頭交換', '納期はご注文後4週間程度'],
+          lineup: {
+            ttl: 'レンズの種類',
+            items: [['エッセンシャルスリム（屈折率1.60）', '軽度〜中等度向け'], ['エンハンストスリム（屈折率1.67）', '中等度〜強度向け'], ['スーペリアスリム（屈折率1.74）', '強度数向け・最薄最軽量']],
+            notes: ['※納期は通関状況により前後する場合がございます。'],
+          },
+          storeWay: 'Even G2本体をお持ちのうえ、取扱店へお越しください。レンズの度数は店頭で測定します。<br><span class="pm2-note">※南浦和店・深谷上柴西店・新越谷店・宇都宮錦店・八千代台ユアエルム店</span>',
+          waysNote: '※度付きレンズは特注品のため、ご注文後のキャンセル・返品はお受けできません。',
+        },
+      },
       lensHTML: `
         <p class="modal-lens-intro">アイメガネはEven Realitiesのメーカー公認店として、Even G2専用の<strong>UltraFitレンズ</strong>を使用した度付きレンズへの交換を店頭にて承ります。単焦点・累進（遠近両用）のどちらにも対応しています。</p>
         <div class="modal-lens-block">
@@ -4653,6 +4726,33 @@
       lensTabLabel: 'レンズについて',
       singleCtaLabel: '南浦和店で相談する',
       hideLensActionBtn: true,
+      v2: {
+        imgSquare: true,
+        body: {
+          label: '本体取り扱い（度付きレンズ選択可）',
+          desc: '普通のメガネに見えて、ぜんぜん普通じゃない。「Hey Meta」の声だけで、AI・音楽・撮影が楽しめます。',
+          points: ['「Hey Meta」の声でAI・音楽・通話', '12MPカメラで写真・3K動画', '度付きレンズは本体購入時に選べる'],
+          specs: true,
+          specsNote: '※記載スペックは代表値です。モデルにより性能が異なる場合があります。',
+          modelList: true,
+          recommend: [['glasses', 'メガネをおしゃれに<br>楽しみたい方'], ['music', '音楽・通話を<br>日常的に使いたい方'], ['spark', 'スマートグラスを<br>はじめて使う方'], ['bubble', 'Meta AIを<br>気軽に使いたい方']],
+          store: '本体（度付きレンズ選択可）：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span></strong>',
+        },
+        lens: {
+          label: '度付きレンズ',
+          desc: 'Ray-Ban Metaの度付きレンズは、本体のご購入時にお選びいただきます。',
+          descNote: '※他店でご購入いただいたフレームのお持ち込みでの度付き加工は対応しておりません。',
+          points: ['単焦点・遠近両用・アシストレンズなどに対応', '本体と一緒にご注文', '取り扱いは南浦和店のみ'],
+          range: {
+            ttl: '対応できるレンズ',
+            text: '対応できるレンズの種類や度数の範囲は、モデル・フレームによって異なります。詳しくは店舗スタッフにご相談ください。',
+            notes: ['※モデル・フレームカラー・レンズカラーの組み合わせにより、対応可否や金額が異なります。'],
+          },
+          storeWay: '南浦和店で、本体と一緒に度付きレンズをお選びいただけます。レンズの度数は店頭で測定します。',
+          storeBtnLabel: '南浦和店で相談する',
+          waysNote: '※度付きレンズは特注品のため、ご注文後のキャンセル・返品はお受けできません。',
+        },
+      },
       lensHTML: `
         <p class="modal-lens-intro">Ray-Ban Metaの度付きレンズは、<strong>本体のご購入時にお選びいただく形</strong>になります。<u>他店でご購入いただいたフレームお持ち込みでの度付き加工は対応しておりません</u>ので、ご購入前にご検討ください。取り扱いは南浦和店のみです。</p>
         <div class="modal-lens-block">
@@ -4676,6 +4776,27 @@
       searchBrand: 'Viture',
       gallery: 'viture',
       hasLens: true,
+      v2: {
+        // 名前・キャッチ・説明・チェック・スペック・おすすめは VITURE_MODELS の各モデルの v2 から入る
+        body: {
+          label: '本体・レンズ取り扱い',
+          specs: true,
+          store: '本体・レンズ取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span></strong>',
+        },
+        lens: {
+          label: 'レンズ交換',
+          name: 'VITURE Luma シリーズ',
+          desc: 'フレームの視度調整ダイヤルで、軽い近視ならレンズなしでそのまま使えます。ダイヤルをこえる度数や乱視がある方は、専用レンズフレーム（別売）に度付きレンズを入れてお使いいただけます。',
+          points: ['ダイヤルで近視を調整（レンズなし）', 'こえる度数・乱視は度付きレンズで対応', '度付きレンズは単焦点のみ'],
+          range: {
+            ttl: 'ダイヤルで調整できる度数',
+            nums: [['Luma', '−6.0Dまで'], ['Luma Ultra', '−4.0Dまで']],
+            notes: ['※ダイヤルで調整できるのは近視のみです。', '※度付きレンズは単焦点のみ。遠近両用は対応しておりません。'],
+          },
+          storeWay: '専用レンズフレームをお持ちのうえ、南浦和店へお越しください。レンズの度数は店頭で測定します。',
+          waysNote: '※度付きレンズは特注品のため、ご注文後のキャンセル・返品はお受けできません。',
+        },
+      },
       lensHTML: `
         <p class="modal-lens-intro">VITURE Luma シリーズは、本体フレームに内蔵された視度調整ダイヤルで軽度の近視補正が可能です（Luma：0〜−6.0D　／　Luma Ultra：0〜−4.0D）。ダイヤルの範囲を超える度数や乱視がある方には、<strong>専用レンズフレーム（別途購入）</strong>に度付きレンズを加工してお取り付けします。</p>
         <div class="modal-lens-block">
@@ -4920,22 +5041,46 @@
     mic: '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0013 0M12 17.5V21M8.5 21h7"/>',
     search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.3 15.3L21 21"/>',
     spark: '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M18.5 16v4M16.5 18h4"/>',
+    briefcase: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8.5 7V5a1.5 1.5 0 011.5-1.5h4A1.5 1.5 0 0115.5 5v2M3 12.5h18"/>',
+    cube: '<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/>',
+    shield: '<path d="M12 3l7.5 3v5.5c0 4.5-3.2 8-7.5 9.5-4.3-1.5-7.5-5-7.5-9.5V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
+    layers: '<path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/>',
+    phone: '<rect x="7" y="2.5" width="10" height="19" rx="2.2"/><path d="M11 18.5h2"/>',
+    lock: '<rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 018 0v3"/>',
+    music: '<path d="M4 15v-2a8 8 0 0116 0v2"/><rect x="3" y="14.5" width="4" height="6" rx="1.5"/><rect x="17" y="14.5" width="4" height="6" rx="1.5"/>',
+    film: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 5v14M17 5v14M3 9.5h4M3 14.5h4M17 9.5h4M17 14.5h4"/>',
+    game: '<rect x="2.5" y="7" width="19" height="10" rx="5"/><path d="M7.5 10v4M5.5 12h4"/><circle cx="16" cy="11" r=".9"/><circle cx="18" cy="13" r=".9"/>',
+    tv: '<rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8.5 20.5h7M12 17v3.5"/>',
   };
   function pm2Icon(name) {
     return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (PM2_ICONS[name] || '') + '</svg>';
   }
+  // 上：ラベル・名前・キャッチ・説明・チェック（本体はスペック表も）
   function pm2Top(pd, p) {
     const points = p.points ? `<ul class="pm2-points">${p.points.map(x => `<li>${x}</li>`).join('')}</ul>` : '';
+    const specs = p.specsList || (p.specs ? pd.specs : null);
+    const ctch = p.catch !== undefined ? p.catch : pd.catch;
     return `
       ${p.label ? `<span class="pm2-label">${p.label}</span>` : ''}
-      <h3 class="prod-modal-name pm2-name">${pd.name}</h3>
-      ${pd.catch ? `<p class="prod-modal-catch">${pd.catch}</p>` : ''}
+      <h3 class="prod-modal-name pm2-name">${p.name || pd.name}</h3>
+      ${ctch ? `<p class="prod-modal-catch">${ctch}</p>` : ''}
       ${p.desc ? `<p class="pm2-desc">${p.desc}</p>` : ''}
       ${p.descNote ? `<p class="pm2-note">${p.descNote}</p>` : ''}
       ${points}
-      ${p.specs ? `<div style="margin-top:20px;">${buildSpecTableHTML(pd.specs)}</div>` : ''}`;
+      ${specs ? `<div style="margin-top:20px;">${buildSpecTableHTML(specs)}</div>` : ''}
+      ${(specs && p.specsNote) ? `<p class="pm2-note" style="margin-top:6px;">${p.specsNote}</p>` : ''}`;
   }
+  // 本体タブのボタン（今までと同じ動き）
+  function pm2BodyBtns(pd) {
+    if (pd.hideBodyActionBtn) return pd.bodyActionNote ? `<p class="pm2-note">${pd.bodyActionNote}</p>` : '';
+    if (pd.singleCtaLabel) return `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">${pd.singleCtaLabel}</a>`;
+    if (pd.bodyOnlineStore) return `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">本体購入・体験へ</a><a href="${pd.bodyOnlineStore}" target="_blank" class="btn btn-outline">オンラインストアを見る</a>`;
+    if (pd.onlineStore) return `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a><a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインストアを見る</a>`;
+    return `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">本体購入・体験へ</a><a href="#search" class="btn btn-outline" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">${pd.lensLinkLabel || 'レンズ交換へ'}</a>`;
+  }
+  // 下：取扱モデル→おすすめ→度数（または対応レンズ・レンズの種類）→安全上の注意→取扱店→ご注文方法 or ボタン
   function pm2Bottom(pd, p, kind) {
+    const models = (p.modelList && pd.modelListHTML) ? `<div class="pm2-sec pm2-models">${pd.modelListHTML}</div>` : '';
     const rec = p.recommend ? `
       <div class="pm2-sec">
         <p class="pm2-ttl">こんな方におすすめ</p>
@@ -4943,19 +5088,25 @@
       </div>` : '';
     const range = p.range ? `
       <div class="pm2-sec">
-        <p class="pm2-ttl">対応できる度数</p>
+        <p class="pm2-ttl">${p.range.ttl || '対応できる度数'}</p>
         <div class="pm2-range">
-          <div class="pm2-range-nums">${p.range.nums.map(n => `<div class="pm2-range-num"><span>${n[0]}</span><strong>${n[1]}</strong></div>`).join('')}</div>
-          ${p.range.notes.map(n => `<p class="pm2-note">${n}</p>`).join('')}
+          ${p.range.nums ? `<div class="pm2-range-nums">${p.range.nums.map(n => `<div class="pm2-range-num"><span>${n[0]}</span><strong>${n[1]}</strong></div>`).join('')}</div>` : ''}
+          ${p.range.text ? `<p class="pm2-range-text">${p.range.text}</p>` : ''}
+          ${(p.range.notes || []).map(n => `<p class="pm2-note">${n}</p>`).join('')}
           ${p.range.details ? `<details class="pm2-details"><summary>レンズの詳しい注意点</summary><ul>${p.range.details.map(d => `<li>${d}</li>`).join('')}</ul></details>` : ''}
         </div>
-        ${p.range.help ? `<p class="pm2-help">${p.range.help}</p>` : ''}
+      </div>` : '';
+    const lineup = p.lineup ? `
+      <div class="pm2-sec">
+        <p class="pm2-ttl">${p.lineup.ttl || 'レンズの種類'}</p>
+        <div class="pm2-lineup">${p.lineup.items.map(it => `<div class="pm2-lineup-item"><strong>${it[0]}</strong><span>${it[1]}</span></div>`).join('')}</div>
+        ${(p.lineup.notes || []).map(n => `<p class="pm2-note" style="margin-top:8px;">${n}</p>`).join('')}
       </div>` : '';
     const online = p.onlineSteps ? `<ol class="pm2-steps">${p.onlineSteps.map(x => `<li>${x}</li>`).join('')}</ol>` : (p.onlineWay ? `<p>${p.onlineWay}</p>` : '');
-    // 注文方法の枠の中にもボタン（読んで決めたその場で押せるように）
     const onlineUrl = pd.onlineStore || pd.bodyOnlineStore || '';
-    const storeBtn = `<a href="#search" class="btn btn-red pm2-way-btn" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">近くの店舗を探す</a>`;
+    const storeBtn = `<a href="#search" class="btn btn-red pm2-way-btn" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">${p.storeBtnLabel || '近くの店舗を探す'}</a>`;
     const onlineBtn = onlineUrl ? `<a href="${onlineUrl}" target="_blank" rel="noopener" class="btn btn-outline pm2-way-btn">オンラインで注文する</a>` : '';
+    const waysNotes = p.waysNote ? [].concat(p.waysNote) : [];
     const ways = (p.storeWay || online) ? `
       <div class="pm2-sec">
         <p class="pm2-ttl">ご注文方法</p>
@@ -4963,12 +5114,7 @@
           ${p.storeWay ? `<div class="pm2-way"><p class="pm2-way-ttl">店舗で注文する</p><p>${p.storeWay}</p>${storeBtn}</div>` : ''}
           ${online ? `<div class="pm2-way"><p class="pm2-way-ttl">オンラインで注文する</p>${online}${p.onlineNotes ? `<div class="pm2-way-notes">${p.onlineNotes.map(n => `<p class="pm2-note">${n}</p>`).join('')}</div>` : ''}${onlineBtn}</div>` : ''}
         </div>
-        ${p.waysNote ? `<p class="pm2-note" style="margin-top:12px;">${p.waysNote}</p>` : ''}
-      </div>` : '';
-    const cautions = p.cautions ? `
-      <div class="pm2-sec">
-        <p class="pm2-ttl">注意事項</p>
-        <ul class="pm2-cautions">${p.cautions.map(c => `<li>${c}</li>`).join('')}</ul>
+        ${waysNotes.map((n, i) => `<p class="pm2-note" style="margin-top:${i ? 2 : 12}px;">${n}</p>`).join('')}
       </div>` : '';
     const accordion = (p.accordion && pd.accordion) ? `
       <div class="pm2-sec">
@@ -4978,45 +5124,53 @@
         </div>
       </div>` : '';
     const store = p.store ? `<p class="prod-modal-store" style="margin-top:28px;">${p.store}</p>` : '';
-    // ボタン（今までと同じ動き）
+    const head = `${models}${rec}${range}${lineup}${accordion}${store}`;
+    // ご注文方法の枠にボタンがあるときは、そこで終える（同じボタンを2回出さない）
+    if (ways) return head + ways;
     let btns;
-    if (kind === 'body') {
-      btns = `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">本体購入・体験へ</a>`
-        + (pd.bodyOnlineStore ? `<a href="${pd.bodyOnlineStore}" target="_blank" class="btn btn-outline">オンラインストアを見る</a>` : '');
-    } else if (pd.lensOnly) {
-      btns = `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a>`
-        + (pd.onlineStore ? `<a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインで注文する</a>` : '');
-    } else {
-      btns = `<a href="#search" class="btn btn-blue" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換の店舗を探す</a>`;
-    }
-    // ご注文方法の枠にボタンがあるときは、注意事項を先に出して、最後をご注文方法で終える（同じボタンを2回出さない）
-    if (ways) return `${rec}${range}${cautions}${accordion}${store}${ways}`;
-    return `${rec}${range}${cautions}${accordion}${store}<div class="pm2-actions"${store ? ' style="margin-top:12px;"' : ''}>${btns}</div>`;
+    if (kind === 'body') btns = pm2BodyBtns(pd);
+    else if (pd.lensOnly) btns = `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a>` + (pd.onlineStore ? `<a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインで注文する</a>` : '');
+    else btns = `<a href="#search" class="btn btn-blue" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">レンズ交換の店舗を探す</a>`;
+    return head + (btns ? `<div class="pm2-actions"${store ? ' style="margin-top:12px;"' : ''}>${btns}</div>` : '');
   }
   function pm2SwitchTab(btn, tab) {
     const root = btn.closest('.pm2');
     root.dataset.tab = tab;
-    root.querySelectorAll('.modal-content-tab').forEach(b => b.classList.toggle('active', b === btn));
+    root.querySelectorAll('.pm2-tabs .modal-content-tab').forEach(b => b.classList.toggle('active', b === btn));
     const body = document.querySelector('.prod-modal-body');
     if (body) body.scrollTop = 0;
+  }
+  // VITUREはモデル（Luma／Ultra）ごとに本体タブの中身を入れかえる
+  function pm2VitureBody(pd, model) {
+    const vm = VITURE_MODELS[model];
+    return Object.assign({}, pd.v2.body, vm.v2, { name: vm.name, catch: vm.catch, specsList: vm.specs });
+  }
+  function pm2RenderVitureBody(model) {
+    const pd = PD.viture;
+    const p = pm2VitureBody(pd, model);
+    const top = document.getElementById('pm2-body-top');
+    const bottom = document.getElementById('pm2-body-bottom');
+    if (top) top.innerHTML = pm2Top(pd, p);
+    if (bottom) bottom.innerHTML = pm2Bottom(pd, p, 'body');
   }
   function buildModalV2(pd, imgHTML) {
     const v = pd.v2;
     if (v.body && v.lens) {
+      const body = pd.gallery === 'viture' ? pm2VitureBody(pd, 'luma') : v.body;
       return `
-        <div class="pm2" data-tab="body">
+        <div class="pm2${v.imgSquare ? ' pm2-sq' : ''}" data-tab="body">
           <div class="modal-content-tabs pm2-tabs">
             <button class="modal-content-tab active" onclick="pm2SwitchTab(this,'body')">本体について</button>
-            <button class="modal-content-tab" onclick="pm2SwitchTab(this,'lens')">レンズ交換について</button>
+            <button class="modal-content-tab" onclick="pm2SwitchTab(this,'lens')">${pd.lensTabLabel || 'レンズ交換について'}</button>
           </div>
           <div class="prod-modal-layout">
             <div class="prod-modal-img-col">${imgHTML}</div>
             <div class="prod-modal-info-col">
-              <div class="pm2-pane-body">${pm2Top(pd, v.body)}</div>
+              <div class="pm2-pane-body" id="pm2-body-top">${pm2Top(pd, body)}</div>
               <div class="pm2-pane-lens">${pm2Top(pd, v.lens)}</div>
             </div>
           </div>
-          <div class="pm2-pane-body">${pm2Bottom(pd, v.body, 'body')}</div>
+          <div class="pm2-pane-body" id="pm2-body-bottom">${pm2Bottom(pd, body, 'body')}</div>
           <div class="pm2-pane-lens">${pm2Bottom(pd, v.lens, 'lens')}</div>
         </div>`;
     }
