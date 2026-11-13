@@ -2641,6 +2641,7 @@
     .pm2-way > :nth-last-child(2) { margin-bottom: 18px; }
     .pm2-way-notes { margin-top: 12px; }
     .pm2-acc .modal-accordion { margin-bottom: 0; }
+    .pm2-official { display: inline-block; margin-top: 12px; font-size: 13px; color: var(--navy); text-decoration: underline; text-underline-offset: 3px; }
     .pm2-acc + .pm2-acc { margin-top: 10px; }
     .pm2-ways > .pm2-way:only-child { grid-column: 1 / -1; }
     .pm2-range-text { font-size: 15px; color: #333; line-height: 1.75; margin-bottom: 8px; }
@@ -4511,6 +4512,7 @@
   // === 商品モーダル ===
   const PD = {
     mirza: {
+      officialUrl: 'https://www.xr.docomo.ne.jp/mirza',
       name: 'MiRZA<sup>®</sup><span class="prod-modal-furigana">ミルザ</span>',
       catch: '本格XRグラス',
       desc: '「見る」をあたらしく。働くヒトに変革を。',
@@ -4641,6 +4643,7 @@
         </div>`,
     },
     even: {
+      officialUrl: 'https://www.evenrealities.com/ja-JP/smart-glasses',
       name: 'Even Realities G2',
       catch: 'Even G2. The everyday display of smart glasses.',
       desc: '会話・会議の要点をAIがリアルタイムで整理。35言語の翻訳が視界に表示され、自然なコミュニケーションをサポートします。カレンダー・通知も一元管理。カメラ非搭載でプライバシーにも配慮。Even R1リング（別売）で、手元タップだけで操作できます。累進レンズ（遠近両用）にも対応しています。',
@@ -4703,6 +4706,7 @@
         </div>`,
     },
     rayban: {
+      officialUrl: 'https://www.ray-ban.com/japan/ray-ban-meta-ai-glasses',
       name: 'Ray-Ban Meta',
       catch: 'Meta AI搭載スマートグラス / 5モデル取扱',
       desc: '普通のメガネに見えて、ぜんぜん普通じゃない。度付き対応スマートグラス「Blayzer」「Scriber」は、軽量で快適な装着感はそのままに、「Hey Meta」の声だけでAI・音楽・撮影が楽しめます。通常のメガネのような見た目で、広範囲の度数に対応しています。',
@@ -4778,6 +4782,7 @@
         </div>`,
     },
     viture: {
+      officialUrl: 'https://www.viture.jp/product/viture-luma-ultra-xr-ar-glasses-original',
       name: 'VITURE Luma シリーズ',
       catch: '2モデルから選べる大画面エンタメグラス',
       desc: '映画・ゲーム・動画を没入感ある大画面で楽しめるXRグラスです。フレームに内蔵された視度調整ダイヤルにより、軽度の近視であればレンズなしでそのまま使用できます（Luma：0〜−6.0D／Luma Ultra：0〜−4.0D）。ダイヤル範囲を超える度数や乱視がある方は、専用レンズフレームに度付きレンズを組み合わせることで対応できます。',
@@ -4821,6 +4826,7 @@
         </div>`,
     },
     sabera: {
+      officialUrl: 'https://sabera.glass/',
       name: 'SABERA<span class="prod-modal-furigana">サベラ</span>',
       catch: '鯖江生まれのスマート眼鏡が、ビジネスや日常を静かに研ぎ澄ます。',
       desc: '全てハンズフリー。「視界の中」で完結。文字起こし・議事録・AI要約、通知、AIアシスタント、原稿表示・テレプロンプト、リアルタイム翻訳、ナビゲーション機能をお使いいただけます。',
@@ -5080,6 +5086,7 @@
       ${p.desc ? `<p class="pm2-desc">${p.desc}</p>` : ''}
       ${p.descNote ? `<p class="pm2-note">${p.descNote}</p>` : ''}
       ${points}
+      ${p.official ? `<a class="pm2-official" href="${p.official}" target="_blank" rel="noopener">詳しいスペックはメーカー公式サイトへ →</a>` : ''}
       ${p.specsTop ? `<div style="margin-top:20px;">${buildSpecTableHTML(p.specsList || pd.specs)}</div>` : ''}`;
   }
   // 本体タブのボタン（今までと同じ動き）
@@ -5170,7 +5177,7 @@
   // VITUREはモデル（Luma／Ultra）ごとに本体タブの中身を入れかえる
   function pm2VitureBody(pd, model) {
     const vm = VITURE_MODELS[model];
-    return Object.assign({}, pd.v2.body, vm.v2, { name: vm.name, catch: vm.catch, specsList: vm.specs });
+    return Object.assign({}, pd.v2.body, vm.v2, { name: vm.name, catch: vm.catch, specsList: vm.specs, official: pd.officialUrl });
   }
   function pm2RenderVitureBody(model) {
     const pd = PD.viture;
@@ -5183,7 +5190,7 @@
   function buildModalV2(pd, imgHTML) {
     const v = pd.v2;
     if (v.body && v.lens) {
-      const body = pd.gallery === 'viture' ? pm2VitureBody(pd, 'luma') : v.body;
+      const body = Object.assign({}, pd.gallery === 'viture' ? pm2VitureBody(pd, 'luma') : v.body, { official: pd.officialUrl });
       return `
         <div class="pm2${v.imgSquare ? ' pm2-sq' : ''}${(v.body && v.body.specsTop) ? ' pm2-spectop' : ''}" data-tab="body">
           <div class="modal-content-tabs pm2-tabs">
