@@ -2587,6 +2587,48 @@
     .prod-modal-store-link:hover { text-decoration: underline; }
     .store-name-link { color: var(--blue); cursor: pointer; text-decoration: underline; text-underline-offset: 2px; font-weight: 700; }
     .store-name-link:hover { opacity: 0.75; }
+
+    /* ===== モーダル新レイアウト（v2：写真＋要点→度数→注文方法→注意） ===== */
+    .pm2-label { display: inline-block; font-size: 12px; font-weight: 700; color: var(--navy); background: #EEF2F7; border-radius: 999px; padding: 3px 12px; margin-bottom: 10px; letter-spacing: 0.04em; }
+    .pm2-desc { font-size: clamp(14px, 1.6vw, 16px); color: #333; line-height: 1.8; margin-bottom: 4px; }
+    .pm2-points { list-style: none; padding: 0; margin: 16px 0 0; border-top: 1px solid #E6E9EE; }
+    .pm2-points li { position: relative; padding: 10px 0 10px 28px; border-bottom: 1px solid #E6E9EE; font-size: clamp(14px, 1.6vw, 16px); color: var(--navy); font-weight: 600; line-height: 1.5; }
+    .pm2-points li::before { content: ''; position: absolute; left: 2px; top: 50%; width: 18px; height: 18px; margin-top: -9px; border-radius: 50%; background: var(--navy) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat; }
+    .pm2-sec { margin-top: 36px; }
+    .pm2-ttl { font-size: clamp(16px, 1.8vw, 18px); font-weight: 700; color: var(--navy); padding-left: 12px; border-left: 4px solid var(--navy); line-height: 1.3; margin-bottom: 14px; }
+    .pm2-range { background: #F5F7FA; border-radius: 12px; padding: 20px 24px; }
+    .pm2-range-nums { display: flex; gap: 12px; margin-bottom: 14px; }
+    .pm2-range-num { flex: 1; background: #fff; border-radius: 8px; padding: 12px 14px; text-align: center; }
+    .pm2-range-num span { display: block; font-size: 13px; color: #555; margin-bottom: 2px; }
+    .pm2-range-num strong { font-size: clamp(20px, 2.4vw, 24px); font-weight: 800; color: var(--navy); letter-spacing: 0.02em; white-space: nowrap; }
+    .pm2-name { word-break: keep-all; overflow-wrap: anywhere; }
+    .pm2-note { font-size: 13px; color: #333; line-height: 1.7; }
+    .pm2-note + .pm2-note { margin-top: 2px; }
+    .pm2-ways { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .pm2-way { border: 1px solid #E0E4EA; border-radius: 12px; padding: 18px 20px; }
+    .pm2-way-ttl { font-size: clamp(15px, 1.7vw, 16px); font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .pm2-way p { font-size: 14px; color: #333; line-height: 1.75; }
+    .pm2-steps { list-style: none; padding: 0; margin: 0; counter-reset: pm2; }
+    .pm2-steps li { counter-increment: pm2; position: relative; padding: 0 0 12px 34px; font-size: 14px; color: #333; line-height: 1.65; }
+    .pm2-steps li:last-child { padding-bottom: 0; }
+    .pm2-steps li::before { content: counter(pm2); position: absolute; left: 0; top: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--navy); color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .pm2-steps li:not(:last-child)::after { content: ''; position: absolute; left: 10.5px; top: 25px; bottom: 3px; width: 1px; background: #C9D1DC; }
+    .pm2-way a { color: var(--navy); font-size: 13px; }
+    .pm2-cautions { list-style: none; padding: 0; margin: 0; }
+    .pm2-cautions li { font-size: 13px; color: #444; line-height: 1.7; padding-left: 1em; text-indent: -1em; }
+    .pm2-cautions li::before { content: '・'; }
+    .pm2-actions { display: flex; gap: 12px; margin-top: 32px; }
+    .pm2-actions .btn { flex: 1; text-align: center; }
+    @media (max-width: 767px) {
+      .pm2-sec { margin-top: 28px; }
+      .pm2-range { padding: 16px; }
+      .pm2-range-nums { gap: 8px; }
+      .pm2-range-num { padding: 12px 8px; }
+      .pm2-range-num strong { font-size: 18px; }
+      .pm2-ways { grid-template-columns: 1fr; gap: 12px; }
+      .pm2-way { padding: 16px; }
+      .pm2-actions { flex-direction: column; gap: 10px; margin-top: 24px; }
+    }
     .prod-modal-ec-block { display: flex; align-items: center; gap: 14px; background: #F0F5FA; border: 1px solid #C5D9EA; border-radius: 10px; padding: 14px 18px; margin-bottom: 16px; }
     .prod-modal-ec-block-icon { font-size: clamp(22px, 2.5vw, 25px); flex-shrink: 0; }
     .prod-modal-ec-block-body { flex: 1; min-width: 0; }
@@ -4452,6 +4494,20 @@
       onlineStore: 'https://www.aijapan-online.com/product-page/rokidsumartaigalassesinsrtlens',
       gallery: 'rokid',
       lensOnly: true,
+      // 新レイアウト（v2）用のデータ
+      v2: {
+        label: 'レンズのみ取り扱い',
+        desc: 'Rokid スマートAIグラス専用のクリップオン式フレームに入れる度付きレンズです。',
+        descNote: '※本サービスはレンズ交換のみです。Rokid本体・クリップオン式フレームはRokid公式サイトにてご購入ください。',
+        points: ['Rokid専用クリップオン式フレームに対応', '全37店舗でレンズ交換OK（本庄南大通り店を除く）', 'フレームを送るだけのオンライン注文にも対応'],
+        range: {
+          nums: [['近視', '−10.00まで'], ['乱視', '−4.00まで']],
+          notes: ['※近視と乱視を合わせて−10.00までとなります。', '※近視が−0.75より弱い方は、乱視入りのレンズは作れません。', '※遠視・遠近両用には対応しておりません。', '※詳しくは店舗にてご相談ください。'],
+        },
+        storeWay: 'クリップオン式フレームをお持ちのうえ、お近くのアイメガネ店舗へお越しください。<br><span class="pm2-note">※本庄南大通り店を除く全37店舗</span>',
+        onlineSteps: ['Rokid公式サイトでクリップオン式フレームを購入<br><a href="https://jp.rokid.com/pages/rokid-glasses" target="_blank" rel="noopener">Rokid公式ホームページ →</a>', '度数（球面・乱視・軸度・PD）を入力してオンラインで注文', 'クリップオン式フレームのみをご郵送。レンズを入れてご自宅へ返送します'],
+        cautions: ['フレームの送料はお客様負担となります。', '度付きレンズは特注品となるため、ご注文後のキャンセル・返品はお受けできません。', 'ご注文の際は処方箋をご準備ください。度数が分からない方は眼科にて処方箋を発行していただいてからご注文をお願いいたします。'],
+      },
       lensHTML: `
         <p class="modal-lens-intro">Rokid スマートAIグラス専用のクリップオン式フレームに入れる度付きレンズです。<small class="except-note">※本サービスはレンズ交換のみです。Rokid本体・クリップオン式フレームはRokid公式サイトにてご購入ください。<br><a href="https://jp.rokid.com/pages/rokid-glasses" target="_blank" style="color:var(--navy);">Rokid公式ホームページ →</a></small></p>
         <div class="modal-lens-block">
@@ -4777,6 +4833,51 @@
     });
   }
 
+  // 新レイアウト（v2）：上＝写真＋名前＋要点、下＝対応できる度数→ご注文方法→注意事項→ボタン
+  function buildModalV2(pd, imgHTML) {
+    const v = pd.v2;
+    const points = v.points ? `<ul class="pm2-points">${v.points.map(p => `<li>${p}</li>`).join('')}</ul>` : '';
+    const range = v.range ? `
+      <div class="pm2-sec">
+        <p class="pm2-ttl">対応できる度数</p>
+        <div class="pm2-range">
+          <div class="pm2-range-nums">${v.range.nums.map(n => `<div class="pm2-range-num"><span>${n[0]}</span><strong>${n[1]}</strong></div>`).join('')}</div>
+          ${v.range.notes.map(n => `<p class="pm2-note">${n}</p>`).join('')}
+        </div>
+      </div>` : '';
+    const ways = (v.storeWay || v.onlineSteps) ? `
+      <div class="pm2-sec">
+        <p class="pm2-ttl">ご注文方法</p>
+        <div class="pm2-ways">
+          ${v.storeWay ? `<div class="pm2-way"><p class="pm2-way-ttl">店舗で注文する</p><p>${v.storeWay}</p></div>` : ''}
+          ${v.onlineSteps ? `<div class="pm2-way"><p class="pm2-way-ttl">オンラインで注文する</p><ol class="pm2-steps">${v.onlineSteps.map(s => `<li>${s}</li>`).join('')}</ol></div>` : ''}
+        </div>
+      </div>` : '';
+    const cautions = v.cautions ? `
+      <div class="pm2-sec">
+        <p class="pm2-ttl">注意事項</p>
+        <ul class="pm2-cautions">${v.cautions.map(c => `<li>${c}</li>`).join('')}</ul>
+      </div>` : '';
+    const actions = `
+      <div class="pm2-actions">
+        <a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">来店予約する</a>
+        ${pd.onlineStore ? `<a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインで注文する</a>` : ''}
+      </div>`;
+    return `
+      <div class="prod-modal-layout">
+        <div class="prod-modal-img-col">${imgHTML}</div>
+        <div class="prod-modal-info-col">
+          ${v.label ? `<span class="pm2-label">${v.label}</span>` : ''}
+          <h3 class="prod-modal-name pm2-name">${pd.name}</h3>
+          ${pd.catch ? `<p class="prod-modal-catch">${pd.catch}</p>` : ''}
+          <p class="pm2-desc">${v.desc}</p>
+          ${v.descNote ? `<p class="pm2-note">${v.descNote}</p>` : ''}
+          ${points}
+        </div>
+      </div>
+      ${range}${ways}${cautions}${actions}`;
+  }
+
   function openProductModal(key) {
     const pd = PD[key];
     if (!pd) return;
@@ -4844,8 +4945,16 @@
         <button class="modal-content-tab active" onclick="switchModalTab('body',this)">本体について</button>
         <button class="modal-content-tab" onclick="switchModalTab('lens',this)">${pd.lensTabLabel || 'レンズ交換について'}</button>
       </div>` : '';
+    if (pd.v2) {
+      document.getElementById('prod-modal-content').innerHTML = buildModalV2(pd, imgHTML);
+      document.getElementById('modal-nav-prev').style.display = '';
+      document.getElementById('modal-nav-next').style.display = '';
+      document.getElementById('product-modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      return;
+    }
     const infoColInner = pd.lensOnly
-      ? `<h3 class="prod-modal-name">${pd.name}</h3>${pd.catch ? `<p class="prod-modal-catch">${pd.catch}</p>` : ''}${pd.desc ? `<p class="prod-modal-desc">${pd.desc}</p>` : ''}${recommendHTML}${buildLensTabHTML(pd)}`
+      ?`<h3 class="prod-modal-name">${pd.name}</h3>${pd.catch ? `<p class="prod-modal-catch">${pd.catch}</p>` : ''}${pd.desc ? `<p class="prod-modal-desc">${pd.desc}</p>` : ''}${recommendHTML}${buildLensTabHTML(pd)}`
       : pd.hasLens
         ? `${tabsHTML}<div id="modal-tab-body">${bodyInner}</div><div id="modal-tab-lens" style="display:none">${buildLensTabHTML(pd)}</div>`
         : bodyInner;
