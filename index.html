@@ -4845,10 +4845,11 @@
       v2: {
         body: {
           label: '本体・レンズ取り扱い',
-          desc: '全てハンズフリー。文字起こし・議事録・AI要約、通知、AIアシスタント、テレプロンプト、リアルタイム翻訳、ナビゲーションを「視界の中」で使えます。',
-          points: ['40言語以上のリアルタイム翻訳', '約38gの軽さ・カメラなし', '度付きレンズに交換できる（近視のみ）'],
+          desc: '全てハンズフリー。必要な情報を「視界の中」で。',
+          points: ['約38gの軽さ・カメラなし', '通常使用で約12時間のバッテリー', '度付きレンズに交換できる（近視のみ）'],
           specs: true,
-          recommend: [['people', '会議・打ち合わせが<br>多い方'], ['translate', '外国語を使う仕事や<br>旅行が多い方'], ['glasses', 'ハンズフリーで<br>情報を見たい方'], ['pin', '鯖江ブランドに<br>こだわりたい方']],
+          recommendTtl: 'できること',
+          recommend: [['mic', '文字起こし・<br>議事録・AI要約'], ['translate', '40言語以上の<br>リアルタイム翻訳'], ['bubble', '通知・<br>AIアシスタント'], ['nav', 'ナビゲーション・<br>テレプロンプト']],
           accordion: true,
           store: '本体・レンズ取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span>・<span class="store-name-link" onclick="showStoreByName(\'宇都宮錦\')">宇都宮錦店</span>・<span class="store-name-link" onclick="showStoreByName(\'八千代\')">八千代台ユアエルム店</span>／オンライン</strong>',
         },
@@ -5051,6 +5052,7 @@
     film: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 5v14M17 5v14M3 9.5h4M3 14.5h4M17 9.5h4M17 14.5h4"/>',
     game: '<rect x="2.5" y="7" width="19" height="10" rx="5"/><path d="M7.5 10v4M5.5 12h4"/><circle cx="16" cy="11" r=".9"/><circle cx="18" cy="13" r=".9"/>',
     tv: '<rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8.5 20.5h7M12 17v3.5"/>',
+    nav: '<path d="M20.5 3.5L3.5 10.5l7 2.5 2.5 7z"/>',
   };
   function pm2Icon(name) {
     return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (PM2_ICONS[name] || '') + '</svg>';
@@ -5083,7 +5085,7 @@
     const models = (p.modelList && pd.modelListHTML) ? `<div class="pm2-sec pm2-models">${pd.modelListHTML}</div>` : '';
     const rec = p.recommend ? `
       <div class="pm2-sec">
-        <p class="pm2-ttl">こんな方におすすめ</p>
+        <p class="pm2-ttl">${p.recommendTtl || 'こんな方におすすめ'}</p>
         <div class="pm2-rec">${p.recommend.map(r => `<div class="pm2-rec-item"><span class="pm2-rec-icon">${pm2Icon(r[0])}</span><p>${r[1]}</p></div>`).join('')}</div>
       </div>` : '';
     const range = p.range ? `
