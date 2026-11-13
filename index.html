@@ -2615,6 +2615,8 @@
     .modal-lens-notes { padding-left: 16px; }
     .modal-lens-notes li { font-size: clamp(13px, 1.5vw, 15px); color: #1A1A1A; line-height: 1.8; }
     .modal-lens-meta { font-size: clamp(13px, 1.5vw, 15px); color: #333; line-height: 1.7; }
+    /* レンズタブの※はすべて同じ大きさにそろえる */
+    .modal-lens-intro .except-note, .modal-lens-block .except-note { font-size: clamp(12px, 1.3vw, 13px); line-height: 1.7; color: #333; margin-top: 4px; }
     .prod-modal-spec-table { border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
     .prod-modal-spec-row { display: flex; border-bottom: 1px solid #e8e8e8; }
     .prod-modal-spec-row:last-of-type { border-bottom: none; }
@@ -4446,33 +4448,19 @@
       gallery: 'rokid',
       lensOnly: true,
       lensHTML: `
-        <p class="modal-lens-intro">Rokid スマートAIグラス専用のクリップオン式フレームに取り付ける度付きレンズです。事前にRokid販売店にてクリップオン式フレームをご用意のうえ、店舗またはオンラインでレンズ交換をご注文ください。</p>
+        <p class="modal-lens-intro">Rokid スマートAIグラス専用のクリップオン式フレームに入れる度付きレンズです。<small class="except-note">※本サービスはレンズ交換のみです。Rokid本体・クリップオン式フレームはRokid公式サイトにてご購入ください。<br><a href="https://jp.rokid.com/pages/rokid-glasses" target="_blank" style="color:var(--navy);">Rokid公式ホームページ →</a></small></p>
         <div class="modal-lens-block">
-          <p class="modal-lens-block-ttl">レンズ仕様</p>
-          <p class="modal-lens-meta">レンズは近視のみの対応となります。</p>
-        </div>
-        <div class="modal-lens-block">
-          <p class="modal-lens-block-ttl">店舗でレンズ交換する</p>
-          <p class="modal-lens-meta">クリップオン式フレームをお持ちのうえ、お近くのアイメガネ店舗へお越しください。全37店舗で承っております。<small class="except-note">※本庄南大通り店を除く</small></p>
-          <p class="modal-lens-meta except-note" style="margin-top:8px;">※本サービスはレンズ交換のみです。Rokid本体・クリップオン式フレームはRokid公式サイトにてご購入ください。</p>
-        </div>
-        <div class="modal-lens-block">
-          <p class="modal-lens-block-ttl">オンライン注文の流れ</p>
-          <p class="modal-lens-meta"><strong>STEP 1</strong>　Rokid公式サイトにてクリップオン式フレームをご購入ください。<br><a href="https://jp.rokid.com/pages/rokid-glasses" target="_blank" style="color:var(--navy);">Rokid公式ホームページ →</a></p>
-          <p class="modal-lens-meta" style="margin-top:8px;"><strong>STEP 2</strong>　度数（球面・乱視・軸度・PD）を入力してオンラインでご注文後、フレームをご郵送ください。</p>
-        </div>
-        <div class="modal-lens-block">
-          <p class="modal-lens-block-ttl">必要な処方情報</p>
-          <p class="modal-lens-meta">SPH（球面度数）・CYL（乱視度数）・AXIS（乱視軸度）・PD（瞳孔間距離）</p>
-        </div>
-        <div class="modal-lens-block">
-          <p class="modal-lens-block-ttl">製作範囲</p>
-          <p class="modal-lens-meta">近視：−10.00まで</p>
-          <p class="modal-lens-meta">乱視：−4.00まで</p>
+          <p class="modal-lens-block-ttl">対応できる度数</p>
+          <p class="modal-lens-meta">近視：−10.00まで ／ 乱視：−4.00まで</p>
           <p class="modal-lens-meta except-note">※近視と乱視を合わせて−10.00までとなります。</p>
           <p class="modal-lens-meta except-note">※近視が−0.75より弱い方は、乱視入りのレンズは作れません。</p>
           <p class="modal-lens-meta except-note">※遠視・遠近両用には対応しておりません。</p>
           <p class="modal-lens-meta except-note">※詳しくは店舗にてご相談ください。</p>
+        </div>
+        <div class="modal-lens-block">
+          <p class="modal-lens-block-ttl">ご注文方法</p>
+          <p class="modal-lens-meta"><strong>店舗</strong>　クリップオン式フレームをお持ちのうえ、お近くのアイメガネ店舗へお越しください。全37店舗で承っております。<small class="except-note">※本庄南大通り店を除く</small></p>
+          <p class="modal-lens-meta" style="margin-top:8px;"><strong>オンライン</strong>　度数（球面・乱視・軸度・PD）を入力してご注文後、クリップオン式フレームのみご郵送ください。</p>
         </div>
         <div class="modal-lens-block">
           <p class="modal-lens-block-ttl">注意事項</p>
