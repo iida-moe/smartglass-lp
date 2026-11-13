@@ -2613,9 +2613,9 @@
     .pm2-rec { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0; border-top: 1px solid #E6E9EE; border-bottom: 1px solid #E6E9EE; }
     .pm2-rec-item { text-align: center; padding: 18px 10px; }
     .pm2-rec-item + .pm2-rec-item { border-left: 1px solid #E6E9EE; }
-    .pm2-rec-icon { display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 50%; background: #EEF2F7; color: var(--navy); margin-bottom: 10px; }
-    .pm2-rec-icon svg { width: 28px; height: 28px; }
-    .pm2-rec-item p { font-size: 14px; color: #333; line-height: 1.6; }
+    .pm2-rec-icon { display: inline-flex; align-items: center; justify-content: center; width: 68px; height: 68px; border-radius: 50%; background: #EEF2F7; color: var(--navy); margin-bottom: 12px; }
+    .pm2-rec-icon svg { width: 36px; height: 36px; stroke-width: 1.7; }
+    .pm2-rec-item p { font-size: 15px; color: #333; line-height: 1.6; }
     .pm2-note { font-size: 13px; color: #333; line-height: 1.7; }
     .pm2-note + .pm2-note { margin-top: 2px; }
     .pm2-ways { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -2645,8 +2645,8 @@
       .pm2-rec-item + .pm2-rec-item { border-left: none; }
       .pm2-rec-item:nth-child(even) { border-left: 1px solid #E6E9EE; }
       .pm2-rec-item:nth-child(n+3) { border-top: 1px solid #E6E9EE; }
-      .pm2-rec-icon { width: 44px; height: 44px; margin-bottom: 8px; }
-      .pm2-rec-icon svg { width: 24px; height: 24px; }
+      .pm2-rec-icon { width: 56px; height: 56px; margin-bottom: 8px; }
+      .pm2-rec-icon svg { width: 30px; height: 30px; }
       .pm2-rec-item p { font-size: 13px; }
       .pm2-ways { grid-template-columns: 1fr; gap: 12px; }
       .pm2-way { padding: 16px; }
@@ -4523,7 +4523,7 @@
         desc: 'Rokid スマートAIグラス専用のクリップオン式フレームに入れる度付きレンズです。',
         descNote: '※本サービスはレンズ交換のみです。Rokid本体・クリップオン式フレームはRokid公式サイトにてご購入ください。',
         points: ['近視のみ対応（−10.00まで）', '全37店舗でレンズ交換OK（本庄南大通り店を除く）', 'オンライン注文にも対応（クリップオン式フレームのみ郵送）'],
-        recommend: [['cart', 'Rokidを持っている・<br>購入予定の方'], ['glasses', 'ふだんメガネや<br>コンタクトを使う方'], ['spark', 'スマートグラスを<br>度付きで使いたい方']],
+        recommend: [['translate', '外国語の会話を<br>その場で翻訳したい方'], ['camera', '両手をあけたまま<br>写真や動画を撮りたい方'], ['mic', '会議や講義を<br>文字起こししたい方'], ['search', 'スマホを出さずに<br>調べ物や道案内を見たい方']],
         range: {
           nums: [['近視', '−10.00まで'], ['乱視', '−4.00まで']],
           notes: ['※近視と乱視を合わせて−10.00までとなります。', '※近視が−0.75より弱い方は、乱視入りのレンズは作れません。', '※遠視・遠近両用には対応しておりません。', '※詳しくは店舗にてご相談ください。'],
@@ -4703,7 +4703,7 @@
           desc: '全てハンズフリー。文字起こし・議事録・AI要約、通知、AIアシスタント、テレプロンプト、リアルタイム翻訳、ナビゲーションを「視界の中」で使えます。',
           points: ['40言語以上のリアルタイム翻訳', '約38gの軽さ・カメラなし', '度付きレンズに交換できる（近視のみ）'],
           specs: true,
-          recommend: [['people', '会議・打ち合わせが<br>多い方'], ['globe', '外国語を使う仕事や<br>旅行が多い方'], ['bubble', 'ハンズフリーで<br>情報を見たい方'], ['pin', '鯖江ブランドに<br>こだわりたい方']],
+          recommend: [['people', '会議・打ち合わせが<br>多い方'], ['translate', '外国語を使う仕事や<br>旅行が多い方'], ['glasses', 'ハンズフリーで<br>情報を見たい方'], ['pin', '鯖江ブランドに<br>こだわりたい方']],
           accordion: true,
           store: '本体・レンズ取扱：<strong><span class="store-name-link" onclick="showStoreByName(\'南浦和\')">南浦和店</span>・<span class="store-name-link" onclick="showStoreByName(\'宇都宮錦\')">宇都宮錦店</span>・<span class="store-name-link" onclick="showStoreByName(\'八千代\')">八千代台ユアエルム店</span>／オンライン</strong>',
         },
@@ -4890,7 +4890,11 @@
     bubble: '<path d="M4 5h16v11H9.5L5 19.5V16H4z"/><path d="M8 9h8M8 12h5"/>',
     pin: '<path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>',
     cart: '<path d="M3 4h2.2l2 11h10.6l2-8H6.2"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/>',
-    glasses: '<circle cx="6.5" cy="14" r="3.5"/><circle cx="17.5" cy="14" r="3.5"/><path d="M10 14h4M3 14L4.8 7.5M21 14l-1.8-6.5"/>',
+    glasses: '<rect x="2" y="9" width="8.5" height="7" rx="2.5"/><rect x="13.5" y="9" width="8.5" height="7" rx="2.5"/><path d="M10.5 11.5c1-.9 2-.9 3 0"/>',
+    translate: '<path d="M3 5.5h9M7.5 3.5v2M5 5.5c.9 3 2.9 5.4 5.5 6.8"/><path d="M10.2 5.5C9.3 8.6 7 11.3 3.5 12.8"/><path d="M12.5 20.5l4-9.5 4 9.5M14 17h5"/>',
+    camera: '<path d="M3 8.5h3.5L8 6h8l1.5 2.5H21V19H3z"/><circle cx="12" cy="13.5" r="3.3"/>',
+    mic: '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0013 0M12 17.5V21M8.5 21h7"/>',
+    search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.3 15.3L21 21"/>',
     spark: '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M18.5 16v4M16.5 18h4"/>',
   };
   function pm2Icon(name) {
