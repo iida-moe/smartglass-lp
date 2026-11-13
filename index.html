@@ -5103,7 +5103,7 @@
   function pm2BodyBtns(pd) {
     if (pd.hideBodyActionBtn) return pd.bodyActionNote ? `<p class="pm2-note">${pd.bodyActionNote}</p>` : '';
     if (pd.singleCtaLabel) return `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">${pd.singleCtaLabel}</a>`;
-    if (pd.bodyOnlineStore) return `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">近くの店舗を探す</a><a href="${pd.bodyOnlineStore}" target="_blank" class="btn btn-outline">オンラインストアを見る</a>`;
+    if (pd.bodyOnlineStore) return `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">店舗で体験・相談する</a><a href="${pd.bodyOnlineStore}" target="_blank" class="btn btn-outline">オンラインストアを見る</a>`;
     if (pd.onlineStore) return `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">近くの店舗を探す</a><a href="${pd.onlineStore}" target="_blank" class="btn btn-outline">オンラインストアを見る</a>`;
     return `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">本体購入・体験へ</a><a href="#search" class="btn btn-outline" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">${pd.lensLinkLabel || 'レンズ交換へ'}</a>`;
   }
