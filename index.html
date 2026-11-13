@@ -2648,6 +2648,12 @@
     .pm2-models .modal-model-list + p { margin: 8px 0 0 !important; font-size: 13px !important; color: #333 !important; }
     /* 正方形の画像（Ray-Ban・Even G2）は枠も正方形にして小さくならないように */
     .pm2.pm2-sq .prod-modal-img-main { aspect-ratio: 1; }
+    /* スペック表を右に入れる形（試作：SABERA）：写真の枠を右の列の高さまでのばし、小さい写真の下はしをそろえる */
+    @media (min-width: 768px) {
+      .pm2-spectop .prod-modal-layout { align-items: stretch; }
+      .pm2-spectop .prod-modal-img-col { display: flex; flex-direction: column; }
+      .pm2-spectop .prod-modal-img-main { flex: 1; aspect-ratio: auto; min-height: 280px; }
+    }
     /* ボタン右端に「丸の中に▶」 */
     .pm2-way .pm2-way-btn { position: relative; padding-left: 44px; padding-right: 44px; }
     .pm2-way .pm2-way-btn::after { content: ''; position: absolute; right: 16px; top: 50%; width: 20px; height: 20px; margin-top: -10px; border-radius: 50%; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M8 6l5 4-5 4z' fill='%23CC0000'/%3E%3C/svg%3E") center/20px no-repeat; }
@@ -4846,8 +4852,8 @@
         body: {
           label: '本体・レンズ取り扱い',
           desc: '全てハンズフリー。必要な情報を「視界の中」で。',
-          points: ['約38gの軽さ・カメラなし', '通常使用で約12時間のバッテリー', '度付きレンズに交換できる（近視のみ）'],
-          specs: true,
+          points: ['約38gの軽さ', 'カメラなしでプライバシーに配慮', '鯖江生まれの国産フレーム'],
+          specsTop: true,
           recommendTtl: 'できること',
           recommend: [['mic', '文字起こし・<br>議事録・AI要約'], ['translate', '40言語以上の<br>リアルタイム翻訳'], ['bubble', '通知・<br>AIアシスタント'], ['nav', 'ナビゲーション・<br>テレプロンプト']],
           accordion: true,
@@ -5068,7 +5074,8 @@
       ${ctch ? `<p class="prod-modal-catch">${ctch}</p>` : ''}
       ${p.desc ? `<p class="pm2-desc">${p.desc}</p>` : ''}
       ${p.descNote ? `<p class="pm2-note">${p.descNote}</p>` : ''}
-      ${points}`;
+      ${points}
+      ${p.specsTop ? `<div style="margin-top:20px;">${buildSpecTableHTML(p.specsList || pd.specs)}</div>` : ''}`;
   }
   // 本体タブのボタン（今までと同じ動き）
   function pm2BodyBtns(pd) {
@@ -5087,7 +5094,7 @@
         <div class="pm2-rec">${p.recommend.map(r => `<div class="pm2-rec-item"><span class="pm2-rec-icon">${pm2Icon(r[0])}</span><p>${r[1]}</p></div>`).join('')}</div>
       </div>` : '';
     // スペック表は上の右列ではなく、ここに横いっぱいで（左右の高さをそろえるため）
-    const specList = p.specsList || (p.specs ? pd.specs : null);
+    const specList = p.specsTop ? null : (p.specsList || (p.specs ? pd.specs : null));
     const specs = specList ? `
       <div class="pm2-sec">
         <p class="pm2-ttl">スペック</p>
@@ -5166,7 +5173,7 @@
     if (v.body && v.lens) {
       const body = pd.gallery === 'viture' ? pm2VitureBody(pd, 'luma') : v.body;
       return `
-        <div class="pm2${v.imgSquare ? ' pm2-sq' : ''}" data-tab="body">
+        <div class="pm2${v.imgSquare ? ' pm2-sq' : ''}${(v.body && v.body.specsTop) ? ' pm2-spectop' : ''}" data-tab="body">
           <div class="modal-content-tabs pm2-tabs">
             <button class="modal-content-tab active" onclick="pm2SwitchTab(this,'body')">本体について</button>
             <button class="modal-content-tab" onclick="pm2SwitchTab(this,'lens')">${pd.lensTabLabel || 'レンズ交換について'}</button>
