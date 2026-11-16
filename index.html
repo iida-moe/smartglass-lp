@@ -1309,7 +1309,7 @@
     .flow-frame-list li { display: flex; align-items: center; gap: 8px; font-size: clamp(12px, 1.3vw, 13px); line-height: 1.5; }
     .flow-frame-list b { flex: none; min-width: 52px; text-align: center; font-size: 11px; font-weight: 700; color: var(--navy); background: #fff; border: 1px solid #ddd; border-radius: 4px; padding: 1px 6px; }
     .flow-frame-list span { white-space: nowrap; }
-    .flow-online-block .flow-tl-step .flow-desc-note { font-size: 11px; color: #555; margin-top: 4px; }
+    .flow-online-block .flow-tl-step .flow-desc-note { font-size: 11px; color: #555; margin-top: 4px; line-height: 1.6; }
     /* オンラインフロー: 5ステップ */
     .flow-tl-grid--5 { grid-template-columns: repeat(5, 1fr); }
     .flow-tl-grid--3 { grid-template-columns: repeat(3, 1fr); }
@@ -3043,7 +3043,7 @@
         </div>
       </div>
     </div>
-    <p class="section-disclaimer-note">※ カメラ・AIアシスタント・翻訳機能など、搭載機能はモデルによって異なります。<br>各モデルの詳細仕様はメーカー公式ページをご確認ください。</p>
+    <p class="section-disclaimer-note">※ カメラ・AIアシスタント・翻訳機能など、搭載機能はモデルによって異なります。各モデルの詳細仕様はメーカー公式ページをご確認ください。</p>
   </div>
 </section>
 
@@ -3165,7 +3165,7 @@
       <div class="why-sp-online">
         <div class="why-sp-online-inner">
           <p class="why-sp-online-text"><span style="white-space:nowrap">度付きレンズ、</span><wbr><span style="white-space:nowrap">全国どこからでもオンラインで。</span></p>
-          <p class="why-sp-online-body">レンズ用のフレームをお送りいただくと、度付きレンズを入れてご自宅へお届けします。<br>SABERAは、本体と度付きレンズをセットでご注文いただくこともできます。<br><span class="why-sp-online-models">※対応機種：MiRZA・Rokid・SABERA</span></p>
+          <p class="why-sp-online-body" style="word-break:keep-all;">レンズ用のフレームを<wbr>お送りいただくと、<wbr>度付きレンズを入れて<wbr>ご自宅へお届けします。<br>SABERAは、<wbr>本体と度付きレンズを<wbr>セットで<wbr>ご注文いただくことも<wbr>できます。<br><span class="why-sp-online-models">※対応機種：MiRZA・Rokid・SABERA</span></p>
         </div>
         <div class="why-sp-online-action">
           <a href="https://www.aijapan-online.com/" target="_blank" class="btn-why-online">
@@ -3427,9 +3427,10 @@
               <p class="flow-title">フレームを準備</p>
             </div>
             <figure class="flow-illust"><img src="images/flow/smartglass_flow-online1_1200_800.png?v=1105c" alt="フレームを準備のイラスト" loading="lazy" onerror="this.parentNode.classList.add('is-empty');this.remove()"></figure>
-            <p class="flow-desc">レンズを入れるフレームをご用意ください。</p>
-            <ul class="flow-frame-list"><li><b>MiRZA</b><span>専用インサートフレーム</span></li><li><b>Rokid</b><span>クリップオン式フレーム</span></li></ul>
-            <p class="flow-desc flow-desc-note">※各ブランドの販売店などでお求めください。<br>※SABERAを本体ごとご注文の場合、フレームの準備・郵送は不要です。</p>
+            <div class="flow-desc">レンズを入れるフレームをご用意ください。
+              <ul class="flow-frame-list"><li><b>MiRZA</b><span>専用インサートフレーム</span></li><li><b>Rokid</b><span>クリップオン式フレーム</span></li></ul>
+              <p class="flow-desc-note">※各ブランドの販売店などでお求めください。<br>※SABERAを本体ごとご注文の場合、フレームの準備・郵送は不要です。</p>
+            </div>
           </div>
           <div class="flow-tl-step">
             <div class="flow-tl-num">2</div>
@@ -3678,7 +3679,7 @@
         <a href="https://www.aimegane.com/inquiry/" target="_blank">お問い合わせ</a>
       </div>
     </div>
-    <p class="footer-copy">アイジャパン株式会社　〒331-0812 埼玉県さいたま市北区宮原町1丁目505番地1　お客様相談室：0120-21-0110　© 2026 アイジャパン株式会社</p>
+    <p class="footer-copy"><span style="white-space:nowrap">アイジャパン株式会社</span>　<span style="white-space:nowrap">〒331-0812</span> <span style="white-space:nowrap">埼玉県さいたま市北区</span><span style="white-space:nowrap">宮原町1丁目505番地1</span>　<span style="white-space:nowrap">お客様相談室：0120-21-0110</span>　<span style="white-space:nowrap">© 2026 アイジャパン株式会社</span></p>
   </div>
 </footer>
 
@@ -5578,7 +5579,7 @@
     const { loadDefaultJapaneseParser } = await import('https://cdn.jsdelivr.net/npm/budoux@0.6.2/+esm');
     const parser = loadDefaultJapaneseParser();
     const SEL = 'h1, h2, h3, h4, p, li, td, th, dd, .qa-q-text, .qa-a, .store-model-value, .flow-title';
-    const SKIP = 'a.btn, .btn-store-web, .btn-store-tel, .store-card-name, .fv-main, input, select, script, style';
+    const SKIP = '.why-sp-online-body, a.btn, .btn-store-web, .btn-store-tel, .store-card-name, .fv-main, input, select, script, style';
     // BudouXが区切ってしまう単語は、区切りを消す
     const KEEP = ['処方箋', '方法', 'お確かめ', '度付き', '眼鏡'];
     const fixWords = function(el) {
