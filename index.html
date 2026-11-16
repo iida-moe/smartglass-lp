@@ -2618,8 +2618,8 @@
     .pm2-sale-off { display: block; color: #FFD400; font-size: 28px; font-weight: 900; line-height: 1.15; letter-spacing: 0.01em; white-space: nowrap; }
     .pm2-sale-max { font-size: 16px; margin-right: 2px; }
     .pm2-sale-off .sale-off { font-size: 18px; margin-left: 0.08em; }
-    .pm2-sale-period { flex: none; width: 46px; height: 46px; border-radius: 50%; background: #FFD400; color: #111; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; line-height: 1.1; }
-    .pm2-sale-period b { font-size: 13px; font-weight: 900; letter-spacing: 0.01em; }
+    .pm2-sale-bfrow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .pm2-sale-period { background: #FFD400; color: #111; font-size: 12px; font-weight: 700; line-height: 1.4; padding: 1px 8px; border-radius: 4px; white-space: nowrap; }
     .pm2-sale-lead { font-size: 13px; color: #fff; line-height: 1.5; margin: 6px 0 8px; }
     .pm2-sale-body { display: grid; grid-template-columns: 84px 1fr; gap: 10px; align-items: stretch; }
     .pm2-sale-img { width: 84px; height: 100%; min-height: 84px; object-fit: contain; background: #f4f4f4; border-radius: 6px; display: block; }
@@ -2630,8 +2630,7 @@
     .pm2-sale-note { font-size: 11px; color: #ccc; margin-top: 6px; line-height: 1.5; }
     .pm2-sale-cta { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 8px; text-align: center; font-size: 14px; font-weight: 700; color: #111; background: #FFD400; border-radius: 6px; padding: 9px 12px; text-decoration: none; }
     .pm2-sale-cta-ic { flex: none; }
-    .pm2-sale-link { display: block; width: fit-content; margin: 6px 0 0 auto; font-size: 12px; color: #ccc; text-decoration: none; }
-    .pm2-sale-link span { color: #7DB7FF; text-decoration: underline; text-underline-offset: 3px; }
+    .pm2-sale-link { display: block; width: fit-content; margin: 6px 0 0 auto; font-size: 12px; color: #7DB7FF; text-decoration: underline; text-underline-offset: 3px; }
     @media (max-width: 600px) {
       .pm2-sale-off { font-size: 26px; }
       .pm2-sale-body { grid-template-columns: 72px 1fr; gap: 8px; }
@@ -4714,7 +4713,7 @@
           desc: '会話・会議の要点をAIが整理して、視界に表示します。',
           sale: {
             until: '2026-12-27T16:59:00+09:00',
-            period: '12/26まで',
+            period: '12月26日(土)まで',
             items: [['<span style="white-space:nowrap">スマートリング</span> <span style="white-space:nowrap">Even R1</span>', '¥31,800'], ['<span style="white-space:nowrap">Even G2</span> <span style="white-space:nowrap">Clip&amp;Pouchセット</span>', '¥8,800']],
             note: '※アイメガネの取扱店でも、この価格でご購入いただけます。',
             url: 'https://www.evenrealities.com/ja-JP/holiday-season-2026',
@@ -5132,7 +5131,7 @@
       ${points}
       ${p.specsTop ? `<div style="margin-top:20px;">${buildSpecTableHTML(p.specsList || pd.specs)}</div>${p.specsNote ? `<p class="pm2-note" style="margin-top:6px;">${p.specsNote}</p>` : ''}` : ''}
       ${p.infoTable ? `<div class="prod-modal-spec-table pm2-info-table" style="margin-top:20px;">${p.infoTable.map(r => `<div class="prod-modal-spec-row"><div class="prod-modal-spec-key">${r[0]}</div><div class="prod-modal-spec-val"><div>${r[1]}</div></div></div>`).join('')}</div>` : ''}
-      ${(p.sale && new Date() < new Date(p.sale.until)) ? `<div class="pm2-sale"><div class="pm2-sale-head"><div><span class="pm2-sale-bf">BLACK FRIDAY</span><span class="pm2-sale-off"><span class="pm2-sale-max">最大</span>¥18,000<i class="sale-off">OFF</i></span></div><span class="pm2-sale-period"><b>12/26</b>まで</span></div><p class="pm2-sale-lead">Even G2をご購入いただくと、<span style="white-space:nowrap">対象アクセサリーが特別価格に。</span></p><div class="pm2-sale-body"><img class="pm2-sale-img" src="images/even-g2/all-in-one.jpg" alt="Even G2とアクセサリー（Even R1・クリップ・ポーチ）"><div class="pm2-sale-main"><div class="pm2-sale-items">${p.sale.items.map(it => `<div class="pm2-sale-item"><span>${it[0]}</span><strong>${it[1]}</strong></div>`).join('')}</div></div></div><p class="pm2-sale-note">${p.sale.note}</p><a class="pm2-sale-cta" href="#search" onclick="setSearch('Even Realities','trial');closeProductModal()"><svg class="pm2-sale-cta-ic" viewBox="0 0 32 16" width="24" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="9" r="5.5"/><circle cx="24" cy="9" r="5.5"/><path d="M13.5 8.2q2.5-2 5 0M2.5 8 1 4.5M29.5 8 31 4.5"/></svg>店舗で体験・相談する</a><a class="pm2-sale-link" href="${p.sale.url}" target="_blank" rel="noopener">詳しくは<span>メーカー公式サイトへ →</span></a></div>` : ''}
+      ${(p.sale && new Date() < new Date(p.sale.until)) ? `<div class="pm2-sale"><div class="pm2-sale-head"><div><span class="pm2-sale-bfrow"><span class="pm2-sale-bf">BLACK FRIDAY</span><span class="pm2-sale-period">${p.sale.period}</span></span><span class="pm2-sale-off"><span class="pm2-sale-max">最大</span>¥18,000<i class="sale-off">OFF</i></span></div></div><p class="pm2-sale-lead">Even G2をご購入いただくと、<span style="white-space:nowrap">対象アクセサリーが特別価格に。</span></p><div class="pm2-sale-body"><img class="pm2-sale-img" src="images/even-g2/all-in-one.jpg" alt="Even G2とアクセサリー（Even R1・クリップ・ポーチ）"><div class="pm2-sale-main"><div class="pm2-sale-items">${p.sale.items.map(it => `<div class="pm2-sale-item"><span>${it[0]}</span><strong>${it[1]}</strong></div>`).join('')}</div></div></div><p class="pm2-sale-note">${p.sale.note}</p><a class="pm2-sale-cta" href="#search" onclick="setSearch('Even Realities','trial');closeProductModal()"><svg class="pm2-sale-cta-ic" viewBox="0 0 32 16" width="24" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="9" r="5.5"/><circle cx="24" cy="9" r="5.5"/><path d="M13.5 8.2q2.5-2 5 0M2.5 8 1 4.5M29.5 8 31 4.5"/></svg>店舗で体験・相談する</a><a class="pm2-sale-link" href="${p.sale.url}" target="_blank" rel="noopener">詳しくはメーカー公式サイトへ →</a></div>` : ''}
       ${(p.official && !p.officialAfterRec) ? `<a class="pm2-official" href="${p.official}" target="_blank" rel="noopener">詳細はメーカー公式サイトへ →</a>` : ''}`;
   }
   // 本体タブのボタン（今までと同じ動き）
