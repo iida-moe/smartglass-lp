@@ -2620,6 +2620,9 @@
     .pm2-sale-period { margin-left: auto; background: #FFD400; color: #111; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
     .pm2-sale-lead { font-size: 14px; color: #fff; line-height: 1.6; margin: 10px 0 12px; }
     .pm2-sale-items { display: grid; gap: 6px; }
+    .pm2-sale-body { display: grid; grid-template-columns: 120px 1fr; gap: 14px; align-items: center; margin-top: 10px; }
+    .pm2-sale-img { width: 120px; height: 120px; object-fit: contain; background: #f4f4f4; border-radius: 8px; display: block; }
+    .pm2-sale-main .pm2-sale-lead { margin-top: 0; }
     .pm2-sale-item { display: flex; justify-content: space-between; align-items: center; gap: 10px; background: #fff; border-radius: 8px; padding: 9px 14px; }
     .pm2-sale-item span { font-size: 14px; font-weight: 700; color: #111; }
     .pm2-sale-item strong { font-size: 19px; color: var(--red); font-weight: 800; white-space: nowrap; }
@@ -4721,10 +4724,10 @@
         lens: {
           label: '度付きレンズ',
           desc: 'アイメガネはEven Realitiesのメーカー公認店です。Even G2専用のUltraFitレンズで、度付きレンズへの交換を店頭で承ります。',
-          infoTable: [['対応', '単焦点・遠近両用'], ['ご注文', '店頭のみ（メーカー公認店）'], ['納期', 'ご注文後4週間程度']],
+          infoTable: [['対応する度数', '近視・遠視・乱視（−12.00〜+12.00）'], ['レンズの種類', '単焦点・遠近両用'], ['ご注文', '店頭のみ（メーカー公認店）'], ['納期', 'ご注文後4週間程度']],
           lineup: {
             ttl: 'レンズの種類',
-            items: [['エッセンシャルスリム（屈折率1.60）', '軽度〜中等度向け'], ['エンハンストスリム（屈折率1.67）', '中等度〜強度向け'], ['スーペリアスリム（屈折率1.74）', '強度数向け・最薄最軽量']],
+            items: [['エッセンシャルスリム（屈折率1.60）', '軽度〜中等度向け（+2.00〜−3.00）'], ['エンハンストスリム（屈折率1.67）', '中等度〜強度向け（+4.00〜−6.00）'], ['スーペリアスリム（屈折率1.74）', '強度数向け・最薄最軽量']],
             notes: ['※納期は通関状況により前後する場合がございます。'],
           },
           storeWay: 'Even G2本体をお持ちのうえ、取扱店へお越しください。レンズの度数は店頭で測定します。<br><span class="pm2-note">※南浦和店・深谷上柴西店・新越谷店・宇都宮錦店・八千代台ユアエルム店</span>',
@@ -5138,7 +5141,7 @@
       ${points}
       ${p.specsTop ? `<div style="margin-top:20px;">${buildSpecTableHTML(p.specsList || pd.specs)}</div>${p.specsNote ? `<p class="pm2-note" style="margin-top:6px;">${p.specsNote}</p>` : ''}` : ''}
       ${p.infoTable ? `<div class="prod-modal-spec-table pm2-info-table" style="margin-top:20px;">${p.infoTable.map(r => `<div class="prod-modal-spec-row"><div class="prod-modal-spec-key">${r[0]}</div><div class="prod-modal-spec-val"><div>${r[1]}</div></div></div>`).join('')}</div>` : ''}
-      ${(p.sale && new Date() < new Date(p.sale.until)) ? `<div class="pm2-sale"><div class="pm2-sale-head"><span class="pm2-sale-bf">BLACK FRIDAY</span><span class="pm2-sale-off">最大¥18,000<i class="sale-off">OFF</i></span><span class="pm2-sale-period">${p.sale.period}</span></div><p class="pm2-sale-lead">Even G2をご購入いただくと、<br>対象アクセサリーが特別価格に。</p><div class="pm2-sale-items">${p.sale.items.map(it => `<div class="pm2-sale-item"><span>${it[0]}</span><strong>${it[1]}</strong></div>`).join('')}</div><p class="pm2-sale-note">${p.sale.note}</p><a class="pm2-sale-link" href="${p.sale.url}" target="_blank" rel="noopener">詳しくはEven公式サイトへ →</a></div>` : ''}
+      ${(p.sale && new Date() < new Date(p.sale.until)) ? `<div class="pm2-sale"><div class="pm2-sale-head"><span class="pm2-sale-bf">BLACK FRIDAY</span><span class="pm2-sale-off">最大¥18,000<i class="sale-off">OFF</i></span><span class="pm2-sale-period">${p.sale.period}</span></div><div class="pm2-sale-body"><img class="pm2-sale-img" src="images/even-g2/all-in-one.jpg" alt="Even G2とアクセサリー（Even R1・クリップ・ポーチ）"><div class="pm2-sale-main"><p class="pm2-sale-lead">Even G2をご購入いただくと、<br>対象アクセサリーが特別価格に。</p><div class="pm2-sale-items">${p.sale.items.map(it => `<div class="pm2-sale-item"><span>${it[0]}</span><strong>${it[1]}</strong></div>`).join('')}</div></div></div><p class="pm2-sale-note">${p.sale.note}</p><a class="pm2-sale-link" href="${p.sale.url}" target="_blank" rel="noopener">詳しくはEven公式サイトへ →</a></div>` : ''}
       ${(p.official && !p.officialAfterRec) ? `<a class="pm2-official" href="${p.official}" target="_blank" rel="noopener">詳細はメーカー公式サイトへ →</a>` : ''}`;
   }
   // 本体タブのボタン（今までと同じ動き）
