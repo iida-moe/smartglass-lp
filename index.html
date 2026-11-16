@@ -2622,6 +2622,7 @@
     .pg-sale-badge { position: absolute; top: 10px; left: 10px; z-index: 2; background: var(--red); color: #fff; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 4px; letter-spacing: 0.04em; }
     .pg-sale-line { font-size: 13px; font-weight: 700; color: var(--red); margin: 4px 0 6px; }
     .sale-off { font-style: normal; margin-left: 0.03em; }
+    .store-model-sub { font-size: 0.85em; color: #555; }
     .even-color-note { position: absolute; right: 8px; bottom: 8px; z-index: 2; background: rgba(255,255,255,0.92); color: #1A1A1A; font-size: 12px; font-weight: 700; line-height: 1.4; padding: 3px 8px; border-radius: 4px; pointer-events: none; }
     #modal-img-box { position: relative; }
     .pm2-sale { margin-top: 16px; background: #111; border-radius: 10px; padding: 12px 14px; color: #fff; }
@@ -4056,7 +4057,7 @@
     function classify(b, c) {
       if (!c) return;
       const name = BRAND_DISPLAY[b] || b;
-      if (c.body) bodyBrands.push(TRIAL_ONLY_BRANDS.includes(b) ? name + '（度付きレンズは本体ご購入時のみ）' : name);
+      if (c.body) bodyBrands.push(TRIAL_ONLY_BRANDS.includes(b) ? name + '（度付きレンズは購入時のみ）' : name);
       if (c.lens && !TRIAL_ONLY_BRANDS.includes(b)) lensBrands.push(name);
     }
     if (brand) {
@@ -4071,7 +4072,7 @@
   function buildStoreModelDetail(store, brand) {
     const c = classifyStoreBrands(store, brand);
     let html = '<div class="store-model-detail">';
-    if (c.bodyBrands.length) html += '<p class="store-model-row"><span class="store-model-label">本体取扱</span><span class="store-model-value">' + c.bodyBrands.map(function(b){ return '<span style="white-space:nowrap">' + b + '</span>'; }).join('・') + '</span></p>';
+    if (c.bodyBrands.length) html += '<p class="store-model-row"><span class="store-model-label">本体取扱</span><span class="store-model-value">' + c.bodyBrands.map(function(b){ var k = b.indexOf('（'); return k < 0 ? '<span style="white-space:nowrap">' + b + '</span>' : '<span style="white-space:nowrap">' + b.slice(0, k) + '</span><span class="store-model-sub">' + b.slice(k) + '</span>'; }).join('・') + '</span></p>';
     if (c.lensBrands.length) html += '<p class="store-model-row"><span class="store-model-label">レンズ交換</span><span class="store-model-value">' + c.lensBrands.map(function(b){ return '<span style="white-space:nowrap">' + b + '</span>'; }).join('・') + '</span></p>';
     html += '</div>';
     return html;
@@ -4080,7 +4081,7 @@
   function buildStoreModelPlain(store, brand) {
     const c = classifyStoreBrands(store, brand);
     let html = '';
-    if (c.bodyBrands.length) html += '<p class="store-model-plain"><span class="store-model-label">本体取扱</span> ' + c.bodyBrands.map(function(b){ return '<span style="white-space:nowrap">' + b + '</span>'; }).join('・') + '</p>';
+    if (c.bodyBrands.length) html += '<p class="store-model-plain"><span class="store-model-label">本体取扱</span> ' + c.bodyBrands.map(function(b){ var k = b.indexOf('（'); return k < 0 ? '<span style="white-space:nowrap">' + b + '</span>' : '<span style="white-space:nowrap">' + b.slice(0, k) + '</span><span class="store-model-sub">' + b.slice(k) + '</span>'; }).join('・') + '</p>';
     if (c.lensBrands.length) html += '<p class="store-model-plain"><span class="store-model-label">レンズ交換</span> ' + c.lensBrands.map(function(b){ return '<span style="white-space:nowrap">' + b + '</span>'; }).join('・') + '</p>';
     return html;
   }
