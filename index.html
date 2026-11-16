@@ -2616,6 +2616,7 @@
     .pm2-sale-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
     .pm2-sale-bf { color: #FFD400; font-size: 14px; font-weight: 800; letter-spacing: 0.1em; }
     .pm2-sale-off { color: #FFD400; font-size: 22px; font-weight: 800; line-height: 1.2; }
+    .sale-off { font-style: normal; margin-left: 0.12em; }
     .pm2-sale-period { margin-left: auto; background: #FFD400; color: #111; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
     .pm2-sale-lead { font-size: 14px; color: #fff; margin: 8px 0 10px; }
     .pm2-sale-items { display: grid; gap: 6px; }
@@ -3196,7 +3197,7 @@
       <!-- Even Realities G2 -->
       <div class="pg-card" data-product="even" data-ptype="all">
         <div class="pg-card-img" id="even-card-img" style="position:relative;">
-          <div class="pg-sale-strip" data-sale-until="2026-12-27T16:59:00+09:00"><strong>BLACK FRIDAY<em>最大¥18,000 OFF</em></strong><span>12/26まで｜Even R1・Clip &amp; Pouchが特価に</span></div>
+          <div class="pg-sale-strip" data-sale-until="2026-12-27T16:59:00+09:00"><strong>BLACK FRIDAY<em>最大¥18,000<i class="sale-off">OFF</i></em></strong><span>12/26まで｜対象アクセサリーが特別価格に</span></div>
           <img src="images/even-g2/grey.png" alt="Even Realities G2" id="even-img">
         </div>
         <div class="pg-card-body">
@@ -4707,8 +4708,8 @@
           sale: {
             until: '2026-12-27T16:59:00+09:00',
             period: '12/26まで',
-            items: [['Even R1（リング）', '¥31,800'], ['Even G2 Clip &amp; Pouchセット', '¥8,800']],
-            note: '※特価のR1・Clip &amp; PouchはEven公式サイトでのご購入となります。',
+            items: [['スマートリング Even R1', '¥31,800'], ['Even G2 Clip&amp;Pouchセット', '¥8,800']],
+            note: '※特別価格のアクセサリーはEven公式サイトでのご購入となります。',
             url: 'https://www.evenrealities.com/en-JP/holiday-season-2026',
           },
           specsTop: true,
@@ -5137,7 +5138,7 @@
       ${points}
       ${p.specsTop ? `<div style="margin-top:20px;">${buildSpecTableHTML(p.specsList || pd.specs)}</div>${p.specsNote ? `<p class="pm2-note" style="margin-top:6px;">${p.specsNote}</p>` : ''}` : ''}
       ${p.infoTable ? `<div class="prod-modal-spec-table pm2-info-table" style="margin-top:20px;">${p.infoTable.map(r => `<div class="prod-modal-spec-row"><div class="prod-modal-spec-key">${r[0]}</div><div class="prod-modal-spec-val"><div>${r[1]}</div></div></div>`).join('')}</div>` : ''}
-      ${(p.sale && new Date() < new Date(p.sale.until)) ? `<div class="pm2-sale"><div class="pm2-sale-head"><span class="pm2-sale-bf">BLACK FRIDAY</span><span class="pm2-sale-off">最大¥18,000 OFF</span><span class="pm2-sale-period">${p.sale.period}</span></div><p class="pm2-sale-lead">Even G2のご購入で、アクセサリーが特価に</p><div class="pm2-sale-items">${p.sale.items.map(it => `<div class="pm2-sale-item"><span>${it[0]}</span><strong>${it[1]}</strong></div>`).join('')}</div><p class="pm2-sale-note">${p.sale.note}</p><a class="pm2-sale-link" href="${p.sale.url}" target="_blank" rel="noopener">詳しくはEven公式サイトへ →</a></div>` : ''}
+      ${(p.sale && new Date() < new Date(p.sale.until)) ? `<div class="pm2-sale"><div class="pm2-sale-head"><span class="pm2-sale-bf">BLACK FRIDAY</span><span class="pm2-sale-off">最大¥18,000<i class="sale-off">OFF</i></span><span class="pm2-sale-period">${p.sale.period}</span></div><p class="pm2-sale-lead">Even G2をご購入いただくと、対象アクセサリーが特別価格になります。</p><div class="pm2-sale-items">${p.sale.items.map(it => `<div class="pm2-sale-item"><span>${it[0]}</span><strong>${it[1]}</strong></div>`).join('')}</div><p class="pm2-sale-note">${p.sale.note}</p><a class="pm2-sale-link" href="${p.sale.url}" target="_blank" rel="noopener">詳しくはEven公式サイトへ →</a></div>` : ''}
       ${(p.official && !p.officialAfterRec) ? `<a class="pm2-official" href="${p.official}" target="_blank" rel="noopener">詳細はメーカー公式サイトへ →</a>` : ''}`;
   }
   // 本体タブのボタン（今までと同じ動き）
