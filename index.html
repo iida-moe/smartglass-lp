@@ -2614,6 +2614,10 @@
     .pg-sale-badge { position: absolute; top: 10px; left: 10px; z-index: 2; background: var(--red); color: #fff; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 4px; letter-spacing: 0.04em; }
     .pg-sale-line { font-size: 13px; font-weight: 700; color: var(--red); margin: 4px 0 6px; }
     .sale-off { font-style: normal; margin-left: 0.03em; }
+    .even-color-note { position: absolute; right: 8px; bottom: 8px; z-index: 2; background: rgba(255,255,255,0.92); color: #1A1A1A; font-size: 12px; font-weight: 700; line-height: 1.4; padding: 3px 8px; border-radius: 4px; pointer-events: none; }
+    .pg-card-img .even-color-note { font-size: 11px; }
+    #modal-img-box { position: relative; }
+    .pg-sale-strip ~ .even-color-note { bottom: 64px; }
     .pm2-sale { margin-top: 16px; background: #111; border-radius: 10px; padding: 12px 14px; color: #fff; }
     .pm2-sale-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
     .pm2-sale-bf { display: block; color: #FFD400; font-size: 12px; font-weight: 800; letter-spacing: 0.12em; line-height: 1.3; }
@@ -3215,6 +3219,7 @@
         <div class="pg-card-img" id="even-card-img" style="position:relative;">
           <div class="pg-sale-strip" data-sale-until="2026-12-27T16:59:00+09:00"><strong>BLACK FRIDAY<em>最大¥18,000<i class="sale-off">OFF</i></em></strong><span>12月26日(土)まで｜対象アクセサリーが特別価格に</span></div>
           <img src="images/even-g2/grey.png" alt="Even Realities G2" id="even-img">
+          <span class="even-color-note" id="even-card-note" style="display:none;">※南浦和店のみ取り扱いのカラーです</span>
         </div>
         <div class="pg-card-body">
           <h3 class="pg-card-name">Even Realities G2</h3>
@@ -3226,6 +3231,7 @@
             <span class="pg-swatch pg-swatch--active" style="background:#888;" onclick="event.stopPropagation();switchEvenImg('grey',this)" title="グレー"></span>
             <span class="pg-swatch" style="background:#5C7A5A;" onclick="event.stopPropagation();switchEvenImg('green',this)" title="グリーン"></span>
             <span class="pg-swatch" style="background:#7A5230;" onclick="event.stopPropagation();switchEvenImg('brown',this)" title="ブラウン"></span>
+            <span class="pg-swatch" style="background:linear-gradient(135deg,#2e150c 0%,#7a3b22 40%,#3a1a0f 65%,#8f522f 100%);" onclick="event.stopPropagation();switchEvenImg('brown2',this)" title="ブラウン2（南浦和店のみ）"></span>
           </div>
           <div class="pg-card-scenes">
             <span class="pg-scene-label">こんなシーンに</span>
@@ -3699,6 +3705,7 @@
 
   function modalEvenThumb(el, src) {
     document.getElementById('modal-even-img').src = src;
+    evenNote('even-modal-note', src.indexOf('brown2') !== -1);
     document.querySelectorAll('#modal-even-thumbs .modal-img-thumb').forEach(function(t){ t.classList.remove('active'); });
     el.classList.add('active');
   }
@@ -3748,11 +3755,13 @@
     el.classList.add('pg-variant-badge--active');
     var firstColor = frame === 'A' ? 'grey' : 'grey-b';
     document.getElementById('even-img').src = 'images/even-g2/' + firstColor + '.png';
+    evenNote('even-card-note', false);
     document.querySelectorAll('.pg-card[data-product="even"] .pg-swatch').forEach(function(s, i){ s.classList.toggle('pg-swatch--active', i === 0); });
   }
   function switchEvenImg(color, el) {
     var suffix = _evenCardFrame === 'A' ? color : color + '-b';
-    document.getElementById('even-img').src = 'images/even-g2/' + suffix + '.png';
+    document.getElementById('even-img').src = EVEN_IMGS[suffix];
+    evenNote('even-card-note', color === 'brown2');
     document.querySelectorAll('.pg-card[data-product="even"] .pg-swatch').forEach(function(s){ s.classList.remove('pg-swatch--active'); });
     el.classList.add('pg-swatch--active');
   }
@@ -5013,6 +5022,7 @@
       return `
         <div class="prod-modal-img-main" id="modal-img-box" style="background:#f0f0f0;">
           <img id="modal-even-img" src="images/even-g2/grey.png" alt="Even Realities G2">
+          <span class="even-color-note" id="even-modal-note" style="display:none;">※南浦和店のみ取り扱いのカラーです</span>
         </div>
         <div class="modal-frame-tabs">
           <button class="modal-frame-tab active" onclick="modalEvenFrame('A',this)">A フレーム<br><small>G2A</small></button>
@@ -5023,11 +5033,13 @@
             <span class="modal-swatch active" style="background:#4E4E4E;" onclick="modalEvenColor('grey',this)" title="グレイ"></span>
             <span class="modal-swatch" style="background:#516050;" onclick="modalEvenColor('green',this)" title="グリーン"></span>
             <span class="modal-swatch" style="background:#6B5040;" onclick="modalEvenColor('brown',this)" title="ブラウン"></span>
+            <span class="modal-swatch" style="background:linear-gradient(135deg,#2e150c 0%,#7a3b22 40%,#3a1a0f 65%,#8f522f 100%);" onclick="modalEvenColor('brown2',this)" title="ブラウン2（南浦和店のみ）"></span>
           </div>
           <div class="modal-color-swatches" id="modal-even-sw-B" style="display:none;">
             <span class="modal-swatch active" style="background:#4E4E4E;" onclick="modalEvenColor('grey-b',this)" title="グレイ"></span>
             <span class="modal-swatch" style="background:#516050;" onclick="modalEvenColor('green-b',this)" title="グリーン"></span>
             <span class="modal-swatch" style="background:#6B5040;" onclick="modalEvenColor('brown-b',this)" title="ブラウン"></span>
+            <span class="modal-swatch" style="background:linear-gradient(135deg,#2e150c 0%,#7a3b22 40%,#3a1a0f 65%,#8f522f 100%);" onclick="modalEvenColor('brown2-b',this)" title="ブラウン2（南浦和店のみ）"></span>
           </div>
           <div class="modal-img-thumbs" id="modal-even-thumbs">
             <img class="modal-img-thumb active" src="images/even-g2/grey.png" alt="商品写真" onclick="modalEvenThumb(this,'images/even-g2/grey.png')">
@@ -5473,7 +5485,8 @@
   });
 
   // Even Realities モーダル内ギャラリー
-  const EVEN_IMGS = { grey:'images/even-g2/grey.png', green:'images/even-g2/green.png', brown:'images/even-g2/brown.png', 'grey-b':'images/even-g2/grey-b.png', 'green-b':'images/even-g2/green-b.png', 'brown-b':'images/even-g2/brown-b.png' };
+  const EVEN_IMGS = { grey:'images/even-g2/grey.png', green:'images/even-g2/green.png', brown:'images/even-g2/brown.png', 'grey-b':'images/even-g2/grey-b.png', 'green-b':'images/even-g2/green-b.png', 'brown-b':'images/even-g2/brown-b.png', brown2:'images/even-g2/brown2.jpg', 'brown2-b':'images/even-g2/brown2-b.jpg' };
+  function evenNote(id, on) { var n = document.getElementById(id); if (n) n.style.display = on ? '' : 'none'; }
   let _evenFrame = 'A';
   function modalEvenFrame(frame, btn) {
     _evenFrame = frame;
@@ -5485,6 +5498,7 @@
     document.querySelectorAll('#modal-even-sw-'+frame+' .modal-swatch').forEach(s=>s.classList.remove('active'));
     document.querySelector('#modal-even-sw-'+frame+' .modal-swatch').classList.add('active');
     document.getElementById('modal-even-img').src = EVEN_IMGS[firstColor] || EVEN_IMGS['grey'];
+    evenNote('even-modal-note', false);
     resetEvenThumbs(EVEN_IMGS[firstColor]);
   }
   function modalEvenColor(color, el) {
@@ -5493,6 +5507,7 @@
     if (EVEN_IMGS[color]) {
       document.getElementById('modal-even-img').src = EVEN_IMGS[color];
       resetEvenThumbs(EVEN_IMGS[color]);
+      evenNote('even-modal-note', color.indexOf('brown2') === 0);
     }
   }
   function resetEvenThumbs(src) {
