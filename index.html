@@ -1304,6 +1304,11 @@
     }
     .flow-online-models { display: inline-block; margin: 4px 0 8px; padding: 3px 14px; border-radius: 999px; background: #fff; border: 1px solid #ddd; font-size: clamp(13px, 1.5vw, 15px); font-weight: 700; color: var(--navy); }
     .flow-online-block .flow-tl-step .flow-desc { text-align: left; }
+    .flow-frame-list { list-style: none; margin: 8px 0 6px; padding: 0; display: grid; gap: 4px; }
+    .flow-frame-list li { display: flex; align-items: center; gap: 8px; font-size: clamp(12px, 1.3vw, 13px); line-height: 1.5; }
+    .flow-frame-list b { flex: none; min-width: 52px; text-align: center; font-size: 11px; font-weight: 700; color: var(--navy); background: #fff; border: 1px solid #ddd; border-radius: 4px; padding: 1px 6px; }
+    .flow-frame-list span { white-space: nowrap; }
+    .flow-online-block .flow-tl-step .flow-desc-note { font-size: 11px; color: #555; margin-top: 4px; }
     /* オンラインフロー: 5ステップ */
     .flow-tl-grid--5 { grid-template-columns: repeat(5, 1fr); }
     .flow-tl-grid--3 { grid-template-columns: repeat(3, 1fr); }
@@ -3154,15 +3159,14 @@
       </div>
       <div class="why-sp-online">
         <div class="why-sp-online-inner">
-          <p class="why-sp-online-text">度付きレンズ交換、<br class="br-sp">全国どこからでも対応。</p>
-          <p class="why-sp-online-body">本体または専用フレームをお送りいただくと、度付きレンズに交換してお届けします。<span class="why-sp-online-models">※対応機種：MiRZA・Rokid・SABERA</span></p>
+          <p class="why-sp-online-text"><span style="white-space:nowrap">度付きレンズ、</span><wbr><span style="white-space:nowrap">全国どこからでもオンラインで。</span></p>
+          <p class="why-sp-online-body">レンズ用のフレームをお送りいただくと、度付きレンズを入れてご自宅へお届けします。<br>SABERAは、本体と度付きレンズをセットでご注文いただくこともできます。<br><span class="why-sp-online-models">※対応機種：MiRZA・Rokid・SABERA</span></p>
         </div>
         <div class="why-sp-online-action">
           <a href="https://www.aijapan-online.com/" target="_blank" class="btn-why-online">
             <img src="logo_aijapanonline02.png" alt="Ai Japan Online" class="btn-why-online-logo">
             <span>オンラインで注文する▶</span>
           </a>
-          <p class="why-sp-online-disclaimer">※オンラインで本体をご購入いただけるのはSABERAのみです。</p>
         </div>
       </div>
     </div><!-- /prescription-sp -->
@@ -3418,7 +3422,9 @@
               <p class="flow-title">フレームを準備</p>
             </div>
             <figure class="flow-illust"><img src="images/flow/smartglass_flow-online1_1200_800.png?v=1105c" alt="フレームを準備のイラスト" loading="lazy" onerror="this.parentNode.classList.add('is-empty');this.remove()"></figure>
-            <p class="flow-desc">次のフレームをご用意ください。<br>・MiRZA：専用インサートフレーム<br>・Rokid：クリップオン式フレーム<br><span style="font-size:0.92em;">※各ブランドの販売店等で別途ご購入ください。</span></p>
+            <p class="flow-desc">レンズを入れるフレームをご用意ください。</p>
+            <ul class="flow-frame-list"><li><b>MiRZA</b><span>専用インサートフレーム</span></li><li><b>Rokid</b><span>クリップオン式フレーム</span></li></ul>
+            <p class="flow-desc flow-desc-note">※各ブランドの販売店などでお求めください。<br>※SABERAを本体ごとご注文の場合、フレームの準備・郵送は不要です。</p>
           </div>
           <div class="flow-tl-step">
             <div class="flow-tl-num">2</div>
