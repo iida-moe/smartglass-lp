@@ -2724,6 +2724,9 @@
     .pm2-way .pm2-way-btn { margin-top: auto; display: block; width: 100%; text-align: center; box-sizing: border-box; padding-top: 12px; padding-bottom: 12px; font-size: 15px; }
     .pm2-way > :nth-last-child(2) { margin-bottom: 18px; }
     .pm2-way-notes { margin-top: 12px; }
+    .pm2-way .pm2-lens-store { margin: 12px 0 14px; }
+    /* 店名の途中で折り返さない（深谷上柴西店・八千代台ユアエルム店など） */
+    .prod-modal-store .store-name-link { white-space: nowrap; }
     .pm2-shops-lead { margin-top: 16px; font-size: 14px; font-weight: 700; color: var(--navy); }
     .pm2-way .pm2-shops-lead + .pm2-shops { margin-top: 8px; }
     /* 店舗で注文する：見出し（本体と一緒に／レンズ交換のみ）を1行目に、説明をその下に */
@@ -5301,9 +5304,16 @@
     // 11/17 Iさん：レンズ交換が全店 → 「近くの店舗を探す」／決まった店舗だけ（Even・Ray-Ban）→ その店舗の予約カードだけ
     // カードの上の見出し：その店で本体も扱っていれば「本体・レンズ取り扱い店」
     const lensBothBody = lensShops && STORES.every(function(st) { const c = (SPECIAL_BRANDS[st.name] || {})[pd.searchBrand]; return !(c && c.lens) || c.body; });
-    const storeBtn = lensShops
-      ? `<p class="pm2-shops-lead">${lensBothBody ? '本体・レンズ取り扱い店' : 'レンズ取り扱い店'}</p>${lensShops}`
-      :`<a href="#search" class="btn btn-red pm2-way-btn" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">${p.storeBtnLabel || '近くの店舗を探す'}</a>`;
+    // 11/17 Iさん：予約カードはやめて、本体タブと同じ「店名のリンク＋ボタン」にそろえる
+    //   決まった店舗だけ（Even・Ray-Ban）→「本体・レンズ交換：店名…」＋「取扱店で相談する」（Ray-Banは「南浦和店で相談する」）
+    //   全店 → 「近くの店舗を探す」
+    let lensStoreLine = '';
+    if (lensShops) {
+      const names = STORES.filter(function(st) { const c = (SPECIAL_BRANDS[st.name] || {})[pd.searchBrand]; return c && c.lens; })
+        .map(function(st) { const n = st.name.replace('アイメガネ', ''); return `<span class="store-name-link" onclick="showStoreByName('${n.replace(/店$/, '')}')">${n}</span>`; });
+      lensStoreLine = `<p class="prod-modal-store pm2-lens-store">${lensBothBody ? '本体・レンズ交換' : 'レンズ交換'}：<strong>${names.join('・')}</strong></p>`;
+    }
+    const storeBtn = lensStoreLine + `<a href="#search" class="btn btn-red pm2-way-btn" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">${p.storeBtnLabel || (lensShops ? '取扱店で相談する' : '近くの店舗を探す')}</a>`;
     const onlineBtn = onlineUrl ? `<a href="${onlineUrl}" target="_blank" rel="noopener" class="btn btn-outline pm2-way-btn">オンラインで注文する</a>` : '';
     const waysNotes = p.waysNote ? [].concat(p.waysNote) : [];
     const ways = (p.storeWay || online) ? `
