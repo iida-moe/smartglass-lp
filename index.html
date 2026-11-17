@@ -2888,6 +2888,24 @@
       transition: border-color 0.15s;
     }
     .modal-swatch.active { border-color: #333; }
+    /* スマホ：押しやすさ・読みやすさ（11/17） */
+    @media (max-width: 767px) {
+      .pg-card-swatches { gap: 10px; }
+      .pg-swatch { width: 22px; height: 22px; }
+      .pg-card-variant-badges { gap: 8px; }
+      .pg-variant-badge { font-size: 12px; padding: 6px 12px; }
+      .pg-card-store { font-size: 12px; }
+      .pg-card-store th, .pg-card-store td { padding-top: 5px; padding-bottom: 5px; }
+      .except-note { font-size: 11px; }
+      .pg-card-official-link { display: inline-block; padding: 8px 0; }
+      .store-card-map, .pm2-shop .store-card-map { font-size: 13px; padding: 6px 0; }
+      .modal-swatch { width: 28px; height: 28px; }
+      .prod-modal-close { padding: 10px 12px; margin: 6px 6px 0; }
+      .modal-nav-btn { width: 30px; height: 30px; font-size: 16px; opacity: 0.85; }
+      .modal-nav-prev { left: 2px; }
+      .modal-nav-next { right: 2px; }
+      .btn-sbb-top { font-size: 12px; padding: 8px 6px; }
+    }
   </style>
 </head>
 <body>
