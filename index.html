@@ -2717,6 +2717,8 @@
     .pm2-way .pm2-way-btn { margin-top: auto; display: block; width: 100%; text-align: center; box-sizing: border-box; padding-top: 12px; padding-bottom: 12px; font-size: 15px; }
     .pm2-way > :nth-last-child(2) { margin-bottom: 18px; }
     .pm2-way-notes { margin-top: 12px; }
+    .pm2-way-notes .pm2-note { letter-spacing: 0; }
+    @media (min-width: 360px) { .pm2-way-notes .pm2-note { white-space: nowrap; } }
     .pm2-acc .modal-accordion { margin-bottom: 0; }
     .pm2-body-actions .btn { position: relative; padding-left: 44px; padding-right: 44px; }
     .pm2-body-actions .btn::after { content: ''; position: absolute; right: 16px; top: 50%; width: 20px; height: 20px; margin-top: -10px; border-radius: 50%; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M8 6l5 4-5 4z' fill='%23CC0000'/%3E%3C/svg%3E") center/20px no-repeat; }
@@ -4726,7 +4728,7 @@
         },
         storeWay: 'クリップオン式フレームをお持ちのうえ、お近くのアイメガネ店舗へお越しください。レンズの度数は店頭で測定します。お使いのメガネに合わせて作ることもできます。<br><span class="pm2-note">※本庄南大通り店を除く全37店舗</span>',
         onlineSteps: ['Rokid公式サイトでクリップオン式フレームを購入<br><a href="https://jp.rokid.com/pages/rokid-glasses" target="_blank" rel="noopener">Rokid公式ホームページ →</a>', '度数（球面・乱視・軸度・PD）を入力してオンラインで注文', 'クリップオン式フレームのみをご郵送。レンズを入れてご自宅へ返送します'],
-        onlineNotes: ['※フレームの送料はお客様負担となります。', '※度数は処方箋などでご確認ください。'],
+        onlineNotes: ['※フレームの送料はお客様のご負担です。', '※度数は処方箋などでご確認ください。'],
         waysNote: '※度付きレンズは特注品のため、ご注文後のキャンセル・返品はお受けできません。',
       },
       lensHTML: `
