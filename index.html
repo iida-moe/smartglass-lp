@@ -5298,10 +5298,10 @@
     const lensShops = pm2ShopList(pd, 'lens');
     // 11/17 前と同じ「近くの店舗を探す」を先に出し、取扱店が少ない商品はその下に予約カードを足す
     // 取扱店が1店舗だけ（Ray-Banの南浦和など）は、店舗検索のボタンは出さずカードだけ
-    const storeBtn = (lensShops && pm2ShopCount(pd, 'lens') === 1)
+    // 11/17 Iさん：レンズ交換が全店 → 「近くの店舗を探す」／決まった店舗だけ（Even・Ray-Ban）→ その店舗の予約カードだけ
+    const storeBtn = lensShops
       ? lensShops
-      : `<a href="#search" class="btn btn-red pm2-way-btn" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">${p.storeBtnLabel || '近くの店舗を探す'}</a>`
-        + (lensShops ? `<p class="pm2-shops-lead">取扱店に直接予約・電話する</p>${lensShops}` : '');
+      : `<a href="#search" class="btn btn-red pm2-way-btn" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">${p.storeBtnLabel || '近くの店舗を探す'}</a>`;
     const onlineBtn = onlineUrl ? `<a href="${onlineUrl}" target="_blank" rel="noopener" class="btn btn-outline pm2-way-btn">オンラインで注文する</a>` : '';
     const waysNotes = p.waysNote ? [].concat(p.waysNote) : [];
     const ways = (p.storeWay || online) ? `
@@ -5336,7 +5336,8 @@
       // できること→ご購入方法→（たたんだ）スペック一覧・安全上の注意
       return `${models}${rec}${buy}${specs}${range}${lineup}${accordion}`;
     }
-    if (kind === 'body' && pm2ShopList(pd, 'body')) {
+    // 11/17 Iさん：予約カードは度付きレンズ側だけに。本体タブは前と同じ（取扱店＋ボタン）に戻す → この分岐は使わない
+    if (false && kind === 'body' && pm2ShopList(pd, 'body')) {
       const notes = (p.store || '').match(/<small class="except-note">.*?<\/small>/g) || [];
       // 11/17 前と同じボタン（店舗検索へ）を先に出し、その下に取扱店の予約カードを足す
       // 取扱店が1店舗だけ（Ray-Banの南浦和など）は、店舗検索のボタンは出さずカードだけ（オンラインストアのボタンは残す）
