@@ -5319,7 +5319,7 @@
       <div class="pm2-sec" style="margin-top:28px;">
         <p class="pm2-ttl">取扱店で予約・相談する</p>
         ${pm2ShopList(pd, 'body')}
-        <p class="pm2-note" style="margin-top:8px;">予約無料・ご相談だけでもOK${notes.length ? '　' + notes.map(n => n.replace(/<[^>]+>/g, '')).join('　') : ''}</p>
+        <p class="pm2-note" style="margin-top:8px;">予約無料・ご相談だけでもOK</p>${notes.map(n => `<p class="pm2-note">${n.replace(/<[^>]+>/g, '')}</p>`).join('')}
       </div>${online}`;
     }
     if (kind === 'body') {
