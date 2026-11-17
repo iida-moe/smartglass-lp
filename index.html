@@ -2626,6 +2626,18 @@
     .sale-off { font-style: normal; margin-left: 0.03em; }
     .store-model-sub { font-size: 0.85em; color: #555; }
     .qa-note { display: block; margin-top: 6px; font-size: 0.88em; color: #555; }
+    .pm2-shops { display: grid; gap: 10px; }
+    .pm2-shops--multi { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .pm2-shop { border: 1px solid #E3E6EA; border-radius: 10px; padding: 12px 14px; background: #fff; display: flex; flex-direction: column; gap: 8px; }
+    .pm2-shop-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 12px; }
+    .pm2-shop-name { font-size: 15px; font-weight: 700; color: var(--navy); }
+    .pm2-shop .store-card-map { font-size: 12px; }
+    .pm2-shop .store-card-actions { margin-top: 0; padding-top: 0; }
+    .pm2-way .pm2-shops { margin-top: 12px; }
+    .pm2-way .pm2-shop .btn-store-web { color: #fff !important; text-decoration: none; }
+    .pm2-way .pm2-shop .btn-store-tel { color: #111 !important; text-decoration: none; }
+    .pm2-way .pm2-shop .store-card-map { color: var(--text-primary) !important; }
+    @media (max-width: 767px) { .pm2-shops--multi { grid-template-columns: 1fr; } }
     .even-color-note { position: absolute; right: 8px; bottom: 8px; z-index: 2; background: rgba(255,255,255,0.92); color: #1A1A1A; font-size: 12px; font-weight: 700; line-height: 1.4; padding: 3px 8px; border-radius: 4px; pointer-events: none; }
     #modal-img-box { position: relative; }
     .pm2-sale { margin-top: 16px; background: #111; border-radius: 10px; padding: 12px 14px; color: #fff; }
@@ -4318,9 +4330,21 @@
       event: 'lp_reserve_detail',
       reserve_method: btn.classList.contains('btn-store-web') ? 'web' : 'tel',
       reserve_store: btn.getAttribute('data-store') || '',
-      reserve_brand: brand ? (BRAND_DISPLAY[brand] || (brand === 'Viture' ? 'VITURE' : brand)) : '指定なし',
-      reserve_purpose: searchState.purpose === 'trial' ? '本体購入・試着' : (searchState.purpose === 'lens' ? 'レンズ交換' : '指定なし'),
+      reserve_brand: btn.getAttribute('data-brand') || (brand ? (BRAND_DISPLAY[brand] || (brand === 'Viture' ? 'VITURE' : brand)) : '指定なし'),
+      reserve_purpose: (function(pp) { return pp === 'trial' ? '本体購入・試着' : (pp === 'lens' ? 'レンズ交換' : '指定なし'); })(btn.getAttribute('data-purpose') || searchState.purpose),
       reserve_from: btn.getAttribute('data-from') || 'list'
+    });
+  });
+
+  // 「地図・営業時間を見る」（Googleマップ＝GBP）のクリックもGTMへ送る
+  document.addEventListener('click', function(e) {
+    const a = e.target.closest && e.target.closest('.store-card-map');
+    if (!a) return;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'lp_map_click',
+      map_store: a.getAttribute('data-store') || '',
+      map_from: a.getAttribute('data-from') || 'list'
     });
   });
 
@@ -4752,7 +4776,7 @@
             items: [['エッセンシャルスリム（屈折率1.60）', '近視−3.00未満／遠視+2.00未満'], ['エンハンストスリム（屈折率1.67）', '近視−3.00〜−6.00／遠視+2.00〜+4.00'], ['スーペリアスリム（屈折率1.74）', 'それより強い度数・最薄最軽量']],
             notes: ['※レンズは度数に合わせて自動で決まります（単焦点・遠近両用とも）。', '※納期は通関状況により前後する場合がございます。'],
           },
-          storeWay: '<strong>本体と一緒に</strong>：Even G2のご購入時に、度付きレンズでお作りできます。<br><strong>レンズ交換のみ</strong>：お持ちのEven G2を、ケース・充電ケーブルと一緒にお持ちください。<br>どちらもレンズの度数は店頭で測定します。<br><span class="pm2-note">※取扱店：南浦和店・深谷上柴西店・新越谷店・宇都宮錦店・八千代台ユアエルム店</span>',
+          storeWay: '<strong>本体と一緒に</strong>：Even G2のご購入時に、度付きレンズでお作りできます。<br><strong>レンズ交換のみ</strong>：お持ちのEven G2を、ケース・充電ケーブルと一緒にお持ちください。<br>どちらもレンズの度数は店頭で測定します。',
           waysNote: '※度付きレンズは特注品のため、ご注文後のキャンセル・返品はお受けできません。',
         },
       },
@@ -5157,6 +5181,27 @@
       ${(p.official && !p.officialAfterRec) ? `<a class="pm2-official" href="${p.official}" target="_blank" rel="noopener">詳細はメーカー公式サイトへ →</a>` : ''}`;
   }
   // 本体タブのボタン（今までと同じ動き）
+  // 取扱店が少ない商品は、モーダルの中で直接 WEB予約・電話できるようにする（5店舗まで）
+  function pm2ShopList(pd, kind) {
+    const key = pd.searchBrand;
+    if (!key || (DEFAULT_BRANDS[key] && DEFAULT_BRANDS[key][kind === 'body' ? 'body' : 'lens'])) return '';
+    const list = STORES.filter(function(st) {
+      const c = (SPECIAL_BRANDS[st.name] || {})[key];
+      return c && (kind === 'body' ? c.body : c.lens);
+    });
+    if (!list.length || list.length > 5) return '';
+    const brandName = BRAND_DISPLAY[key] || (key === 'Viture' ? 'VITURE' : key);
+    const purpose = kind === 'body' ? 'trial' : 'lens';
+    const rows = list.map(function(st) {
+      const q = encodeURIComponent(st.name + ' ' + st.address.replace(/〒\d{3}-\d{4}\s*/, ''));
+      const attrs = ' data-store="' + st.name + '" data-from="modal" data-brand="' + brandName + '" data-purpose="' + purpose + '"';
+      return '<div class="pm2-shop"><div class="pm2-shop-head"><p class="pm2-shop-name">' + st.name.replace('アイメガネ', '') + '</p>' +
+        '<a class="store-card-map" href="https://www.google.com/maps/search/?api=1&query=' + q + '" target="_blank" rel="noopener"' + attrs + '>地図・営業時間 ↗</a></div>' +
+        '<div class="store-card-actions"><a href="' + (st.reserve || st.url) + '" target="_blank" class="btn-store-web"' + attrs + '>WEB予約</a>' +
+        '<a href="tel:' + st.tel + '" class="btn-store-tel"' + attrs + '>' + st.tel + '</a></div></div>';
+    }).join('');
+    return '<div class="pm2-shops' + (list.length > 1 ? ' pm2-shops--multi' : '') + '">' + rows + '</div>';
+  }
   function pm2BodyBtns(pd) {
     if (pd.hideBodyActionBtn) return pd.bodyActionNote ? `<p class="pm2-note">${pd.bodyActionNote}</p>` : '';
     if (pd.singleCtaLabel) return `<a href="#search" class="btn btn-red" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">${pd.singleCtaLabel}</a>`;
@@ -5206,7 +5251,8 @@
       </div>` : '';
     const online = p.onlineSteps ? `<ol class="pm2-steps">${p.onlineSteps.map(x => `<li>${x}</li>`).join('')}</ol>` : (p.onlineWay ? `<p>${p.onlineWay}</p>` : '');
     const onlineUrl = pd.onlineStore || pd.bodyOnlineStore || '';
-    const storeBtn = `<a href="#search" class="btn btn-red pm2-way-btn" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">${p.storeBtnLabel || '近くの店舗を探す'}</a>`;
+    const lensShops = pm2ShopList(pd, 'lens');
+    const storeBtn = lensShops || `<a href="#search" class="btn btn-red pm2-way-btn" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">${p.storeBtnLabel || '近くの店舗を探す'}</a>`;
     const onlineBtn = onlineUrl ? `<a href="${onlineUrl}" target="_blank" rel="noopener" class="btn btn-outline pm2-way-btn">オンラインで注文する</a>` : '';
     const waysNotes = p.waysNote ? [].concat(p.waysNote) : [];
     const ways = (p.storeWay || online) ? `
@@ -5240,6 +5286,16 @@
       </div>`;
       // できること→ご購入方法→（たたんだ）スペック一覧・安全上の注意
       return `${models}${rec}${buy}${specs}${range}${lineup}${accordion}`;
+    }
+    if (kind === 'body' && pm2ShopList(pd, 'body')) {
+      const notes = (p.store || '').match(/<small class="except-note">.*?<\/small>/g) || [];
+      const online = pd.bodyOnlineStore ? `<div class="pm2-actions pm2-body-actions" style="margin-top:12px;"><a href="${pd.bodyOnlineStore}" target="_blank" rel="noopener" class="btn btn-outline">オンラインストアを見る</a></div>` : '';
+      return `${models}${rec}${range}${lineup}${specs}${accordion}
+      <div class="pm2-sec" style="margin-top:28px;">
+        <p class="pm2-ttl">取扱店で予約・相談する</p>
+        ${pm2ShopList(pd, 'body')}
+        <p class="pm2-note" style="margin-top:8px;">予約無料・ご相談だけでもOK${notes.length ? '　' + notes.map(n => n.replace(/<[^>]+>/g, '')).join('　') : ''}</p>
+      </div>${online}`;
     }
     if (kind === 'body') {
       const bb = pm2BodyBtns(pd);
