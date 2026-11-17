@@ -2744,7 +2744,8 @@
       .pm2.pm2-sq .prod-modal-img-col { max-width: 380px; width: 100%; justify-self: center; }
     }
     /* ボタン右端に「丸の中に▶」 */
-    .pm2-way .pm2-way-btn { position: relative; padding-left: 44px; padding-right: 44px; }
+    .pm2-way .pm2-way-btn { position: relative; padding-left: 44px; padding-right: 44px; white-space: nowrap; }
+    @media (max-width: 767px) { .pm2-way .pm2-way-btn { font-size: 16px; padding-left: 36px; padding-right: 44px; letter-spacing: 0.02em; } }
     .pm2-way .pm2-way-btn::after { content: ''; position: absolute; right: 16px; top: 50%; width: 20px; height: 20px; margin-top: -10px; border-radius: 50%; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M8 6l5 4-5 4z' fill='%23CC0000'/%3E%3C/svg%3E") center/20px no-repeat; }
     .pm2-way .pm2-way-btn.btn-outline::after { background: var(--navy) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M8 6l5 4-5 4z' fill='%23fff'/%3E%3C/svg%3E") center/20px no-repeat; }
     .pm2-way-ttl { font-size: clamp(15px, 1.7vw, 16px); font-weight: 700; color: var(--navy); margin-bottom: 10px; }
