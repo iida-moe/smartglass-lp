@@ -1850,12 +1850,16 @@
       z-index: 1;
     }
     .prescription-sp-title {
-      font-size: clamp(28px, 5.2vw, 32px);
+      font-size: clamp(24px, 6.6vw, 30px);
       font-weight: 700;
       color: #fff;
       line-height: 1.45;
       margin-bottom: 16px;
+      white-space: nowrap;
     }
+    /* 改行：スマホ＝「なぜ、アイメガネで／度付きスマートグラスなのか」、PC＝「なぜ、アイメガネで度付き／スマートグラスなのか」 */
+    .pst-br-pc { display: none; }
+    @media (min-width: 768px) { .pst-br-sp { display: none; } .pst-br-pc { display: inline; } }
     .prescription-sp-intro {
       font-size: clamp(14px, 1.6vw, 16px);
       color: rgba(255,255,255,0.72);
@@ -3160,7 +3164,7 @@
 
     <!-- ▼ SP LAYOUT ▼ -->
     <div class="prescription-sp">
-      <h2 class="prescription-sp-title">なぜ、アイメガネで度付き<br>スマートグラスなのか</h2>
+      <h2 class="prescription-sp-title">なぜ、アイメガネで<br class="pst-br-sp">度付き<br class="pst-br-pc">スマートグラスなのか</h2>
 
       <div class="why-sp-cards">
 
