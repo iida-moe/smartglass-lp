@@ -2724,6 +2724,11 @@
     .pm2-way .pm2-way-btn { margin-top: auto; display: block; width: 100%; text-align: center; box-sizing: border-box; padding-top: 12px; padding-bottom: 12px; font-size: 15px; }
     .pm2-way > :nth-last-child(2) { margin-bottom: 18px; }
     .pm2-way-notes { margin-top: 12px; }
+    /* 店舗で注文する：見出し（本体と一緒に／レンズ交換のみ）を1行目に、説明をその下に */
+    .pm2-sw { display: block; }
+    .pm2-sw + .pm2-sw { margin-top: 10px; }
+    .pm2-sw strong { display: block; color: var(--navy); }
+    .pm2-sw-note { font-size: 13px; color: #555; }
     .pm2-way-notes .pm2-note { letter-spacing: 0; }
     @media (min-width: 360px) { .pm2-way-notes .pm2-note { white-space: nowrap; } }
     .pm2-acc .modal-accordion { margin-bottom: 0; }
@@ -4808,7 +4813,7 @@
             items: [['エッセンシャルスリム（屈折率1.60）', '近視−3.00未満／遠視+2.00未満'], ['エンハンストスリム（屈折率1.67）', '近視−3.00〜−6.00／遠視+2.00〜+4.00'], ['スーペリアスリム（屈折率1.74）', 'それより強い度数・最薄最軽量']],
             notes: ['※レンズは度数に合わせて自動で決まります（単焦点・遠近両用とも）。', '※納期は通関状況により前後する場合がございます。'],
           },
-          storeWay: '<strong>本体と一緒に</strong>：Even G2のご購入時に、度付きレンズでお作りできます。<br><strong>レンズ交換のみ</strong>：お持ちのEven G2を、ケース・充電ケーブルと一緒にお持ちください。<br>どちらもレンズの度数は店頭で測定します。',
+          storeWay: '<span class="pm2-sw"><strong>本体と一緒に</strong>Even&nbsp;G2のご購入時に、度付きレンズでお作りできます。</span><span class="pm2-sw"><strong>レンズ交換のみ</strong>お持ちのEven&nbsp;G2を、ケース・充電ケーブルと一緒にお持ちください。</span><span class="pm2-sw pm2-sw-note">どちらもレンズの度数は店頭で測定します。</span>',
           waysNote: '※度付きレンズは特注品のため、ご注文後のキャンセル・返品はお受けできません。',
         },
       },
@@ -5284,7 +5289,9 @@
     const online = p.onlineSteps ? `<ol class="pm2-steps">${p.onlineSteps.map(x => `<li>${x}</li>`).join('')}</ol>` : (p.onlineWay ? `<p>${p.onlineWay}</p>` : '');
     const onlineUrl = pd.onlineStore || pd.bodyOnlineStore || '';
     const lensShops = pm2ShopList(pd, 'lens');
-    const storeBtn = lensShops || `<a href="#search" class="btn btn-red pm2-way-btn" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">${p.storeBtnLabel || '近くの店舗を探す'}</a>`;
+    const storeBtn = lensShops
+      ? lensShops + `<a href="#search" class="btn btn-outline pm2-way-btn" style="margin-top:12px;" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">近くの店舗を探す</a>`
+      : `<a href="#search" class="btn btn-red pm2-way-btn" onclick="setSearch('${pd.searchBrand}','lens');closeProductModal()">${p.storeBtnLabel || '近くの店舗を探す'}</a>`;
     const onlineBtn = onlineUrl ? `<a href="${onlineUrl}" target="_blank" rel="noopener" class="btn btn-outline pm2-way-btn">オンラインで注文する</a>` : '';
     const waysNotes = p.waysNote ? [].concat(p.waysNote) : [];
     const ways = (p.storeWay || online) ? `
@@ -5321,7 +5328,8 @@
     }
     if (kind === 'body' && pm2ShopList(pd, 'body')) {
       const notes = (p.store || '').match(/<small class="except-note">.*?<\/small>/g) || [];
-      const online = pd.bodyOnlineStore ? `<div class="pm2-actions pm2-body-actions" style="margin-top:12px;"><a href="${pd.bodyOnlineStore}" target="_blank" rel="noopener" class="btn btn-outline">オンラインストアを見る</a></div>` : '';
+      // 予約カードの下にも「近くの店舗を探す」（店舗検索へ）を残す
+      const online = `<div class="pm2-actions pm2-body-actions" style="margin-top:14px;"><a href="#search" class="btn btn-outline" onclick="setSearch('${pd.searchBrand}','trial');closeProductModal()">近くの店舗を探す</a>${pd.bodyOnlineStore ? `<a href="${pd.bodyOnlineStore}" target="_blank" rel="noopener" class="btn btn-outline">オンラインストアを見る</a>` : ''}</div>`;
       return `${models}${rec}${range}${lineup}${specs}${accordion}
       <div class="pm2-sec" style="margin-top:28px;">
         <p class="pm2-ttl">取扱店で予約・相談する</p>
