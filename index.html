@@ -1762,11 +1762,12 @@
       .features-intro p { font-size: clamp(13px, 1.5vw, 15px); line-height: 1.8; }
       .features-intro p br { display: none; }
       .features-grid { grid-template-columns: 1fr; gap: 10px; margin-bottom: 20px; }
-      .feature-card { display: grid; grid-template-columns: 44px 1fr; grid-template-rows: auto auto; align-items: center; column-gap: 14px; row-gap: 2px; padding: 14px 16px; text-align: left; }
-      .feature-icon { grid-column: 1; grid-row: 1 / 3; width: 44px; height: 44px; margin: 0; align-self: center; }
-      .feature-icon img { width: 26px; height: 26px; }
-      .feature-title { grid-column: 2; grid-row: 1; font-size: clamp(16px, 1.8vw, 18px); margin-bottom: 0; align-self: end; }
-      .feature-desc { grid-column: 2; grid-row: 2; font-size: clamp(14px, 1.6vw, 16px); line-height: 1.7; align-self: start; }
+      /* 11/25 説明文をカードの横幅いっぱいに（アイコンの右だけだと1行が短く、4〜5行に折り返していたため） */
+      .feature-card { display: grid; grid-template-columns: 36px 1fr; grid-template-rows: auto auto; align-items: center; column-gap: 12px; row-gap: 8px; padding: 14px 16px; text-align: left; }
+      .feature-icon { grid-column: 1; grid-row: 1; width: 36px; height: 36px; margin: 0; align-self: center; }
+      .feature-icon img { width: 22px; height: 22px; }
+      .feature-title { grid-column: 2; grid-row: 1; font-size: 16px; margin-bottom: 0; align-self: center; }
+      .feature-desc { grid-column: 1 / -1; grid-row: 2; font-size: 14px; line-height: 1.7; align-self: start; }
       .feature-desc br { display: none; }
       .features-prescription-banner { padding: 24px 20px; flex-direction: column; align-items: flex-start; gap: 16px; }
       .features-banner-right { width: 100%; }
