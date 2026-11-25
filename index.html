@@ -417,6 +417,7 @@
       margin-bottom: 8px;
       color: var(--text-primary);
     }
+    .fd-sp { display: none; }
     .feature-desc {
       font-size: clamp(13px, 1.5vw, 15px);
       color: var(--text-secondary);
@@ -1767,7 +1768,14 @@
       .feature-icon { grid-column: 1; grid-row: 1; width: 36px; height: 36px; margin: 0; align-self: center; }
       .feature-icon img { width: 22px; height: 22px; }
       .feature-title { grid-column: 2; grid-row: 1; font-size: 16px; margin-bottom: 0; align-self: center; }
-      .feature-desc { grid-column: 1 / -1; grid-row: 2; font-size: 14px; line-height: 1.7; align-self: start; }
+      /* 11/25 スマホは説明を1行の短い言葉に・2列×2段（文字だらけで読みにくいため） */
+      .fd-pc { display: none; }
+      .fd-sp { display: inline; }
+      .features-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .feature-card { grid-template-columns: 1fr; justify-items: start; row-gap: 6px; padding: 14px 12px; }
+      .feature-icon { grid-column: 1; grid-row: 1; }
+      .feature-title { grid-column: 1; grid-row: 2; font-size: 15px; line-height: 1.4; }
+      .feature-desc { grid-column: 1; grid-row: 3; font-size: 13px; line-height: 1.6; align-self: start; color: #555; }
       .feature-desc br { display: none; }
       .features-prescription-banner { padding: 24px 20px; flex-direction: column; align-items: flex-start; gap: 16px; }
       .features-banner-right { width: 100%; }
@@ -3039,28 +3047,28 @@
     <p class="section-label">WHAT ARE SMART GLASSES</p>
     <h2 class="section-title">スマートグラスとは？</h2>
     <div class="features-intro">
-      <p>声で質問、耳で音楽を楽しむ、両手がふさがっていても大丈夫。<br>スマートフォンを取り出す必要がない。目の前のことに集中できる。</p>
+      <p><span class="fd-pc">声で質問、耳で音楽を楽しむ、両手がふさがっていても大丈夫。<br>スマートフォンを取り出す必要がない。目の前のことに集中できる。</span><span class="fd-sp">スマホを出さずに、メガネが手伝ってくれる。</span></p>
     </div>
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon"><img src="テレオペアイコン (1).svg" alt="AIアシスタント"></div>
         <p class="feature-title">AIアシスタント</p>
-        <p class="feature-desc">声で質問すればすぐ回答。スケジュール管理から情報検索まで、日常をサポートする。</p>
+        <p class="feature-desc"><span class="fd-pc">声で質問すればすぐ回答。スケジュール管理から情報検索まで、日常をサポートする。</span><span class="fd-sp">声で聞くだけで、すぐ答えてくれる</span></p>
       </div>
       <div class="feature-card">
         <div class="feature-icon"><img src="吹き出しのアイコン6.svg" alt="通話"></div>
         <p class="feature-title">通話・自動翻訳</p>
-        <p class="feature-desc">両手が自由なまま通話・メッセージ。リアルタイム翻訳で、海外でも安心して使える。</p>
+        <p class="feature-desc"><span class="fd-pc">両手が自由なまま通話・メッセージ。リアルタイム翻訳で、海外でも安心して使える。</span><span class="fd-sp">両手が空いたまま通話・翻訳</span></p>
       </div>
       <div class="feature-card">
         <div class="feature-icon"><img src="カメラのアイコン素材 7.svg" alt="カメラ"></div>
         <p class="feature-title">ハンズフリーで撮影</p>
-        <p class="feature-desc">見えている景色をそのまま記録。両手が空いたまま、いつでもシャッターを切れる。</p>
+        <p class="feature-desc"><span class="fd-pc">見えている景色をそのまま記録。両手が空いたまま、いつでもシャッターを切れる。</span><span class="fd-sp">見ている景色を、そのまま撮れる</span></p>
       </div>
       <div class="feature-card">
         <div class="feature-icon"><img src="音楽アイコン.svg" alt="音楽"></div>
         <p class="feature-title">音楽をどこでも</p>
-        <p class="feature-desc">耳をふさがずに音楽やポッドキャストを楽しめる。周囲の音も聞こえて安全に使える。</p>
+        <p class="feature-desc"><span class="fd-pc">耳をふさがずに音楽やポッドキャストを楽しめる。周囲の音も聞こえて安全に使える。</span><span class="fd-sp">耳をふさがず、音楽を楽しめる</span></p>
       </div>
     </div>
     <p class="section-disclaimer-note">※ カメラ・AIアシスタント・翻訳機能など、搭載機能はモデルによって異なります。各モデルの詳細仕様はメーカー公式ページをご確認ください。</p>
